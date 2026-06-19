@@ -1,0 +1,19 @@
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+
+# Byte-compiled files and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE tools (adjust as needed)
+.vscode/
+.idea/
+
+# Environment files and logs
+*.log
+.env.local
+.env
