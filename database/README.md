@@ -10,7 +10,21 @@
 
 ## 📂 Project structure
 
-...
+```
+database/
+├── alembic
+│   ├── versions/...
+│   ├── env.py
+│   └── script.py.mako
+├── api/...
+├── models
+│   ├── __init__.py
+│   ├── base.py
+├── .gitignore
+├── alembic.ini
+├── README.md
+└── requirements.txt
+```
 
 ## 🎯 Additional considerations for developers
 
