@@ -1,12 +1,9 @@
-import os
 from logging.config import fileConfig
 from alembic import context
-from dotenv import load_dotenv
 from sqlalchemy import create_engine, pool
 
-from models.base import Base
-
-load_dotenv(dotenv_path=".env.local", override=True)
+from models import Base
+from db import get_database_uri
 
 config = context.config
 
@@ -16,24 +13,15 @@ if config.config_file_name is not None:
 target_metadata = Base.metadata
 
 
-def include_object(object_, name, type_, reflected, compare_to):
+def include_object(object_, name, type_, reflected, compare_to) -> bool:
     if type_ == "table" and name == "spatial_ref_sys":
         return False
     return True
 
 
-def get_database_uri() -> str:
-    url = os.getenv("POSTGRES_URI")
-    if not url:
-        raise RuntimeError("POSTGRES_URI is missing from the .env.local file")
-    return url
-
-
 def run_migrations_offline() -> None:
-    url = get_database_uri()
-
     context.configure(
-        url=url,
+        url=get_database_uri(),
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -44,7 +32,7 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    engine = create_engine(get_database_uri(), poolclass=pool.NullPool)
+    engine = create_engine(url=get_database_uri(), poolclass=pool.NullPool)
 
     with engine.connect() as connection:
         context.configure(

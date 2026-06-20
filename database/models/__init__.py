@@ -1,2 +1,2 @@
-from .base import Base, HouseholdEconomics
+from .base import Base, ModelBase
 from .categories import Categories
