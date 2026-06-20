@@ -2,23 +2,7 @@
 
 ## 💽 Installation
 
-1. Clone this repository 
-    - (ssh):
-        ```sh
-        git clone git@github.com:Rizquez/household-economics.git
-        ```
-
-    - (http):
-        ```sh
-        git clone https://github.com/Rizquez/household-economics.git
-        ```
-
-2. Access the project directory:
-    ```sh
-    cd household-economics
-    ```
-
-3. Create a development environment using the `virtualenv` library:
+1. Create a development environment using the `virtualenv` library:
     ```sh
     virtualenv venv
     ```
@@ -28,7 +12,7 @@
         python -m venv env
         ```
 
-4. Install the dependencies:
+2. Install the dependencies:
     ```sh
     pip install -r requirements.txt
     ```
