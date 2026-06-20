@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from services import CategoriesService
 from models import Base
 
-load_dotenv(".env.local", override=True)
+load_dotenv(dotenv_path=".env.local", override=True)
 
 
 class Database(CategoriesService):
