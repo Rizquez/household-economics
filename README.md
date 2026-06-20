@@ -22,7 +22,7 @@
 
 ## 🚀 Getting Started
 
-1. Clone this repository 
+1. Clone this repository:
     - (ssh):
         ```sh
         git clone git@github.com:Rizquez/household-economics.git
