@@ -12,7 +12,17 @@
         python -m venv env
         ```
 
-2. Install the dependencies:
+2. Activate environment:
+    - (Windows)
+        ```sh
+        venv\Scripts\activate
+        ```
+    - (macOS/Linux)
+        ```sh
+        source venv/bin/activate
+        ```
+
+3. Install the dependencies:
     ```sh
     pip install -r requirements.txt
     ```
