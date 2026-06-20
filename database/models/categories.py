@@ -1,9 +1,9 @@
 from sqlalchemy import Column, String
 
-from .base import HouseholdEconomics
+from models.base import ModelBase
 
 
-class Categories(HouseholdEconomics):
+class Categories(ModelBase):
     __tablename__ = "categories"
 
     category = Column(String, nullable=False)

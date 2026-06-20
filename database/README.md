@@ -22,9 +22,7 @@
 
 ## 🚀 Execution
 
-...
-
-### Migration (Alembic)
+### Alembic (Migration)
 
 To generate a migration correctly, you must be in the `./household-economics/database/` directory. Once there, you'll need to run a series of commands:
 
@@ -56,6 +54,9 @@ An example of what the `.env.local` file should look like:
 POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
 ```
 
+> [!IMPORTANT]
+> This project does not have an execution command, since it is installed on the `backend` as a library and used as such.
+
 ## 📂 Project structure
 
 ```
@@ -64,13 +65,20 @@ database/
 │   ├── versions/...
 │   ├── env.py
 │   └── script.py.mako
-├── api/...
+├── database_package
+│   └── __init__.py
 ├── models
+│   ├── __init__.py
+│   ├── base.py
+│   └── categories.py
+├── services
 │   ├── __init__.py
 │   ├── base.py
 │   └── categories.py
 ├── .gitignore
 ├── alembic.ini
+├── db.py
+├── pyproject.toml
 ├── README.md
 └── requirements.txt
 ```
