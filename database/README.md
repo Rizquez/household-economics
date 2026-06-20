@@ -2,11 +2,52 @@
 
 ## 💽 Installation
 
-...
+1. Clone this repository 
+    - (ssh):
+        ```sh
+        git clone git@github.com:Rizquez/household-economics.git
+        ```
+
+    - (http):
+        ```sh
+        git clone https://github.com/Rizquez/household-economics.git
+        ```
+
+2. Access the project directory:
+    ```sh
+    cd household-economics
+    ```
+
+3. Create a development environment using the `virtualenv` library:
+    ```sh
+    virtualenv venv
+    ```
+
+    - If you don't have the library installed, you can run:
+        ```sh
+        python -m venv env
+        ```
+
+4. Install the dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+> [!IMPORTANT]
+> If you're using operating systems such as macOS or Linux, use the `pip3` and `python3` commands.
 
 ## 🚀 Execution
 
 ...
+
+### Environment Variables
+The project requires certain environment variables to run, these variables must be defined in a `.env.local` file in the project root directory.
+
+An example of what the `.env.local` file should look like:
+
+```sh
+POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
+```
 
 ## 📂 Project structure
 
@@ -20,6 +61,7 @@ database/
 ├── models
 │   ├── __init__.py
 │   ├── base.py
+│   └── categories.py
 ├── .gitignore
 ├── alembic.ini
 ├── README.md
@@ -28,7 +70,26 @@ database/
 
 ## 🎯 Additional considerations for developers
 
-### Forward References and Modern Typing (PEP 484 / PEP 563)
+### Semantic versioning criteria (x.xx.xxx)
+
+The criteria for each version number are described below:
+
+- **Major (x):** Increments when there are significant changes that make previous versions incompatible.
+- **Minor (xx):** Increases when new features compatible with the previous version are added.
+- **Patch (xxx):** Increases when minor bug fixes that do not affect functionality are made.
+
+### Workflow
+
+1. **Feature branching:** Each new feature or fix must be developed on a separate branch; these new branches must be created from `release` and never from `main`.
+2. **Commits:** Descriptive and following the `"type: message"` convention. Example:
+    - feat: add Google authentication.
+    - fix: fix error when validating empty credentials.
+    - docs: Update installation instructions.
+    - refactor: Simplify user validation logic.
+3. **Pull requests:** Before merging changes into `release`, a `pull request` must be created and reviewed and approved.
+4. **Code review:** Include a clear description of the changes and how to test them. 
+
+### Forward references and modern typing (PEP 484 / PEP 563)
 
 The project uses *Forward References* following modern Python recommendations for static typing.
 
@@ -86,3 +147,7 @@ print(m._Engine__status)   # ✔️ Access possible, but not recommended (Output
 ```
 > [!WARNING]
 > Although technically accessible via the mangled name, its direct use is discouraged outside the context of the class itself.
+
+## 📖 Documentacion adicional
+
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/)
