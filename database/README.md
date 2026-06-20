@@ -2,23 +2,7 @@
 
 ## 💽 Installation
 
-1. Clone this repository 
-    - (ssh):
-        ```sh
-        git clone git@github.com:Rizquez/household-economics.git
-        ```
-
-    - (http):
-        ```sh
-        git clone https://github.com/Rizquez/household-economics.git
-        ```
-
-2. Access the project directory:
-    ```sh
-    cd household-economics
-    ```
-
-3. Create a development environment using the `virtualenv` library:
+1. Create a development environment using the `virtualenv` library:
     ```sh
     virtualenv venv
     ```
@@ -28,7 +12,7 @@
         python -m venv env
         ```
 
-4. Install the dependencies:
+2. Install the dependencies:
     ```sh
     pip install -r requirements.txt
     ```
@@ -40,7 +24,30 @@
 
 ...
 
-### Environment Variables
+### Migration (Alembic)
+
+To generate a migration correctly, you must be in the `./household-economics/database/` directory. Once there, you'll need to run a series of commands:
+
+- Generate the migration:
+    ```sh
+    alembic revision --autogenerate -m "Here is where you should enter the message describing the change"
+    ```
+
+- Commit the migration changes to the database::
+    ```sh
+    alembic upgrade head
+    ```
+
+- Undo the most recent changes made to the database:
+    ```sh
+    alembic downgrade -1
+    ```
+
+> [!NOTE]
+> You can apply changes by specifying the specific revision ID associated with a particular migration.
+
+### Environment variables
+
 The project requires certain environment variables to run, these variables must be defined in a `.env.local` file in the project root directory.
 
 An example of what the `.env.local` file should look like:
@@ -148,6 +155,6 @@ print(m._Engine__status)   # ✔️ Access possible, but not recommended (Output
 > [!WARNING]
 > Although technically accessible via the mangled name, its direct use is discouraged outside the context of the class itself.
 
-## 📖 Documentacion adicional
+## 📖 Additional documentation
 
 - [Alembic](https://alembic.sqlalchemy.org/en/latest/)

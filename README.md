@@ -22,6 +22,24 @@
 
 ## 🚀 Getting Started
 
+1. Clone this repository:
+    - (ssh):
+        ```sh
+        git clone git@github.com:Rizquez/household-economics.git
+        ```
+
+    - (http):
+        ```sh
+        git clone https://github.com/Rizquez/household-economics.git
+        ```
+
+2. Access the project directory:
+    ```sh
+    cd household-economics
+    ```
+
+In each `README` file, you'll find information about installing and running each project:
+
 * [Backend (README)](./backend/README.md)
 * [Database (README)](./database/README.md)
 * [Frontend (README)](./frontend/README.md)
