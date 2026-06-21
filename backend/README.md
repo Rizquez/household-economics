@@ -46,21 +46,32 @@ POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
 
 ## 📂 Project structure
 
+```
 backend/
 ├── libfastapi
 │   ├── app
 │   │   ├── \_\_init\_\_.py
 │   │   ├── builder.py
 │   │   └── settings.py
-│   ├── business/...
-│   ├── routes/...
-│   ├── schemas/...
+│   ├── business
+│   │   ├── \_\_init\_\_.py
+│   │   ├── business.py
+│   │   └── categories.py
+│   ├── routes
+│   │   ├── \_\_init\_\_.py
+│   │   └── categories.py
+│   ├── schemas
+│   │   ├── \_\_init\_\_.py
+│   │   ├── base.py
+│   │   └── categories.py
 │   ├── env.py
-│   └── helpers.py
+│   └── setup.py
 ├── .gitignore
 ├── app.py
 ├── README.md
+├── requirements_base.txt
 └── requirements.txt
+```
 
 ## 🎯 Additional considerations for developers
 
