@@ -4,13 +4,11 @@ from fastapi import FastAPI
 from typing import Union, TYPE_CHECKING
 from fastapi.middleware.cors import CORSMiddleware
 
-from .settings import get_settings
-
 if TYPE_CHECKING:
     from .settings import Local, Render
 
 
-def builder_app(settings: Union["Local", "Render"] = get_settings()) -> FastAPI:
+def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
     app = FastAPI(
         title="Household-Economics-Backend",
         description="xxx",

@@ -4,9 +4,14 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 
 from libfastapi.app import builder_app, get_settings
+from libfastapi.setup import setup_layers
+from libfastapi.routes import setup_routers
 
-app = builder_app()
 settings = get_settings()
+app = builder_app(settings)
+
+setup_layers()
+setup_routers(app)
 
 
 @app.get("/")

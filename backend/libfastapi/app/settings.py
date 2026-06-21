@@ -29,4 +29,7 @@ def get_settings() -> Union[Local, Render]:
     elif is_render_environment():
         return Render()
     else:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No environment was found in the environment variables")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No environment was found in the environment variables",
+        )
