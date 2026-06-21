@@ -1,8 +1,7 @@
-import os
 from typing import Union
-from dotenv import load_dotenv
+from fastapi import status, HTTPException
 
-load_dotenv(dotenv_path=".env.local", override=True)
+from libfastapi.env import is_local_environment, is_render_environment
 
 
 class Base:
@@ -25,8 +24,9 @@ class Render(Base):
 
 
 def get_settings() -> Union[Local, Render]:
-    env = os.getenv("ENVIRONMENT", "LOCAL")
-    if env == "RENDER":
+    if is_local_environment():
+        return Local()
+    elif is_render_environment():
         return Render()
-
-    return Local()
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No environment was found in the environment variables")
