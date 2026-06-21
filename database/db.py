@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 from typing import TYPE_CHECKING
-from pathlib import Path
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker, scoped_session
 from dotenv import load_dotenv
