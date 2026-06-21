@@ -50,18 +50,18 @@ POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
 backend/
 ├── libfastapi
 │   ├── app
-│   │   ├── \_\_init\_\_.py
+│   │   ├── __init__.py
 │   │   ├── builder.py
 │   │   └── settings.py
 │   ├── business
-│   │   ├── \_\_init\_\_.py
+│   │   ├── __init__.py
 │   │   ├── business.py
 │   │   └── categories.py
 │   ├── routes
-│   │   ├── \_\_init\_\_.py
+│   │   ├── __init__.py
 │   │   └── categories.py
 │   ├── schemas
-│   │   ├── \_\_init\_\_.py
+│   │   ├── __init__.py
 │   │   ├── base.py
 │   │   └── categories.py
 │   ├── env.py
