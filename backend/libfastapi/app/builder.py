@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
     app = FastAPI(
         title="Household-Economics-Backend",
-        description="xxx",
+        description="xxx", # TODO: add description
         version=settings.VERSION,
         debug=settings.DEBUG,
         root_path=settings.ROOT,
