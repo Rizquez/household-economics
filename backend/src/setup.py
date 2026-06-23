@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-from database_package import Database, get_database_uri
+from database import Database, get_database_uri
 from .business import setup_business_layer
 
 

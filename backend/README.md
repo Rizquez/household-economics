@@ -48,7 +48,7 @@ POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
 
 ```
 backend/
-├── libfastapi
+├── src
 │   ├── app
 │   │   ├── __init__.py
 │   │   ├── builder.py

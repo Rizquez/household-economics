@@ -1,6 +1,6 @@
 from typing import List
 
-from database_package import Categories
+from database import Categories
 from .business import Business
 
 

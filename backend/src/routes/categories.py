@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter
 
-from libfastapi.business import CategoriesBusiness
-from libfastapi.schemas import CategoryResponse
+from src.business import CategoriesBusiness
+from src.schemas import CategoryResponse
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import status, HTTPException
 
-from libfastapi.env import is_local_environment, is_render_environment
+from src.env import is_local_environment, is_render_environment
 
 
 class Base:

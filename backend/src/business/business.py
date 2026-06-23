@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from database_package import Database
+from database import Database
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
