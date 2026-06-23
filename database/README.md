@@ -75,7 +75,7 @@ database/
 │   ├── versions/...
 │   ├── env.py
 │   └── script.py.mako
-├── database_package
+├── database
 │   └── __init__.py
 ├── models
 │   ├── __init__.py
