@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=".env.local", override=True)
+load_dotenv(override=True)
 
 
 def _get_environment() -> str:
