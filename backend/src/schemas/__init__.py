@@ -1,1 +1,1 @@
-from .category import CategoryResponse
+from .category import CategoryResponse, CategoryRequest
