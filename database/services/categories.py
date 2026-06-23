@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, TYPE_CHECKING
+from typing import List, Optional, Dict, TYPE_CHECKING
 
 from services.base import ServiceBase
 from models import Categories
@@ -16,5 +16,17 @@ class CategoriesService(ServiceBase):
         return cls.get_all(session, Categories)
 
     @classmethod
-    def get_category(cls, session: "scoped_session", ident: int) -> Categories:
+    def get_category(cls, session: "scoped_session", ident: int) -> Optional[Categories]:
         return cls.get(session, ident, Categories)
+    
+    @classmethod
+    def create_category(cls, session: "scoped_session", a_dict: Dict) -> Categories:
+        return cls.create(session, a_dict, Categories)
+
+    @classmethod
+    def delete_category(
+        cls,
+        session: "scoped_session",
+        ident: int
+    ) -> bool:
+        return cls.delete(session, ident, Categories)

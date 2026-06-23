@@ -45,5 +45,5 @@ class Database(CategoriesService):
 def get_database_uri() -> str:
     url = os.getenv("POSTGRES_URI")
     if not url:
-        raise RuntimeError("POSTGRES_URI is missing from the .env.local file")
+        raise RuntimeError("POSTGRES_URI is missing from the .env file")
     return url
