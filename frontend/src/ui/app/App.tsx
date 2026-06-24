@@ -1,3 +1,8 @@
-const App = () => <h1>This is the app main page</h1>;
+import '@/ui/styles/global.css'
+import AppRouter from '@/ui/routes/components/Router'
+
+const App = () => (
+    <AppRouter />
+)
 
 export default App;
