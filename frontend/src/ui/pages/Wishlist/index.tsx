@@ -1,5 +1,5 @@
 const Wishlist = () => {
-  return <div>Wishlist
+  return <div className="flex h-full flex-col bg-surface card">Wishlist
 
   </div>;
 }

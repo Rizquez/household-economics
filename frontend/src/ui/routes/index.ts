@@ -1,39 +1,54 @@
-import { lazy } from 'react'
+import Dashboard from '@/ui/pages/Dashboard'
+import DailyRegister from '@/ui/pages/DailyRegister'
+import MonthlyBudget from '@/ui/pages/MonthlyBudget'
+import ExpenseTracking from '@/ui/pages/ExpenseTracking'
+import SavingsInvestments from '@/ui/pages/SavingsInvestments'
+import Wishlist from '@/ui/pages/Wishlist'
+import Categories from '@/ui/pages/Categories'
+import Configuration from '@/ui/pages/Configuration'
+import { paths } from '@/ui/routes/paths'
 
 const routes = [
-    {
-        path: '/',
-        component: lazy(() => import('@/ui/pages/Dashboard')),
-        title: 'Dashboard'
-    },
-    {
-        path: '/daily-register',
-        component: lazy(() => import('@/ui/pages/DailyRegister')),
-        title: 'Daily register'
-    },
-    {
-        path: '/monthly-budget',
-        component: lazy(() => import('@/ui/pages/MonthlyBudget')),
-        title: 'Monthly budget'
-    },
-    {
-        path: '/expense-tracking',
-        component: lazy(() => import('@/ui/pages/ExpenseTracking')),
-        title: 'Expense tracking'
-    },
-    {
-        path: '/savings-and-investments',
-        component: lazy(() => import('@/ui/pages/SavingsInvestments')),
-        title: 'Savings and investments'
-    },{
-        path: '/wishlist',
-        component: lazy(() => import('@/ui/pages/Wishlist')),
-        title: 'Wishlist'
-    },{
-        path: '/categories',
-        component: lazy(() => import('@/ui/pages/Categories')),
-        title: 'Categories'
-    }
+  {
+    path: paths.dashboard.href,
+    component: Dashboard,
+    title: paths.dashboard.title,
+  },
+  {
+    path: paths.dailyregister.href,
+    component: DailyRegister,
+    title: paths.dailyregister.title,
+  },
+  {
+    path: paths.monthlybudget.href,
+    component: MonthlyBudget,
+    title: paths.monthlybudget.title,
+  },
+  {
+    path: paths.expensetracking.href,
+    component: ExpenseTracking,
+    title: paths.expensetracking.title,
+  },
+  {
+    path: paths.savingsinvestments.href,
+    component: SavingsInvestments,
+    title: paths.savingsinvestments.title,
+  },
+  {
+    path: paths.wishlist.href,
+    component: Wishlist,
+    title: paths.wishlist.title,
+  },
+  {
+    path: paths.categories.href,
+    component: Categories,
+    title: paths.categories.title,
+  },
+  {
+    path: paths.configuration.href,
+    component: Configuration,
+    title: paths.configuration.title
+  }
 ]
 
 export default routes
