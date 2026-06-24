@@ -7,6 +7,7 @@ import {
   faHeart,
   faTags,
   faGear,
+  faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const paths = {
@@ -58,4 +59,10 @@ export const paths = {
     label: "Configuration",
     icon: faGear,
   },
-};
+  privacypolicy: {
+    href: "/privacy-policy",
+    title: "Privacy policy",
+    label: "Privacy policy",
+    icon: faArrowUpRightFromSquare,
+  },
+} as const;

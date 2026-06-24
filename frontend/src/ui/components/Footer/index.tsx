@@ -1,3 +1,7 @@
+import { Link } from "react-router";
+import { paths } from "@/ui/routes/paths";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Footer = () => {
   const year = new Date().getFullYear();
 
@@ -7,7 +11,6 @@ const Footer = () => {
         <p className="text-sm text-text-primary">
           © {year} Household Economics
         </p>
-
         <p className="text-xs text-text-primary">
           Designed & developed by{" "}
           <a
@@ -29,11 +32,14 @@ const Footer = () => {
           </a>
         </p>
       </div>
-
-      <div>
-        <p className="text-sm text-text-primary cursor-pointer transition-colors hover:text-primary">
-          Privacy policy
-        </p>
+      <div className="flex items-center justify-center">
+        <Link
+          to={paths.privacypolicy.href}
+          className="flex items-center gap-3 text-sm text-text-primary transition-colors hover:text-primary"
+        >
+          <span>{paths.privacypolicy.label}</span>
+          <FontAwesomeIcon icon={paths.privacypolicy.icon} />
+        </Link>
       </div>
     </footer>
   );
