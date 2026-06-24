@@ -1,12 +1,12 @@
-import Dashboard from '@/ui/pages/Dashboard'
-import DailyRegister from '@/ui/pages/DailyRegister'
-import MonthlyBudget from '@/ui/pages/MonthlyBudget'
-import ExpenseTracking from '@/ui/pages/ExpenseTracking'
-import SavingsInvestments from '@/ui/pages/SavingsInvestments'
-import Wishlist from '@/ui/pages/Wishlist'
-import Categories from '@/ui/pages/Categories'
-import Configuration from '@/ui/pages/Configuration'
-import { paths } from '@/ui/routes/paths'
+import Dashboard from "@/ui/pages/Dashboard";
+import DailyRegister from "@/ui/pages/DailyRegister";
+import MonthlyBudget from "@/ui/pages/MonthlyBudget";
+import ExpenseTracking from "@/ui/pages/ExpenseTracking";
+import SavingsInvestments from "@/ui/pages/SavingsInvestments";
+import Wishlist from "@/ui/pages/Wishlist";
+import Categories from "@/ui/pages/Categories";
+import Configuration from "@/ui/pages/Configuration";
+import { paths } from "@/ui/routes/paths";
 
 const routes = [
   {
@@ -47,8 +47,8 @@ const routes = [
   {
     path: paths.configuration.href,
     component: Configuration,
-    title: paths.configuration.title
-  }
-]
+    title: paths.configuration.title,
+  },
+];
 
-export default routes
+export default routes;

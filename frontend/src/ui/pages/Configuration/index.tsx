@@ -1,6 +1,7 @@
 const Configuration = () => {
+  return (
+    <div className="flex h-full flex-col bg-surface card">Configuration</div>
+  );
+};
 
-  return <div className="flex h-full flex-col bg-surface card">Configuration</div>;
-}
-
-export default Configuration
+export default Configuration;

@@ -1,7 +1,5 @@
 const Wishlist = () => {
-  return <div className="flex h-full flex-col bg-surface card">Wishlist
+  return <div className="flex h-full flex-col bg-surface card">Wishlist</div>;
+};
 
-  </div>;
-}
-
-export default Wishlist
+export default Wishlist;

@@ -1,5 +1,7 @@
 const ExpenseTracking = () => {
-  return <div className="flex h-full flex-col bg-surface card">ExpenseTracking</div>;
-}
+  return (
+    <div className="flex h-full flex-col bg-surface card">ExpenseTracking</div>
+  );
+};
 
-export default ExpenseTracking
+export default ExpenseTracking;

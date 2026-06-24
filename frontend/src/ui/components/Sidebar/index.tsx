@@ -1,51 +1,52 @@
-import { NavLink } from "react-router"
-import { paths } from '@/ui/routes/paths'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { NavLink } from "react-router";
+import { paths } from "@/ui/routes/paths";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // TODO: implement a real family name
 const Sidebar = () => (
   <aside className="flex h-full flex-col bg-surface card">
-    <h1 className="text-lg pl-5 pt-5 font-semibold">Household Economics</h1>
-    <h2 className="text-base pl-5 pt-2">Family ... </h2>
+    <h1 className="text-lg pl-5 pt-5 font-semibold">Family {" ... "} </h1>
     <nav className="flex flex-col gap-1 p-5">
-      {Object.values(paths).filter((path) => path.href !== paths.configuration.href).map((path) => (
-        <NavLink
-          key={path.href}
-          to={path.href}
-          end={path.href === '/'}
-          className={({ isActive }) =>
-            [
-              'flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm',
-              isActive
-                ? 'bg-primary/15 text-primary'
-                : 'text-text-primary hover:bg-background hover:text-primary',
-            ].join(' ')
-          }
-        >
-          <FontAwesomeIcon icon={path.icon} />
-          <span>{path.label}</span>
-        </NavLink>
-      ))}
+      {Object.values(paths)
+        .filter((path) => path.href !== paths.configuration.href)
+        .map((path) => (
+          <NavLink
+            key={path.href}
+            to={path.href}
+            end={path.href === "/"}
+            className={({ isActive }) =>
+              [
+                "flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm",
+                isActive
+                  ? "bg-primary/15 text-primary"
+                  : "text-text-primary hover:bg-background hover:text-primary",
+              ].join(" ")
+            }
+          >
+            <FontAwesomeIcon icon={path.icon} />
+            <span>{path.label}</span>
+          </NavLink>
+        ))}
     </nav>
     <div className="mt-auto p-5">
       <NavLink
-      key={paths.configuration.href}
-      to={paths.configuration.href}
-      end={paths.configuration.href === '/'}
-      className={({ isActive }) =>
-            [
-              'flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm',
-              isActive
-                ? 'bg-primary/15 text-primary'
-                : 'text-text-primary hover:bg-background hover:text-primary',
-            ].join(' ')
-          }
+        key={paths.configuration.href}
+        to={paths.configuration.href}
+        end={paths.configuration.href === "/"}
+        className={({ isActive }) =>
+          [
+            "flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm",
+            isActive
+              ? "bg-primary/15 text-primary"
+              : "text-text-primary hover:bg-background hover:text-primary",
+          ].join(" ")
+        }
       >
         <FontAwesomeIcon icon={paths.configuration.icon} />
-          <span>{paths.configuration.label}</span>
+        <span>{paths.configuration.label}</span>
       </NavLink>
     </div>
   </aside>
-)
+);
 
-export default Sidebar
+export default Sidebar;

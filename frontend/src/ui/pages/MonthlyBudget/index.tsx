@@ -1,5 +1,7 @@
 const MonthlyBudget = () => {
-  return <div className="flex h-full flex-col bg-surface card">MonthlyBudget</div>;
-}
+  return (
+    <div className="flex h-full flex-col bg-surface card">MonthlyBudget</div>
+  );
+};
 
-export default MonthlyBudget
+export default MonthlyBudget;
