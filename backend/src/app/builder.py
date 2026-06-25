@@ -17,7 +17,7 @@ def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
         root_path=settings.ROOT,
         docs_url="/docs" if settings.ENABLE_DOCS else None,
         redoc_url="/redoc" if settings.ENABLE_DOCS else None,
-        openapi_url="/openapi.json" if settings.ENABLE_DOCS else None
+        openapi_url="/openapi.json" if settings.ENABLE_DOCS else None,
     )
 
     app.add_middleware(

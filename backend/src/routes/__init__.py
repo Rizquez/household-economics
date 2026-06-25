@@ -9,10 +9,16 @@ if TYPE_CHECKING:
     from fastapi import FastAPI
 
 
-map_routers = {"/categories": categories_router, "/record-types": record_types_router}
+map_routers = {
+    "/categories": (categories_router, "Categories"),
+    "/record-types": (record_types_router, "Record Types"),
+}
 
 
 def setup_routers(app: "FastAPI") -> None:
-    for prefix, router in map_routers.items():
-        tag = prefix.strip("/").replace("-", " ").title()
-        app.include_router(router=router, prefix=prefix, tags=[tag])
+    for prefix, (router, tag) in map_routers.items():
+        app.include_router(
+            router=router,
+            prefix=prefix,
+            tags=[tag],
+        )
