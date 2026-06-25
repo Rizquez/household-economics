@@ -14,4 +14,5 @@ map_routers = {"/categories": categories_router, "/record-types": record_types_r
 
 def setup_routers(app: "FastAPI") -> None:
     for prefix, router in map_routers.items():
-        app.include_router(router=router, prefix=prefix)
+        tag = prefix.strip("/").replace("-", " ").title()
+        app.include_router(router=router, prefix=prefix, tags=[tag])
