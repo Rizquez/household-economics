@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="flex h-12 w-12 items-center justify-center rounded-md text-text-primary transition-colors hover:bg-background hover:text-primary"
+          className="flex h-12 w-12 items-center justify-center rounded-md text-text-primary transition-colors hover:bg-background hover:text-primary cursor-pointer"
         >
           <FontAwesomeIcon icon={faArrowRightToBracket} className="text-2xl" />
         </button>
