@@ -64,14 +64,17 @@ backend/
 │   ├── business
 │   │   ├── __init__.py
 │   │   ├── business.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── routes
 │   │   ├── __init__.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── schemas
 │   │   ├── __init__.py
 │   │   ├── base.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── env.py
 │   ├── helpers.py
 │   └── setup.py
