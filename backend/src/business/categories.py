@@ -8,13 +8,24 @@ from .business import Business
 class CategoriesBusiness(Business):
 
     @classmethod
-    def get_all_categories(cls) -> List[Categories]:
+    def get_categories_by_record_type(cls, record_type_id: int) -> List[Categories]:
         session = cls.create_session()
-        return cls.db.get_all_categories(session)
+        return cls.db.get_categories_by_record_type(session, record_type_id)
 
     @classmethod
     def create_category(cls, a_dict: Dict) -> None:
         session = cls.create_session()
+        record_type = cls.db.get_record_type(
+            session,
+            a_dict.get("record_type_id")
+        )
+
+        if record_type is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"No record types were found associated with ID: {a_dict.get("record_type_id")}"
+            )
+
         try:
             cls.db.create_category(session, a_dict)
             session.commit()
@@ -23,14 +34,14 @@ class CategoriesBusiness(Business):
             raise Exception(f"Error creating category: {e}")
         
     @classmethod
-    def delete_category(cls, ident: int) -> None:
+    def delete_category(cls, category_id: int) -> None:
         session = cls.create_session()
         try:
-            deleted = cls.db.delete_category(session, ident)
+            deleted = cls.db.delete_category(session, category_id)
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No categories were found associated with ID: {ident}"
+                    detail=f"No categories were found associated with ID: {category_id}"
                 )
             session.commit()
         except:
