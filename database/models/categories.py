@@ -9,6 +9,10 @@ class Categories(ModelBase):
 
     category = Column(String, nullable=False)
 
-    record_type_id = Column(BigInteger, ForeignKey("record_types.id", name="fk_categories_record_type_id"), nullable=False)
+    record_type_id = Column(
+        BigInteger,
+        ForeignKey("record_types.id", name="fk_categories_record_type_id"),
+        nullable=False,
+    )
 
     record_type = relationship("RecordTypes", back_populates="categories")

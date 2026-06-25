@@ -45,7 +45,7 @@ class ServiceBase(object):
         if ident:
             valid_dict["id"] = ident
         return model(**valid_dict)
-    
+
     @staticmethod
     def filter_by(
         session: "scoped_session",

@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 if TYPE_CHECKING:
     from sqlalchemy.engine import Engine
 
-from services import (CategoriesService, RecordTypesService)
+from services import CategoriesService, RecordTypesService
 from models import Base
 
 load_dotenv(override=True)

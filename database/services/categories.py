@@ -10,19 +10,17 @@ if TYPE_CHECKING:
 
 
 class CategoriesService(ServiceBase):
-    
+
     @classmethod
     def get_categories_by_record_type(
-        cls,
-        session: "scoped_session",
-        record_type_id: int
+        cls, session: "scoped_session", record_type_id: int
     ) -> List[Categories]:
         return cls.filter_by(
             session,
             Categories.record_type_id == record_type_id,
             model=Categories,
             all=True,
-            order_by=Categories.category
+            order_by=Categories.category,
         )
 
     @classmethod

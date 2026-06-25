@@ -27,21 +27,19 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
     )
     op.bulk_insert(
-        sa.table(
-            "record_types",
-            sa.column("record_type", sa.String())
-        ),
-        [
-            {"record_type": "expenses"},
-            {"record_type": "revenue"}
-        ]
+        sa.table("record_types", sa.column("record_type", sa.String())),
+        [{"record_type": "expenses"}, {"record_type": "revenue"}],
     )
 
     op.add_column(
         "categories", sa.Column("record_type_id", sa.BigInteger(), nullable=False)
     )
     op.create_foreign_key(
-        "fk_categories_record_type_id", "categories", "record_types", ["record_type_id"], ["id"]
+        "fk_categories_record_type_id",
+        "categories",
+        "record_types",
+        ["record_type_id"],
+        ["id"],
     )
     # ### end Alembic commands ###
 
