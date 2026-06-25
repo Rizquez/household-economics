@@ -1,7 +1,7 @@
 from typing import List
 
 from database import RecordTypes
-from .business import Business
+from .core import Business
 
 
 class RecordTypesBusiness(Business):

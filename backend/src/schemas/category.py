@@ -1,7 +1,7 @@
 from pydantic import Field, StrictStr, field_validator
 from typing import Annotated
 
-from .base import ResponseBase, RequestBase
+from .core import ResponseBase, RequestBase
 
 
 class CategoryResponse(ResponseBase):

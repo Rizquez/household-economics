@@ -3,7 +3,7 @@ from fastapi import APIRouter, status
 
 from src.business import CategoriesBusiness
 from src.schemas import CategoryResponse, CategoryRequest
-from src.helpers import validate_non_negative_num
+from .helpers.validate import validate_non_negative_num
 
 router = APIRouter()
 

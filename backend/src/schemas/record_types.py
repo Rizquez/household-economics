@@ -1,4 +1,4 @@
-from .base import ResponseBase
+from .core import ResponseBase
 
 
 class RecordTypesResponse(ResponseBase):

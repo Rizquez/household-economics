@@ -2,7 +2,7 @@ from typing import List, Dict
 from fastapi import HTTPException, status
 
 from database import Categories
-from .business import Business
+from .core import Business
 
 
 class CategoriesBusiness(Business):
