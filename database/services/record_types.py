@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List, Optional, TYPE_CHECKING
 
-from services.base import ServiceBase
+from services.core import ServiceBase
 from models import RecordTypes
 
 if TYPE_CHECKING:

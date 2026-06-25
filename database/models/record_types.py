@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
-from models.base import ModelBase
+from models.core import ModelBase
 
 
 class RecordTypes(ModelBase):
