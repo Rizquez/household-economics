@@ -9,6 +9,7 @@ class CategoryResponse(ResponseBase):
     category: str
     record_type_id: int
 
+
 class CategoryRequest(RequestBase):
     category: StrictStr
     record_type_id: Annotated[int, Field(strict=True, ge=1)]

@@ -10,4 +10,3 @@ class RecordTypesBusiness(Business):
     def get_all_record_types(cls) -> List[RecordTypes]:
         session = cls.create_session()
         return cls.db.get_all_record_types(session)
-        

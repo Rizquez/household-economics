@@ -15,15 +15,12 @@ class CategoriesBusiness(Business):
     @classmethod
     def create_category(cls, a_dict: Dict) -> None:
         session = cls.create_session()
-        record_type = cls.db.get_record_type(
-            session,
-            a_dict.get("record_type_id")
-        )
+        record_type = cls.db.get_record_type(session, a_dict.get("record_type_id"))
 
         if record_type is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No record types were found associated with ID: {a_dict.get("record_type_id")}"
+                detail=f"No record types were found associated with ID: {a_dict.get("record_type_id")}",
             )
 
         try:
@@ -32,7 +29,7 @@ class CategoriesBusiness(Business):
         except Exception as e:
             session.rollback()
             raise Exception(f"Error creating category: {e}")
-        
+
     @classmethod
     def delete_category(cls, category_id: int) -> None:
         session = cls.create_session()
@@ -41,10 +38,9 @@ class CategoriesBusiness(Business):
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No categories were found associated with ID: {category_id}"
+                    detail=f"No categories were found associated with ID: {category_id}",
                 )
             session.commit()
         except:
             session.rollback()
             raise
-        
