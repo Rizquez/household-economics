@@ -9,4 +9,7 @@ class RecordTypesBusiness(Business):
     @classmethod
     def get_all_record_types(cls) -> List[RecordTypes]:
         session = cls.create_session()
-        return cls.db.get_all_record_types(session)
+        try:
+            return cls.db.get_all_record_types(session)
+        finally:
+            session.close()

@@ -5,7 +5,7 @@ from .business import setup_business_layer
 
 
 def _configure_database() -> Database:
-    engine = create_engine(url=get_database_uri())
+    engine = create_engine(url=get_database_uri(), pool_size=1, max_overflow=0, pool_pre_ping=True)
     return Database(engine)
 
 
