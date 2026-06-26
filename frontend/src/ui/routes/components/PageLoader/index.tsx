@@ -1,6 +1,5 @@
 import { useHead } from "@unhead/react";
-import type { PageLoaderProps } from "@/ui/routes/components/PageLoader/types";
-
+import type { PageLoaderProps } from "./types";
 const PageLoader = ({
   component: Component,
   title,
