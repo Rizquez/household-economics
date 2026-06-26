@@ -1,13 +1,9 @@
 import { useEffect } from "react";
 import { useQueries } from "@tanstack/react-query";
 import useRecordTypes from "./useRecordTypes";
-import { useModal } from "@/ui/contexts/ModalContext";
 import { CATEGORIES_QUERY_KEY } from "./constants/keys";
 import { listCategories } from "@/core/business/categories/services";
-
-
-
-
+import { useModal } from "@/ui/contexts/ModalContext/useModal";
 
 const useCategoriesPage = () => {
   const { recordTypes, isPending, isError, error } = useRecordTypes();
@@ -43,7 +39,15 @@ const useCategoriesPage = () => {
     }
 
     closeModal();
-  }, [isLoading, hasError, error, categoryError, showLoading, showModal, closeModal]);
+  }, [
+    isLoading,
+    hasError,
+    error,
+    categoryError,
+    showLoading,
+    showModal,
+    closeModal,
+  ]);
 
   const categoriesByRecordType = recordTypes.map((recordType, index) => ({
     recordType,

@@ -4,7 +4,6 @@ import { ModalProvider } from "../contexts/ModalContext";
 import AppRouter from "../routes/components/Router";
 import AppModal from "../components/AppModal";
 
-
 const queryClient = new QueryClient();
 
 const App = () => (

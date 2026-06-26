@@ -2,7 +2,6 @@ import httpClient from "@/core/client/httpClient";
 import type { CategoryResponseDto, CreateCategoryRequestDto } from "./domain";
 import type { Category, CreateCategoryRequest } from "./types";
 
-
 class CategoriesRepository {
   async list(recordTypeId: number): Promise<Category[]> {
     const response = await httpClient.get<CategoryResponseDto[]>(

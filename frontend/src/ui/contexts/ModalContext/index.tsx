@@ -1,17 +1,8 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-import type { ModalContextValue, ModalState, ShowModalPayload } from "./types";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
+
+import type { ModalState, ShowModalPayload } from "./types";
 import { initialState } from "./constants";
-import ApplicationError from "@/core/errors";
-
-
-const ModalContext = createContext<ModalContextValue | null>(null);
+import { ModalContext } from "./context";
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [modal, setModal] = useState<ModalState>(initialState);
@@ -56,14 +47,4 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
   );
-};
-
-export const useModal = () => {
-  const context = useContext(ModalContext);
-
-  if (!context) {
-    throw new ApplicationError("useModal must be used inside ModalProvider");
-  }
-
-  return context;
 };

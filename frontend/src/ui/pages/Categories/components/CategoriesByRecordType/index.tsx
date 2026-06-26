@@ -4,7 +4,6 @@ import type { CategoriesByRecordTypeProps } from "./types";
 import useDeleteCategory from "../../hooks/useDeleteCategory";
 import Button from "@/ui/components/Button";
 
-
 const CategoriesByRecordType = ({
   recordType,
   categories,
@@ -32,7 +31,7 @@ const CategoriesByRecordType = ({
             </span>
 
             <Button
-            variant="danger"
+              variant="danger"
               disabled={isPending}
               onClick={() => mutate(category.id)}
             >

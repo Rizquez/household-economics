@@ -1,7 +1,6 @@
-import { useModal } from "@/ui/contexts/ModalContext";
 import { typeStyles } from "./constants";
 import Button from "../Button";
-
+import { useModal } from "@/ui/contexts/ModalContext/useModal";
 
 const AppModal = () => {
   const { modal, closeModal } = useModal();
