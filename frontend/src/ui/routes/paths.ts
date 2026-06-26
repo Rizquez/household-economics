@@ -1,5 +1,5 @@
 import {
-  faHouse,
+  faChartPie,
   faCalendarDays,
   faChartLine,
   faWallet,
@@ -15,7 +15,7 @@ export const paths = {
     href: "/",
     title: "Dashboard",
     label: "Dashboard",
-    icon: faHouse,
+    icon: faChartPie,
   },
   dailyregister: {
     href: "/daily-register",
