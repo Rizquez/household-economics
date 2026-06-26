@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
-import { paths } from "@/ui/routes/paths";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { sidebarPathKeys } from "@/ui/components/Sidebar/constants";
+import { sidebarPathKeys } from "./constants";
+import { paths } from "@/ui/routes/paths";
 
 // TODO: implement a real family name
 const Sidebar = () => (

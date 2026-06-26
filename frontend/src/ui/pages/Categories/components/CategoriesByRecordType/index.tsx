@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-
-import Button from "@/ui/components/Button";
-import useDeleteCategory from "../../hooks/useDeleteCategory";
-
 import type { CategoriesByRecordTypeProps } from "./types";
+import useDeleteCategory from "../../hooks/useDeleteCategory";
+import Button from "@/ui/components/Button";
+
 
 const CategoriesByRecordType = ({
   recordType,

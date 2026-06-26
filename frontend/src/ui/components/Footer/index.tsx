@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { paths } from "@/ui/routes/paths";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { paths } from "@/ui/routes/paths";
 
 const Footer = () => {
   const year = new Date().getFullYear();

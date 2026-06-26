@@ -10,6 +10,7 @@ import type { ModalContextValue, ModalState, ShowModalPayload } from "./types";
 import { initialState } from "./constants";
 import ApplicationError from "@/core/errors";
 
+
 const ModalContext = createContext<ModalContextValue | null>(null);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {

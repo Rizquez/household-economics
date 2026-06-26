@@ -1,6 +1,7 @@
 import axios from "axios";
-import { API_URL } from "@/core/env";
-import ApplicationError from "@/core/errors";
+import { API_URL } from "../env";
+import ApplicationError from "../errors";
+
 
 const httpClient = axios.create({
   baseURL: `${API_URL}/api/v1`,
