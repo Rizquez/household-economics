@@ -26,14 +26,36 @@ def upgrade() -> None:
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
+
     op.bulk_insert(
-        sa.table("record_types", sa.column("record_type", sa.String())),
-        [{"record_type": "expenses"}, {"record_type": "revenue"}],
+        sa.table(
+            "record_types",
+            sa.column("id", sa.BigInteger()),
+            sa.column("record_type", sa.String()),
+        ),
+        [
+            {"id": 1, "record_type": "Expenses"},
+            {"id": 2, "record_type": "Income"},
+        ],
     )
 
     op.add_column(
-        "categories", sa.Column("record_type_id", sa.BigInteger(), nullable=False)
+        "categories",
+        sa.Column("record_type_id", sa.BigInteger(), nullable=True),
     )
+
+    op.execute("""
+        UPDATE categories
+        SET record_type_id = 1
+        WHERE record_type_id IS NULL
+        """)
+
+    op.alter_column(
+        "categories",
+        "record_type_id",
+        nullable=False,
+    )
+
     op.create_foreign_key(
         "fk_categories_record_type_id",
         "categories",
