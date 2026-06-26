@@ -1,12 +1,12 @@
 class ApplicationError extends Error {
   readonly status?: number;
-  readonly details?: unknown;
+  readonly detail?: unknown;
 
-  constructor(message: string, status?: number, details?: unknown) {
+  constructor(message: string, status?: number, detail?: unknown) {
     super(message);
 
     this.status = status;
-    this.details = details;
+    this.detail = detail;
 
     Object.setPrototypeOf(this, ApplicationError.prototype);
   }

@@ -30,8 +30,6 @@ const Select = ({
           </option>
         ))}
       </select>
-
-      {error && <span className="text-xs text-error">{error}</span>}
     </div>
   );
 };
