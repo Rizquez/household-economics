@@ -9,19 +9,15 @@ const httpClient = axios.create({
 httpClient.interceptors.response.use(
   (response) => response,
   (error) => {
-
     const detail = error.response?.data?.detail;
 
-const message =
-  typeof detail === "string"
-    ? detail
-    : error.message;
+    const message = typeof detail === "string" ? detail : error.message;
 
-throw new ApplicationError(
-  message,
-  error.response?.status,
-  error.response?.data,
-);
+    throw new ApplicationError(
+      message,
+      error.response?.status,
+      error.response?.data,
+    );
   },
 );
 
