@@ -1,20 +1,30 @@
 import httpClient from "@/core/client/httpClient";
-import type { CreateCategoriesRequest, CategoriesResponse } from "./types";
+import type { Category, CreateCategoryRequest } from "./types";
+import type { CategoryResponseDto, CreateCategoryRequestDto } from "./domain";
 
 class CategoriesRepository {
-  async list(record_type_id: number): Promise<CategoriesResponse[]> {
-    const response = await httpClient.get<CategoriesResponse[]>(
-      `/categories/${record_type_id}`,
+  async list(recordTypeId: number): Promise<Category[]> {
+    const response = await httpClient.get<CategoryResponseDto[]>(
+      `/categories/${recordTypeId}`,
     );
-    return response.data;
+
+    return response.data.map((category) => ({
+      id: category.id,
+      category: category.category,
+    }));
   }
 
-  async create(payload: CreateCategoriesRequest): Promise<void> {
-    await httpClient.post<void>("/categories/", payload);
+  async create(payload: CreateCategoryRequest): Promise<void> {
+    const dto: CreateCategoryRequestDto = {
+      category: payload.category,
+      record_type_id: payload.recordTypeId,
+    };
+
+    await httpClient.post("/categories", dto);
   }
 
-  async delete(category_id: number): Promise<void> {
-    await httpClient.delete<void>(`/categories/${category_id}`);
+  async delete(categoryId: number): Promise<void> {
+    await httpClient.delete<void>(`/categories/${categoryId}`);
   }
 }
 export default CategoriesRepository;

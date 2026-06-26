@@ -1,10 +1,10 @@
 import RecordTypesRepository from "./repository";
-import type { RecordTypesResponse } from "./types";
+import type { RecordType } from "./types";
 
 const repository = new RecordTypesRepository();
 
 class ListRecordTypes {
-  execute(): Promise<RecordTypesResponse[]> {
+  execute(): Promise<RecordType[]> {
     return repository.list();
   }
 }

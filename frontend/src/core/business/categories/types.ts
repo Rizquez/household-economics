@@ -1,8 +1,9 @@
-export type CategoriesResponse = {
+export type Category = {
   id: number;
   category: string;
 };
-export type CreateCategoriesRequest = {
+
+export type CreateCategoryRequest = {
   category: string;
-  record_type_id: number;
+  recordTypeId: number;
 };

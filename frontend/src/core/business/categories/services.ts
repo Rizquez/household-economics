@@ -1,23 +1,23 @@
 import CategoriesRepository from "./repository";
-import type { CategoriesResponse, CreateCategoriesRequest } from "./types";
+import type { Category, CreateCategoryRequest } from "./types";
 
 const repository = new CategoriesRepository();
 
 class ListCategories {
-  execute(record_type_id: number): Promise<CategoriesResponse[]> {
-    return repository.list(record_type_id);
+  execute(recordTypeId: number): Promise<Category[]> {
+    return repository.list(recordTypeId);
   }
 }
 
 class CreateCategory {
-  execute(payload: CreateCategoriesRequest): Promise<void> {
+  execute(payload: CreateCategoryRequest): Promise<void> {
     return repository.create(payload);
   }
 }
 
 class DeleteCategory {
-  execute(category_id: number): Promise<void> {
-    return repository.delete(category_id);
+  execute(categoryId: number): Promise<void> {
+    return repository.delete(categoryId);
   }
 }
 

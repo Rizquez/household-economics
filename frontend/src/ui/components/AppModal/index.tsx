@@ -14,19 +14,13 @@ const AppModal = () => {
           {modal.title}
         </h2>
 
-        <p className="text-sm leading-6 text-text-secondary">
-          {modal.message}
-        </p>
+        <p className="text-sm leading-6 text-text-secondary">{modal.message}</p>
 
         {modal.type === "loading" && (
           <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
         )}
 
-        {modal.hasButton && (
-          <Button onClick={closeModal}>
-            OK
-          </Button>
-        )}
+        {modal.hasButton && <Button onClick={closeModal}>OK</Button>}
       </div>
     </div>
   );

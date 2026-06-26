@@ -1,4 +1,4 @@
-export type RecordTypesResponse = {
+export type RecordType = {
   id: number;
-  record_type: string;
+  recordType: string;
 };
