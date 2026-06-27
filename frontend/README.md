@@ -21,6 +21,7 @@ make run
 ```
 frontend/
 ├── public
+│   ├── _redirects
 │   └── expense.png
 ├── src
 │   ├── core
