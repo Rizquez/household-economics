@@ -1,4 +1,4 @@
 export type RecordType = {
   id: number;
-  recordType: string;
+  name: string;
 };

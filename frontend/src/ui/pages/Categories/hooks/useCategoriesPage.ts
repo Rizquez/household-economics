@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useQueries } from "@tanstack/react-query";
 import useRecordTypes from "./useRecordTypes";
 import { CATEGORIES_QUERY_KEY } from "./constants/keys";
-import { listCategories } from "@/core/business/categories/services";
+import { listCategories } from "@/core/business/category/services";
 import { useModal } from "@/ui/contexts/ModalContext/useModal";
 
 const useCategoriesPage = () => {

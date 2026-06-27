@@ -1,9 +1,9 @@
 export type CategoryResponseDto = {
   id: number;
-  category: string;
+  name: string;
 };
 
 export type CreateCategoryRequestDto = {
-  category: string;
+  name: string;
   record_type_id: number;
 };

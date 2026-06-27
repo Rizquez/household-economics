@@ -36,7 +36,7 @@ const CreateCategoryForm = () => {
 
     mutate(
       {
-        category,
+        name: category,
         recordTypeId: Number(recordTypeId),
       },
       {
@@ -70,7 +70,7 @@ const CreateCategoryForm = () => {
         }}
         disabled={isLoadingRecordTypes}
         options={recordTypes.map((recordType) => ({
-          label: recordType.recordType,
+          label: recordType.name,
           value: recordType.id,
         }))}
         error={formError && !recordTypeId ? true : false}

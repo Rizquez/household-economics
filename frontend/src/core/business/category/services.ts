@@ -1,7 +1,7 @@
-import CategoriesRepository from "./repository";
+import CategoryRepository from "./repository";
 import type { Category, CreateCategoryRequest } from "./types";
 
-const repository = new CategoriesRepository();
+const repository = new CategoryRepository();
 
 class ListCategories {
   execute(recordTypeId: number): Promise<Category[]> {
