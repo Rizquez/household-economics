@@ -1,18 +1,26 @@
 import "@/ui/styles/global.css";
+import { ClerkProvider } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ModalProvider } from "../contexts/ModalContext";
-import AppRouter from "../routes/components/Router";
-import AppModal from "../components/AppModal";
+import { ModalProvider } from "@/ui/contexts/ModalContext";
+import AppRouter from "@/ui/routes/components/Router";
+import AppModal from "@/ui/components/AppModal";
+import { CLERK_PUBLISHABLE_KEY } from "@/core/env";
 
 const queryClient = new QueryClient();
 
+if (!CLERK_PUBLISHABLE_KEY) {
+  throw new Error("Missing Clerk publishable key.");
+}
+
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ModalProvider>
-      <AppRouter />
-      <AppModal />
-    </ModalProvider>
-  </QueryClientProvider>
+  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+    <QueryClientProvider client={queryClient}>
+      <ModalProvider>
+        <AppRouter />
+        <AppModal />
+      </ModalProvider>
+    </QueryClientProvider>
+  </ClerkProvider>
 );
 
 export default App;

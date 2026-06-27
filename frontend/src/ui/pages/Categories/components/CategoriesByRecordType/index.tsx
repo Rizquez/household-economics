@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import type { CategoriesByRecordTypeProps } from "./types";
-import useDeleteCategory from "../../hooks/useDeleteCategory";
+import useDeleteCategory from "@/ui/pages/Categories/hooks/useDeleteCategory";
 import Button from "@/ui/components/Button";
 
 const CategoriesByRecordType = ({
@@ -26,9 +26,7 @@ const CategoriesByRecordType = ({
             key={category.id}
             className="flex items-center justify-between rounded-lg bg-surface px-4 py-2"
           >
-            <span className="text-sm text-text-primary">
-              {category.name}
-            </span>
+            <span className="text-sm text-text-primary">{category.name}</span>
 
             <Button
               variant="danger"

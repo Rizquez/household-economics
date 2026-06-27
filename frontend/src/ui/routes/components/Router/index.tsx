@@ -1,38 +1,28 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import routes from "@/ui/routes";
-import PageLoader from "@/ui/routes/components/PageLoader";
 import RouteError from "@/ui/routes/components/RouteError";
-import Sidebar from "@/ui/components/Sidebar";
-import Footer from "@/ui/components/Footer";
 import PrivacyPolicy from "@/ui/pages/PrivacyPolicy";
 import { paths } from "@/ui/routes/paths";
+import PrivateLayout from "@/ui/layouts/PrivateLayout";
+import PublicLayout from "@/ui/layouts/PublicLayout";
 
 const router = createBrowserRouter([
-  ...routes.map(({ path, component, title }) => ({
+  ...routes.map(({ path, component, title, authRequired }) => ({
     path,
-    element: (
-      <div className="flex h-screen flex-col">
-        <div className="flex flex-1 p-5 gap-5">
-          <Sidebar />
-          <div className="flex-1">
-            <PageLoader component={component} title={title} />
-          </div>
-        </div>
-        <Footer />
-      </div>
+    element: authRequired ? (
+      <PrivateLayout component={component} title={title} />
+    ) : (
+      <PublicLayout component={component} title={title} />
     ),
     errorElement: <RouteError />,
   })),
   {
     path: paths.privacypolicy.href,
     element: (
-      <div className="flex h-screen flex-col">
-        <PageLoader
-          component={PrivacyPolicy}
-          title={paths.privacypolicy.title}
-        />
-        <Footer />
-      </div>
+      <PublicLayout
+        component={PrivacyPolicy}
+        title={paths.privacypolicy.title}
+      />
     ),
     errorElement: <RouteError />,
   },
