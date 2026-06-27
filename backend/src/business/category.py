@@ -1,17 +1,17 @@
 from typing import List, Dict
 from fastapi import HTTPException, status
 
-from database import Categories
+from database import Category
 from .core import Business
 
 
-class CategoriesBusiness(Business):
+class CategoryBusiness(Business):
 
     @classmethod
-    def get_categories_by_record_type(cls, record_type_id: int) -> List[Categories]:
+    def get_category_by_record_type(cls, record_type_id: int) -> List[Category]:
         session = cls.create_session()
         try:
-            return cls.db.get_categories_by_record_type(session, record_type_id)
+            return cls.db.get_category_by_record_type(session, record_type_id)
         finally:
             session.close()
 
@@ -42,7 +42,7 @@ class CategoriesBusiness(Business):
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No categories were found associated with ID: {category_id}",
+                    detail=f"No category were found associated with ID: {category_id}",
                 )
             session.commit()
         except:
