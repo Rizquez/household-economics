@@ -62,18 +62,27 @@ backend/
 │   │   ├── builder.py
 │   │   └── settings.py
 │   ├── business
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   └── base.py
 │   │   ├── __init__.py
-│   │   ├── business.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── routes
+│   │   ├── helpers
+│   │   │   └── validate.py
 │   │   ├── __init__.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── schemas
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   └── handler.py
 │   │   ├── __init__.py
-│   │   ├── base.py
-│   │   └── categories.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── env.py
-│   ├── helpers.py
 │   └── setup.py
 ├── .gitignore
 ├── app.py

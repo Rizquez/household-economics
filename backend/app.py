@@ -6,12 +6,14 @@ from fastapi.responses import JSONResponse
 from src.app import builder_app, get_settings
 from src.setup import setup_layers
 from src.routes import setup_routers
+from src.schemas import handling_errors_schemas
 
 settings = get_settings()
 app = builder_app(settings)
 
 setup_layers()
 setup_routers(app)
+handling_errors_schemas(app)
 
 
 @app.get("/")

@@ -5,5 +5,6 @@ class ResponseBase(BaseModel):
 
     model_config = ConfigDict(from_attributes=True, use_enum_values=True)
 
+
 class RequestBase(BaseModel):
     model_config = ConfigDict(extra="ignore")

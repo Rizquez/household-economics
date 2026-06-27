@@ -13,7 +13,5 @@ class ModelBase(Base):
     @classmethod
     def valid_dict(cls, a_dict: Dict) -> Dict:
         return {
-            key: value 
-            for key, value in a_dict.items() 
-            if key in cls.__table__.columns
+            key: value for key, value in a_dict.items() if key in cls.__table__.columns
         }

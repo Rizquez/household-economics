@@ -78,13 +78,19 @@ database/
 ├── database
 │   └── __init__.py
 ├── models
+│   ├── core
+│   │   ├── __init__.py
+│   │   └── base.py
 │   ├── __init__.py
-│   ├── base.py
-│   └── categories.py
+│   ├── categories.py
+│   └── record_types.py
 ├── services
+│   ├── core
+│   │   ├── __init__.py
+│   │   └── base.py
 │   ├── __init__.py
-│   ├── base.py
-│   └── categories.py
+│   ├── categories.py
+│   └── record_types.py
 ├── .gitignore
 ├── alembic.ini
 ├── db.py

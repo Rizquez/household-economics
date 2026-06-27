@@ -15,12 +15,14 @@ class Local(Base):
     HOST: str = "127.0.0.1"
     DEBUG: bool = True
     RELOAD: bool = True
+    ENABLE_DOCS: bool = True
 
 
 class Render(Base):
     HOST: str = "0.0.0.0"
     DEBUG: bool = False
     RELOAD: bool = False
+    ENABLE_DOCS: bool = False
 
 
 def get_settings() -> Union[Local, Render]:
