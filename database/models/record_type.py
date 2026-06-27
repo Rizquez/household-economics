@@ -1,7 +1,13 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 from sqlalchemy import Column, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, Mapped
 
 from models.core import ModelBase
+
+if TYPE_CHECKING:
+    from .category import Category
 
 
 class RecordType(ModelBase):
@@ -9,4 +15,4 @@ class RecordType(ModelBase):
 
     name = Column(String, nullable=False)
 
-    category = relationship("Category", back_populates="record_type")
+    categories: Mapped[list["Category"]] = relationship(back_populates="record_type")
