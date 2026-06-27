@@ -22,7 +22,7 @@ make run
 frontend/
 ├── public
 │   ├── _redirects
-│   └── expense.png
+│   └── household-economics.ico
 ├── src
 │   ├── core
 │   │   ├── business
