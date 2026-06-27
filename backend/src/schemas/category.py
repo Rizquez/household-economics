@@ -6,12 +6,12 @@ from .core import ResponseBase, RequestBase
 
 class CategoryResponse(ResponseBase):
     id: int
-    category: str
+    name: str
     record_type_id: int
 
 
 class CategoryRequest(RequestBase):
-    category: StrictStr
+    name: StrictStr
     record_type_id: Annotated[int, Field(strict=True, ge=1)]
 
     @field_validator("category")
