@@ -8,7 +8,7 @@ env/
 __pycache__/
 *.py[cod]
 *$py.class
-database_package.egg-info
+database.egg-info
 
 # IDE tools (adjust as needed)
 .vscode/

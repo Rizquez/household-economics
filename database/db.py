@@ -9,13 +9,13 @@ from dotenv import load_dotenv
 if TYPE_CHECKING:
     from sqlalchemy.engine import Engine
 
-from services import CategoriesService
+from services import CategoriesService, RecordTypesService
 from models import Base
 
-load_dotenv(dotenv_path=".env.local", override=True)
+load_dotenv(override=True)
 
 
-class Database(CategoriesService):
+class Database(CategoriesService, RecordTypesService):
     __instance = None
 
     def __new__(cls, engine: "Engine"):
@@ -45,5 +45,5 @@ class Database(CategoriesService):
 def get_database_uri() -> str:
     url = os.getenv("POSTGRES_URI")
     if not url:
-        raise RuntimeError("POSTGRES_URI is missing from the .env.local file")
+        raise RuntimeError("POSTGRES_URI is missing from the .env file")
     return url

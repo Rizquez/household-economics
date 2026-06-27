@@ -27,18 +27,26 @@
     pip install -r requirements.txt
     ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > If you're using operating systems such as macOS or Linux, use the `pip3` and `python3` commands.
 
 ## 🚀 Execution
 
-...
+To start the application, you must first enable the service by running the following command in the console:
+
+```sh
+python app.py
+```
+
+Once it has started, the API will be available to receive requests.
+
+It's recommend using `Postman`, `cURL`, or another similar tool to interact with the API.
 
 ### Environment variables
 
-The project requires certain environment variables to run, these variables must be defined in a `.env.local` file in the project root directory.
+The project requires certain environment variables to run, these variables must be defined in a `.env` file in the project root directory.
 
-An example of what the `.env.local` file should look like:
+An example of what the `.env` file should look like:
 
 ```sh
 POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
@@ -46,21 +54,42 @@ POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
 
 ## 📂 Project structure
 
+```
 backend/
-├── libfastapi
+├── src
 │   ├── app
-│   │   ├── \_\_init\_\_.py
+│   │   ├── __init__.py
 │   │   ├── builder.py
 │   │   └── settings.py
-│   ├── business/...
-│   ├── routes/...
-│   ├── schemas/...
+│   ├── business
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   └── base.py
+│   │   ├── __init__.py
+│   │   ├── categories.py
+│   │   └── record_types.py
+│   ├── routes
+│   │   ├── helpers
+│   │   │   └── validate.py
+│   │   ├── __init__.py
+│   │   ├── categories.py
+│   │   └── record_types.py
+│   ├── schemas
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   └── handler.py
+│   │   ├── __init__.py
+│   │   ├── categories.py
+│   │   └── record_types.py
 │   ├── env.py
-│   └── helpers.py
+│   └── setup.py
 ├── .gitignore
 ├── app.py
 ├── README.md
+├── requirements_base.txt
 └── requirements.txt
+```
 
 ## 🎯 Additional considerations for developers
 

@@ -27,12 +27,25 @@
     pip install -r requirements.txt
     ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > If you're using operating systems such as macOS or Linux, use the `pip3` and `python3` commands.
 
 ## 🚀 Execution
 
-### Alembic (Migration)
+### Environment variables
+
+The project requires certain environment variables to run, these variables must be defined in a `.env` file in the project root directory.
+
+An example of what the `.env` file should look like:
+
+```sh
+POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
+```
+
+> [!IMPORTANT]
+> This project does not have an execution command, since it is installed on the `backend` as a library and used as such.
+
+## 📦 Alembic (Migration)
 
 To generate a migration correctly, you must be in the `./household-economics/database/` directory. Once there, you'll need to run a series of commands:
 
@@ -54,19 +67,6 @@ To generate a migration correctly, you must be in the `./household-economics/dat
 > [!NOTE]
 > You can apply changes by specifying the specific revision ID associated with a particular migration.
 
-### Environment variables
-
-The project requires certain environment variables to run, these variables must be defined in a `.env.local` file in the project root directory.
-
-An example of what the `.env.local` file should look like:
-
-```sh
-POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
-```
-
-> [!IMPORTANT]
-> This project does not have an execution command, since it is installed on the `backend` as a library and used as such.
-
 ## 📂 Project structure
 
 ```
@@ -75,16 +75,22 @@ database/
 │   ├── versions/...
 │   ├── env.py
 │   └── script.py.mako
-├── database_package
+├── database
 │   └── __init__.py
 ├── models
+│   ├── core
+│   │   ├── __init__.py
+│   │   └── base.py
 │   ├── __init__.py
-│   ├── base.py
-│   └── categories.py
+│   ├── categories.py
+│   └── record_types.py
 ├── services
+│   ├── core
+│   │   ├── __init__.py
+│   │   └── base.py
 │   ├── __init__.py
-│   ├── base.py
-│   └── categories.py
+│   ├── categories.py
+│   └── record_types.py
 ├── .gitignore
 ├── alembic.ini
 ├── db.py
