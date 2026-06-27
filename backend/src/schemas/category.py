@@ -14,7 +14,7 @@ class CategoryRequest(RequestBase):
     name: StrictStr
     record_type_id: Annotated[int, Field(strict=True, ge=1)]
 
-    @field_validator("category")
+    @field_validator("name")
     @classmethod
     def validate_category(cls, value: str) -> str:
         value = value.strip()
