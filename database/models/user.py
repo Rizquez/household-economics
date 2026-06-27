@@ -16,7 +16,7 @@ class User(ModelBase):
     # Internally, the database stores records under the name `user`,
     # so for this model, the name will be assigned in the plural form.
 
-    auth0_id = Column(String, nullable=False, unique=True)
+    clerk_id = Column(String, nullable=False, unique=True)
 
     email = Column(String, nullable=False, unique=True)
 

@@ -50,7 +50,7 @@ def upgrade() -> None:
     )
     op.create_table(
         "users",
-        sa.Column("auth0_id", sa.String(), nullable=False),
+        sa.Column("clerk_id", sa.String(), nullable=False),
         sa.Column("email", sa.String(), nullable=False),
         sa.Column("name", sa.String(), nullable=False),
         sa.Column(
@@ -58,7 +58,7 @@ def upgrade() -> None:
         ),
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("auth0_id"),
+        sa.UniqueConstraint("clerk_id"),
         sa.UniqueConstraint("email"),
     )
     op.create_table(
