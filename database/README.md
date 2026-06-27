@@ -82,15 +82,15 @@ database/
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
-│   ├── categories.py
-│   └── record_types.py
+│   ├── category.py
+│   └── record_type.py
 ├── services
 │   ├── core
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
-│   ├── categories.py
-│   └── record_types.py
+│   ├── category.py
+│   └── record_type.py
 ├── .gitignore
 ├── alembic.ini
 ├── db.py

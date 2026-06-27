@@ -3,36 +3,36 @@ from __future__ import annotations
 from typing import List, Optional, Dict, TYPE_CHECKING
 
 from services.core import ServiceBase
-from models import Categories
+from models import Category
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
 
 
-class CategoriesService(ServiceBase):
+class CategoryService(ServiceBase):
 
     @classmethod
-    def get_categories_by_record_type(
+    def get_category_by_record_type(
         cls, session: "scoped_session", record_type_id: int
-    ) -> List[Categories]:
+    ) -> List[Category]:
         return cls.filter_by(
             session,
-            Categories.record_type_id == record_type_id,
-            model=Categories,
+            Category.record_type_id == record_type_id,
+            model=Category,
             all=True,
-            order_by=Categories.category,
+            order_by=Category.name,
         )
 
     @classmethod
     def get_category(
         cls, session: "scoped_session", category_id: int
-    ) -> Optional[Categories]:
-        return cls.get(session, category_id, Categories)
+    ) -> Optional[Category]:
+        return cls.get(session, category_id, Category)
 
     @classmethod
-    def create_category(cls, session: "scoped_session", a_dict: Dict) -> Categories:
-        return cls.create(session, a_dict, Categories)
+    def create_category(cls, session: "scoped_session", a_dict: Dict) -> Category:
+        return cls.create(session, a_dict, Category)
 
     @classmethod
     def delete_category(cls, session: "scoped_session", category_id: int) -> bool:
-        return cls.delete(session, category_id, Categories)
+        return cls.delete(session, category_id, Category)

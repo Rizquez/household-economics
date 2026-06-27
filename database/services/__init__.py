@@ -1,3 +1,3 @@
 from .core import ServiceBase
-from .categories import CategoriesService
-from .record_types import RecordTypesService
+from .category import CategoryService
+from .record_type import RecordTypeService

@@ -1,3 +1,3 @@
 from .core import Base, ModelBase
-from .categories import Categories
-from .record_types import RecordTypes
+from .category import Category
+from .record_type import RecordType
