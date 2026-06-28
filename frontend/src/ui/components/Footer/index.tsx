@@ -14,6 +14,14 @@ const Footer = () => {
         <p className="text-xs text-text-primary">
           Designed & developed by{" "}
           <a
+            href="https://www.linkedin.com/in/karlam-hernandez/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer transition-colors hover:text-primary"
+          >
+            Karla Hernandez
+          </a>&#44;{" "}
+          <a
             href="https://www.linkedin.com/in/pedro-rizquez/"
             target="_blank"
             rel="noopener noreferrer"
