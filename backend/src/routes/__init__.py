@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 from .category import router as category_router
 from .record_type import router as record_type_router
+from .user import router as router_user
 
 if TYPE_CHECKING:
     from fastapi import FastAPI
@@ -12,6 +13,7 @@ if TYPE_CHECKING:
 map_routers = {
     "/category": (category_router, "Category"),
     "/record-type": (record_type_router, "Record Type"),
+    "/user": (router_user, "User"),
 }
 
 

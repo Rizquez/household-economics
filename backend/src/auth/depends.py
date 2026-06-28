@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer
 from typing import TYPE_CHECKING
 
@@ -28,7 +28,18 @@ def get_current_user(
     clerk_user = get_clerk_user(
         clerk_id=claims["sub"],
         secret_key=settings.CLERK_SECRET_KEY,
-        clerk_api_url=settings.CLERK_API_URL,
     )
 
     return AuthBusiness.get_or_create_current_user(claims, clerk_user)
+
+
+def get_allowed_user(
+    current_user: "CurrentUser" = Depends(get_current_user),
+) -> "CurrentUser":
+    if not current_user.access_allowed:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Your access is pending approval.",
+        )
+
+    return current_user
