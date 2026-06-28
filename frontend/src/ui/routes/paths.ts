@@ -11,8 +11,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const paths = {
-  dashboard: {
+  home: {
     href: "/",
+    title: "Household Economics",
+  },
+  dashboard: {
+    href: "/dashboard",
     title: "Dashboard",
     label: "Dashboard",
     icon: faChartPie,

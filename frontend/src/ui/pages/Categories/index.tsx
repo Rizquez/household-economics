@@ -7,11 +7,15 @@ const Categories = () => {
 
   if (!isReady) return null;
 
+  const recordTypes = categoriesByRecordType.map(
+    ({ recordType }) => recordType,
+  );
+
   return (
     <div className="flex h-full flex-col gap-6 bg-surface p-6 card">
       <h1 className="text-xl font-semibold text-text-primary">Categories</h1>
 
-      <CreateCategoryForm />
+      <CreateCategoryForm recordTypes={recordTypes} />
 
       <div className="grid gap-4 md:grid-cols-2">
         {categoriesByRecordType.map(({ recordType, categories }) => (

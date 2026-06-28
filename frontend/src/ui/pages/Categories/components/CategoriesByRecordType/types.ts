@@ -1,5 +1,5 @@
-import type { Category } from "@/core/business/categories/types";
-import type { RecordType } from "@/core/business/record-types/types";
+import type { Category } from "@/core/business/category/types";
+import type { RecordType } from "@/core/business/record-type/types";
 
 export type CategoriesByRecordTypeProps = {
   recordType: RecordType;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { listCategories } from "@/core/business/categories/services";
+import { listCategories } from "@/core/business/category/services";
 import { CATEGORIES_QUERY_KEY } from "./constants/keys";
 
 const useCategoriesByRecordType = (recordTypeId: number) => {

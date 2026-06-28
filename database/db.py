@@ -9,13 +9,27 @@ from dotenv import load_dotenv
 if TYPE_CHECKING:
     from sqlalchemy.engine import Engine
 
-from services import CategoriesService, RecordTypesService
+from services import (
+    CategoryService,
+    RecordTypeService,
+    UserService,
+    FamilyMembersService,
+    FamilyService,
+    RoleService,
+)
 from models import Base
 
 load_dotenv(override=True)
 
 
-class Database(CategoriesService, RecordTypesService):
+class Database(
+    CategoryService,
+    RecordTypeService,
+    UserService,
+    FamilyMembersService,
+    FamilyService,
+    RoleService,
+):
     __instance = None
 
     def __new__(cls, engine: "Engine"):

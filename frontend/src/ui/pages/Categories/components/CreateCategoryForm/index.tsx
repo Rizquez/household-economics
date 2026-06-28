@@ -1,18 +1,17 @@
 import { useState, type SubmitEvent } from "react";
-import useRecordTypes from "../../hooks/useRecordTypes";
-import useCreateCategory from "../../hooks/useCreateCategory";
+
 import Input from "@/ui/components/Input";
 import Select from "@/ui/components/Select";
 import Button from "@/ui/components/Button";
+import useCreateCategory from "../../hooks/useCreateCategory";
+import type { CreateCategoryFormProps } from "./types";
 
-const CreateCategoryForm = () => {
+const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
   const [category, setCategory] = useState("");
   const [recordTypeId, setRecordTypeId] = useState("");
-
-  const { recordTypes, isPending: isLoadingRecordTypes } = useRecordTypes();
-  const { mutate, isPending, error } = useCreateCategory();
-
   const [formError, setFormError] = useState("");
+
+  const { mutate, isPending, error } = useCreateCategory();
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +35,7 @@ const CreateCategoryForm = () => {
 
     mutate(
       {
-        category,
+        name: category,
         recordTypeId: Number(recordTypeId),
       },
       {
@@ -55,8 +54,11 @@ const CreateCategoryForm = () => {
         label="Category"
         placeholder="Food, Bills, Baby..."
         value={category}
-        onChange={(event) => setCategory(event.target.value)}
-        error={formError && !category ? true : false}
+        onChange={(event) => {
+          setCategory(event.target.value);
+          setFormError("");
+        }}
+        error={Boolean(formError && !category)}
       />
 
       <Select
@@ -68,12 +70,11 @@ const CreateCategoryForm = () => {
           setRecordTypeId(event.target.value);
           setFormError("");
         }}
-        disabled={isLoadingRecordTypes}
         options={recordTypes.map((recordType) => ({
-          label: recordType.recordType,
+          label: recordType.name,
           value: recordType.id,
         }))}
-        error={formError && !recordTypeId ? true : false}
+        error={Boolean(formError && !recordTypeId)}
       />
 
       <Button type="submit" disabled={isPending}>

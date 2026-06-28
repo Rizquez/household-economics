@@ -82,15 +82,23 @@ database/
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
-│   ├── categories.py
-│   └── record_types.py
+│   ├── category.py
+│   ├── famlily_members.py
+│   ├── family.py
+│   ├── record_type.py
+│   ├── role.py
+│   └── user.py
 ├── services
 │   ├── core
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
-│   ├── categories.py
-│   └── record_types.py
+│   ├── category.py
+│   ├── famlily_members.py
+│   ├── family.py
+│   ├── record_type.py
+│   ├── role.py
+│   └── user.py
 ├── .gitignore
 ├── alembic.ini
 ├── db.py
