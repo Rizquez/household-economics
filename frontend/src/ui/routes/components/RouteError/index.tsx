@@ -5,10 +5,15 @@ import {
   faArrowRotateLeft,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "@clerk/clerk-react";
+import { paths } from "@/ui/routes/paths";
 
 const RouteError = () => {
   const navigate = useNavigate();
   const error = useRouteError();
+  const { isLoaded, isSignedIn } = useUser();
+
+  if (!isLoaded) return null;
 
   const status = isRouteErrorResponse(error) ? error.status : 500;
 
@@ -51,18 +56,23 @@ const RouteError = () => {
         <div className="flex gap-3">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 rounded-md border border-text-secondary/20 px-4 py-2 transition-colors hover:bg-background"
+            className="flex items-center gap-2 rounded-md border border-text-secondary/20 px-4 py-2 transition-colors hover:bg-background cursor-pointer"
           >
             <FontAwesomeIcon icon={faArrowRotateLeft} />
             Go back
           </button>
 
           <button
-            onClick={() => navigate("/dashboard")}
-            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90"
+            onClick={() =>
+              navigate(
+                isSignedIn ? paths.dashboard.href : paths.home.href,
+                { replace: true },
+              )
+            }
+            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90 cursor-pointer"
           >
             <FontAwesomeIcon icon={faHouse} />
-            Dashboard
+            {isSignedIn ? "Dashboard" : "Home"}
           </button>
         </div>
 
