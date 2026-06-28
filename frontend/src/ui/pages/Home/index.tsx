@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { paths } from "@/ui/routes/paths";
-import FeatureCard from "./FeatureCard";
+import FeatureCard from "./components/FeatureCard";
 
 const Home = () => {
   const { isLoaded, isSignedIn } = useUser();
