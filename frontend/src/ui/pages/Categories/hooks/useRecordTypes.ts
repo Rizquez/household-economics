@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { listRecordTypes } from "@/core/business/record-type/services";
-import { RECORD_TYPES_QUERY_KEY } from "./constants/keys";
+import { RECORD_TYPES_QUERY_KEY } from "./keys";
 
 const useRecordTypes = () => {
   const query = useQuery({

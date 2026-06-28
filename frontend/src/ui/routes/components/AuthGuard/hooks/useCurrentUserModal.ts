@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useModal } from "@/ui/contexts/ModalContext/useModal";
+import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
 const useCurrentUserModal = (isPending: boolean) => {
   const { showLoading, closeModal } = useModal();

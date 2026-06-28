@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import ApplicationError from "@/core/errors";
-import { ModalContext } from "./context";
+import { ModalContext } from "../context";
 
 export const useModal = () => {
   const context = useContext(ModalContext);

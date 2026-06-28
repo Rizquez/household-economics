@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { deleteCategory } from "@/core/business/category/services";
-import { CATEGORIES_QUERY_KEY } from "./constants/keys";
-import { useModal } from "@/ui/contexts/ModalContext/useModal";
+import { CATEGORIES_QUERY_KEY } from "./keys";
+import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
 const useDeleteCategory = () => {
   const queryClient = useQueryClient();
