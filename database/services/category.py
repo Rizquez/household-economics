@@ -18,7 +18,10 @@ class CategoryService(ServiceBase):
     ) -> List[Category]:
         return cls.filter_by(
             session,
-            and_(Category.record_type_id == record_type_id, Category.family_id == family_id),
+            and_(
+                Category.record_type_id == record_type_id,
+                Category.family_id == family_id,
+            ),
             model=Category,
             all=True,
             order_by=Category.name,
@@ -29,7 +32,9 @@ class CategoryService(ServiceBase):
         return cls.create(session, a_dict, Category)
 
     @classmethod
-    def delete_category(cls, session: "scoped_session", category_id: int, family_id: int) -> bool:
+    def delete_category(
+        cls, session: "scoped_session", category_id: int, family_id: int
+    ) -> bool:
         category = cls._get_category_by_id_and_family(
             session,
             category_id,
@@ -41,7 +46,7 @@ class CategoryService(ServiceBase):
 
         session.delete(category)
         return True
-    
+
     @classmethod
     def _get_category_by_id_and_family(
         cls,
