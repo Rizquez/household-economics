@@ -11,8 +11,8 @@ const useCreateCategory = () => {
     mutationFn: (payload: CreateCategoryRequest) =>
       createCategory.execute(payload),
 
-    onSuccess: (_, payload) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, payload) => {
+      await queryClient.invalidateQueries({
         queryKey: [CATEGORIES_QUERY_KEY, payload.recordTypeId],
       });
     },

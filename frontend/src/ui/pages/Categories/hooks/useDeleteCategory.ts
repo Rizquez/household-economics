@@ -15,8 +15,8 @@ const useDeleteCategory = () => {
       showLoading("Deleting category", "Please wait...");
     },
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: [CATEGORIES_QUERY_KEY],
       });
 
