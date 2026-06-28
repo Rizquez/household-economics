@@ -94,7 +94,11 @@ database/
 │   │   └── base.py
 │   ├── __init__.py
 │   ├── category.py
-│   └── record_type.py
+│   ├── famlily_members.py
+│   ├── family.py
+│   ├── record_type.py
+│   ├── role.py
+│   └── user.py
 ├── .gitignore
 ├── alembic.ini
 ├── db.py
