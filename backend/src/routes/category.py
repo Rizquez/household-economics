@@ -21,7 +21,7 @@ def route_all_categories(
     current_user: "CurrentUser" = Depends(get_current_user),
 ) -> List[CategoryResponse]:
     return CategoryBusiness.get_category_by_record_type(
-        validate_non_negative_num(record_type_id)
+        validate_non_negative_num(record_type_id), current_user.family_id
     )
 
 
@@ -30,7 +30,7 @@ def route_create_category(
     request: CategoryRequest,
     current_user: "CurrentUser" = Depends(get_current_user),
 ) -> None:
-    CategoryBusiness.create_category(request.model_dump())
+    CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
 
 
 @router.delete("/{category_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -38,4 +38,6 @@ def route_delete_category(
     category_id: str,
     current_user: "CurrentUser" = Depends(get_current_user),
 ) -> None:
-    CategoryBusiness.delete_category(validate_non_negative_num(category_id))
+    CategoryBusiness.delete_category(
+        validate_non_negative_num(category_id), current_user.family_id
+    )
