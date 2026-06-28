@@ -1,13 +1,12 @@
-import type { ReactNode } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 import PendingAccess from "../PendingAccess";
-
-type AccessGuardProps = {
-  children: ReactNode;
-};
+import type { AccessGuardProps } from "./types";
+import useCurrentUserModal from "./hooks/useCurrentUserModal";
 
 const AccessGuard = ({ children }: AccessGuardProps) => {
   const { currentUser, isPending, isError, error } = useCurrentUser();
+
+  useCurrentUserModal(isPending);
 
   if (isPending) return null;
 
