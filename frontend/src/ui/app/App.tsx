@@ -5,6 +5,7 @@ import { ModalProvider } from "@/ui/contexts/ModalContext";
 import AppRouter from "@/ui/routes/components/Router";
 import AppModal from "@/ui/components/AppModal";
 import { CLERK_PUBLISHABLE_KEY } from "@/core/env";
+import AuthTokenHandler from "@/ui/handlers/AuthTokenHandler";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ if (!CLERK_PUBLISHABLE_KEY) {
 
 const App = () => (
   <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+    <AuthTokenHandler />
     <QueryClientProvider client={queryClient}>
       <ModalProvider>
         <AppRouter />
