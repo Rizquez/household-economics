@@ -50,7 +50,56 @@ An example of what the `.env` file should look like:
 
 ```sh
 POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
+ENVIRONMENT=LOCAL
+CLERK_ISSUER=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev
+CLERK_JWKS_URL=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev/.well-known/jwks.json
+CLERK_SECRET_KEY=sk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+### SSL certificates (macOS)
+
+If `HTTPS` requests fail with an error similar to:
+
+```text
+ssl.SSLCertVerificationError:
+[SSL: CERTIFICATE_VERIFY_FAILED]
+certificate verify failed: unable to get local issuer certificate
+```
+
+Python is unable to locate a valid `Certificate Authority (CA)` bundle.
+
+Install or update the `certifi` package:
+
+```sh
+pip install --upgrade certifi
+```
+
+Then define the following environment variables, pointing to the CA bundle provided by `certifi`:
+
+```sh
+SSL_CERT_FILE=/path/to/venv/lib/python3.x/site-packages/certifi/cacert.pem
+REQUESTS_CA_BUNDLE=/path/to/venv/lib/python3.x/site-packages/certifi/cacert.pem
+```
+
+You can obtain the correct path by running:
+
+```sh
+python -c "import certifi; print(certifi.where())"
+```
+
+To verify that Python can establish secure `HTTPS connections` correctly, run:
+
+```sh
+python -c "import urllib.request; print(urllib.request.urlopen('https://www.google.com').status)"
+```
+
+The expected output is:
+
+```text
+200
+```
+
+If this command succeeds, the backend will also be able to securely retrieve `Clerk's JWKS` and validate authentication tokens.
 
 ## 📂 Project structure
 
@@ -61,13 +110,21 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── builder.py
 │   │   └── settings.py
+│   ├── auth
+│   │   ├── __init__.py
+│   │   ├── clerk.py
+│   │   └── depends.py
 │   ├── business
 │   │   ├── core
 │   │   │   ├── __init__.py
 │   │   │   └── base.py
 │   │   ├── __init__.py
+│   │   ├── auth.py
 │   │   ├── category.py
 │   │   └── record_type.py
+│   ├── enums
+│   │   ├── __init__.py
+│   │   └── role.py
 │   ├── routes
 │   │   ├── helpers
 │   │   │   └── validate.py
@@ -81,7 +138,8 @@ backend/
 │   │   │   └── handler.py
 │   │   ├── __init__.py
 │   │   ├── category.py
-│   │   └── record_type.py
+│   │   ├── record_type.py
+│   │   └── user.py
 │   ├── env.py
 │   └── setup.py
 ├── .gitignore
