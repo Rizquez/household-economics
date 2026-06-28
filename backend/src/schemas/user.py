@@ -8,3 +8,4 @@ class CurrentUser:
     email: str
     name: str
     family_id: int
+    access_allowed: bool

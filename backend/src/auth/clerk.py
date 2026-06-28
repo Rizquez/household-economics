@@ -1,11 +1,13 @@
 from __future__ import annotations
 
-from functools import lru_cache
-from typing import Any, Dict
 import jwt
 import requests
+from functools import lru_cache
+from typing import Any, Dict
 from fastapi import HTTPException, status
 from jwt import PyJWKClient
+
+from src.constants import CLERK_API_URL
 
 
 @lru_cache
@@ -39,9 +41,7 @@ def verify_clerk_token(token: str, issuer: str, jwks_url: str) -> Dict[str, Any]
         )
 
 
-def get_clerk_user(
-    clerk_id: str, secret_key: str, clerk_api_url: str, timeout: int = 10
-) -> Dict[str, Any]:
+def get_clerk_user(clerk_id: str, secret_key: str, timeout: int = 10) -> Dict[str, Any]:
     if not secret_key:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -49,7 +49,7 @@ def get_clerk_user(
         )
 
     response = requests.get(
-        f"{clerk_api_url}/users/{clerk_id}",
+        f"{CLERK_API_URL}/users/{clerk_id}",
         headers={"Authorization": f"Bearer {secret_key}"},
         timeout=timeout,
     )

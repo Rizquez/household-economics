@@ -13,9 +13,8 @@ from src.env import (
 class Base:
     PORT: int = 8080
     WORKERS: int = 1
-    VERSION = "0.0.1"
+    VERSION = "0.1.0"
     ROOT: str = "/api/v1"
-    CLERK_API_URL: str = "https://api.clerk.com/v1"
     CLERK_ISSUER: str = get_clerk_issuer()
     CLERK_JWKS_URL: str = get_clerk_jwks_url()
     CLERK_SECRET_KEY: str = get_clerk_secret_key()

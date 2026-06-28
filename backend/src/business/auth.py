@@ -1,16 +1,17 @@
 from typing import Dict, Any
 
 from fastapi import HTTPException, status
+import logging
 
 from src.schemas import CurrentUser
 from src.enums import Role
-from .core import Business
+from .core import Business, send_access_request_email
 
 
 class AuthBusiness(Business):
 
     @classmethod
-    def get_or_create_current_user(
+    def get_or_create_current_user( # TODO: separate responsibilities
         cls,
         claims: Dict[str, Any],
         clerk_user: Dict[str, Any],
@@ -35,13 +36,25 @@ class AuthBusiness(Business):
                             "clerk_id": clerk_id,
                             "email": email,
                             "name": name,
+                            "access_allowed": False,
                         },
                     )
                 else:
                     user.clerk_id = clerk_id
                     user.name = name
+                    user.access_allowed = False
 
                 session.flush()
+
+                try:
+                    send_access_request_email(
+                        user.name,
+                        user.email,
+                        user.clerk_id,
+                    )
+                except Exception as ex:
+                    # TODO: improve loggin
+                    logging.exception("Unable to send access request email: %s", ex)
 
             family_member = cls.db.get_family_member_by_user_id(session, user.id)
 
@@ -74,6 +87,7 @@ class AuthBusiness(Business):
                 email=user.email,
                 name=user.name,
                 family_id=family_member.family_id,
+                access_allowed=user.access_allowed,
             )
 
         except Exception:

@@ -54,6 +54,10 @@ ENVIRONMENT=LOCAL
 CLERK_ISSUER=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev
 CLERK_JWKS_URL=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev/.well-known/jwks.json
 CLERK_SECRET_KEY=sk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+EMAIL_SERVICE_ID=service_xxxxxxx
+EMAIL_TEMPLATE_ID=template_xxxxxxx
+EMAIL_USER_ID=xxxxxxxxxxxxxxx_x
+EMAIL_PRIVATE_KEY=xxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### SSL certificates (macOS)
@@ -117,7 +121,8 @@ backend/
 │   ├── business
 │   │   ├── core
 │   │   │   ├── __init__.py
-│   │   │   └── base.py
+│   │   │   ├── base.py
+│   │   │   └── email.py
 │   │   ├── __init__.py
 │   │   ├── auth.py
 │   │   ├── category.py
@@ -140,6 +145,7 @@ backend/
 │   │   ├── category.py
 │   │   ├── record_type.py
 │   │   └── user.py
+│   ├── constants.py
 │   ├── env.py
 │   └── setup.py
 ├── .gitignore
