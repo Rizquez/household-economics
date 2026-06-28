@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteCategory } from "@/core/business/categories/services";
+import { deleteCategory } from "@/core/business/category/services";
 import { CATEGORIES_QUERY_KEY } from "./constants/keys";
 import { useModal } from "@/ui/contexts/ModalContext/useModal";
 
@@ -15,8 +15,8 @@ const useDeleteCategory = () => {
       showLoading("Deleting category", "Please wait...");
     },
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: [CATEGORIES_QUERY_KEY],
       });
 

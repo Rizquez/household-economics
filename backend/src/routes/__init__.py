@@ -2,16 +2,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .categories import router as categories_router
-from .record_types import router as record_types_router
+from .category import router as category_router
+from .record_type import router as record_type_router
+from .user import router as router_user
 
 if TYPE_CHECKING:
     from fastapi import FastAPI
 
 
 map_routers = {
-    "/categories": (categories_router, "Categories"),
-    "/record-types": (record_types_router, "Record Types"),
+    "/category": (category_router, "Category"),
+    "/record-type": (record_type_router, "Record Type"),
+    "/user": (router_user, "User"),
 }
 
 

@@ -1,5 +1,5 @@
 import { typeStyles } from "./constants";
-import Button from "../Button";
+import Button from "@/ui/components/Button";
 import { useModal } from "@/ui/contexts/ModalContext/useModal";
 
 const AppModal = () => {

@@ -1,14 +1,23 @@
 from typing import Union
 from fastapi import status, HTTPException
 
-from src.env import is_local_environment, is_render_environment
+from src.env import (
+    is_local_environment,
+    is_render_environment,
+    get_clerk_issuer,
+    get_clerk_jwks_url,
+    get_clerk_secret_key,
+)
 
 
 class Base:
     PORT: int = 8080
     WORKERS: int = 1
-    VERSION = "0.0.1"
+    VERSION = "0.1.0"
     ROOT: str = "/api/v1"
+    CLERK_ISSUER: str = get_clerk_issuer()
+    CLERK_JWKS_URL: str = get_clerk_jwks_url()
+    CLERK_SECRET_KEY: str = get_clerk_secret_key()
 
 
 class Local(Base):

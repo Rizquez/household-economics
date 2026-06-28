@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="card m-5 flex h-full flex-col overflow-hidden bg-surface p-20">
+    <section className="card flex h-full flex-col overflow-hidden bg-surface p-20">
       <header className="flex items-start justify-between border-b border-background pb-2">
         <div>
           <h1 className="text-3xl font-semibold text-text-primary">
