@@ -40,10 +40,7 @@ const Home = () => {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <SignInButton
-              mode="modal"
-              forceRedirectUrl={paths.dashboard.href}
-            >
+            <SignInButton mode="modal" forceRedirectUrl={paths.dashboard.href}>
               <button className="flex cursor-pointer items-center gap-3 rounded-lg bg-primary px-6 py-3 font-medium text-white transition-all hover:scale-[1.02] hover:opacity-90">
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
                 Sign in
@@ -56,7 +53,7 @@ const Home = () => {
           <FeatureCard
             icon={faChartPie}
             title="Dashboard"
-            description="Get a quick overview of your family&apos;s financial health."
+            description="Get a quick overview of your family's financial health."
           />
 
           <FeatureCard

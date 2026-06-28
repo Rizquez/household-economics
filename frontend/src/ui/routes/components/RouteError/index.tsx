@@ -27,16 +27,13 @@ const RouteError = () => {
     ? error.status === 404
       ? "The page you're looking for doesn't exist or may have been moved."
       : error.statusText
-    : (error as Error)?.message ?? "An unexpected error occurred.";
+    : ((error as Error)?.message ?? "An unexpected error occurred.");
 
   return (
     <div className="flex h-full items-center justify-center bg-background p-8">
       <section className="card flex w-full max-w-xl flex-col items-center gap-6 bg-surface p-10 text-center">
         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-error/10 text-error">
-          <FontAwesomeIcon
-            icon={faTriangleExclamation}
-            className="text-4xl"
-          />
+          <FontAwesomeIcon icon={faTriangleExclamation} className="text-4xl" />
         </div>
 
         <div>
@@ -48,9 +45,7 @@ const RouteError = () => {
             {title}
           </h1>
 
-          <p className="mt-3 text-text-secondary">
-            {description}
-          </p>
+          <p className="mt-3 text-text-secondary">{description}</p>
         </div>
 
         <div className="flex gap-3">
@@ -64,10 +59,9 @@ const RouteError = () => {
 
           <button
             onClick={() =>
-              navigate(
-                isSignedIn ? paths.dashboard.href : paths.home.href,
-                { replace: true },
-              )
+              navigate(isSignedIn ? paths.dashboard.href : paths.home.href, {
+                replace: true,
+              })
             }
             className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90 cursor-pointer"
           >

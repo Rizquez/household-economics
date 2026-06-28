@@ -1,11 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FeatureCardProps } from "./types";
 
-const FeatureCard = ({
-  icon,
-  title,
-  description,
-}: FeatureCardProps) => (
+const FeatureCard = ({ icon, title, description }: FeatureCardProps) => (
   <article className="flex gap-4 rounded-xl bg-surface p-5 shadow-sm">
     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
       <FontAwesomeIcon icon={icon} />
@@ -20,4 +16,4 @@ const FeatureCard = ({
   </article>
 );
 
-export default FeatureCard
+export default FeatureCard;

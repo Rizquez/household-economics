@@ -20,7 +20,8 @@ const Footer = () => {
             className="cursor-pointer transition-colors hover:text-primary"
           >
             Karla Hernandez
-          </a>&#44;{" "}
+          </a>
+          &#44;{" "}
           <a
             href="https://www.linkedin.com/in/pedro-rizquez/"
             target="_blank"
