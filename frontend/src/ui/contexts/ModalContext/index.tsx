@@ -1,8 +1,15 @@
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 
 import type { ModalState, ShowModalPayload } from "./types";
-import { initialState } from "./constants";
 import { ModalContext } from "./context";
+
+const initialState: ModalState = {
+  open: false,
+  type: "info",
+  title: "",
+  message: "",
+  hasButton: true,
+};
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [modal, setModal] = useState<ModalState>(initialState);

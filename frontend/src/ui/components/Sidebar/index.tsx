@@ -1,8 +1,17 @@
 import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { sidebarPathKeys } from "./constants";
 import { paths } from "@/ui/routes/paths";
 import { UserButton } from "@clerk/clerk-react";
+
+const sidebarPathKeys = [
+  "dashboard",
+  "dailyregister",
+  "monthlybudget",
+  "expensetracking",
+  "savingsinvestments",
+  "wishlist",
+  "categories",
+] as const;
 
 // TODO: implement a real family name and move the userbutton
 const Sidebar = () => (

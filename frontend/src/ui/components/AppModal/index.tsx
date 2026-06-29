@@ -1,6 +1,13 @@
-import { typeStyles } from "./constants";
 import Button from "@/ui/components/Button";
-import { useModal } from "@/ui/contexts/ModalContext/useModal";
+import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
+
+const typeStyles = {
+  info: "text-info",
+  success: "text-success",
+  warning: "text-warning",
+  error: "text-error",
+  loading: "text-primary",
+};
 
 const AppModal = () => {
   const { modal, closeModal } = useModal();
