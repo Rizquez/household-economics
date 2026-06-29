@@ -1,33 +1,23 @@
-import { useNavigate, useRouteError, isRouteErrorResponse } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
   faArrowRotateLeft,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
-import { useUser } from "@clerk/clerk-react";
-import { paths } from "@/ui/routes/paths";
+import useRouteErrorPage from "./hooks/useRouteErrorPage";
 
 const RouteError = () => {
-  const navigate = useNavigate();
-  const error = useRouteError();
-  const { isLoaded, isSignedIn } = useUser();
+  const {
+    isLoaded,
+    status,
+    title,
+    description,
+    homeLabel,
+    goBack,
+    goHome,
+  } = useRouteErrorPage();
 
   if (!isLoaded) return null;
-
-  const status = isRouteErrorResponse(error) ? error.status : 500;
-
-  const title = isRouteErrorResponse(error)
-    ? error.status === 404
-      ? "Page not found"
-      : "Something went wrong"
-    : "Unexpected error";
-
-  const description = isRouteErrorResponse(error)
-    ? error.status === 404
-      ? "The page you're looking for doesn't exist or may have been moved."
-      : error.statusText
-    : ((error as Error)?.message ?? "An unexpected error occurred.");
 
   return (
     <div className="flex h-full items-center justify-center bg-background p-8">
@@ -50,23 +40,19 @@ const RouteError = () => {
 
         <div className="flex gap-3">
           <button
-            onClick={() => navigate(-1)}
-            className="flex items-center gap-2 rounded-md border border-text-secondary/20 px-4 py-2 transition-colors hover:bg-background cursor-pointer"
+            onClick={goBack}
+            className="flex cursor-pointer items-center gap-2 rounded-md border border-text-secondary/20 px-4 py-2 transition-colors hover:bg-background"
           >
             <FontAwesomeIcon icon={faArrowRotateLeft} />
             Go back
           </button>
 
           <button
-            onClick={() =>
-              navigate(isSignedIn ? paths.dashboard.href : paths.home.href, {
-                replace: true,
-              })
-            }
-            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90 cursor-pointer"
+            onClick={goHome}
+            className="flex cursor-pointer items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90"
           >
             <FontAwesomeIcon icon={faHouse} />
-            {isSignedIn ? "Dashboard" : "Home"}
+            {homeLabel}
           </button>
         </div>
 
