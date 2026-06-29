@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useQueries } from "@tanstack/react-query";
 import useRecordTypes from "./useRecordTypes";
-import { CATEGORIES_QUERY_KEY } from "./keys";
+import { CATEGORIES_QUERY_KEY } from "./constants";
 import { listCategories } from "@/core/business/category/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
@@ -17,7 +17,9 @@ const useCategoriesPage = () => {
     })),
   });
 
-  const isLoadingCategories = categoryQueries.some((query) => query.isPending);
+  const isLoadingCategories = categoryQueries.some(
+    (query) => query.isPending || query.isFetching,
+  );
   const categoryError = categoryQueries.find((query) => query.isError)?.error;
 
   const isLoading = isPending || isLoadingCategories;

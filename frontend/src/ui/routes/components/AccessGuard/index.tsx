@@ -1,12 +1,12 @@
 import useCurrentUser from "./hooks/useCurrentUser";
 import PendingAccess from "../PendingAccess";
 import type { AccessGuardProps } from "./types";
-import useCurrentUserModal from "./hooks/useCurrentUserModal";
+import useVerifyModal from "./hooks/useVerifyModal";
 
 const AccessGuard = ({ children }: AccessGuardProps) => {
   const { currentUser, isPending, isError, error } = useCurrentUser();
 
-  useCurrentUserModal(isPending);
+  useVerifyModal(isPending);
 
   if (isPending) return null;
 

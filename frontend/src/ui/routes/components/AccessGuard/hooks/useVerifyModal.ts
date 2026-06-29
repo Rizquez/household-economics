@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
-const useCurrentUserModal = (isPending: boolean) => {
+const useVerifyModal = (isPending: boolean) => {
   const { showLoading, closeModal } = useModal();
 
   useEffect(() => {
@@ -17,4 +17,4 @@ const useCurrentUserModal = (isPending: boolean) => {
   }, [isPending, showLoading, closeModal]);
 };
 
-export default useCurrentUserModal;
+export default useVerifyModal;
