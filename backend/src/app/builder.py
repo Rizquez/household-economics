@@ -5,7 +5,7 @@ from typing import Union, TYPE_CHECKING
 from fastapi.middleware.cors import CORSMiddleware
 
 if TYPE_CHECKING:
-    from .settings import Local, Render
+    from src.app.settings import Local, Render
 
 
 def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
