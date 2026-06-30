@@ -11,7 +11,7 @@ from .core import Business, send_access_request_email
 class AuthBusiness(Business):
 
     @classmethod
-    def get_or_create_current_user( # TODO: separate responsibilities
+    def get_or_create_current_user(  # TODO: separate responsibilities
         cls,
         claims: Dict[str, Any],
         clerk_user: Dict[str, Any],
