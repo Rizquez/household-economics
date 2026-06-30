@@ -7,15 +7,8 @@ import {
 import useRouteErrorPage from "./hooks/useRouteErrorPage";
 
 const RouteError = () => {
-  const {
-    isLoaded,
-    status,
-    title,
-    description,
-    homeLabel,
-    goBack,
-    goHome,
-  } = useRouteErrorPage();
+  const { isLoaded, status, title, description, homeLabel, goBack, goHome } =
+    useRouteErrorPage();
 
   if (!isLoaded) return null;
 
