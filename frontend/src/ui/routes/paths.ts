@@ -27,10 +27,10 @@ export const paths = {
     label: "Daily register",
     icon: faCalendarDays,
   },
-  monthlybudget: {
-    href: "/monthly-budget",
-    title: "Monthly budget",
-    label: "Monthly budget",
+  annualbudget: {
+    href: "/annual-budget",
+    title: "Annual budget",
+    label: "Annual budget",
     icon: faWallet,
   },
   expensetracking: {
