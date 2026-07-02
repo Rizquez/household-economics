@@ -51,7 +51,7 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
     <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-4">
       <Input
         id="category"
-        label="Category"
+        label="New category"
         placeholder="Food, Bills, Baby..."
         value={category}
         onChange={(event) => {
