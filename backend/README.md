@@ -133,7 +133,8 @@ backend/
 │   │   │   └── validate.py
 │   │   ├── __init__.py
 │   │   ├── category.py
-│   │   └── record_type.py
+│   │   ├── record_type.py
+│   │   └── user.py
 │   ├── schemas
 │   │   ├── core
 │   │   │   ├── __init__.py
