@@ -7,10 +7,10 @@ import type { PrivateLayoutProps } from "./types";
 const PrivateLayout = ({ component, title }: PrivateLayoutProps) => (
   <AccessGuard>
     <div className="flex h-screen flex-col overflow-hidden">
-      <div className="flex min-h-0 flex-1 gap-5 p-5">
+      <div className="flex min-h-0 min-w-0 flex-1 gap-5 p-5">
         <Sidebar />
 
-        <main className="min-h-0 flex-1">
+        <main className="min-h-0 min-w-0 flex-1 overflow-hidden">
           <PageLoader component={component} title={title} />
         </main>
       </div>

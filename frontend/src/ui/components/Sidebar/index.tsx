@@ -15,7 +15,7 @@ const sidebarPathKeys = [
 
 // TODO: implement a real family name and move the userbutton
 const Sidebar = () => (
-  <aside className="flex h-full flex-col bg-surface card">
+  <aside className="flex h-full shrink-0 flex-col bg-surface card">
     <div className="flex justify-end px-6 pt-6">
       <div className="scale-150">
         <UserButton />
