@@ -17,9 +17,9 @@ class ServiceBase(object):
     ) -> Optional[TModel]:
         return session.get(model, ident)
 
-    @staticmethod
-    def get_all(session: "scoped_session", model: Type[TModel]) -> List[TModel]:
-        return session.query(model).all()
+    @classmethod
+    def get_all(cls, session: "scoped_session", model: Type[TModel]) -> List[TModel]:
+        return cls.find_all(session, model=model)
 
     @classmethod
     def create(
