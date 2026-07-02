@@ -16,7 +16,7 @@ class CategoryService(ServiceBase):
     def get_category_by_record_type(
         cls, session: "scoped_session", record_type_id: int, family_id: int
     ) -> List[Category]:
-        return cls.filter_by(
+        return cls.find(
             session,
             and_(
                 Category.record_type_id == record_type_id,
@@ -67,7 +67,7 @@ class CategoryService(ServiceBase):
         category_id: int,
         family_id: int,
     ) -> Optional[Category]:
-        return cls.filter_by(
+        return cls.find(
             session,
             and_(
                 Category.id == category_id,

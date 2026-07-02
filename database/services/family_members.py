@@ -10,12 +10,12 @@ class FamilyMembersService(ServiceBase):
     def get_family_member_by_user_id(
         cls, session, user_id: int
     ) -> Optional[FamilyMembers]:
-        return cls.filter_by(
+        return cls.find(
             session, FamilyMembers.user_id == user_id, model=FamilyMembers
         )
 
     @classmethod
     def create_family_member(
         cls, session, a_dict: Dict
-    ) -> FamilyMembers:  # TODO: Is it necessary?
+    ) -> FamilyMembers:
         return cls.create(session, a_dict, FamilyMembers)

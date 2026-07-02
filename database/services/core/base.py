@@ -54,13 +54,12 @@ class ServiceBase(object):
         return model(**valid_dict)
 
     @staticmethod
-    def filter_by(
+    def find(
         session: "scoped_session",
         *filters: Any,
         model: Type[TModel],
-        all: bool = False,
         order_by: Optional[Any] = None,
-    ):
+    ) -> Optional[TModel]:
         query = session.query(model)
 
         if filters:
@@ -69,4 +68,21 @@ class ServiceBase(object):
         if order_by is not None:
             query = query.order_by(order_by)
 
-        return query.all() if all else query.first()
+        return query.first()
+    
+    @staticmethod
+    def find_all(
+        session: "scoped_session",
+        *filters: Any,
+        model: Type[TModel],
+        order_by: Optional[Any] = None,
+    ) -> List[TModel]:
+        query = session.query(model)
+
+        if filters:
+            query = query.filter(*filters)
+
+        if order_by is not None:
+            query = query.order_by(order_by)
+
+        return query.all()
