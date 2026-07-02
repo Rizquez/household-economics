@@ -19,7 +19,7 @@ const Categories = () => {
         </h1>
 
         <p className="text-sm text-text-secondary">
-          Manage your categories based on the type of record.
+          Manage your categories based on the record type.
         </p>
       </div>
 
