@@ -42,8 +42,7 @@ class Database(
         self.engine = engine
 
     def create_session(self) -> scoped_session:
-        session = scoped_session(sessionmaker())
-        session.configure(bind=self.engine)
+        session = scoped_session(sessionmaker(bind=self.engine, expire_on_commit=False))
         Base.metadata.bind = self.engine
         return session
 

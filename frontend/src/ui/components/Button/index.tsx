@@ -2,6 +2,7 @@ import type { ButtonProps } from "./types";
 
 const variants = {
   primary: "bg-primary text-surface hover:opacity-90",
+  secondary: "bg-secondary text-surface hover:opacity-90",
   danger: "bg-error text-surface hover:opacity-90",
 };
 

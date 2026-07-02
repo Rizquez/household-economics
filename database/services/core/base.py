@@ -28,6 +28,13 @@ class ServiceBase(object):
         instance = cls.create_model(a_dict, model)
         session.add(instance)
         return instance
+    
+    @classmethod
+    def update(cls, instance: TModel, a_dict: Dict) -> TModel:
+        valid_dict = instance.valid_dict(a_dict)
+        for key, value in valid_dict.items():
+            setattr(instance, key, value)
+        return instance
 
     @classmethod
     def delete(cls, session: "scoped_session", ident: int, model: Type[TModel]) -> bool:

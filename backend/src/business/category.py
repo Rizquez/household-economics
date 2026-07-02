@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 from fastapi import HTTPException, status
 
 from database import Category
@@ -33,6 +33,24 @@ class CategoryBusiness(Business):
             a_dict["family_id"] = family_id
             cls.db.create_category(session, a_dict)
             session.commit()
+        except Exception:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+    @classmethod
+    def update_category(cls, a_dict: Dict, category_id: int, family_id: int) -> Optional[Category]:
+        session = cls.create_session()
+        try:
+            category = cls.db.update_category(session, a_dict, category_id, family_id)
+            if not category:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No category were found associated with ID: {category_id}",
+                )
+            session.commit()
+            return category
         except Exception:
             session.rollback()
             raise

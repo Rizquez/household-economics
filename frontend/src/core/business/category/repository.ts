@@ -1,6 +1,6 @@
 import httpClient from "@/core/client/httpClient";
-import type { CategoryResponseDto, CreateCategoryRequestDto } from "./domain";
-import type { Category, CreateCategoryRequest } from "./types";
+import type { CategoryResponseDto, CreateCategoryRequestDto, UpdateCategoryRequestDto } from "./domain";
+import type { Category, CreateCategoryRequest, UpdateCategoryRequest } from "./types";
 
 class CategoryRepository {
   async list(recordTypeId: number): Promise<Category[]> {
@@ -22,6 +22,15 @@ class CategoryRepository {
 
     await httpClient.post("/category", dto);
   }
+
+  async update(payload: UpdateCategoryRequest): Promise<void> {
+  const dto: UpdateCategoryRequestDto = {
+    name: payload.name,
+    record_type_id: payload.recordTypeId,
+  };
+
+  await httpClient.put(`/category/${payload.id}`, dto);
+}
 
   async delete(categoryId: number): Promise<void> {
     await httpClient.delete<void>(`/category/${categoryId}`);

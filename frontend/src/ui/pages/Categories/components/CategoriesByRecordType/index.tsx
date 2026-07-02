@@ -1,14 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import type { CategoriesByRecordTypeProps } from "./types";
-import useDeleteCategory from "@/ui/pages/Categories/hooks/useDeleteCategory";
+import {
+  faFloppyDisk,
+  faPenToSquare,
+  faTrashCan,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+
 import Button from "@/ui/components/Button";
+import Input from "@/ui/components/Input";
+import type { CategoriesByRecordTypeProps } from "./types";
+import useCategoriesByRecordType from "./hooks/useCategoriesByRecordType.ts";
+
 
 const CategoriesByRecordType = ({
   recordType,
   categories,
 }: CategoriesByRecordTypeProps) => {
-  const { mutate, isPending } = useDeleteCategory();
+  const {
+    editingCategoryId,
+    editingCategoryName,
+    isDeleting,
+    isUpdating,
+    setEditingCategoryName,
+    handleEdit,
+    handleCancel,
+    handleSave,
+    deleteCategory,
+  } = useCategoriesByRecordType(recordType.id);
 
   return (
     <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
@@ -21,22 +39,65 @@ const CategoriesByRecordType = ({
           <p className="text-sm text-text-secondary">No categories found.</p>
         )}
 
-        {categories.map((category) => (
-          <div
-            key={category.id}
-            className="flex items-center justify-between rounded-lg bg-surface px-4 py-2"
-          >
-            <span className="text-sm text-text-primary">{category.name}</span>
+        {categories.map((category) => {
+          const isEditing = editingCategoryId === category.id;
 
-            <Button
-              variant="danger"
-              disabled={isPending}
-              onClick={() => mutate(category.id)}
+          return (
+            <div
+              key={category.id}
+              className="flex items-center justify-between gap-3 rounded-lg bg-surface px-4 py-2"
             >
-              <FontAwesomeIcon icon={faTrashCan} />
-            </Button>
-          </div>
-        ))}
+              {isEditing ? (
+                <Input
+                  id={`category-${category.id}`}
+                  value={editingCategoryName}
+                  className="h-9"
+                  onChange={(event) =>
+                    setEditingCategoryName(event.target.value)
+                  }
+                />
+              ) : (
+                <span className="text-sm text-text-primary">
+                  {category.name}
+                </span>
+              )}
+
+              {isEditing ? (
+                <div className="flex gap-2">
+                  <Button disabled={isUpdating} onClick={handleSave}>
+                    <FontAwesomeIcon icon={faFloppyDisk} />
+                  </Button>
+
+                  <Button
+                    variant="danger"
+                    disabled={isUpdating}
+                    onClick={handleCancel}
+                  >
+                    <FontAwesomeIcon icon={faXmark} />
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <Button
+                    variant="secondary"
+                    disabled={isDeleting || isUpdating}
+                    onClick={() => handleEdit(category.id, category.name)}
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </Button>
+
+                  <Button
+                    variant="danger"
+                    disabled={isDeleting || isUpdating}
+                    onClick={() => deleteCategory(category.id)}
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </Button>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

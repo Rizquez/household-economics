@@ -33,6 +33,11 @@ def route_create_category(
     CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
 
 
+@router.put("/{category_id}")
+def route_update_category(category_id: str, request: CategoryRequest, current_user: "CurrentUser" = Depends(get_allowed_user)) -> CategoryResponse:
+    return CategoryBusiness.update_category(request.model_dump(), validate_non_negative_num(category_id), current_user.family_id)
+
+
 @router.delete("/{category_id}", status_code=status.HTTP_204_NO_CONTENT)
 def route_delete_category(
     category_id: str,

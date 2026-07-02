@@ -4,7 +4,7 @@ from typing import List, Optional, Dict, TYPE_CHECKING
 from sqlalchemy import and_
 
 from services.core import ServiceBase
-from models import Category, Family
+from models import Category
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
@@ -30,6 +30,19 @@ class CategoryService(ServiceBase):
     @classmethod
     def create_category(cls, session: "scoped_session", a_dict: Dict) -> Category:
         return cls.create(session, a_dict, Category)
+    
+    @classmethod
+    def update_category(cls, session: "scoped_session", a_dict: Dict, category_id: int, family_id: int) -> Optional[Category]:
+        category = cls._get_category_by_id_and_family(
+            session,
+            category_id,
+            family_id,
+        )
+
+        if category is None:
+            return None
+
+        return cls.update(category, a_dict)
 
     @classmethod
     def delete_category(
