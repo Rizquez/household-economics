@@ -11,16 +11,16 @@ const CategoriesByRecordType = ({
   const { mutate, isPending } = useDeleteCategory();
 
   return (
-    <section className="flex flex-col gap-3 rounded-xl border border-text-secondary/10 bg-background p-4">
-      <h2 className="text-lg font-semibold text-text-primary">
+    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <h2 className="sticky top-0 z-10 bg-background p-4 text-lg font-semibold text-text-primary">
         {recordType.name}
       </h2>
 
-      {categories.length === 0 && (
-        <p className="text-sm text-text-secondary">No categories found.</p>
-      )}
+      <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-4 pb-4">
+        {categories.length === 0 && (
+          <p className="text-sm text-text-secondary">No categories found.</p>
+        )}
 
-      <div className="flex flex-col gap-2">
         {categories.map((category) => (
           <div
             key={category.id}
