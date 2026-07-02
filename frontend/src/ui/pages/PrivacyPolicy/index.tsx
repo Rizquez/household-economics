@@ -35,8 +35,7 @@ const PrivacyPolicy = () => {
 
           <p>
             This app is managed by{" "}
-            <span className="font-semibold">Pedro Rizquez</span> and{" "}
-            <span className="font-semibold">Robert Rizquez</span> for personal
+            <span className="font-semibold">Pedro Rizquez</span> for personal
             and household financial management purposes.
           </p>
 
