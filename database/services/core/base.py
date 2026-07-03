@@ -28,7 +28,7 @@ class ServiceBase(object):
         instance = cls.create_model(a_dict, model)
         session.add(instance)
         return instance
-    
+
     @classmethod
     def update(cls, instance: TModel, a_dict: Dict) -> TModel:
         valid_dict = instance.valid_dict(a_dict)
@@ -69,7 +69,7 @@ class ServiceBase(object):
             query = query.order_by(order_by)
 
         return query.first()
-    
+
     @staticmethod
     def find_all(
         session: "scoped_session",

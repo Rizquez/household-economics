@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from sqlalchemy.engine import Engine
 
 from services import (
+    BudgetService,
     CategoryService,
     RecordTypeService,
     UserService,
@@ -23,6 +24,7 @@ load_dotenv(override=True)
 
 
 class Database(
+    BudgetService,
     CategoryService,
     RecordTypeService,
     UserService,
