@@ -9,6 +9,7 @@ import {
 
 import Button from "@/ui/components/Button";
 import Input from "@/ui/components/Input";
+import Tooltip from "@/ui/components/Tooltip";
 import type { CategoriesByRecordTypeProps } from "./types";
 import useCategoriesByRecordType from "./hooks/useCategoriesByRecordType.ts";
 
@@ -29,6 +30,8 @@ const CategoriesByRecordType = ({
     deleteCategory,
     exportToAnnualBudget,
   } = useCategoriesByRecordType(recordType.id);
+
+  const canExportToAnnualBudget = recordType.name === "Expenses";
 
   return (
     <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
@@ -66,48 +69,59 @@ const CategoriesByRecordType = ({
 
               {isEditing ? (
                 <div className="flex gap-2">
-                  <Button disabled={isUpdating} onClick={handleSave}>
-                    <FontAwesomeIcon icon={faFloppyDisk} />
-                  </Button>
-
-                  <Button
-                    variant="danger"
-                    disabled={isUpdating}
-                    onClick={handleCancel}
-                  >
-                    <FontAwesomeIcon icon={faXmark} />
-                  </Button>
+                  <Tooltip text="Save change">
+                    <Button disabled={isUpdating} onClick={handleSave}>
+                      <FontAwesomeIcon icon={faFloppyDisk} />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip text="Cancel">
+                    <Button
+                      variant="danger"
+                      disabled={isUpdating}
+                      onClick={handleCancel}
+                    >
+                      <FontAwesomeIcon icon={faXmark} />
+                    </Button>
+                  </Tooltip>
                 </div>
               ) : (
                 <div className="flex gap-2">
-                  <Button
-                    disabled={
-                      isDeleting || isUpdating || isExportingToAnnualBudget
-                    }
-                    onClick={() => exportToAnnualBudget(category.id)}
-                  >
-                    <FontAwesomeIcon icon={faFileExport} />
-                  </Button>
+                  {canExportToAnnualBudget && (
+                    <Tooltip text="Export category to annual budget">
+                      <Button
+                        disabled={
+                          isDeleting || isUpdating || isExportingToAnnualBudget
+                        }
+                        onClick={() => exportToAnnualBudget(category.id)}
+                      >
+                        <FontAwesomeIcon icon={faFileExport} />
+                      </Button>
+                    </Tooltip>
+                  )}
 
-                  <Button
-                    variant="secondary"
-                    disabled={
-                      isDeleting || isUpdating || isExportingToAnnualBudget
-                    }
-                    onClick={() => handleEdit(category.id, category.name)}
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </Button>
+                  <Tooltip text="Edit category">
+                    <Button
+                      variant="secondary"
+                      disabled={
+                        isDeleting || isUpdating || isExportingToAnnualBudget
+                      }
+                      onClick={() => handleEdit(category.id, category.name)}
+                    >
+                      <FontAwesomeIcon icon={faPenToSquare} />
+                    </Button>
+                  </Tooltip>
 
-                  <Button
-                    variant="danger"
-                    disabled={
-                      isDeleting || isUpdating || isExportingToAnnualBudget
-                    }
-                    onClick={() => deleteCategory(category.id)}
-                  >
-                    <FontAwesomeIcon icon={faTrashCan} />
-                  </Button>
+                  <Tooltip text="Delete category">
+                    <Button
+                      variant="danger"
+                      disabled={
+                        isDeleting || isUpdating || isExportingToAnnualBudget
+                      }
+                      onClick={() => deleteCategory(category.id)}
+                    >
+                      <FontAwesomeIcon icon={faTrashCan} />
+                    </Button>
+                  </Tooltip>
                 </div>
               )}
             </div>

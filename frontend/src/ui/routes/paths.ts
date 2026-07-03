@@ -29,8 +29,8 @@ export const paths = {
   },
   annualbudget: {
     href: "/annual-budget",
-    title: "Annual budget (WIP)",
-    label: "Annual budget (WIP)",
+    title: "Annual budget",
+    label: "Annual budget",
     icon: faWallet,
   },
   expensetracking: {
