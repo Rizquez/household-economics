@@ -40,7 +40,12 @@ class CategoryBusiness(Business):
             session.close()
 
     @classmethod
-    def update_category(cls, a_dict: Dict, category_id: int, family_id: int) -> Optional[Category]:
+    def update_category(
+        cls,
+        a_dict: Dict,
+        category_id: int,
+        family_id: int,
+    ) -> Optional[Category]:
         session = cls.create_session()
         try:
             category = cls.db.update_category(session, a_dict, category_id, family_id)
@@ -49,6 +54,13 @@ class CategoryBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No category were found associated with ID: {category_id}",
                 )
+
+            budget_group = cls.db.get_budget_group_by_category(
+                session, category_id, family_id
+            )
+            if budget_group is not None:
+                cls.db.update(budget_group, {"name": category.name})
+
             session.commit()
             return category
         except Exception:
@@ -61,6 +73,14 @@ class CategoryBusiness(Business):
     def delete_category(cls, category_id: int, family_id: int) -> None:
         session = cls.create_session()
         try:
+            budget_group = cls.db.get_budget_group_by_category(
+                session, category_id, family_id
+            )
+            if budget_group is not None:
+                deleted = cls.db.delete_budget_group(
+                    session, budget_group.id, family_id
+                )
+
             deleted = cls.db.delete_category(session, category_id, family_id)
             if not deleted:
                 raise HTTPException(
@@ -68,7 +88,7 @@ class CategoryBusiness(Business):
                     detail=f"No category were found associated with ID: {category_id}",
                 )
             session.commit()
-        except:
+        except Exception:
             session.rollback()
             raise
         finally:
