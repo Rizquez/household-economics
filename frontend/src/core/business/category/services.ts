@@ -1,5 +1,9 @@
 import CategoryRepository from "./repository";
-import type { Category, CreateCategoryRequest, UpdateCategoryRequest } from "./types";
+import type {
+  Category,
+  CreateCategoryRequest,
+  UpdateCategoryRequest,
+} from "./types";
 
 const repository = new CategoryRepository();
 

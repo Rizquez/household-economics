@@ -1,12 +1,7 @@
 import { useEffect } from "react";
 import httpClient from "@/core/client/httpClient";
 import { useApiActivity } from "@/ui/contexts/ApiActivityContext/hooks/useApiActivity";
-
-const getRequestSource = (url?: string) => {
-  if (!url) return "unknown-repository";
-
-  return url;
-};
+import { getRequestSource } from "./utils/source";
 
 const ApiActivityHandler = () => {
   const { registerApiActivity } = useApiActivity();

@@ -4,13 +4,13 @@ import {
   faPenToSquare,
   faTrashCan,
   faXmark,
+  faFileExport,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "@/ui/components/Button";
 import Input from "@/ui/components/Input";
 import type { CategoriesByRecordTypeProps } from "./types";
 import useCategoriesByRecordType from "./hooks/useCategoriesByRecordType.ts";
-
 
 const CategoriesByRecordType = ({
   recordType,
@@ -21,11 +21,13 @@ const CategoriesByRecordType = ({
     editingCategoryName,
     isDeleting,
     isUpdating,
+    isExportingToAnnualBudget,
     setEditingCategoryName,
     handleEdit,
     handleCancel,
     handleSave,
     deleteCategory,
+    exportToAnnualBudget,
   } = useCategoriesByRecordType(recordType.id);
 
   return (
@@ -79,8 +81,19 @@ const CategoriesByRecordType = ({
               ) : (
                 <div className="flex gap-2">
                   <Button
+                    disabled={
+                      isDeleting || isUpdating || isExportingToAnnualBudget
+                    }
+                    onClick={() => exportToAnnualBudget(category.id)}
+                  >
+                    <FontAwesomeIcon icon={faFileExport} />
+                  </Button>
+
+                  <Button
                     variant="secondary"
-                    disabled={isDeleting || isUpdating}
+                    disabled={
+                      isDeleting || isUpdating || isExportingToAnnualBudget
+                    }
                     onClick={() => handleEdit(category.id, category.name)}
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
@@ -88,7 +101,9 @@ const CategoriesByRecordType = ({
 
                   <Button
                     variant="danger"
-                    disabled={isDeleting || isUpdating}
+                    disabled={
+                      isDeleting || isUpdating || isExportingToAnnualBudget
+                    }
                     onClick={() => deleteCategory(category.id)}
                   >
                     <FontAwesomeIcon icon={faTrashCan} />

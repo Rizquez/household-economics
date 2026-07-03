@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import useDeleteCategory from "@/ui/pages/Categories/hooks/useDeleteCategory";
 import useUpdateCategory from "@/ui/pages/Categories/hooks/useUpdateCategory";
+import useCreateBudgetGroupFromCategory from "@/ui/pages/Categories/hooks/useCreateBudgetGroupFromCategory";
 
 const useCategoriesByRecordType = (recordTypeId: number) => {
   const [editingCategoryId, setEditingCategoryId] = useState<number | null>(
@@ -11,6 +12,11 @@ const useCategoriesByRecordType = (recordTypeId: number) => {
 
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
+
+  const {
+    mutate: createBudgetGroupFromCategory,
+    isPending: isExportingToAnnualBudget,
+  } = useCreateBudgetGroupFromCategory();
 
   const handleEdit = (categoryId: number, categoryName: string) => {
     setEditingCategoryId(categoryId);
@@ -37,16 +43,22 @@ const useCategoriesByRecordType = (recordTypeId: number) => {
     );
   };
 
+  const exportToAnnualBudget = (categoryId: number) => {
+    createBudgetGroupFromCategory(categoryId);
+  };
+
   return {
     editingCategoryId,
     editingCategoryName,
     isDeleting,
     isUpdating,
+    isExportingToAnnualBudget,
     setEditingCategoryName,
     handleEdit,
     handleCancel,
     handleSave,
     deleteCategory,
+    exportToAnnualBudget,
   };
 };
 
