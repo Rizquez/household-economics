@@ -5,6 +5,7 @@ import {
   faTrashCan,
   faXmark,
   faFileExport,
+  faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "@/ui/components/Button";
@@ -27,16 +28,25 @@ const CategoriesByRecordType = ({
     handleEdit,
     handleCancel,
     handleSave,
-    deleteCategory,
     exportToAnnualBudget,
-  } = useCategoriesByRecordType(recordType.id);
+    confirmDelete,
+  } = useCategoriesByRecordType(recordType.id, recordType.name);
 
   const canExportToAnnualBudget = recordType.name === "Expenses";
 
   return (
     <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-      <h2 className="sticky top-0 z-10 bg-background p-4 text-lg font-semibold text-text-primary">
-        {recordType.name}
+      <h2 className="sticky top-0 z-10 flex items-center bg-background p-4 text-lg font-semibold text-text-primary">
+        <span>{recordType.name}</span>
+
+        {canExportToAnnualBudget && (
+          <Tooltip text="Only expense categories can be exported to the Annual Budget. Exports apply only to the current year. Export the category again next year to include it in a new annual budget.">
+            <FontAwesomeIcon
+              icon={faCircleInfo}
+              className="ml-2 h-4 w-4 cursor-pointer text-text-secondary"
+            />
+          </Tooltip>
+        )}
       </h2>
 
       <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-4 pb-4">
@@ -117,7 +127,7 @@ const CategoriesByRecordType = ({
                       disabled={
                         isDeleting || isUpdating || isExportingToAnnualBudget
                       }
-                      onClick={() => deleteCategory(category.id)}
+                      onClick={() => confirmDelete(category.id)}
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
                     </Button>

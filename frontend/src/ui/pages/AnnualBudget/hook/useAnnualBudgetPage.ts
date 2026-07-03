@@ -21,7 +21,7 @@ const useAnnualBudgetPage = () => {
     error: budgetYearsError,
   } = useBudgetYears();
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear().toString();
   const selectedYear = year || String(years[0] ?? currentYear);
 
   const {

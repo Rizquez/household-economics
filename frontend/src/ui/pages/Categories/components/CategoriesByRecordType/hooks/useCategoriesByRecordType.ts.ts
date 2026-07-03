@@ -3,8 +3,13 @@ import { useState } from "react";
 import useDeleteCategory from "@/ui/pages/Categories/hooks/useDeleteCategory";
 import useUpdateCategory from "@/ui/pages/Categories/hooks/useUpdateCategory";
 import useCreateBudgetGroupFromCategory from "@/ui/pages/Categories/hooks/useCreateBudgetGroupFromCategory";
+import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
-const useCategoriesByRecordType = (recordTypeId: number) => {
+const useCategoriesByRecordType = (
+  recordTypeId: number,
+  recordTypeName: string,
+) => {
+  const { showModal } = useModal();
   const [editingCategoryId, setEditingCategoryId] = useState<number | null>(
     null,
   );
@@ -47,6 +52,20 @@ const useCategoriesByRecordType = (recordTypeId: number) => {
     createBudgetGroupFromCategory(categoryId);
   };
 
+  const confirmDelete = (categoryId: number) => {
+    showModal({
+      type: "warning",
+      title: "Delete category",
+      message:
+        recordTypeName === "Expenses"
+          ? "When you delete this category, its annual budget groups will also be deleted. This action cannot be undone."
+          : "Are you sure you want to delete this category?",
+      confirmText: "Delete",
+      cancelText: "Cancel",
+      onConfirm: () => deleteCategory(categoryId),
+    });
+  };
+
   return {
     editingCategoryId,
     editingCategoryName,
@@ -59,6 +78,7 @@ const useCategoriesByRecordType = (recordTypeId: number) => {
     handleSave,
     deleteCategory,
     exportToAnnualBudget,
+    confirmDelete,
   };
 };
 

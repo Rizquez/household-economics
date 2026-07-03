@@ -19,7 +19,7 @@ const Tooltip = ({ text, children, disabled = false }: TooltipProps) => {
       {position &&
         createPortal(
           <div
-            className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-xl border border-text-secondary/20 bg-surface px-3 py-2 text-xs text-text-primary opacity-100 shadow-xl"
+            className="pointer-events-none fixed z-50 max-w-xs -translate-x-1/2 -translate-y-full rounded-xl border border-text-secondary/20 bg-surface px-3 py-2 text-left text-xs leading-5 text-text-primary opacity-100 shadow-xl"
             style={{
               top: position.top,
               left: position.left,

@@ -27,7 +27,25 @@ const AppModal = () => {
           <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
         )}
 
-        {modal.hasButton && <Button onClick={closeModal}>OK</Button>}
+        {modal.onConfirm ? (
+          <div className="flex gap-3">
+            <Button variant="secondary" onClick={closeModal}>
+              {modal.cancelText ?? "Cancel"}
+            </Button>
+
+            <Button
+              variant="danger"
+              onClick={() => {
+                closeModal();
+                modal.onConfirm?.();
+              }}
+            >
+              {modal.confirmText ?? "Delete"}
+            </Button>
+          </div>
+        ) : (
+          modal.hasButton && <Button onClick={closeModal}>Ok</Button>
+        )}
       </div>
     </div>
   );
