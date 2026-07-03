@@ -16,14 +16,13 @@ class CategoryService(ServiceBase):
     def get_category_by_record_type(
         cls, session: "scoped_session", record_type_id: int, family_id: int
     ) -> List[Category]:
-        return cls.find(
+        return cls.find_all(
             session,
             and_(
                 Category.record_type_id == record_type_id,
                 Category.family_id == family_id,
             ),
             model=Category,
-            all=True,
             order_by=Category.name,
         )
 
