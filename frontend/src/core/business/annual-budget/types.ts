@@ -1,6 +1,5 @@
 export type Budget = {
   id: number;
-  year: number;
   month: number;
   amount: number;
   budgetGroupId: number;
@@ -9,6 +8,7 @@ export type Budget = {
 export type BudgetGroup = {
   id: number;
   name: string;
+  year: number;
   budgets: Budget[];
 };
 

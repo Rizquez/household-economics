@@ -1,6 +1,5 @@
 export type BudgetResponseDto = {
   id: number;
-  year: number;
   month: number;
   amount: string;
   budget_group_id: number;
@@ -9,6 +8,7 @@ export type BudgetResponseDto = {
 export type BudgetGroupResponseDto = {
   id: number;
   name: string;
+  year: number;
   budgets: BudgetResponseDto[];
 };
 

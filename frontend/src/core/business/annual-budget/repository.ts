@@ -21,9 +21,9 @@ class AnnualBudgetRepository {
     return response.data.map((budgetGroup) => ({
       id: budgetGroup.id,
       name: budgetGroup.name,
+      year: budgetGroup.year,
       budgets: budgetGroup.budgets.map((budget) => ({
         id: budget.id,
-        year: budget.year,
         month: budget.month,
         amount: Number(budget.amount),
         budgetGroupId: budget.budget_group_id,

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { createBudgetGroupFromCategory } from "@/core/business/annual-budget/services";
+import { ANNUAL_BUDGET_QUERY_KEY } from "@/ui/pages/AnnualBudget/hook/constants";
 import { CATEGORIES_QUERY_KEY } from "./constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
@@ -19,6 +20,10 @@ const useCreateBudgetGroupFromCategory = () => {
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: [CATEGORIES_QUERY_KEY],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [ANNUAL_BUDGET_QUERY_KEY],
       });
 
       closeModal();
