@@ -23,13 +23,10 @@ class Budget(ModelBase):
     __table_args__ = (
         UniqueConstraint(
             "budget_group_id",
-            "year",
             "month",
-            name="uq_budget_group_year_month",
+            name="uq_budget_group_month",
         ),
     )
-
-    year = Column(Integer, nullable=False)
 
     month = Column(Integer, nullable=False)
 

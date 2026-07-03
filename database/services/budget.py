@@ -20,9 +20,9 @@ class BudgetService(ServiceBase):
     def create_budget_group(
         cls,
         session: "scoped_session",
+        year: int,
         category_id: int,
         family_id: int,
-        year: int,
     ) -> BudgetGroup:
         category = CategoryService.get_category_by_id_and_family(
             session, category_id, family_id
@@ -33,6 +33,7 @@ class BudgetService(ServiceBase):
                 "name": category.name,
                 "family_id": family_id,
                 "category_id": category.id,
+                "year": year,
             },
             BudgetGroup,
         )
@@ -43,7 +44,6 @@ class BudgetService(ServiceBase):
             cls.create(
                 session,
                 {
-                    "year": year,
                     "month": month,
                     "amount": DEFAULT_AMOUNT,
                     "budget_group_id": budget_group.id,
@@ -57,6 +57,7 @@ class BudgetService(ServiceBase):
     def get_budget_group_by_category(
         cls,
         session: "scoped_session",
+        year: int,
         category_id: int,
         family_id: int,
     ) -> Optional[BudgetGroup]:
@@ -65,6 +66,7 @@ class BudgetService(ServiceBase):
             and_(
                 BudgetGroup.category_id == category_id,
                 BudgetGroup.family_id == family_id,
+                BudgetGroup.year == year,
             ),
             model=BudgetGroup,
         )
@@ -100,10 +102,10 @@ class BudgetService(ServiceBase):
         return [
             year
             for (year,) in (
-                session.query(distinct(Budget.year))
-                .join(BudgetGroup)
+                session.query(BudgetGroup.year)
                 .filter(BudgetGroup.family_id == family_id)
-                .order_by(Budget.year)
+                .distinct()
+                .order_by(BudgetGroup.year)
                 .all()
             )
         ]
@@ -116,14 +118,13 @@ class BudgetService(ServiceBase):
     ) -> List[BudgetGroup]:
         return (
             session.query(BudgetGroup)
-            .join(Budget)
             .filter(
                 and_(
-                    Budget.year == year,
                     BudgetGroup.family_id == family_id,
+                    BudgetGroup.year == year,
                 )
             )
-            .order_by(BudgetGroup.name, Budget.month)
+            .order_by(BudgetGroup.name)
             .all()
         )
 

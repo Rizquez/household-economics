@@ -1,7 +1,15 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from sqlalchemy import Column, String, BigInteger, ForeignKey, DateTime
+from sqlalchemy import (
+    Column,
+    String,
+    BigInteger,
+    ForeignKey,
+    DateTime,
+    UniqueConstraint,
+    Integer,
+)
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.sql import func
 
@@ -15,7 +23,17 @@ if TYPE_CHECKING:
 class BudgetGroup(ModelBase):
     __tablename__ = "budget_group"
 
+    __table_args__ = (
+        UniqueConstraint(
+            "category_id",
+            "year",
+            name="uq_budget_group_category_year",
+        ),
+    )
+
     name = Column(String, nullable=False)
+
+    year = Column(Integer, nullable=False)
 
     family_id = Column(
         BigInteger,
@@ -37,7 +55,6 @@ class BudgetGroup(ModelBase):
             ondelete="CASCADE",
         ),
         nullable=False,
-        unique=True,
     )
 
     budgets: Mapped[list["Budget"]] = relationship(
@@ -46,5 +63,5 @@ class BudgetGroup(ModelBase):
     )
 
     category: Mapped["Category"] = relationship(
-        back_populates="budget_group",
+        back_populates="budget_groups",
     )

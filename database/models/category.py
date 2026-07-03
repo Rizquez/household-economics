@@ -30,8 +30,7 @@ class Category(ModelBase):
 
     record_type: Mapped["RecordType"] = relationship(back_populates="categories")
 
-    budget_group: Mapped["BudgetGroup"] = relationship(
+    budget_groups: Mapped[list["BudgetGroup"]] = relationship(
         back_populates="category",
         cascade="all, delete-orphan",
-        uselist=False,
     )
