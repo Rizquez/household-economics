@@ -7,7 +7,6 @@ from src.schemas.core import RequestBase, ResponseBase
 
 class BudgetResponse(ResponseBase):
     id: int
-    year: int
     month: int
     amount: Decimal
     budget_group_id: int
@@ -16,6 +15,7 @@ class BudgetResponse(ResponseBase):
 class BudgetGroupResponse(ResponseBase):
     id: int
     name: str
+    year: int
     budgets: List[BudgetResponse]
 
 

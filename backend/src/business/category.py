@@ -55,10 +55,7 @@ class CategoryBusiness(Business):
                     detail=f"No category were found associated with ID: {category_id}",
                 )
 
-            budget_group = cls.db.get_budget_group_by_category(
-                session, category_id, family_id
-            )
-            if budget_group is not None:
+            for budget_group in category.budget_groups:
                 cls.db.update(budget_group, {"name": category.name})
 
             session.commit()
@@ -73,14 +70,6 @@ class CategoryBusiness(Business):
     def delete_category(cls, category_id: int, family_id: int) -> None:
         session = cls.create_session()
         try:
-            budget_group = cls.db.get_budget_group_by_category(
-                session, category_id, family_id
-            )
-            if budget_group is not None:
-                deleted = cls.db.delete_budget_group(
-                    session, budget_group.id, family_id
-                )
-
             deleted = cls.db.delete_category(session, category_id, family_id)
             if not deleted:
                 raise HTTPException(

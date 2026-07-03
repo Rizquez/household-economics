@@ -17,8 +17,11 @@ class BudgetBusiness(Business):
     ) -> BudgetGroup:
         session = cls.create_session()
         try:
+            current_year = datetime.now().year
+
             existing_budget_group = cls.db.get_budget_group_by_category(
                 session,
+                current_year,
                 category_id,
                 family_id,
             )
@@ -26,15 +29,16 @@ class BudgetBusiness(Business):
             if existing_budget_group is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="This category has already been exported to annual budget.",
+                    detail="This category has already been exported to annual budget for the current year.",
                 )
 
             budget_group = cls.db.create_budget_group(
                 session,
+                current_year,
                 category_id,
                 family_id,
-                datetime.now().year,
             )
+
             session.commit()
             session.refresh(budget_group)
             budget_group.budgets
