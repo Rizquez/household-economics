@@ -3,15 +3,14 @@ from typing import Dict, Any
 from fastapi import HTTPException, status
 import logging
 
-from src.schemas import CurrentUser
-from src.enums import Role
-from .core import Business, send_access_request_email
+from src.schemas import CurrentUser, Role
+from src.business.core import Business, send_access_request_email
 
 
 class AuthBusiness(Business):
 
     @classmethod
-    def get_or_create_current_user( # TODO: separate responsibilities
+    def get_or_create_current_user(  # TODO: separate responsibilities
         cls,
         claims: Dict[str, Any],
         clerk_user: Dict[str, Any],

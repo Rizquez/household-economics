@@ -17,9 +17,9 @@ class ServiceBase(object):
     ) -> Optional[TModel]:
         return session.get(model, ident)
 
-    @staticmethod
-    def get_all(session: "scoped_session", model: Type[TModel]) -> List[TModel]:
-        return session.query(model).all()
+    @classmethod
+    def get_all(cls, session: "scoped_session", model: Type[TModel]) -> List[TModel]:
+        return cls.find_all(session, model=model)
 
     @classmethod
     def create(
@@ -27,6 +27,13 @@ class ServiceBase(object):
     ) -> TModel:
         instance = cls.create_model(a_dict, model)
         session.add(instance)
+        return instance
+
+    @classmethod
+    def update(cls, instance: TModel, a_dict: Dict) -> TModel:
+        valid_dict = instance.valid_dict(a_dict)
+        for key, value in valid_dict.items():
+            setattr(instance, key, value)
         return instance
 
     @classmethod
@@ -47,13 +54,12 @@ class ServiceBase(object):
         return model(**valid_dict)
 
     @staticmethod
-    def filter_by(
+    def find(
         session: "scoped_session",
         *filters: Any,
         model: Type[TModel],
-        all: bool = False,
         order_by: Optional[Any] = None,
-    ):
+    ) -> Optional[TModel]:
         query = session.query(model)
 
         if filters:
@@ -62,4 +68,21 @@ class ServiceBase(object):
         if order_by is not None:
             query = query.order_by(order_by)
 
-        return query.all() if all else query.first()
+        return query.first()
+
+    @staticmethod
+    def find_all(
+        session: "scoped_session",
+        *filters: Any,
+        model: Type[TModel],
+        order_by: Optional[Any] = None,
+    ) -> List[TModel]:
+        query = session.query(model)
+
+        if filters:
+            query = query.filter(*filters)
+
+        if order_by is not None:
+            query = query.order_by(order_by)
+
+        return query.all()

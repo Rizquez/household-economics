@@ -6,7 +6,7 @@ import {
   faChartPie,
   faWallet,
   faPiggyBank,
-  faHeart,
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { paths } from "@/ui/routes/paths";
@@ -69,9 +69,9 @@ const Home = () => {
           />
 
           <FeatureCard
-            icon={faHeart}
-            title="Wishlist"
-            description="Organize future purchases and family priorities."
+            icon={faChartLine}
+            title="Expense tracking"
+            description="Keep a detailed record of expenses related to a budget, savings, and investments."
           />
         </div>
       </section>

@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from src.app import get_settings
 from src.business import AuthBusiness
-from .clerk import verify_clerk_token, get_clerk_user
+from src.auth.clerk import verify_clerk_token, get_clerk_user
 
 if TYPE_CHECKING:
     from src.schemas import CurrentUser

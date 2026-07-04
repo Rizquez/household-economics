@@ -19,7 +19,7 @@ const Select = ({
 
       <select
         id={id}
-        className={`appearance-none h-10 rounded-xl border bg-surface px-3 text-sm text-text-primary outline-none focus:border-primary ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
+        className={`appearance-none cursor-pointer h-10 rounded-xl border bg-surface px-3 text-sm text-text-primary outline-none focus:border-primary ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
         {...props}
       >
         {placeholder && <option value="">{placeholder}</option>}

@@ -6,6 +6,10 @@ export type ModalState = {
   title: string;
   message: string;
   hasButton: boolean;
+
+  confirmText?: string;
+  cancelText?: string;
+  onConfirm?: () => void;
 };
 
 export type ShowModalPayload = {
@@ -13,6 +17,10 @@ export type ShowModalPayload = {
   title: string;
   message: string;
   hasButton?: boolean;
+
+  confirmText?: string;
+  cancelText?: string;
+  onConfirm?: () => void;
 };
 
 export type ModalContextValue = {

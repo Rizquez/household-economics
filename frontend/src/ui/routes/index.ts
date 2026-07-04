@@ -1,9 +1,8 @@
 import Dashboard from "@/ui/pages/Dashboard";
 import DailyRegister from "@/ui/pages/DailyRegister";
-import MonthlyBudget from "@/ui/pages/MonthlyBudget";
+import AnnualBudget from "@/ui/pages/AnnualBudget";
 import ExpenseTracking from "@/ui/pages/ExpenseTracking";
 import SavingsInvestments from "@/ui/pages/SavingsInvestments";
-import Wishlist from "@/ui/pages/Wishlist";
 import Categories from "@/ui/pages/Categories";
 import Configuration from "@/ui/pages/Configuration";
 import { paths } from "@/ui/routes/paths";
@@ -30,9 +29,9 @@ const routes = [
     authRequired: true,
   },
   {
-    path: paths.monthlybudget.href,
-    component: MonthlyBudget,
-    title: paths.monthlybudget.title,
+    path: paths.annualbudget.href,
+    component: AnnualBudget,
+    title: paths.annualbudget.title,
     authRequired: true,
   },
   {
@@ -45,12 +44,6 @@ const routes = [
     path: paths.savingsinvestments.href,
     component: SavingsInvestments,
     title: paths.savingsinvestments.title,
-    authRequired: true,
-  },
-  {
-    path: paths.wishlist.href,
-    component: Wishlist,
-    title: paths.wishlist.title,
     authRequired: true,
   },
   {

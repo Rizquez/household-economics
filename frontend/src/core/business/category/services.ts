@@ -1,5 +1,9 @@
 import CategoryRepository from "./repository";
-import type { Category, CreateCategoryRequest } from "./types";
+import type {
+  Category,
+  CreateCategoryRequest,
+  UpdateCategoryRequest,
+} from "./types";
 
 const repository = new CategoryRepository();
 
@@ -15,6 +19,12 @@ class CreateCategory {
   }
 }
 
+class UpdateCategory {
+  execute(payload: UpdateCategoryRequest): Promise<void> {
+    return repository.update(payload);
+  }
+}
+
 class DeleteCategory {
   execute(categoryId: number): Promise<void> {
     return repository.delete(categoryId);
@@ -23,4 +33,5 @@ class DeleteCategory {
 
 export const listCategories = new ListCategories();
 export const createCategory = new CreateCategory();
+export const updateCategory = new UpdateCategory();
 export const deleteCategory = new DeleteCategory();
