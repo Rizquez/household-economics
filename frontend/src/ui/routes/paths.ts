@@ -4,7 +4,6 @@ import {
   faChartLine,
   faWallet,
   faPiggyBank,
-  faHeart,
   faTags,
   faGear,
   faArrowUpRightFromSquare,
@@ -44,12 +43,6 @@ export const paths = {
     title: "Savings and investments (TODO)",
     label: "Savings and investments (TODO)",
     icon: faPiggyBank,
-  },
-  wishlist: {
-    href: "/wishlist",
-    title: "Wishlist (TODO)",
-    label: "Wishlist (TODO)",
-    icon: faHeart,
   },
   categories: {
     href: "/categories",

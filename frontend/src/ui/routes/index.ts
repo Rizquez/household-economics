@@ -3,7 +3,6 @@ import DailyRegister from "@/ui/pages/DailyRegister";
 import AnnualBudget from "@/ui/pages/AnnualBudget";
 import ExpenseTracking from "@/ui/pages/ExpenseTracking";
 import SavingsInvestments from "@/ui/pages/SavingsInvestments";
-import Wishlist from "@/ui/pages/Wishlist";
 import Categories from "@/ui/pages/Categories";
 import Configuration from "@/ui/pages/Configuration";
 import { paths } from "@/ui/routes/paths";
@@ -45,12 +44,6 @@ const routes = [
     path: paths.savingsinvestments.href,
     component: SavingsInvestments,
     title: paths.savingsinvestments.title,
-    authRequired: true,
-  },
-  {
-    path: paths.wishlist.href,
-    component: Wishlist,
-    title: paths.wishlist.title,
     authRequired: true,
   },
   {

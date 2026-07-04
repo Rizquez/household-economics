@@ -9,7 +9,6 @@ const sidebarPathKeys = [
   "annualbudget",
   "expensetracking",
   "savingsinvestments",
-  "wishlist",
   "categories",
 ] as const;
 

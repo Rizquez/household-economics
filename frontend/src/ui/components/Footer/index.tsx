@@ -20,8 +20,8 @@ const Footer = () => {
             className="cursor-pointer transition-colors hover:text-primary"
           >
             Karla Hernandez
-          </a>
-          &#44;{" "}
+          </a>{" "}
+          and{" "}
           <a
             href="https://www.linkedin.com/in/pedro-rizquez/"
             target="_blank"
@@ -29,15 +29,6 @@ const Footer = () => {
             className="cursor-pointer transition-colors hover:text-primary"
           >
             Pedro Rizquez
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/robert-rizquez-72596733a/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer transition-colors hover:text-primary"
-          >
-            Robert Rizquez
           </a>
         </p>
       </div>
