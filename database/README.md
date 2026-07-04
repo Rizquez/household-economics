@@ -82,6 +82,8 @@ database/
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
+│   ├── budget_group.py
+│   ├── budget.py
 │   ├── category.py
 │   ├── famlily_members.py
 │   ├── family.py
@@ -93,6 +95,7 @@ database/
 │   │   ├── __init__.py
 │   │   └── base.py
 │   ├── __init__.py
+│   ├── budget.py
 │   ├── category.py
 │   ├── famlily_members.py
 │   ├── family.py

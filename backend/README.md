@@ -125,6 +125,7 @@ backend/
 │   │   │   └── email.py
 │   │   ├── __init__.py
 │   │   ├── auth.py
+│   │   ├── budget.py
 │   │   ├── category.py
 │   │   └── record_type.py
 │   ├── routes
@@ -132,6 +133,7 @@ backend/
 │   │   │   ├── __init__.py
 │   │   │   └── validate.py
 │   │   ├── __init__.py
+│   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── record_type.py
 │   │   └── user.py
@@ -144,6 +146,7 @@ backend/
 │   │   │   ├── __init__.py
 │   │   │   └── role.py
 │   │   ├── __init__.py
+│   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── record_type.py
 │   │   └── user.py
