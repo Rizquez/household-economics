@@ -1,0 +1,18 @@
+export type BudgetResponseDto = {
+  id: number;
+  month: number;
+  amount: string;
+  budget_group_id: number;
+};
+
+export type BudgetGroupResponseDto = {
+  id: number;
+  name: string;
+  year: number;
+  budgets: BudgetResponseDto[];
+};
+
+export type UpdateBudgetRequestDto = {
+  id: number;
+  amount: number;
+};

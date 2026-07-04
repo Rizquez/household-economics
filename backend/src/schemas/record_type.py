@@ -1,4 +1,4 @@
-from .core import ResponseBase
+from src.schemas.core import ResponseBase
 
 
 class RecordTypeResponse(ResponseBase):

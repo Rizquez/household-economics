@@ -8,6 +8,7 @@ from models.core import ModelBase
 
 if TYPE_CHECKING:
     from .record_type import RecordType
+    from .budget_group import BudgetGroup
 
 
 class Category(ModelBase):
@@ -28,3 +29,8 @@ class Category(ModelBase):
     )
 
     record_type: Mapped["RecordType"] = relationship(back_populates="categories")
+
+    budget_groups: Mapped[list["BudgetGroup"]] = relationship(
+        back_populates="category",
+        cascade="all, delete-orphan",
+    )

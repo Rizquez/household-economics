@@ -3,10 +3,10 @@ from __future__ import annotations
 from typing import List, TYPE_CHECKING
 from fastapi import APIRouter, status, Depends
 
-from src.auth.depends import get_allowed_user
+from src.auth import get_allowed_user
 from src.business import CategoryBusiness
 from src.schemas import CategoryResponse, CategoryRequest
-from .helpers.validate import validate_non_negative_num
+from src.routes.helpers import validate_non_negative_num
 
 if TYPE_CHECKING:
     from src.schemas import CurrentUser
@@ -31,6 +31,19 @@ def route_create_category(
     current_user: "CurrentUser" = Depends(get_allowed_user),
 ) -> None:
     CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
+
+
+@router.put("/{category_id}")
+def route_update_category(
+    category_id: str,
+    request: CategoryRequest,
+    current_user: "CurrentUser" = Depends(get_allowed_user),
+) -> CategoryResponse:
+    return CategoryBusiness.update_category(
+        request.model_dump(),
+        validate_non_negative_num(category_id),
+        current_user.family_id,
+    )
 
 
 @router.delete("/{category_id}", status_code=status.HTTP_204_NO_CONTENT)

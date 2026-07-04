@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, TYPE_CHECKING
 from fastapi import APIRouter, Depends
 
-from src.auth.depends import get_allowed_user
+from src.auth import get_allowed_user
 from src.business import RecordTypeBusiness
 from src.schemas import RecordTypeResponse
 

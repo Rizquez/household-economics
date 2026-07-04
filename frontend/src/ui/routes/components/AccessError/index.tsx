@@ -15,10 +15,7 @@ const AccessError = ({ message }: AccessErrorProps) => {
     <div className="flex h-full items-center justify-center bg-background p-8">
       <section className="card flex w-full max-w-xl flex-col items-center gap-6 bg-surface p-10 text-center">
         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-error/10 text-error">
-          <FontAwesomeIcon
-            icon={faTriangleExclamation}
-            className="text-4xl"
-          />
+          <FontAwesomeIcon icon={faTriangleExclamation} className="text-4xl" />
         </div>
 
         <div>

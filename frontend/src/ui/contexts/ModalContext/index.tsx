@@ -21,6 +21,10 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
       title: payload.title,
       message: payload.message,
       hasButton: payload.hasButton ?? true,
+
+      confirmText: payload.confirmText,
+      cancelText: payload.cancelText,
+      onConfirm: payload.onConfirm,
     });
   }, []);
 

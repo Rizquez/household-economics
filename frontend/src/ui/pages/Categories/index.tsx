@@ -12,12 +12,18 @@ const Categories = () => {
   );
 
   return (
-    <div className="flex h-full flex-col gap-6 bg-surface p-6 card">
-      <h1 className="text-xl font-semibold text-text-primary">Categories</h1>
+    <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-xl font-semibold text-text-primary">Categories</h1>
+
+        <p className="text-sm text-text-secondary">
+          Manage your categories based on the record type.
+        </p>
+      </div>
 
       <CreateCategoryForm recordTypes={recordTypes} />
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid min-h-0 flex-1 gap-4 md:grid-cols-2">
         {categoriesByRecordType.map(({ recordType, categories }) => (
           <CategoriesByRecordType
             key={recordType.id}
