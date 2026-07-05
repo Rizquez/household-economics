@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from sqlalchemy import (
     Column,
     String,
@@ -57,7 +57,7 @@ class BudgetGroup(ModelBase):
         nullable=False,
     )
 
-    budgets: Mapped[list["Budget"]] = relationship(
+    budgets: Mapped[List["Budget"]] = relationship(
         back_populates="budget_group",
         cascade="all, delete-orphan",
     )
