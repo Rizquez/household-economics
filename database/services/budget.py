@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Optional, TYPE_CHECKING
-from sqlalchemy import and_, distinct
+from sqlalchemy import and_
 
 from services.core import ServiceBase
 from models import Budget, BudgetGroup
@@ -70,28 +70,6 @@ class BudgetService(ServiceBase):
             ),
             model=BudgetGroup,
         )
-
-    @classmethod
-    def delete_budget_group(
-        cls,
-        session: "scoped_session",
-        budget_group_id: int,
-        family_id: int,
-    ) -> bool:
-        budget_group = cls.find(
-            session,
-            and_(
-                BudgetGroup.id == budget_group_id,
-                BudgetGroup.family_id == family_id,
-            ),
-            model=BudgetGroup,
-        )
-
-        if budget_group is None:
-            return False
-
-        session.delete(budget_group)
-        return True
 
     @classmethod
     def get_budget_years(
