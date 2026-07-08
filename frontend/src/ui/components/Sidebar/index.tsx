@@ -5,9 +5,8 @@ import { UserButton } from "@clerk/clerk-react";
 
 const sidebarPathKeys = [
   "dashboard",
-  "dailyregister",
-  "annualbudget",
   "monthlytracking",
+  "annualbudget",
   "savingsinvestments",
   "categories",
 ] as const;

@@ -1,5 +1,4 @@
 import Dashboard from "@/ui/pages/Dashboard";
-import DailyRegister from "@/ui/pages/DailyRegister";
 import AnnualBudget from "@/ui/pages/AnnualBudget";
 import MonthlyTracking from "@/ui/pages/MonthlyTracking";
 import SavingsInvestments from "@/ui/pages/SavingsInvestments";
@@ -20,12 +19,6 @@ const routes = [
     path: paths.dashboard.href,
     component: Dashboard,
     title: paths.dashboard.title,
-    authRequired: true,
-  },
-  {
-    path: paths.dailyregister.href,
-    component: DailyRegister,
-    title: paths.dailyregister.title,
     authRequired: true,
   },
   {
