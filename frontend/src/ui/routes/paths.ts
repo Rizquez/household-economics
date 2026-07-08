@@ -33,9 +33,9 @@ export const paths = {
     icon: faWallet,
   },
   monthlytracking: {
-    href: "/expense-tracking",
-    title: "Expense tracking (TODO)",
-    label: "Expense tracking (TODO)",
+    href: "/monthly-tracking",
+    title: "Monthly tracking (WIP)",
+    label: "Monthly tracking (WIP)",
     icon: faChartLine,
   },
   savingsinvestments: {
