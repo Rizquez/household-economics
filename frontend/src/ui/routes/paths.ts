@@ -22,8 +22,8 @@ export const paths = {
   },
   dailyregister: {
     href: "/daily-register",
-    title: "Daily register (TODO)",
-    label: "Daily register (TODO)",
+    title: "Daily register (WIP)",
+    label: "Daily register (WIP)",
     icon: faCalendarDays,
   },
   annualbudget: {
@@ -32,7 +32,7 @@ export const paths = {
     label: "Annual budget",
     icon: faWallet,
   },
-  expensetracking: {
+  monthlytracking: {
     href: "/expense-tracking",
     title: "Expense tracking (TODO)",
     label: "Expense tracking (TODO)",

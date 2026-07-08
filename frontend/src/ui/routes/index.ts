@@ -1,7 +1,7 @@
 import Dashboard from "@/ui/pages/Dashboard";
 import DailyRegister from "@/ui/pages/DailyRegister";
 import AnnualBudget from "@/ui/pages/AnnualBudget";
-import ExpenseTracking from "@/ui/pages/ExpenseTracking";
+import MonthlyTracking from "@/ui/pages/MonthlyTracking";
 import SavingsInvestments from "@/ui/pages/SavingsInvestments";
 import Categories from "@/ui/pages/Categories";
 import Configuration from "@/ui/pages/Configuration";
@@ -35,9 +35,9 @@ const routes = [
     authRequired: true,
   },
   {
-    path: paths.expensetracking.href,
-    component: ExpenseTracking,
-    title: paths.expensetracking.title,
+    path: paths.monthlytracking.href,
+    component: MonthlyTracking,
+    title: paths.monthlytracking.title,
     authRequired: true,
   },
   {
