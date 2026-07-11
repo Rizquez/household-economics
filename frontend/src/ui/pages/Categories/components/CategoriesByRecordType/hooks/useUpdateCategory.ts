@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { updateCategory } from "@/core/business/category/services";
 import type { UpdateCategoryRequest } from "@/core/business/category/types";
-import { CATEGORIES_QUERY_KEY } from "./constants";
+import { CATEGORIES_QUERY_KEY } from "../../../hooks/constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
 const useUpdateCategory = () => {
@@ -18,10 +18,11 @@ const useUpdateCategory = () => {
     },
 
     onSuccess: async (_, payload) => {
-      await queryClient.invalidateQueries({
+      closeModal();
+
+      void queryClient.invalidateQueries({
         queryKey: [CATEGORIES_QUERY_KEY, payload.recordTypeId],
       });
-      closeModal();
     },
 
     onError: (error) => {

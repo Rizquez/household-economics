@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship, Mapped
 
@@ -15,4 +15,4 @@ class Role(ModelBase):
 
     name = Column(String, nullable=False, unique=True)
 
-    family_members: Mapped[list["FamilyMembers"]] = relationship(back_populates="role")
+    family_members: Mapped[List["FamilyMembers"]] = relationship(back_populates="role")

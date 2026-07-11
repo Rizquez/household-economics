@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.sql import func
@@ -9,6 +9,8 @@ from models.core import ModelBase
 
 if TYPE_CHECKING:
     from .family_members import FamilyMembers
+    from .income import Income
+    from .expense import Expense
 
 
 class Family(ModelBase):
@@ -20,4 +22,8 @@ class Family(ModelBase):
         DateTime(timezone=False), nullable=False, server_default=func.now()
     )
 
-    members: Mapped[list["FamilyMembers"]] = relationship(back_populates="family")
+    members: Mapped[List["FamilyMembers"]] = relationship(back_populates="family")
+
+    incomes: Mapped[List["Income"]] = relationship(back_populates="family")
+
+    expenses: Mapped[List["Expense"]] = relationship(back_populates="family")

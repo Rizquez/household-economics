@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import useDeleteCategory from "@/ui/pages/Categories/hooks/useDeleteCategory";
-import useUpdateCategory from "@/ui/pages/Categories/hooks/useUpdateCategory";
-import useCreateBudgetGroupFromCategory from "@/ui/pages/Categories/hooks/useCreateBudgetGroupFromCategory";
+import useDeleteCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useDeleteCategory";
+import useUpdateCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useUpdateCategory";
+import useCreateBudgetGroupFromCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useCreateBudgetGroupFromCategory";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
 const useCategoriesByRecordType = (

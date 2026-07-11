@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from sqlalchemy import Column, String, BigInteger, ForeignKey
 from sqlalchemy.orm import relationship, Mapped
 
@@ -9,6 +9,9 @@ from models.core import ModelBase
 if TYPE_CHECKING:
     from .record_type import RecordType
     from .budget_group import BudgetGroup
+    from .income import Income
+    from .expense import Expense
+    from .expense_item import ExpenseItem
 
 
 class Category(ModelBase):
@@ -30,7 +33,13 @@ class Category(ModelBase):
 
     record_type: Mapped["RecordType"] = relationship(back_populates="categories")
 
-    budget_groups: Mapped[list["BudgetGroup"]] = relationship(
+    budget_groups: Mapped[List["BudgetGroup"]] = relationship(
         back_populates="category",
         cascade="all, delete-orphan",
     )
+
+    incomes: Mapped[List["Income"]] = relationship(back_populates="category")
+
+    expenses: Mapped[List["Expense"]] = relationship(back_populates="category")
+
+    expense_items: Mapped[List["ExpenseItem"]] = relationship(back_populates="category")

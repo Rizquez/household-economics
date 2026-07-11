@@ -9,7 +9,7 @@ const Tooltip = ({ text, children, disabled = false }: TooltipProps) => {
   return (
     <>
       <div
-        className="inline-flex"
+        className="inline-flex min-w-0 max-w-full"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

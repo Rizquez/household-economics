@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
             {paths.privacypolicy.label}
           </h1>
           <p className="text-lg text-text-secondary pt-2">
-            Last updated: June 2026
+            Last updated: July 2026
           </p>
         </div>
 
@@ -116,23 +116,23 @@ const PrivacyPolicy = () => {
             technical functions and infrastructure.
           </p>
 
-          <h3 className="font-semibold pt-2">Auth0</h3>
+          <h3 className="font-semibold pt-2">Clerk</h3>
           <p>
             The authentication and identity management process is handled by
-            Auth0.
+            Clerk.
           </p>
           <p>
             When using the registration and login mechanisms, certain data may
-            be processed by Auth0 in accordance with its own terms and privacy
+            be processed by Clerk in accordance with its own terms and privacy
             policies.
           </p>
           <a
-            href="https://www.okta.com/privacy-policy/"
+            href="https://clerk.com/legal/privacy"
             target="_blank"
             rel="noopener noreferrer"
             className={linkClassName}
           >
-            <span>Auth0 Privacy Policy</span>
+            <span>Clerk Privacy Policy</span>
             <FontAwesomeIcon icon={paths.privacypolicy.icon} />
           </a>
 

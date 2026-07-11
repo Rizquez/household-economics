@@ -27,7 +27,6 @@ const useAnnualBudgetPage = () => {
   const {
     budgetGroups: fetchedBudgetGroups,
     isPending: isLoadingBudgetGroups,
-    isFetching: isFetchingBudgetGroups,
     isError: isBudgetGroupsError,
     error: budgetGroupsError,
   } = useBudgetGroups(selectedYear);
@@ -35,8 +34,7 @@ const useAnnualBudgetPage = () => {
   const { mutate: updateBudgets, isPending: isUpdatingBudgets } =
     useUpdateBudgets();
 
-  const isLoading =
-    isLoadingBudgetYears || isLoadingBudgetGroups || isFetchingBudgetGroups;
+  const isLoading = isLoadingBudgetYears || isLoadingBudgetGroups;
 
   const hasError = isBudgetYearsError || isBudgetGroupsError;
 
