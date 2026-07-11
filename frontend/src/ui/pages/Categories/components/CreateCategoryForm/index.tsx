@@ -1,51 +1,22 @@
-import { useState, type SubmitEvent } from "react";
-
 import Input from "@/ui/components/Input";
 import Select from "@/ui/components/Select";
 import Button from "@/ui/components/Button";
-import useCreateCategory from "../../hooks/useCreateCategory";
 import type { CreateCategoryFormProps } from "./types";
+import useCreateCategoryForm from "./hooks/useCreateCategoryForm";
 
 const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
-  const [category, setCategory] = useState("");
-  const [recordTypeId, setRecordTypeId] = useState("");
-  const [formError, setFormError] = useState("");
-
-  const { mutate, isPending, error } = useCreateCategory();
-
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!category && !recordTypeId) {
-      setFormError("Please enter a category and select a record type.");
-      return;
-    }
-
-    if (!category) {
-      setFormError("Please enter a category.");
-      return;
-    }
-
-    if (!recordTypeId) {
-      setFormError("Please select a record type.");
-      return;
-    }
-
-    setFormError("");
-
-    mutate(
-      {
-        name: category,
-        recordTypeId: Number(recordTypeId),
-      },
-      {
-        onSuccess: () => {
-          setCategory("");
-          setRecordTypeId("");
-        },
-      },
-    );
-  };
+  const {
+    category,
+    recordTypeId,
+    formError,
+    isPending,
+    error,
+    handleSubmit,
+    hasFieldError,
+    clearFieldError,
+    setCategory,
+    setRecordTypeId,
+  } = useCreateCategoryForm();
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-wrap items-end gap-4">
@@ -54,11 +25,11 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
         label="New category"
         placeholder="Food, Bills, Baby..."
         value={category}
+        error={hasFieldError("category")}
         onChange={(event) => {
           setCategory(event.target.value);
-          setFormError("");
+          clearFieldError("category");
         }}
-        error={Boolean(formError && !category)}
       />
 
       <Select
@@ -66,15 +37,15 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
         label="Record type"
         placeholder="Select a record type"
         value={recordTypeId}
+        error={hasFieldError("recordType")}
         onChange={(event) => {
           setRecordTypeId(event.target.value);
-          setFormError("");
+          clearFieldError("recordType");
         }}
         options={recordTypes.map((recordType) => ({
           label: recordType.name,
           value: recordType.id,
         }))}
-        error={Boolean(formError && !recordTypeId)}
       />
 
       <Button type="submit" disabled={isPending}>

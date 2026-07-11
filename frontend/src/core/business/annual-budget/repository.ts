@@ -22,6 +22,7 @@ class AnnualBudgetRepository {
       id: budgetGroup.id,
       name: budgetGroup.name,
       year: budgetGroup.year,
+      categoryId: budgetGroup.category_id,
       budgets: budgetGroup.budgets.map((budget) => ({
         id: budget.id,
         month: budget.month,

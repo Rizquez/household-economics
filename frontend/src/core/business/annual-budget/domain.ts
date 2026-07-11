@@ -9,6 +9,7 @@ export type BudgetGroupResponseDto = {
   id: number;
   name: string;
   year: number;
+  category_id: number;
   budgets: BudgetResponseDto[];
 };
 

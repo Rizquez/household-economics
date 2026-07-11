@@ -58,20 +58,20 @@ const Home = () => {
 
           <FeatureCard
             icon={faWallet}
-            title="Monthly budgets"
-            description="Plan your income and expenses before the month begins."
-          />
-
-          <FeatureCard
-            icon={faPiggyBank}
-            title="Savings"
-            description="Keep track of goals, investments and future plans."
+            title="Annual budgets"
+            description="Plan your annual budgets month by month and adjust them according to your needs."
           />
 
           <FeatureCard
             icon={faChartLine}
-            title="Expense tracking"
-            description="Keep a detailed record of expenses related to a budget, savings, and investments."
+            title="Monthly tracking"
+            description="Keep a detailed record of your expenses related to your budget, savings, and investments each month."
+          />
+
+          <FeatureCard
+            icon={faPiggyBank}
+            title="Savings and investments"
+            description="Keep track of your goals, investments, and plans for the future."
           />
         </div>
       </section>

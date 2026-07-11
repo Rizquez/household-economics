@@ -1,6 +1,5 @@
 import {
   faChartPie,
-  faCalendarDays,
   faChartLine,
   faWallet,
   faPiggyBank,
@@ -20,22 +19,16 @@ export const paths = {
     label: "Dashboard (TODO)",
     icon: faChartPie,
   },
-  dailyregister: {
-    href: "/daily-register",
-    title: "Daily register (TODO)",
-    label: "Daily register (TODO)",
-    icon: faCalendarDays,
-  },
   annualbudget: {
     href: "/annual-budget",
     title: "Annual budget",
     label: "Annual budget",
     icon: faWallet,
   },
-  expensetracking: {
-    href: "/expense-tracking",
-    title: "Expense tracking (TODO)",
-    label: "Expense tracking (TODO)",
+  monthlytracking: {
+    href: "/monthly-tracking",
+    title: "Monthly tracking",
+    label: "Monthly tracking",
     icon: faChartLine,
   },
   savingsinvestments: {

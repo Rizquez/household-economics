@@ -74,5 +74,4 @@ This project is licensed under the MIT license, which allows its use, distributi
 
 ## ⚙ Contact, support, and development
 
-- Robert Rizquez: sr.rizquez.96@gmail.com 
 - Pedro Rizquez: pedro.rizquez.94@hotmail.com

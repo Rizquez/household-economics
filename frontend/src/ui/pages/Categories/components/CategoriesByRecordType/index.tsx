@@ -97,7 +97,7 @@ const CategoriesByRecordType = ({
               ) : (
                 <div className="flex gap-2">
                   {canExportToAnnualBudget && (
-                    <Tooltip text="Export category to annual budget">
+                    <Tooltip text="Export to annual budget">
                       <Button
                         disabled={
                           isDeleting || isUpdating || isExportingToAnnualBudget
@@ -109,7 +109,7 @@ const CategoriesByRecordType = ({
                     </Tooltip>
                   )}
 
-                  <Tooltip text="Edit category">
+                  <Tooltip text="Edit">
                     <Button
                       variant="secondary"
                       disabled={
@@ -121,7 +121,7 @@ const CategoriesByRecordType = ({
                     </Button>
                   </Tooltip>
 
-                  <Tooltip text="Delete category">
+                  <Tooltip text="Delete">
                     <Button
                       variant="danger"
                       disabled={

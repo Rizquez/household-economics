@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy import Column, String, DateTime, Boolean
 from sqlalchemy.sql import func
@@ -28,4 +28,4 @@ class User(ModelBase):
 
     access_allowed = Column(Boolean, nullable=False, default=False)
 
-    family_members: Mapped[list["FamilyMembers"]] = relationship(back_populates="user")
+    family_members: Mapped[List["FamilyMembers"]] = relationship(back_populates="user")
