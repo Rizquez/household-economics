@@ -128,6 +128,7 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   └── record_type.py
@@ -139,6 +140,7 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
@@ -155,6 +157,7 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py

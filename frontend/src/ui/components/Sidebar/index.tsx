@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { paths } from "@/ui/routes/paths";
 import { UserButton } from "@clerk/clerk-react";
+import useSidebar from "./hooks/useSidebar";
 
 const sidebarPathKeys = [
   "dashboard",
@@ -12,14 +13,19 @@ const sidebarPathKeys = [
 ] as const;
 
 // TODO: implement a real family name and move the userbutton
-const Sidebar = () => (
+const Sidebar = () => {
+  const { family, isReady } = useSidebar();
+
+  if (!isReady || !family) return null;
+
+  return (
   <aside className="flex h-full shrink-0 flex-col bg-surface card">
     <div className="flex justify-end px-6 pt-6">
       <div className="scale-150">
         <UserButton />
       </div>
     </div>
-    <h1 className="text-lg pl-5 pt-5 font-semibold">Family {" ... "} </h1>
+    <h1 className="text-lg pl-5 pt-5 font-semibold">{family.name} </h1>
     <nav className="flex flex-col gap-1 p-5">
       {sidebarPathKeys.map((key) => {
         const path = paths[key];
@@ -63,5 +69,6 @@ const Sidebar = () => (
     </div>
   </aside>
 );
+}
 
 export default Sidebar;

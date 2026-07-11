@@ -58,7 +58,7 @@ class AuthBusiness(Business):
                 family = cls.db.create_family(
                     session,
                     {
-                        "name": f"{user.name}'s family",
+                        "name": f"{user.name}'s Family",
                     },
                 )
                 session.flush()
