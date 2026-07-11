@@ -2,8 +2,11 @@ from .core import Base, ModelBase
 from .budget_group import BudgetGroup
 from .budget import Budget
 from .category import Category
+from .expense_item import ExpenseItem
+from .expense import Expense
 from .family_members import FamilyMembers
 from .family import Family
+from .income import Income
 from .record_type import RecordType
 from .role import Role
 from .user import User

@@ -6,9 +6,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker, scoped_session
 from dotenv import load_dotenv
 
-if TYPE_CHECKING:
-    from sqlalchemy.engine import Engine
-
+from models import Base
 from services import (
     BudgetService,
     CategoryService,
@@ -17,8 +15,12 @@ from services import (
     FamilyMembersService,
     FamilyService,
     RoleService,
+    ExpenseService,
+    IncomeService,
 )
-from models import Base
+
+if TYPE_CHECKING:
+    from sqlalchemy.engine import Engine
 
 load_dotenv(override=True)
 
@@ -31,6 +33,8 @@ class Database(
     FamilyMembersService,
     FamilyService,
     RoleService,
+    ExpenseService,
+    IncomeService,
 ):
     __instance = None
 
