@@ -33,8 +33,8 @@ export const paths = {
   },
   savingsinvestments: {
     href: "/savings-and-investments",
-    title: "Savings and investments (TODO)",
-    label: "Savings and investments (TODO)",
+    title: "Savings and investments",
+    label: "Savings and investments",
     icon: faPiggyBank,
   },
   categories: {

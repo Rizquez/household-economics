@@ -68,7 +68,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                 >
                   <td className="max-w-48 px-4 py-3">
                     <span
-                      className="block max-w-full truncate text-text-primary"
+                      className="block font-medium max-w-full truncate text-text-primary"
                       title={record.name}
                     >
                       {record.name}
@@ -87,7 +87,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
 
                   <td className="w-26 max-w-26 px-4 py-3">
                     {record.notes ? (
-                      <Tooltip text="Open note">
+                      <Tooltip text="See note">
                         <button
                           type="button"
                           className="block max-w-full cursor-pointer truncate text-left text-primary hover:underline"
