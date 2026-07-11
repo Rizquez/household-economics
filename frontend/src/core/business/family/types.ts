@@ -1,4 +1,4 @@
 export type Family = {
-    id: number;
-    name: string
-}
+  id: number;
+  name: string;
+};

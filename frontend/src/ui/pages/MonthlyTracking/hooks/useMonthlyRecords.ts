@@ -8,12 +8,22 @@ const useMonthlyRecords = (month: number, year: number) => {
   const [incomeQuery, expenseQuery] = useQueries({
     queries: [
       {
-        queryKey: [MONTHLY_TRACKING_QUERY_KEY, TYPE_RECORD_QUERY_KEY.INCOME, year, month],
+        queryKey: [
+          MONTHLY_TRACKING_QUERY_KEY,
+          TYPE_RECORD_QUERY_KEY.INCOME,
+          year,
+          month,
+        ],
         queryFn: () => listIncomesByMonthAndYear.execute(month, year),
         enabled: month >= 1 && year >= 1,
       },
       {
-        queryKey: [MONTHLY_TRACKING_QUERY_KEY, TYPE_RECORD_QUERY_KEY.EXPENSE, year, month],
+        queryKey: [
+          MONTHLY_TRACKING_QUERY_KEY,
+          TYPE_RECORD_QUERY_KEY.EXPENSE,
+          year,
+          month,
+        ],
         queryFn: () => listExpensesByMonthAndYear.execute(month, year),
         enabled: month >= 1 && year >= 1,
       },

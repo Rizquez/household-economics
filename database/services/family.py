@@ -14,7 +14,7 @@ class FamilyService(ServiceBase):
     @classmethod
     def create_family(cls, session: "scoped_session", a_dict: Dict) -> Family:
         return cls.create(session, a_dict, Family)
-    
+
     @staticmethod
     def get_family_by_user_id(
         session: "scoped_session",

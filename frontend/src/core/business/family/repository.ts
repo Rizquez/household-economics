@@ -6,8 +6,8 @@ class FamilyRepository {
   async getFamily(): Promise<Family> {
     const response = await httpClient.get<FamilyDto>("/family");
     return {
-        id: response.data.id,
-        name: response.data.name
+      id: response.data.id,
+      name: response.data.name,
     };
   }
 }

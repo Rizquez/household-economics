@@ -18,5 +18,7 @@ class FamilyMembersService(ServiceBase):
         return cls.find(session, FamilyMembers.user_id == user_id, model=FamilyMembers)
 
     @classmethod
-    def create_family_member(cls, session: "scoped_session", a_dict: Dict) -> FamilyMembers:
+    def create_family_member(
+        cls, session: "scoped_session", a_dict: Dict
+    ) -> FamilyMembers:
         return cls.create(session, a_dict, FamilyMembers)

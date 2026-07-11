@@ -12,7 +12,9 @@ if TYPE_CHECKING:
 class UserService(ServiceBase):
 
     @classmethod
-    def get_user_by_clerk_id(cls, session: "scoped_session", clerk_id: str) -> Optional[User]:
+    def get_user_by_clerk_id(
+        cls, session: "scoped_session", clerk_id: str
+    ) -> Optional[User]:
         return cls.find(session, User.clerk_id == clerk_id, model=User)
 
     @classmethod
