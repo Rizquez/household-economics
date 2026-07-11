@@ -2,5 +2,13 @@ from .core import handling_errors_schemas
 from .enums import Role
 from .budget import BudgetGroupResponse, BudgetResponse, BudgetUpdateRequest
 from .category import CategoryResponse, CategoryRequest
+from .expense import (
+    ExpenseItemRequest,
+    ExpenseItemResponse,
+    ExpenseRequest,
+    ExpenseResponse,
+)
+from .income import IncomeRequest, IncomeResponse
+from .monthly_tracking import MonthlyTrackingPeriodResponse
 from .record_type import RecordTypeResponse
 from .user import CurrentUser

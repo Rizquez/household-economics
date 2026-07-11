@@ -127,6 +127,9 @@ backend/
 │   │   ├── auth.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── expense.py
+│   │   ├── income.py
+│   │   ├── monthly_tracking.py
 │   │   └── record_type.py
 │   ├── routes
 │   │   ├── helpers
@@ -135,6 +138,9 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── expense.py
+│   │   ├── income.py
+│   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
 │   │   └── user.py
 │   ├── schemas
@@ -148,6 +154,9 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── expense.py
+│   │   ├── income.py
+│   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
 │   │   └── user.py
 │   ├── constants.py
