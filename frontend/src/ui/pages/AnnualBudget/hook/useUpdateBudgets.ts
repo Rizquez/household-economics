@@ -18,11 +18,11 @@ const useUpdateBudgets = () => {
     },
 
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
+      closeModal();
+
+      void queryClient.invalidateQueries({
         queryKey: [ANNUAL_BUDGET_QUERY_KEY],
       });
-
-      closeModal();
     },
 
     onError: (error) => {

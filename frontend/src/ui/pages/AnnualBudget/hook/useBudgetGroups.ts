@@ -10,8 +10,6 @@ const useBudgetGroups = (year: string) => {
     queryKey: [ANNUAL_BUDGET_QUERY_KEY, numericYear],
     queryFn: () => getBudgetGroups.execute(numericYear),
     enabled: numericYear >= 1,
-    staleTime: 0,
-    gcTime: 0,
   });
 
   return {

@@ -44,7 +44,9 @@ const DateInput = ({
         onClick={() => setIsOpen((current) => !current)}
         className={`h-10 rounded-xl border bg-surface px-3 text-left text-sm text-text-primary outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-60 ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
       >
-        {selectedDate ? format(selectedDate, "MMM dd, yyyy", { locale: enUS }) : (
+        {selectedDate ? (
+          format(selectedDate, "MMM dd, yyyy", { locale: enUS })
+        ) : (
           <span className="text-text-secondary">{placeholder}</span>
         )}
       </button>

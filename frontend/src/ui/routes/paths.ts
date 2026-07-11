@@ -27,8 +27,8 @@ export const paths = {
   },
   monthlytracking: {
     href: "/monthly-tracking",
-    title: "Monthly tracking (WIP)",
-    label: "Monthly tracking (WIP)",
+    title: "Monthly tracking",
+    label: "Monthly tracking",
     icon: faChartLine,
   },
   savingsinvestments: {

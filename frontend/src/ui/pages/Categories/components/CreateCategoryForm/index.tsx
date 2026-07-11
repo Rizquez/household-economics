@@ -12,9 +12,10 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
     isPending,
     error,
     handleSubmit,
+    hasFieldError,
+    clearFieldError,
     setCategory,
     setRecordTypeId,
-    setFormError,
   } = useCreateCategoryForm();
 
   return (
@@ -24,11 +25,11 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
         label="New category"
         placeholder="Food, Bills, Baby..."
         value={category}
+        error={hasFieldError("category")}
         onChange={(event) => {
           setCategory(event.target.value);
-          setFormError("");
+          clearFieldError("category");
         }}
-        error={Boolean(formError && !category)}
       />
 
       <Select
@@ -36,15 +37,15 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
         label="Record type"
         placeholder="Select a record type"
         value={recordTypeId}
+        error={hasFieldError("recordType")}
         onChange={(event) => {
           setRecordTypeId(event.target.value);
-          setFormError("");
+          clearFieldError("recordType");
         }}
         options={recordTypes.map((recordType) => ({
           label: recordType.name,
           value: recordType.id,
         }))}
-        error={Boolean(formError && !recordTypeId)}
       />
 
       <Button type="submit" disabled={isPending}>

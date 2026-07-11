@@ -17,9 +17,7 @@ const useCategoriesPage = () => {
     })),
   });
 
-  const isLoadingCategories = categoryQueries.some(
-    (query) => query.isPending || query.isFetching,
-  );
+  const isLoadingCategories = categoryQueries.some((query) => query.isPending);
   const categoryError = categoryQueries.find((query) => query.isError)?.error;
 
   const isLoading = isPending || isLoadingCategories;
