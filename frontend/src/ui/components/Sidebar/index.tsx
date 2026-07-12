@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   const isLoading = useIsFetching({
     predicate: (query) =>
-      query.state.fetchStatus === "fetching" && query.state.data === undefined,
+      query.state.fetchStatus === "fetching" && query.state.data === undefined && query.meta?.blocksAppLayout !== false,
   });
 
   if (isLoading > 0 || !family) return null;
