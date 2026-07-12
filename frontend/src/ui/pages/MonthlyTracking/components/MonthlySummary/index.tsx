@@ -74,8 +74,7 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
             ))}
           </tbody>
 
-          {!!rows.length && (
-            <tfoot>
+          <tfoot>
               <tr className="border-t border-text-secondary/10 bg-background font-semibold">
                 <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary">
                   Total
@@ -92,7 +91,6 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                 <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>
               </tr>
             </tfoot>
-          )}
         </table>
       </div>
     </section>
