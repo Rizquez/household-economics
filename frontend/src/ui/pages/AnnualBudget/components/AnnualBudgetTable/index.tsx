@@ -6,7 +6,7 @@ const AnnualBudgetTable = ({
   budgetGroups,
   onAmountChange,
 }: AnnualBudgetTableProps) => {
-  const months = getMonths(budgetGroups);
+  const months = budgetGroups.length ? getMonths(budgetGroups) : Array.from({ length: 12 }, (_, index) => index + 1);
   const monthlyTotals = getMonthlyTotals(months, budgetGroups);
 
   return (
@@ -34,6 +34,16 @@ const AnnualBudgetTable = ({
         </thead>
 
         <tbody>
+          {!budgetGroups.length && (
+            <tr>
+              <td
+                colSpan={months.length + 2}
+                className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
+              >
+                No budget groups found for this year.
+              </td>
+            </tr>
+          )}
           {budgetGroups.map((budgetGroup) => {
             const budgetGroupTotal = budgetGroup.budgets.reduce(
               (total, budget) => total + budget.amount,

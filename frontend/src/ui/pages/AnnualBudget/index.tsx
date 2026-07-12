@@ -31,6 +31,7 @@ const AnnualBudget = () => {
       <AnnualBudgetControls
         year={year}
         yearOptions={yearOptions}
+        hasBudgetGroups={Boolean(budgetGroups.length)}
         isUpdatingBudgets={isUpdatingBudgets}
         onYearChange={setYear}
         onSaveBudgets={saveBudgets}

@@ -21,8 +21,7 @@ const useAnnualBudgetPage = () => {
     error: budgetYearsError,
   } = useBudgetYears();
 
-  const currentYear = new Date().getFullYear().toString();
-  const selectedYear = year || String(years[0] ?? currentYear);
+  const selectedYear = year || String(years[0] ?? "");
 
   const {
     budgetGroups: fetchedBudgetGroups,
@@ -34,7 +33,7 @@ const useAnnualBudgetPage = () => {
   const { mutate: updateBudgets, isPending: isUpdatingBudgets } =
     useUpdateBudgets();
 
-  const isLoading = isLoadingBudgetYears || isLoadingBudgetGroups;
+  const isLoading = isLoadingBudgetYears || Boolean(selectedYear && isLoadingBudgetGroups);
 
   const hasError = isBudgetYearsError || isBudgetGroupsError;
 
