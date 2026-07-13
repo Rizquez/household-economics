@@ -1,9 +1,9 @@
 import type { ButtonProps } from "./types";
 
 const variants = {
-  primary: "bg-primary text-surface",
-  secondary: "bg-secondary text-surface",
-  danger: "bg-error text-surface",
+  primary: "bg-primary text-surface hover:opacity-90",
+  secondary: "bg-secondary text-surface hover:opacity-90",
+  danger: "bg-error text-surface hover:opacity-90",
 };
 
 const Button = ({
@@ -11,23 +11,12 @@ const Button = ({
   variant = "primary",
   className = "",
   type = "button",
-  disabled,
   ...props
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      disabled={disabled}
-      className={`
-        rounded-xl px-4 py-2 text-sm transition-opacity
-        ${variants[variant]}
-        ${
-          disabled
-            ? "cursor-not-allowed opacity-50"
-            : "cursor-pointer hover:opacity-90"
-        }
-        ${className}
-      `}
+      className={`rounded-xl px-4 py-2 text-sm cursor-pointer ${variants[variant]} ${className}`}
       {...props}
     >
       {children}

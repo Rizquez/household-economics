@@ -7,7 +7,6 @@ from src.schemas.core import ResponseBase, RequestBase
 class CategoryResponse(ResponseBase):
     id: int
     name: str
-    normalized_name: str
     record_type_id: int
 
 

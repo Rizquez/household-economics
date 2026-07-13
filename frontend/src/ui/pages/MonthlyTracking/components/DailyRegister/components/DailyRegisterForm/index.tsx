@@ -86,6 +86,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
         <NumberInput
           id="daily-register-amount"
           label="Total amount"
+          min="0"
           step="0.01"
           placeholder="0.00"
           value={visibleAmount}
@@ -206,6 +207,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
 
                     <NumberInput
                       id={`expense-item-amount-${index}`}
+                      min="0"
                       step="0.01"
                       placeholder="0.00"
                       value={item.amount}

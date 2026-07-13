@@ -8,7 +8,6 @@ import type { MonthlySummaryRow, UseMonthlySummaryParams } from "../types";
 const useMonthlySummary = ({
   selectedPeriod,
   expenses,
-  incomes
 }: UseMonthlySummaryParams) => {
   const [yearValue, monthValue] = selectedPeriod.split("-");
 
@@ -28,52 +27,35 @@ const useMonthlySummary = ({
           budgetGroup.budgets.find((budget) => budget.month === month)
             ?.amount ?? 0;
 
-        const categoryName = budgetGroup.name.toLowerCase();
+        const actualExpenditure = expenses.reduce((total, expense) => {
+          if (expense.items.length > 0) {
+            const itemsTotal = expense.items.reduce(
+              (currentItemsTotal, item) =>
+                item.categoryId === budgetGroup.categoryId
+                  ? currentItemsTotal + item.amount
+                  : currentItemsTotal,
+              0,
+            );
 
-        const expensesTotal = expenses.reduce(
-          (total, expense) => {
-            if (expense.items.length > 0) {
-              return (
-                total +
-                expense.items.reduce(
-                  (itemsTotal, item) =>
-                    item.categoryNormalizedName ===
-                    categoryName
-                      ? itemsTotal + item.amount
-                      : itemsTotal,
-                  0,
-                )
-              );
-            }
+            return total + itemsTotal;
+          }
 
-            return expense.categoryNormalizedName ===
-              categoryName
-              ? total + expense.amount
-              : total;
-          },
-          0,
-        );
+          if (expense.categoryId === budgetGroup.categoryId) {
+            return total + expense.amount;
+          }
 
-        const incomesTotal = incomes.reduce(
-          (total, income) =>
-            income.categoryNormalizedName ===
-            categoryName
-              ? total + income.amount
-              : total,
-          0,
-        );
+          return total;
+        }, 0);
 
         return {
           categoryId: budgetGroup.categoryId,
           categoryName: budgetGroup.name,
           budget: monthlyBudget,
-          expenses: expensesTotal,
-          income: incomesTotal,
-          difference:
-            monthlyBudget - expensesTotal + incomesTotal,
+          actualExpenditure,
+          difference: monthlyBudget - actualExpenditure,
         };
       }),
-    [query.data, expenses, incomes, month],
+    [query.data, expenses, month],
   );
 
   return {

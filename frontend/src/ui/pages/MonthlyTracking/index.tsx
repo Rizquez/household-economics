@@ -65,7 +65,7 @@ const MonthlyTracking = () => {
         onNewRecord={openCreateRecord}
       />
 
-      <div className="grid min-h-0 flex-1 grid-cols-[0.6fr_1fr] gap-4">
+      <div className="grid min-h-0 flex-1 grid-cols-[0.5fr_1fr] gap-4">
         <MonthlySummary rows={summaryRows} />
 
         <MonthlyRecords

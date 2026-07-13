@@ -24,7 +24,7 @@ const ExpenseItemsModal = ({ expense, onClose }: ExpenseItemsModalProps) => {
                 <tr key={item.id} className="border-t border-text-secondary/10">
                   <td className="max-w-48 px-4 py-3">
                     <span
-                      className="block font-medium max-w-full truncate text-text-primary"
+                      className="block max-w-full truncate text-text-primary"
                       title={item.product}
                     >
                       {item.product}

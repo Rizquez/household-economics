@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, List
-from sqlalchemy import Column, String, BigInteger, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, String, BigInteger, ForeignKey
 from sqlalchemy.orm import relationship, Mapped
 
 from models.core import ModelBase
@@ -17,17 +17,7 @@ if TYPE_CHECKING:
 class Category(ModelBase):
     __tablename__ = "category"
 
-    __table_args__ = (
-        UniqueConstraint(
-            "family_id",
-            "record_type_id",
-            "normalized_name",
-            name="uq_category_family_record_type_normalized_name",
-        ),
-    )
-
     name = Column(String, nullable=False)
-    normalized_name = Column(String, nullable=False)
 
     record_type_id = Column(
         BigInteger,

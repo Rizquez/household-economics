@@ -11,7 +11,6 @@ if TYPE_CHECKING:
     from .family_members import FamilyMembers
     from .income import Income
     from .expense import Expense
-    from .savings_investments import SavingsInvestments
 
 
 class Family(ModelBase):
@@ -28,7 +27,3 @@ class Family(ModelBase):
     incomes: Mapped[List["Income"]] = relationship(back_populates="family")
 
     expenses: Mapped[List["Expense"]] = relationship(back_populates="family")
-
-    savings_investments: Mapped[List["SavingsInvestments"]] = relationship(
-        back_populates="family"
-    )

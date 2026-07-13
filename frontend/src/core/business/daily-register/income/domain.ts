@@ -28,6 +28,5 @@ export type UpdateIncomeRequestDto = {
 export type IncomeCategoryResponseDto = {
   id: number;
   name: string;
-  normalized_name: string;
   record_type_id: number;
 };

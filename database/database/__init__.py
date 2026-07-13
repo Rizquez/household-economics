@@ -10,6 +10,5 @@ from models import (
     Family,
     Income,
     Role,
-    SavingsInvestments,
     User,
 )

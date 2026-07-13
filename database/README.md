@@ -92,7 +92,6 @@ database/
 │   ├── income.py
 │   ├── record_type.py
 │   ├── role.py
-│   ├── pysavings_investment.py
 │   └── user.py
 ├── services
 │   ├── core
@@ -107,7 +106,6 @@ database/
 │   ├── income.py
 │   ├── record_type.py
 │   ├── role.py
-│   ├── pysavings_investment.py
 │   └── user.py
 ├── .gitignore
 ├── alembic.ini

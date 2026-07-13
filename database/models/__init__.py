@@ -1,4 +1,4 @@
-from .core import ModelBase
+from .core import Base, ModelBase
 from .budget_group import BudgetGroup
 from .budget import Budget
 from .category import Category
@@ -9,5 +9,4 @@ from .family import Family
 from .income import Income
 from .record_type import RecordType
 from .role import Role
-from .savings_investments import SavingsInvestments
 from .user import User

@@ -14,7 +14,6 @@ const MonthlyTrackingControls = ({
         <Select
           id="monthly-tracking-period"
           label="Filter by month and year"
-          className="text-right"
           value={selectedPeriod}
           placeholder={
             periodOptions.length ? undefined : "No periods available"

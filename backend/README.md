@@ -128,11 +128,9 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
-│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
-│   │   ├── record_type.py
-│   │   └── savings_investment.py
+│   │   └── record_type.py
 │   ├── routes
 │   │   ├── helpers
 │   │   │   ├── __init__.py
@@ -141,11 +139,9 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
-│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
-│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── schemas
 │   │   ├── core
@@ -159,11 +155,9 @@ backend/
 │   │   ├── budget.py
 │   │   ├── category.py
 │   │   ├── expense.py
-│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
-│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── constants.py
 │   ├── env.py

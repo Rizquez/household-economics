@@ -6,7 +6,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker, scoped_session
 from dotenv import load_dotenv
 
-from models import ModelBase
+from models import Base
 from services import (
     BudgetService,
     CategoryService,
@@ -17,7 +17,6 @@ from services import (
     RoleService,
     ExpenseService,
     IncomeService,
-    SavingsInvestmentsService,
 )
 
 if TYPE_CHECKING:
@@ -36,7 +35,6 @@ class Database(
     RoleService,
     ExpenseService,
     IncomeService,
-    SavingsInvestmentsService,
 ):
     __instance = None
 
@@ -51,7 +49,7 @@ class Database(
 
     def create_session(self) -> scoped_session:
         session = scoped_session(sessionmaker(bind=self.engine, expire_on_commit=False))
-        ModelBase.metadata.bind = self.engine
+        Base.metadata.bind = self.engine
         return session
 
     @staticmethod

@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, Optional, List
 from fastapi import HTTPException, status
 
 from database import Income
@@ -45,20 +45,11 @@ class IncomeBusiness(Business):
             if category is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No category were found associated with ID: {category_id}.",
+                    detail=f"No category were found associated with ID: {category_id}",
                 )
 
             a_dict["family_id"] = family_id
             income = cls.db.create_income(session, a_dict)
-            session.flush()
-
-            cls.db.synchronize_savings_investment(
-                session,
-                income.created_at.month,
-                income.created_at.year,
-                family_id,
-            )
-            
             session.commit()
             session.refresh(income)
             income.category
@@ -75,7 +66,7 @@ class IncomeBusiness(Business):
         a_dict: Dict,
         income_id: int,
         family_id: int,
-    ) -> Income:
+    ) -> Optional[Income]:
         session = cls.create_session()
         try:
             category_id = a_dict.get("category_id")
@@ -94,61 +85,26 @@ class IncomeBusiness(Business):
             if category is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No category were found associated with ID: {category_id}.",
+                    detail=f"No category were found associated with ID: {category_id}",
                 )
-            
-            existing = cls.db.get_income_by_id_and_family(
-                session,
-                income_id,
-                family_id,
-            )
 
-            if existing is None:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No income were found associated with ID: {income_id}."
-                )
-            
-            previous_month = existing.created_at.month
-            previous_year = existing.created_at.year
-
-            updated = cls.db.update_income(
+            income = cls.db.update_income(
                 session,
                 a_dict,
                 income_id,
                 family_id,
             )
 
-            if updated is None:
+            if income is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"The income associated with ID: {income_id} could not be updated.",
-                )
-            
-            session.flush()
-            
-            current_month = updated.created_at.month
-            current_year = updated.created_at.year
-            
-            cls.db.synchronize_savings_investment(
-                session,
-                previous_month,
-                previous_year,
-                family_id,
-            )
-
-            if previous_month != current_month or previous_year != current_year:
-                cls.db.synchronize_savings_investment(
-                    session,
-                    current_month,
-                    current_year,
-                    family_id,
+                    detail=f"No income were found associated with ID: {income_id}",
                 )
 
             session.commit()
-            session.refresh(updated)
-            updated.category
-            return updated
+            session.refresh(income)
+            income.category
+            return income
         except Exception:
             session.rollback()
             raise
@@ -159,22 +115,6 @@ class IncomeBusiness(Business):
     def delete_income(cls, income_id: int, family_id: int) -> None:
         session = cls.create_session()
         try:
-            existing = cls.db.get_income_by_id_and_family(
-                session,
-                income_id,
-                family_id,
-            )
-
-            if not existing:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No income were found associated with ID: {income_id}.",
-                )
-
-            
-            month = existing.created_at.month
-            year = existing.created_at.year
-
             deleted = cls.db.delete_income(
                 session,
                 income_id,
@@ -184,17 +124,8 @@ class IncomeBusiness(Business):
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"The income associated with ID: {income_id} could not be deleted.",
+                    detail=f"No income were found associated with ID: {income_id}",
                 )
-
-            session.flush()
-
-            cls.db.synchronize_savings_investment(
-                session,
-                month,
-                year,
-                family_id,
-            )
 
             session.commit()
         except Exception:

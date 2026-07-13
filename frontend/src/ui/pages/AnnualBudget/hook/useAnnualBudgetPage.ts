@@ -5,18 +5,8 @@ import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useBudgetGroups from "./useBudgetGroups";
 import useBudgetYears from "./useBudgetYears";
 import useUpdateBudgets from "./useUpdateBudgets";
-import type { AnnualBudgetErrorField } from "./types";
-import useFormFieldError from "@/ui/hooks/useFormFieldError";
 
 const useAnnualBudgetPage = () => {
-  const {
-    errorMessage: formError,
-    showFieldError,
-    clearFieldError,
-    clearFormError,
-    hasFieldError,
-  } = useFormFieldError<AnnualBudgetErrorField>();
-
   const { showLoading, showModal, closeModal } = useModal();
 
   const [year, setYear] = useState("");
@@ -31,7 +21,8 @@ const useAnnualBudgetPage = () => {
     error: budgetYearsError,
   } = useBudgetYears();
 
-  const selectedYear = year || String(years[0] ?? "");
+  const currentYear = new Date().getFullYear().toString();
+  const selectedYear = year || String(years[0] ?? currentYear);
 
   const {
     budgetGroups: fetchedBudgetGroups,
@@ -43,7 +34,7 @@ const useAnnualBudgetPage = () => {
   const { mutate: updateBudgets, isPending: isUpdatingBudgets } =
     useUpdateBudgets();
 
-  const isLoading = isLoadingBudgetYears || Boolean(selectedYear && isLoadingBudgetGroups);
+  const isLoading = isLoadingBudgetYears || isLoadingBudgetGroups;
 
   const hasError = isBudgetYearsError || isBudgetGroupsError;
 
@@ -97,79 +88,52 @@ const useAnnualBudgetPage = () => {
     [fetchedBudgetGroups, editedAmounts],
   );
 
-  const updateBudgetAmount = (
-  budgetId: number,
-  amount: number,
-) => {
-  setEditedAmounts((currentEditedAmounts) => ({
-    ...currentEditedAmounts,
-    [budgetId]: amount,
-  }));
-
-  clearFieldError(`budget.${budgetId}`);
-};
+  const updateBudgetAmount = (budgetId: number, amount: number) => {
+    setEditedAmounts((currentEditedAmounts) => ({
+      ...currentEditedAmounts,
+      [budgetId]: amount,
+    }));
+  };
 
   const saveBudgets = () => {
-  const invalidBudget = budgetGroups
-    .flatMap((budgetGroup) => budgetGroup.budgets)
-    .find((budget) => budget.amount < 0);
+    const changedBudgets: UpdateBudgetRequest[] = fetchedBudgetGroups.flatMap(
+      (budgetGroup) =>
+        budgetGroup.budgets.flatMap((budget) => {
+          const editedAmount = editedAmounts[budget.id];
 
-  if (invalidBudget) {
-    showFieldError(
-      `budget.${invalidBudget.id}`,
-      "Budget amounts must be greater than or equal to 0.",
+          if (editedAmount === undefined || editedAmount === budget.amount) {
+            return [];
+          }
+
+          return [
+            {
+              id: budget.id,
+              amount: editedAmount,
+            },
+          ];
+        }),
     );
 
-    return;
-  }
+    if (!changedBudgets.length) return;
 
-  clearFormError();
-
-  const changedBudgets: UpdateBudgetRequest[] =
-    fetchedBudgetGroups.flatMap((budgetGroup) =>
-      budgetGroup.budgets.flatMap((budget) => {
-        const editedAmount = editedAmounts[budget.id];
-
-        if (
-          editedAmount === undefined ||
-          editedAmount === budget.amount
-        ) {
-          return [];
-        }
-
-        return [
-          {
-            id: budget.id,
-            amount: editedAmount,
-          },
-        ];
-      }),
-    );
-
-  if (!changedBudgets.length) return;
-
-  updateBudgets(changedBudgets, {
-    onSuccess: () => {
-      setEditedAmounts({});
-      clearFormError();
-    },
-  });
-};
+    updateBudgets(changedBudgets, {
+      onSuccess: () => {
+        setEditedAmounts({});
+      },
+    });
+  };
 
   const handleYearChange = (year: string) => {
     setYear(year);
     setEditedAmounts({});
-    clearFormError();
   };
 
   return {
     year: selectedYear,
     yearOptions,
     budgetGroups,
-    formError,
     isReady: !isLoading && !hasError,
     isUpdatingBudgets,
-    hasFieldError,
     setYear: handleYearChange,
     updateBudgetAmount,
     saveBudgets,

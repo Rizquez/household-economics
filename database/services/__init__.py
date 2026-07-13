@@ -7,5 +7,4 @@ from .family import FamilyService
 from .income import IncomeService
 from .record_type import RecordTypeService
 from .role import RoleService
-from .savings_investments import SavingsInvestmentsService
 from .user import UserService

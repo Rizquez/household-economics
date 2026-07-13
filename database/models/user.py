@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List
 from sqlalchemy.orm import relationship, Mapped
-from sqlalchemy import Column, String, DateTime, Boolean, UniqueConstraint
+from sqlalchemy import Column, String, DateTime, Boolean
 from sqlalchemy.sql import func
 
 from models.core import ModelBase
@@ -16,17 +16,9 @@ if TYPE_CHECKING:
 class User(ModelBase):
     __tablename__ = "users"
 
-    __table_args__ = (
-        UniqueConstraint(
-            "clerk_id",
-            "email",
-            name="uq_users_clerk_id_email",
-        ),
-    )
+    clerk_id = Column(String, nullable=False, unique=True)
 
-    clerk_id = Column(String, nullable=False)
-
-    email = Column(String, nullable=False)
+    email = Column(String, nullable=False, unique=True)
 
     name = Column(String, nullable=False, unique=False)
 

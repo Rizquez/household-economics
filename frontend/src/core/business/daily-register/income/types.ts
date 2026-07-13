@@ -7,7 +7,6 @@ export type Income = {
   categoryId: number | null;
   familyId: number;
   categoryName: string | null;
-  categoryNormalizedName: string | null;
 };
 
 export type CreateIncomeRequest = {

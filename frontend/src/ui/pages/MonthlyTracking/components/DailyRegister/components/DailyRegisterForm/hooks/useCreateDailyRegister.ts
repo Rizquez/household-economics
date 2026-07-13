@@ -5,7 +5,6 @@ import { createExpense } from "@/core/business/daily-register/expense/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import { MONTHLY_TRACKING_QUERY_KEY } from "@/ui/pages/MonthlyTracking/hooks/constants";
 import type { CreateDailyRegisterPayload } from "./types";
-import { SAVINGS_INVESTMENTS_QUERY_KEY } from "@/ui/pages/SavingsInvestments/hooks/constants";
 
 const useCreateDailyRegister = () => {
   const queryClient = useQueryClient();
@@ -27,15 +26,9 @@ const useCreateDailyRegister = () => {
     onSuccess: () => {
       closeModal();
 
-      void Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: [MONTHLY_TRACKING_QUERY_KEY],
-        }),
-
-        queryClient.invalidateQueries({
-          queryKey: [SAVINGS_INVESTMENTS_QUERY_KEY],
-        }),
-      ]);
+      void queryClient.invalidateQueries({
+        queryKey: [MONTHLY_TRACKING_QUERY_KEY],
+      });
     },
 
     onError: (error) => {

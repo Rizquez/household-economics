@@ -10,12 +10,13 @@ from src.business.core import Business, send_access_request_email
 class AuthBusiness(Business):
 
     @classmethod
-    def get_or_create_current_user(
+    def get_or_create_current_user(  # TODO: separate responsibilities
         cls,
         claims: Dict[str, Any],
         clerk_user: Dict[str, Any],
     ) -> CurrentUser:
         session = cls.create_session()
+
         try:
             clerk_id = claims["sub"]
 
@@ -23,8 +24,10 @@ class AuthBusiness(Business):
             name = cls.__get_name(clerk_user, email)
 
             user = cls.db.get_user_by_clerk_id(session, clerk_id)
+
             if user is None:
                 user = cls.db.get_user_by_email(session, email)
+
                 if user is None:
                     user = cls.db.create_user(
                         session,
@@ -39,6 +42,7 @@ class AuthBusiness(Business):
                     user.clerk_id = clerk_id
                     user.name = name
                     user.access_allowed = False
+
                 session.flush()
 
                 try:
@@ -52,13 +56,14 @@ class AuthBusiness(Business):
                     logging.exception("Unable to send access request email: %s", ex)
 
             family_member = cls.db.get_family_member_by_user_id(session, user.id)
+
             if family_member is None:
                 role = cls.db.get_role_by_name(session, Role.OWNER)
 
                 family = cls.db.create_family(
                     session,
                     {
-                        "name": f"{user.name}'s Family",
+                        "name": f"{user.name}'s family",
                     },
                 )
                 session.flush()
@@ -83,9 +88,11 @@ class AuthBusiness(Business):
                 family_id=family_member.family_id,
                 access_allowed=user.access_allowed,
             )
+
         except Exception:
             session.rollback()
             raise
+
         finally:
             session.close()
 

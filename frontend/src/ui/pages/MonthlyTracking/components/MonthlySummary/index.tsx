@@ -1,22 +1,9 @@
 import type { MonthlySummaryProps } from "./types";
 
 const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
-  const totals = rows.reduce(
-    (accumulator, row) => ({
-      budget: accumulator.budget + row.budget,
-      expenses: accumulator.expenses + row.expenses,
-      income: accumulator.income + row.income,
-    }),
-    {
-      budget: 0,
-      expenses: 0,
-      income: 0,
-    },
-  );
-
   return (
-    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
-      <div className="border-b border-text-secondary/10 bg-background p-4">
+    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <div className="border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly summary
         </h2>
@@ -32,8 +19,6 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
 
               <th className="px-4 py-3 text-right font-medium">Expenses</th>
 
-              <th className="px-4 py-3 text-right font-medium">Income</th>
-
               <th className="px-4 py-3 text-right font-medium">Available</th>
             </tr>
           </thead>
@@ -43,7 +28,7 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
               <tr>
                 <td
                   colSpan={4}
-                  className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
+                  className="px-4 py-8 text-center text-text-secondary"
                 >
                   No annual budget categories found for this period.
                 </td>
@@ -55,7 +40,7 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                 key={row.categoryId}
                 className="border-t border-text-secondary/10"
               >
-                <td className="px-4 py-3 font-medium text-text-primary">
+                <td className="px-4 py-3 text-text-primary">
                   {row.categoryName}
                 </td>
 
@@ -64,45 +49,15 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.expenses.toFixed(2)}
+                  {row.actualExpenditure.toFixed(2)}
                 </td>
 
-                <td className="px-4 py-3 text-right text-text-primary">
-                  {row.income.toFixed(2)}
-                </td>
-
-                <td
-                  className={`px-3 py-3 text-right font-semibold ${
-                    row.difference >= 0 ? "text-success" : "text-error"
-                  }`}
-                >
+                <td className="px-4 py-3 text-right font-medium text-text-primary">
                   {row.difference.toFixed(2)}
                 </td>
               </tr>
             ))}
           </tbody>
-
-          <tfoot>
-              <tr className="border-t border-text-secondary/10 bg-background font-semibold">
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary">
-                  Total
-                </td>
-
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.budget.toFixed(2)}
-                </td>
-
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.expenses.toFixed(2)}
-                </td>
-
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.income.toFixed(2)}
-                </td>
-
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>
-              </tr>
-            </tfoot>
         </table>
       </div>
     </section>
