@@ -19,12 +19,6 @@ export const paths = {
     label: "Dashboard (TODO)",
     icon: faChartPie,
   },
-  annualbudget: {
-    href: "/annual-budget",
-    title: "Annual budget",
-    label: "Annual budget",
-    icon: faWallet,
-  },
   monthlytracking: {
     href: "/monthly-tracking",
     title: "Monthly tracking",
@@ -33,9 +27,15 @@ export const paths = {
   },
   savingsinvestments: {
     href: "/savings-and-investments",
-    title: "Savings and investments (TODO)",
-    label: "Savings and investments (TODO)",
+    title: "Savings and investments",
+    label: "Savings and investments",
     icon: faPiggyBank,
+  },
+  annualbudget: {
+    href: "/annual-budget",
+    title: "Annual budget",
+    label: "Annual budget",
+    icon: faWallet,
   },
   categories: {
     href: "/categories",

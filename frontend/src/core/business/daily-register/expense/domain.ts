@@ -46,5 +46,6 @@ export type UpdateExpenseRequestDto = {
 export type ExpenseCategoryResponseDto = {
   id: number;
   name: string;
+  normalized_name: string;
   record_type_id: number;
 };

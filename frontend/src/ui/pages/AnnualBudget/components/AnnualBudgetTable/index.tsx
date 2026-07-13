@@ -5,8 +5,9 @@ import { getMonthLabel, getMonthlyTotals, getMonths } from "./utils/month";
 const AnnualBudgetTable = ({
   budgetGroups,
   onAmountChange,
+  hasFieldError,
 }: AnnualBudgetTableProps) => {
-  const months = getMonths(budgetGroups);
+  const months = budgetGroups.length ? getMonths(budgetGroups) : Array.from({ length: 12 }, (_, index) => index + 1);
   const monthlyTotals = getMonthlyTotals(months, budgetGroups);
 
   return (
@@ -34,6 +35,16 @@ const AnnualBudgetTable = ({
         </thead>
 
         <tbody>
+          {!budgetGroups.length && (
+            <tr>
+              <td
+                colSpan={months.length + 2}
+                className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
+              >
+                No budget groups found for this year.
+              </td>
+            </tr>
+          )}
           {budgetGroups.map((budgetGroup) => {
             const budgetGroupTotal = budgetGroup.budgets.reduce(
               (total, budget) => total + budget.amount,
@@ -57,12 +68,20 @@ const AnnualBudgetTable = ({
                   return (
                     <td key={month} className="px-2 py-2 text-right">
                       <NumberInput
+                        step="0.01"
                         value={budget?.amount ?? 0}
-                        min={0}
                         className="ml-auto h-9 w-20 px-2"
+                        error={
+                          budget
+                            ? hasFieldError(`budget.${budget.id}`)
+                            : false
+                        }
                         onChange={(event) =>
                           budget &&
-                          onAmountChange(budget.id, Number(event.target.value))
+                          onAmountChange(
+                            budget.id,
+                            Number(event.target.value),
+                          )
                         }
                       />
                     </td>

@@ -16,7 +16,7 @@ class RecordType(ModelBase):
     __table_args__ = (
         UniqueConstraint(
             "name",
-            name="unique_record_type_name",
+            name="uq_record_type_name",
         ),
     )
 

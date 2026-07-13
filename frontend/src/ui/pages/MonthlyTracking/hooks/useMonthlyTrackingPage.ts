@@ -4,7 +4,7 @@ import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useMonthlySummary from "../components/MonthlySummary/hooks/useMonthlySummary";
 import useMonthlyRecords from "./useMonthlyRecords";
 import useMonthlyTrackingPeriods from "./useMonthlyTrackingPeriods";
-import { MONTH_NAMES } from "./constants";
+import { MONTH_NAMES } from "@/ui/hooks/constants";
 
 const useMonthlyTrackingPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -82,6 +82,7 @@ const useMonthlyTrackingPage = () => {
   } = useMonthlySummary({
     selectedPeriod: activePeriod,
     expenses,
+    incomes
   });
 
   const isLoading =

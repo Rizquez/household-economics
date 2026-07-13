@@ -38,14 +38,12 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
           <table className="w-full min-w-180 border-collapse bg-surface text-sm">
             <thead className="sticky top-0 z-10 bg-background text-text-secondary">
               <tr>
-                <th className="px-4 py-3 text-left font-medium">Name</th>
-                <th className="px-4 py-3 text-left font-medium">Type</th>
-                <th className="px-4 py-3 text-left font-medium">Category</th>
-                <th className="px-4 py-3 text-right font-medium">Amount</th>
-                <th className="w-26 max-w-26 px-4 py-3 text-left font-medium">
-                  Note
-                </th>
-                <th className="px-4 py-3 text-right font-medium">Actions</th>
+                <th className="w-60 max-w-60 px-4 py-3 text-left font-medium">Record name</th>
+                <th className="w-28 px-4 py-3 text-left font-medium">Record type</th>
+                <th className="w-28 px-4 py-3 text-left font-medium">Category</th>
+                <th className="w-28 px-4 py-3 text-left font-medium">Amount</th>
+                <th className="w-28 max-w-28 px-4 py-3 text-left font-medium">Note</th>
+                <th className="w-40 px-4 py-3 text-right font-medium">Actions</th>
               </tr>
             </thead>
 
@@ -66,42 +64,48 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                   key={record.id}
                   className="border-t border-text-secondary/10"
                 >
-                  <td className="max-w-48 px-4 py-3">
+                  <td className="w-60 max-w-60 px-4 py-3">
                     <span
-                      className="block max-w-full truncate text-text-primary"
+                      className="block truncate font-medium text-text-primary"
                       title={record.name}
                     >
                       {record.name}
                     </span>
                   </td>
 
-                  <td className="px-4 py-3 text-text-primary">{record.type}</td>
+                  <td className="w-28 px-4 py-3 text-text-primary">
+                    {record.type}
+                  </td>
 
-                  <td className="px-4 py-3 text-text-primary">
+                  <td className="w-28 px-4 py-3 text-text-primary">
                     {record.categoryName ?? "-"}
                   </td>
 
-                  <td className="px-4 py-3 text-right font-medium text-text-primary">
+                  <td className="w-28 px-4 py-3 text-left font-medium text-text-primary">
                     {record.amount.toFixed(2)}
                   </td>
 
-                  <td className="w-26 max-w-26 px-4 py-3">
+                  <td className="w-28 max-w-28 px-4 py-3">
                     {record.notes ? (
-                      <Tooltip text="Open note">
+                      <Tooltip text="See note">
                         <button
                           type="button"
                           className="block max-w-full cursor-pointer truncate text-left text-primary hover:underline"
-                          onClick={() => record.notes && openNote(record.notes)}
+                          onClick={() =>
+                            record.notes && openNote(record.notes)
+                          }
                         >
                           {record.notes}
                         </button>
                       </Tooltip>
                     ) : (
-                      <span className="text-text-secondary">-</span>
+                      <span className="text-text-secondary">
+                        -
+                      </span>
                     )}
                   </td>
 
-                  <td className="px-4 py-3">
+                  <td className="w-40 px-4 py-3">
                     <div className="flex justify-end gap-2">
                       {record.expense?.items.length ? (
                         <Tooltip text="Product details">

@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { paths } from "@/ui/routes/paths";
+import useAppLayoutVisibility from "@/ui/hooks/useAppLayoutVisibility";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { isVisible } = useAppLayoutVisibility();
+  if (!isVisible) return null;
 
   return (
     <footer className="flex justify-between pr-5 pl-5 pb-2">
