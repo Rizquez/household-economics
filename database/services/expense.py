@@ -147,7 +147,7 @@ class ExpenseService(ServiceBase):
             ),
             model=Expense,
         )
-    
+
     @classmethod
     def has_expenses_by_month_and_year(
         cls,

@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useState,
-  type SubmitEventHandler,
-} from "react";
+import { useState, type SubmitEventHandler } from "react";
 
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
 import useSaveSavingsInvestments from "./useSaveSavingsInvestments";
@@ -18,41 +14,26 @@ const useSavingsInvestmentsForm = ({
   availableAmount,
   savingsInvestment,
 }: SavingsInvestmentsAllocationProps) => {
-  const [savingsAmount, setSavingsAmount] = useState("0");
-  const [investmentAmount, setInvestmentAmount] = useState("0");
+  const [savingsAmount, setSavingsAmount] = useState(() =>
+    String(savingsInvestment?.savingsAmount ?? 0),
+  );
 
-  const {
-    errorMessage,
-    showFieldError,
-    clearFormError,
-    hasFieldError,
-  } = useFormFieldError<SavingsInvestmentsFormField>();
+  const [investmentAmount, setInvestmentAmount] = useState(() =>
+    String(savingsInvestment?.investmentAmount ?? 0),
+  );
 
-  const {
-    mutate: saveSavingsInvestment,
-    isPending,
-  } = useSaveSavingsInvestments();
+  const { errorMessage, showFieldError, clearFormError, hasFieldError } =
+    useFormFieldError<SavingsInvestmentsFormField>();
 
-  useEffect(() => {
-    setSavingsAmount(
-      String(savingsInvestment?.savingsAmount ?? 0),
-    );
-
-    setInvestmentAmount(
-      String(savingsInvestment?.investmentAmount ?? 0),
-    );
-
-    clearFormError();
-  }, [savingsInvestment, year, month]);
+  const { mutate: saveSavingsInvestment, isPending } =
+    useSaveSavingsInvestments();
 
   const numericSavingsAmount = Number(savingsAmount || 0);
   const numericInvestmentAmount = Number(investmentAmount || 0);
 
-  const assignedAmount =
-    numericSavingsAmount + numericInvestmentAmount;
+  const assignedAmount = numericSavingsAmount + numericInvestmentAmount;
 
-  const remainingAmount =
-    availableAmount - assignedAmount;
+  const remainingAmount = availableAmount - assignedAmount;
 
   const handleSavingsAmountChange = (value: string) => {
     setSavingsAmount(value);
@@ -64,9 +45,7 @@ const useSavingsInvestmentsForm = ({
     clearFormError();
   };
 
-  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (
-    event,
-  ) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     if (numericSavingsAmount < 0) {

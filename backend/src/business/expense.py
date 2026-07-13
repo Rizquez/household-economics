@@ -107,15 +107,15 @@ class ExpenseBusiness(Business):
             if existing is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No expense were found associated with ID: {expense_id}."
+                    detail=f"No expense were found associated with ID: {expense_id}.",
                 )
-            
+
             if existing.savings_investment_id is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
                     detail="System-generated expense records cannot be updated.",
                 )
-            
+
             previous_month = existing.created_at.month
             previous_year = existing.created_at.year
 
@@ -134,10 +134,10 @@ class ExpenseBusiness(Business):
                 )
 
             session.flush()
-            
+
             current_month = updated.created_at.month
             current_year = updated.created_at.year
-            
+
             cls.db.synchronize_savings_investment(
                 session,
                 previous_month,
@@ -180,16 +180,16 @@ class ExpenseBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No expense were found associated with ID: {expense_id}.",
                 )
-            
+
             if existing.savings_investment_id is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
                     detail="System-generated expense records cannot be deleted.",
                 )
-            
+
             month = existing.created_at.month
             year = existing.created_at.year
-            
+
             deleted = cls.db.delete_expense(
                 session,
                 expense_id,

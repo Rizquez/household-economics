@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { MONTH_NAMES } from "@/ui/hooks/constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
@@ -13,11 +9,9 @@ import useSavingsInvestmentsHistory from "./useSavingsInvestmentsHistory";
 import useSavingsInvestmentsPeriods from "./useSavingsInvestmentsPeriods";
 
 const useSavingsInvestmentsPage = () => {
-  const [selectedPeriod, setSelectedPeriod] =
-    useState("");
+  const [selectedPeriod, setSelectedPeriod] = useState("");
 
-  const { showLoading, showModal, closeModal } =
-    useModal();
+  const { showLoading, showModal, closeModal } = useModal();
 
   const {
     periods,
@@ -40,44 +34,36 @@ const useSavingsInvestmentsPage = () => {
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const currentMonth =
-    currentDate.getMonth() + 1;
+  const currentMonth = currentDate.getMonth() + 1;
 
-  const currentPeriod = `${currentYear}-${String(
-    currentMonth,
-  ).padStart(2, "0")}`;
+  const currentPeriod = `${currentYear}-${String(currentMonth).padStart(
+    2,
+    "0",
+  )}`;
 
   const hasCurrentPeriod = sortedPeriods.some(
-    (period) =>
-      period.year === currentYear &&
-      period.month === currentMonth,
+    (period) => period.year === currentYear && period.month === currentMonth,
   );
 
   const firstAvailablePeriod = sortedPeriods[0]
-    ? `${sortedPeriods[0].year}-${String(
-        sortedPeriods[0].month,
-      ).padStart(2, "0")}`
+    ? `${sortedPeriods[0].year}-${String(sortedPeriods[0].month).padStart(
+        2,
+        "0",
+      )}`
     : "";
 
-  const defaultPeriod = hasCurrentPeriod
-    ? currentPeriod
-    : firstAvailablePeriod;
+  const defaultPeriod = hasCurrentPeriod ? currentPeriod : firstAvailablePeriod;
 
   const selectedPeriodExists = sortedPeriods.some(
     (period) =>
-      `${period.year}-${String(
-        period.month,
-      ).padStart(2, "0")}` ===
+      `${period.year}-${String(period.month).padStart(2, "0")}` ===
       selectedPeriod,
   );
 
   const activePeriod =
-    selectedPeriod && selectedPeriodExists
-      ? selectedPeriod
-      : defaultPeriod;
+    selectedPeriod && selectedPeriodExists ? selectedPeriod : defaultPeriod;
 
-  const [yearValue, monthValue] =
-    activePeriod.split("-");
+  const [yearValue, monthValue] = activePeriod.split("-");
 
   const year = Number(yearValue);
   const month = Number(monthValue);
@@ -94,10 +80,7 @@ const useSavingsInvestmentsPage = () => {
     isPending: isLoadingAvailable,
     isError: isAvailableError,
     error: availableError,
-  } = useSavingsInvestmentsAvailable(
-    month,
-    year,
-  );
+  } = useSavingsInvestmentsAvailable(month, year);
 
   const {
     history,
@@ -108,18 +91,9 @@ const useSavingsInvestmentsPage = () => {
 
   const isLoading =
     isLoadingPeriods ||
-    Boolean(
-      activePeriod &&
-        isLoadingSavingsInvestment,
-    ) ||
-    Boolean(
-      activePeriod &&
-        isLoadingAvailable,
-    ) ||
-    Boolean(
-      activePeriod &&
-        isLoadingHistory,
-    );
+    Boolean(activePeriod && isLoadingSavingsInvestment) ||
+    Boolean(activePeriod && isLoadingAvailable) ||
+    Boolean(activePeriod && isLoadingHistory);
 
   const hasError =
     isPeriodsError ||
@@ -129,10 +103,7 @@ const useSavingsInvestmentsPage = () => {
 
   useEffect(() => {
     if (isLoading) {
-      showLoading(
-        "Loading savings and investments",
-        "Please wait...",
-      );
+      showLoading("Loading savings and investments", "Please wait...");
 
       return;
     }
@@ -168,13 +139,9 @@ const useSavingsInvestmentsPage = () => {
   const periodOptions = useMemo(
     () =>
       sortedPeriods.map((period) => ({
-        label: `${
-          MONTH_NAMES[period.month - 1]
-        } ${period.year}`,
+        label: `${MONTH_NAMES[period.month - 1]} ${period.year}`,
 
-        value: `${period.year}-${String(
-          period.month,
-        ).padStart(2, "0")}`,
+        value: `${period.year}-${String(period.month).padStart(2, "0")}`,
       })),
     [sortedPeriods],
   );

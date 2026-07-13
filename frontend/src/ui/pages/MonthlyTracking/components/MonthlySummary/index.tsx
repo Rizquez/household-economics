@@ -83,26 +83,26 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
           </tbody>
 
           <tfoot>
-              <tr className="border-t border-text-secondary/10 bg-background font-semibold">
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary">
-                  Total
-                </td>
+            <tr className="border-t border-text-secondary/10 bg-background font-semibold">
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary">
+                Total
+              </td>
 
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.budget.toFixed(2)}
-                </td>
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
+                {totals.budget.toFixed(2)}
+              </td>
 
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.expenses.toFixed(2)}
-                </td>
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
+                {totals.expenses.toFixed(2)}
+              </td>
 
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                  {totals.income.toFixed(2)}
-                </td>
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
+                {totals.income.toFixed(2)}
+              </td>
 
-                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>
-              </tr>
-            </tfoot>
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </section>

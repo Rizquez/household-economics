@@ -1,7 +1,15 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, List
-from sqlalchemy import Column, BigInteger, ForeignKey, String, DateTime, Numeric, UniqueConstraint
+from sqlalchemy import (
+    Column,
+    BigInteger,
+    ForeignKey,
+    String,
+    DateTime,
+    Numeric,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import relationship, Mapped
 
 from models.core import ModelBase
@@ -51,7 +59,7 @@ class Expense(ModelBase):
         ),
         nullable=True,
     )
-    
+
     category: Mapped["Category"] = relationship(back_populates="expenses")
 
     family: Mapped["Family"] = relationship(back_populates="expenses")

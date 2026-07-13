@@ -16,15 +16,11 @@ const SavingsInvestmentsControls = ({
           className="text-right"
           value={selectedPeriod}
           placeholder={
-            periodOptions.length
-              ? undefined
-              : "No periods available"
+            periodOptions.length ? undefined : "No periods available"
           }
           disabled={!periodOptions.length}
           options={periodOptions}
-          onChange={(event) =>
-            onPeriodChange(event.target.value)
-          }
+          onChange={(event) => onPeriodChange(event.target.value)}
         />
       </div>
     </section>

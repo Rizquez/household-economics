@@ -185,9 +185,7 @@ class SavingsInvestmentsService(ServiceBase):
         if current_available_amount == stored_available_amount:
             return
 
-        update_data = {
-            "available_amount": current_available_amount
-        }
+        update_data = {"available_amount": current_available_amount}
 
         if current_available_amount < stored_available_amount:
             update_data.update(
@@ -207,7 +205,9 @@ class SavingsInvestmentsService(ServiceBase):
         session: "scoped_session",
         savings_investment: SavingsInvestments,
     ) -> None:
-        assigned_amount = savings_investment.savings_amount + savings_investment.investment_amount
+        assigned_amount = (
+            savings_investment.savings_amount + savings_investment.investment_amount
+        )
         remaining_amount = savings_investment.available_amount - assigned_amount
 
         system_income = IncomeService.get_income_by_savings_investment(
@@ -224,7 +224,6 @@ class SavingsInvestmentsService(ServiceBase):
             savings_investment.month,
             savings_investment.year,
         )
-
 
         created_at = datetime(next_year, next_month, 1)
 

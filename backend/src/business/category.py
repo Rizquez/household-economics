@@ -31,7 +31,7 @@ class CategoryBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No record types were found associated with ID: {record_type_id}.",
                 )
-            
+
             normalized_name = a_dict["name"].lower()
 
             existing = cls.db.get_category_by_normalized_name(
@@ -44,7 +44,7 @@ class CategoryBusiness(Business):
             if existing is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="A category with the same name already exists for this record type."
+                    detail="A category with the same name already exists for this record type.",
                 )
 
             a_dict["normalized_name"] = normalized_name
@@ -77,16 +77,16 @@ class CategoryBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No category were found associated with ID: {category_id}.",
                 )
-            
+
             record_type_id = a_dict["record_type_id"]
 
             record_type = cls.db.get_record_type(session, record_type_id)
             if record_type is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No record types were found associated with ID: {record_type_id}."
+                    detail=f"No record types were found associated with ID: {record_type_id}.",
                 )
-            
+
             normalized_name = a_dict["name"].lower()
             existing_normalized = cls.db.get_category_by_normalized_name(
                 session,
@@ -95,14 +95,17 @@ class CategoryBusiness(Business):
                 family_id,
             )
 
-            if existing_normalized is not None and existing_normalized.id != category_id:
+            if (
+                existing_normalized is not None
+                and existing_normalized.id != category_id
+            ):
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="A category with the same name already exists for this record type."
+                    detail="A category with the same name already exists for this record type.",
                 )
 
             a_dict["normalized_name"] = normalized_name
-            
+
             updated = cls.db.update_category(session, a_dict, category_id, family_id)
             if not updated:
                 raise HTTPException(
@@ -131,7 +134,7 @@ class CategoryBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No category were found associated with ID: {category_id}.",
                 )
-            
+
             deleted = cls.db.delete_category(session, category_id, family_id)
             if not deleted:
                 raise HTTPException(

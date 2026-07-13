@@ -16,6 +16,4 @@ export type SavingsInvestmentsRequestDto = {
   investment_amount: number;
 };
 
-export type SavingsInvestmentsAvailableResponseDto =
-  | string
-  | number;
+export type SavingsInvestmentsAvailableResponseDto = string | number;

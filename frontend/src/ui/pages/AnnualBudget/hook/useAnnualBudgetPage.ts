@@ -43,7 +43,8 @@ const useAnnualBudgetPage = () => {
   const { mutate: updateBudgets, isPending: isUpdatingBudgets } =
     useUpdateBudgets();
 
-  const isLoading = isLoadingBudgetYears || Boolean(selectedYear && isLoadingBudgetGroups);
+  const isLoading =
+    isLoadingBudgetYears || Boolean(selectedYear && isLoadingBudgetGroups);
 
   const hasError = isBudgetYearsError || isBudgetGroupsError;
 
@@ -97,64 +98,58 @@ const useAnnualBudgetPage = () => {
     [fetchedBudgetGroups, editedAmounts],
   );
 
-  const updateBudgetAmount = (
-  budgetId: number,
-  amount: number,
-) => {
-  setEditedAmounts((currentEditedAmounts) => ({
-    ...currentEditedAmounts,
-    [budgetId]: amount,
-  }));
+  const updateBudgetAmount = (budgetId: number, amount: number) => {
+    setEditedAmounts((currentEditedAmounts) => ({
+      ...currentEditedAmounts,
+      [budgetId]: amount,
+    }));
 
-  clearFieldError(`budget.${budgetId}`);
-};
+    clearFieldError(`budget.${budgetId}`);
+  };
 
   const saveBudgets = () => {
-  const invalidBudget = budgetGroups
-    .flatMap((budgetGroup) => budgetGroup.budgets)
-    .find((budget) => budget.amount < 0);
+    const invalidBudget = budgetGroups
+      .flatMap((budgetGroup) => budgetGroup.budgets)
+      .find((budget) => budget.amount < 0);
 
-  if (invalidBudget) {
-    showFieldError(
-      `budget.${invalidBudget.id}`,
-      "Budget amounts must be greater than or equal to 0.",
+    if (invalidBudget) {
+      showFieldError(
+        `budget.${invalidBudget.id}`,
+        "Budget amounts must be greater than or equal to 0.",
+      );
+
+      return;
+    }
+
+    clearFormError();
+
+    const changedBudgets: UpdateBudgetRequest[] = fetchedBudgetGroups.flatMap(
+      (budgetGroup) =>
+        budgetGroup.budgets.flatMap((budget) => {
+          const editedAmount = editedAmounts[budget.id];
+
+          if (editedAmount === undefined || editedAmount === budget.amount) {
+            return [];
+          }
+
+          return [
+            {
+              id: budget.id,
+              amount: editedAmount,
+            },
+          ];
+        }),
     );
 
-    return;
-  }
+    if (!changedBudgets.length) return;
 
-  clearFormError();
-
-  const changedBudgets: UpdateBudgetRequest[] =
-    fetchedBudgetGroups.flatMap((budgetGroup) =>
-      budgetGroup.budgets.flatMap((budget) => {
-        const editedAmount = editedAmounts[budget.id];
-
-        if (
-          editedAmount === undefined ||
-          editedAmount === budget.amount
-        ) {
-          return [];
-        }
-
-        return [
-          {
-            id: budget.id,
-            amount: editedAmount,
-          },
-        ];
-      }),
-    );
-
-  if (!changedBudgets.length) return;
-
-  updateBudgets(changedBudgets, {
-    onSuccess: () => {
-      setEditedAmounts({});
-      clearFormError();
-    },
-  });
-};
+    updateBudgets(changedBudgets, {
+      onSuccess: () => {
+        setEditedAmounts({});
+        clearFormError();
+      },
+    });
+  };
 
   const handleYearChange = (year: string) => {
     setYear(year);

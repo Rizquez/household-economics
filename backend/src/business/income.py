@@ -58,7 +58,7 @@ class IncomeBusiness(Business):
                 income.created_at.year,
                 family_id,
             )
-            
+
             session.commit()
             session.refresh(income)
             income.category
@@ -96,7 +96,7 @@ class IncomeBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No category were found associated with ID: {category_id}.",
                 )
-            
+
             existing = cls.db.get_income_by_id_and_family(
                 session,
                 income_id,
@@ -106,15 +106,15 @@ class IncomeBusiness(Business):
             if existing is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No income were found associated with ID: {income_id}."
+                    detail=f"No income were found associated with ID: {income_id}.",
                 )
-            
+
             if existing.savings_investment_id is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="System-generated income records cannot be updated."
+                    detail="System-generated income records cannot be updated.",
                 )
-            
+
             previous_month = existing.created_at.month
             previous_year = existing.created_at.year
 
@@ -130,12 +130,12 @@ class IncomeBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"The income associated with ID: {income_id} could not be updated.",
                 )
-            
+
             session.flush()
-            
+
             current_month = updated.created_at.month
             current_year = updated.created_at.year
-            
+
             cls.db.synchronize_savings_investment(
                 session,
                 previous_month,
@@ -176,14 +176,13 @@ class IncomeBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No income were found associated with ID: {income_id}.",
                 )
-            
+
             if existing.savings_investment_id is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="System-generated income records cannot be deleted."
+                    detail="System-generated income records cannot be deleted.",
                 )
 
-            
             month = existing.created_at.month
             year = existing.created_at.year
 

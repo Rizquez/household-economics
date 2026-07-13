@@ -110,7 +110,7 @@ class IncomeService(ServiceBase):
             ),
             model=Income,
         )
-    
+
     @classmethod
     def has_incomes_by_month_and_year(
         cls,

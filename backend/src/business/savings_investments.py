@@ -19,11 +19,13 @@ class SavingsInvestmentsBusiness(Business):
             month = a_dict["month"]
             year = a_dict["year"]
 
-            existing = cls.db.get_savings_investment_by_month_and_year(session, month, year, family_id)
+            existing = cls.db.get_savings_investment_by_month_and_year(
+                session, month, year, family_id
+            )
             if existing is not None:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="Savings and investments have already been assigned for the current month and year."
+                    detail="Savings and investments have already been assigned for the current month and year.",
                 )
 
             cls.__validate_assigned_amount(
@@ -60,11 +62,13 @@ class SavingsInvestmentsBusiness(Business):
             month = a_dict["month"]
             year = a_dict["year"]
 
-            existing = cls.db.get_savings_investment_by_month_and_year(session, month, year, family_id)
-            if  existing is not None and existing.id != savings_investment_id:
+            existing = cls.db.get_savings_investment_by_month_and_year(
+                session, month, year, family_id
+            )
+            if existing is not None and existing.id != savings_investment_id:
                 raise HTTPException(
                     status_code=status.HTTP_409_CONFLICT,
-                    detail="Savings and investments have already been assigned for the current month and year."
+                    detail="Savings and investments have already been assigned for the current month and year.",
                 )
 
             cls.__validate_assigned_amount(
@@ -83,9 +87,9 @@ class SavingsInvestmentsBusiness(Business):
             if savings_investment is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No savings and investments were found associated with ID: {savings_investment_id}."
+                    detail=f"No savings and investments were found associated with ID: {savings_investment_id}.",
                 )
-            
+
             session.flush()
 
             cls.db.synchronize_remaining_record(session, savings_investment)
@@ -109,10 +113,7 @@ class SavingsInvestmentsBusiness(Business):
         session = cls.create_session()
         try:
             return cls.db.get_savings_investment_by_month_and_year(
-                session,
-                month,
-                year,
-                family_id
+                session, month, year, family_id
             )
         finally:
             session.close()
@@ -150,7 +151,7 @@ class SavingsInvestmentsBusiness(Business):
             )
         finally:
             session.close()
-        
+
     @staticmethod
     def __validate_assigned_amount(
         available_amount: Decimal,
@@ -162,11 +163,11 @@ class SavingsInvestmentsBusiness(Business):
         if available_amount < Decimal("0") and assigned_amount != Decimal("0"):
             raise HTTPException(
                 status_code=status.HTTP_406_NOT_ACCEPTABLE,
-                detail="Savings and investments must be zero when the available amount is negative."
+                detail="Savings and investments must be zero when the available amount is negative.",
             )
 
         if available_amount >= Decimal("0") and assigned_amount > available_amount:
             raise HTTPException(
                 status_code=status.HTTP_406_NOT_ACCEPTABLE,
-                detail="The assigned amount cannot exceed the available amount."
+                detail="The assigned amount cannot exceed the available amount.",
             )

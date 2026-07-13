@@ -12,8 +12,7 @@ const useSavingsInvestmentsPeriods = () => {
       SAVINGS_INVESTMENTS_QUERY_KEY,
       SAVINGS_INVESTMENTS_PERIODS_QUERY_KEY,
     ],
-    queryFn: () =>
-      getMonthlyTrackingPeriods.execute(),
+    queryFn: () => getMonthlyTrackingPeriods.execute(),
   });
 
   return {

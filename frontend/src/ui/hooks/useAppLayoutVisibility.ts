@@ -1,8 +1,6 @@
 import { useIsFetching } from "@tanstack/react-query";
 
-const useAppLayoutVisibility = (
-  hasCondition: boolean = true,
-) => {
+const useAppLayoutVisibility = (hasCondition: boolean = true) => {
   const blockingQueries = useIsFetching({
     predicate: (query) =>
       query.state.fetchStatus === "fetching" &&
@@ -11,9 +9,7 @@ const useAppLayoutVisibility = (
   });
 
   return {
-    isVisible:
-      blockingQueries === 0 &&
-      hasCondition,
+    isVisible: blockingQueries === 0 && hasCondition,
   };
 };
 

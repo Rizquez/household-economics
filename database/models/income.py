@@ -1,7 +1,15 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from sqlalchemy import Column, BigInteger, ForeignKey, String, DateTime, Numeric, UniqueConstraint
+from sqlalchemy import (
+    Column,
+    BigInteger,
+    ForeignKey,
+    String,
+    DateTime,
+    Numeric,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import relationship, Mapped
 
 from models.core import ModelBase

@@ -8,7 +8,7 @@ import type { MonthlySummaryRow, UseMonthlySummaryParams } from "../types";
 const useMonthlySummary = ({
   selectedPeriod,
   expenses,
-  incomes
+  incomes,
 }: UseMonthlySummaryParams) => {
   const [yearValue, monthValue] = selectedPeriod.split("-");
 
@@ -28,34 +28,28 @@ const useMonthlySummary = ({
           budgetGroup.budgets.find((budget) => budget.month === month)
             ?.amount ?? 0;
 
-        const expensesTotal = expenses.reduce(
-          (total, expense) => {
-            if (expense.items.length > 0) {
-              return (
-                total +
-                expense.items.reduce(
-                  (itemsTotal, item) =>
-                    item.categoryNormalizedName ===
-                    budgetGroup.normalizedName
-                      ? itemsTotal + item.amount
-                      : itemsTotal,
-                  0,
-                )
-              );
-            }
+        const expensesTotal = expenses.reduce((total, expense) => {
+          if (expense.items.length > 0) {
+            return (
+              total +
+              expense.items.reduce(
+                (itemsTotal, item) =>
+                  item.categoryNormalizedName === budgetGroup.normalizedName
+                    ? itemsTotal + item.amount
+                    : itemsTotal,
+                0,
+              )
+            );
+          }
 
-            return expense.categoryNormalizedName ===
-              budgetGroup.normalizedName
-              ? total + expense.amount
-              : total;
-          },
-          0,
-        );
+          return expense.categoryNormalizedName === budgetGroup.normalizedName
+            ? total + expense.amount
+            : total;
+        }, 0);
 
         const incomesTotal = incomes.reduce(
           (total, income) =>
-            income.categoryNormalizedName ===
-            budgetGroup.normalizedName
+            income.categoryNormalizedName === budgetGroup.normalizedName
               ? total + income.amount
               : total,
           0,
@@ -67,8 +61,7 @@ const useMonthlySummary = ({
           budget: monthlyBudget,
           expenses: expensesTotal,
           income: incomesTotal,
-          difference:
-            monthlyBudget - expensesTotal + incomesTotal,
+          difference: monthlyBudget - expensesTotal + incomesTotal,
         };
       }),
     [query.data, expenses, incomes, month],
