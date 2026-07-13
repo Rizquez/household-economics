@@ -54,6 +54,14 @@ class ExpenseBusiness(Business):
                 a_dict,
                 items,
             )
+            session.flush()
+
+            cls.db.synchronize_savings_investment(
+                session,
+                expense.created_at.month,
+                expense.created_at.year,
+                family_id,
+            )
 
             session.commit()
             session.refresh(expense)
@@ -74,7 +82,7 @@ class ExpenseBusiness(Business):
         items: Optional[List[Dict]],
         expense_id: int,
         family_id: int,
-    ) -> Optional[Expense]:
+    ) -> Expense:
         session = cls.create_session()
         try:
             cls.__validate_expense_category(
@@ -90,7 +98,22 @@ class ExpenseBusiness(Business):
                 family_id,
             )
 
-            expense = cls.db.update_expense(
+            existing = cls.db.get_expense_by_id_and_family(
+                session,
+                expense_id,
+                family_id,
+            )
+
+            if existing is None:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No expense were found associated with ID: {expense_id}."
+                )
+            
+            previous_month = existing.created_at.month
+            previous_year = existing.created_at.year
+
+            updated = cls.db.update_expense(
                 session,
                 a_dict,
                 items,
@@ -98,18 +121,38 @@ class ExpenseBusiness(Business):
                 family_id,
             )
 
-            if expense is None:
+            if updated is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No expense were found associated with ID: {expense_id}",
+                    detail=f"The expense associated with ID: {expense_id} could not be updated.",
+                )
+
+            session.flush()
+            
+            current_month = updated.created_at.month
+            current_year = updated.created_at.year
+            
+            cls.db.synchronize_savings_investment(
+                session,
+                previous_month,
+                previous_year,
+                family_id,
+            )
+
+            if previous_month != current_month or previous_year != current_year:
+                cls.db.synchronize_savings_investment(
+                    session,
+                    current_month,
+                    current_year,
+                    family_id,
                 )
 
             session.commit()
-            session.refresh(expense)
-            expense.category
-            for item in expense.items:
+            session.refresh(updated)
+            updated.category
+            for item in updated.items:
                 item.category
-            return expense
+            return updated
         except Exception:
             session.rollback()
             raise
@@ -120,6 +163,21 @@ class ExpenseBusiness(Business):
     def delete_expense(cls, expense_id: int, family_id: int) -> None:
         session = cls.create_session()
         try:
+            existing = cls.db.get_expense_by_id_and_family(
+                session,
+                expense_id,
+                family_id,
+            )
+
+            if not existing:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No expense were found associated with ID: {expense_id}.",
+                )
+            
+            month = existing.created_at.month
+            year = existing.created_at.year
+            
             deleted = cls.db.delete_expense(
                 session,
                 expense_id,
@@ -129,8 +187,17 @@ class ExpenseBusiness(Business):
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No expense were found associated with ID: {expense_id}",
+                    detail=f"The expense associated with ID: {expense_id} could not be deleted.",
                 )
+
+            session.flush()
+
+            cls.db.synchronize_savings_investment(
+                session,
+                month,
+                year,
+                family_id,
+            )
 
             session.commit()
         except Exception:
@@ -172,7 +239,7 @@ class ExpenseBusiness(Business):
         if category is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No category were found associated with ID: {category_id}",
+                detail=f"No category were found associated with ID: {category_id}.",
             )
 
     @classmethod
@@ -203,5 +270,5 @@ class ExpenseBusiness(Business):
             if category is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No category were found associated with ID: {category_id}",
+                    detail=f"No category were found associated with ID: {category_id}.",
                 )

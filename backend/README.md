@@ -131,7 +131,8 @@ backend/
 │   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
-│   │   └── record_type.py
+│   │   ├── record_type.py
+│   │   └── savings_investment.py
 │   ├── routes
 │   │   ├── helpers
 │   │   │   ├── __init__.py
@@ -144,6 +145,7 @@ backend/
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
+│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── schemas
 │   │   ├── core
@@ -161,6 +163,7 @@ backend/
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
+│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── constants.py
 │   ├── env.py

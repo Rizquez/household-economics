@@ -5,7 +5,9 @@ import type { AnnualBudgetControlsProps } from "./types";
 const AnnualBudgetControls = ({
   year,
   yearOptions,
+  hasBudgetGroups,
   isUpdatingBudgets,
+  formError,
   onYearChange,
   onSaveBudgets,
 }: AnnualBudgetControlsProps) => {
@@ -17,14 +19,23 @@ const AnnualBudgetControls = ({
           label="Filter budgets by year"
           className="text-right"
           value={year}
+          placeholder={yearOptions.length ? undefined : "No periods available"}
+          disabled={!yearOptions.length}
           options={yearOptions}
           onChange={(event) => onYearChange(event.target.value)}
         />
       </div>
 
-      <Button disabled={isUpdatingBudgets} onClick={onSaveBudgets}>
-        Save changes
+      <div className="flex flex-col items-end gap-2">
+      <Button disabled={!hasBudgetGroups || isUpdatingBudgets} onClick={onSaveBudgets}>
+        {isUpdatingBudgets ? "Saving..." : "Save changes"}
       </Button>
+      {formError && (
+      <p className="text-sm text-error">
+        {formError}
+      </p>
+    )}
+    </div>
     </section>
   );
 };

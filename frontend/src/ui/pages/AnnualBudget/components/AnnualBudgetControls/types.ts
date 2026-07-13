@@ -4,7 +4,9 @@ export type AnnualBudgetControlsProps = {
     label: string;
     value: number;
   }[];
+  hasBudgetGroups: boolean;
   isUpdatingBudgets: boolean;
+  formError: string;
   onYearChange: (year: string) => void;
   onSaveBudgets: () => void;
 };

@@ -3,25 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { paths } from "@/ui/routes/paths";
 import { UserButton } from "@clerk/clerk-react";
 import useFamilyUser from "./hooks/useFamilyUser";
-import { useIsFetching } from "@tanstack/react-query";
+import useAppLayoutVisibility from "@/ui/hooks/useAppLayoutVisibility";
 
 const sidebarPathKeys = [
   "dashboard",
   "monthlytracking",
-  "annualbudget",
   "savingsinvestments",
+  "annualbudget",
   "categories",
 ] as const;
 
 const Sidebar = () => {
   const { family } = useFamilyUser();
-
-  const isLoading = useIsFetching({
-    predicate: (query) =>
-      query.state.fetchStatus === "fetching" && query.state.data === undefined,
-  });
-
-  if (isLoading > 0 || !family) return null;
+  const { isVisible } = useAppLayoutVisibility(Boolean(family));
+  if (!isVisible || !family) return null;
 
   return (
     <aside className="flex h-full shrink-0 flex-col bg-surface card">

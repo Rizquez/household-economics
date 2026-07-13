@@ -15,7 +15,7 @@ class FamilyBusiness(Business):
             if family is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No family associated with the user with ID was found: {user_id}",
+                    detail=f"No family associated with the user with ID was found: {user_id}.",
                 )
             return family
         finally:

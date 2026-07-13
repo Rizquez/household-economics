@@ -2,7 +2,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import create_engine, pool
 
-from models import Base
+from models import ModelBase
 from db import get_database_uri
 
 config = context.config
@@ -10,7 +10,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = Base.metadata
+target_metadata = ModelBase.metadata
 
 
 def include_object(object_, name, type_, reflected, compare_to) -> bool:
