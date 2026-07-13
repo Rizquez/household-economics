@@ -9,6 +9,7 @@ from .family import router as family_router
 from .income import router as income_router
 from .monthly_tracking import router as monthly_tracking_router
 from .record_type import router as record_type_router
+from .savings_investments import router as savings_investments_router
 from .user import router as router_user
 
 if TYPE_CHECKING:
@@ -23,6 +24,7 @@ map_routers = {
     "/income": (income_router, "Income"),
     "/monthly-tracking": (monthly_tracking_router, "Monthly Tracking"),
     "/record-type": (record_type_router, "Record Type"),
+    "/savings-investments": (savings_investments_router, "Savings Investments"),
     "/user": (router_user, "User"),
 }
 

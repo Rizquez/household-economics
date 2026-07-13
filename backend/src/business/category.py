@@ -27,7 +27,7 @@ class CategoryBusiness(Business):
             if record_type is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No record types were found associated with ID: {a_dict.get("record_type_id")}",
+                    detail=f"No record types were found associated with ID: {a_dict.get("record_type_id")}.",
                 )
 
             a_dict["family_id"] = family_id
@@ -52,7 +52,7 @@ class CategoryBusiness(Business):
             if not category:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No category were found associated with ID: {category_id}",
+                    detail=f"No category were found associated with ID: {category_id}.",
                 )
 
             for budget_group in category.budget_groups:
@@ -70,11 +70,18 @@ class CategoryBusiness(Business):
     def delete_category(cls, category_id: int, family_id: int) -> None:
         session = cls.create_session()
         try:
+            category = cls.db.get(session, category_id, Category)
+            if not category:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No category were found associated with ID: {category_id}.",
+                )
+            
             deleted = cls.db.delete_category(session, category_id, family_id)
             if not deleted:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No category were found associated with ID: {category_id}",
+                    detail=f"The category associated with ID: {category_id} could not be deleted.",
                 )
             session.commit()
         except Exception:
