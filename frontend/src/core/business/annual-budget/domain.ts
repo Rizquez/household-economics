@@ -8,6 +8,7 @@ export type BudgetResponseDto = {
 export type BudgetGroupResponseDto = {
   id: number;
   name: string;
+  normalized_name: string;
   year: number;
   category_id: number;
   budgets: BudgetResponseDto[];

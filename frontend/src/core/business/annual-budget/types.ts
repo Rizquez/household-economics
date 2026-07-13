@@ -8,6 +8,7 @@ export type Budget = {
 export type BudgetGroup = {
   id: number;
   name: string;
+  normalizedName: string;
   year: number;
   categoryId: number;
   budgets: Budget[];

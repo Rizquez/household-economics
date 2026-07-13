@@ -28,8 +28,6 @@ const useMonthlySummary = ({
           budgetGroup.budgets.find((budget) => budget.month === month)
             ?.amount ?? 0;
 
-        const categoryName = budgetGroup.name.toLowerCase();
-
         const expensesTotal = expenses.reduce(
           (total, expense) => {
             if (expense.items.length > 0) {
@@ -38,7 +36,7 @@ const useMonthlySummary = ({
                 expense.items.reduce(
                   (itemsTotal, item) =>
                     item.categoryNormalizedName ===
-                    categoryName
+                    budgetGroup.normalizedName
                       ? itemsTotal + item.amount
                       : itemsTotal,
                   0,
@@ -47,7 +45,7 @@ const useMonthlySummary = ({
             }
 
             return expense.categoryNormalizedName ===
-              categoryName
+              budgetGroup.normalizedName
               ? total + expense.amount
               : total;
           },
@@ -57,7 +55,7 @@ const useMonthlySummary = ({
         const incomesTotal = incomes.reduce(
           (total, income) =>
             income.categoryNormalizedName ===
-            categoryName
+            budgetGroup.normalizedName
               ? total + income.amount
               : total,
           0,

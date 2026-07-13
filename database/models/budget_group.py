@@ -65,3 +65,7 @@ class BudgetGroup(ModelBase):
     category: Mapped["Category"] = relationship(
         back_populates="budget_groups",
     )
+
+    @property
+    def normalized_name(self) -> str:
+        return self.category.normalized_name
