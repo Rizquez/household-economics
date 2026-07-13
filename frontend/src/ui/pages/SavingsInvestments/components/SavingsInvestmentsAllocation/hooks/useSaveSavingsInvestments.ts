@@ -1,7 +1,4 @@
-import {
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
   createSavingsInvestments,
@@ -19,29 +16,20 @@ import type { SaveSavingsInvestmentRequest } from "./types";
 
 const useSaveSavingsInvestments = () => {
   const queryClient = useQueryClient();
-  const { showLoading, showModal, closeModal } =
-    useModal();
+  const { showLoading, showModal, closeModal } = useModal();
 
   return useMutation({
-    mutationFn: (
-      request: SaveSavingsInvestmentRequest,
-    ) => {
+    mutationFn: (request: SaveSavingsInvestmentRequest) => {
       if ("id" in request) {
-        return updateSavingsInvestments.execute(
-          request,
-        );
+        return updateSavingsInvestments.execute(request);
       }
 
-      return createSavingsInvestments.execute(
-        request,
-      );
+      return createSavingsInvestments.execute(request);
     },
 
     onMutate: (request) => {
       showLoading(
-        "id" in request
-          ? "Updating allocation"
-          : "Creating allocation",
+        "id" in request ? "Updating allocation" : "Creating allocation",
         "Please wait...",
       );
     },

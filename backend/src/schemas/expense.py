@@ -25,6 +25,7 @@ class ExpenseResponse(ResponseBase):
     notes: Optional[str]
     category_id: Optional[int]
     family_id: int
+    savings_investment_id: Optional[int]
     category: Optional[CategoryResponse]
     items: List[ExpenseItemResponse]
 

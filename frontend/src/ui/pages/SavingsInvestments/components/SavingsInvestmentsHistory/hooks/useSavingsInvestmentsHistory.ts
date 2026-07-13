@@ -10,43 +10,39 @@ import type {
 const useSavingsInvestmentsHistory = ({
   history,
 }: SavingsInvestmentsHistoryProps) => {
-  const rows = useMemo<
-    SavingsInvestmentsHistoryRow[]
-  >(() => {
-    let accumulatedAmount = 0;
+  const rows = useMemo<SavingsInvestmentsHistoryRow[]>(() => {
+    const sortedHistory = [...history].sort(
+      (first, second) => first.month - second.month,
+    );
 
-    return [...history]
-      .sort(
-        (first, second) =>
-          first.month - second.month,
-      )
-      .map((savingsInvestment) => {
-        accumulatedAmount +=
-          savingsInvestment.savingsAmount +
-          savingsInvestment.investmentAmount;
+    return sortedHistory.reduce<SavingsInvestmentsHistoryRow[]>(
+      (currentRows, savingsInvestment) => {
+        const assignedAmount =
+          savingsInvestment.savingsAmount + savingsInvestment.investmentAmount;
 
-        return {
+        const previousAccumulatedAmount =
+          currentRows.at(-1)?.accumulatedAmount ?? 0;
+
+        const row: SavingsInvestmentsHistoryRow = {
           id: savingsInvestment.id,
           label: `${
-            MONTH_NAMES[
-              savingsInvestment.month - 1
-            ]
+            MONTH_NAMES[savingsInvestment.month - 1]
           } ${savingsInvestment.year}`,
-          savingsAmount:
-            savingsInvestment.savingsAmount,
-          investmentAmount:
-            savingsInvestment.investmentAmount,
-          accumulatedAmount,
+          savingsAmount: savingsInvestment.savingsAmount,
+          investmentAmount: savingsInvestment.investmentAmount,
+          accumulatedAmount: previousAccumulatedAmount + assignedAmount,
         };
-      });
+
+        return [...currentRows, row];
+      },
+      [],
+    );
   }, [history]);
 
   const totalSaved = useMemo(
     () =>
       history.reduce(
-        (total, savingsInvestment) =>
-          total +
-          savingsInvestment.savingsAmount,
+        (total, savingsInvestment) => total + savingsInvestment.savingsAmount,
         0,
       ),
     [history],
@@ -56,15 +52,13 @@ const useSavingsInvestmentsHistory = ({
     () =>
       history.reduce(
         (total, savingsInvestment) =>
-          total +
-          savingsInvestment.investmentAmount,
+          total + savingsInvestment.investmentAmount,
         0,
       ),
     [history],
   );
 
-  const totalAssigned =
-    totalSaved + totalInvested;
+  const totalAssigned = totalSaved + totalInvested;
 
   return {
     rows,

@@ -6,6 +6,7 @@ export type IncomeResponseDto = {
   notes: string | null;
   category_id: number | null;
   family_id: number;
+  savings_investment_id: number | null;
   category: IncomeCategoryResponseDto | null;
 };
 
@@ -28,5 +29,6 @@ export type UpdateIncomeRequestDto = {
 export type IncomeCategoryResponseDto = {
   id: number;
   name: string;
+  normalized_name: string;
   record_type_id: number;
 };

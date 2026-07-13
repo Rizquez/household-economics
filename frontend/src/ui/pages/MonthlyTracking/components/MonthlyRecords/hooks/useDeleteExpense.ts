@@ -20,14 +20,14 @@ const useDeleteExpense = () => {
       closeModal();
 
       void Promise.all([
-    queryClient.invalidateQueries({
-      queryKey: [MONTHLY_TRACKING_QUERY_KEY],
-    }),
+        queryClient.invalidateQueries({
+          queryKey: [MONTHLY_TRACKING_QUERY_KEY],
+        }),
 
-    queryClient.invalidateQueries({
-      queryKey: [SAVINGS_INVESTMENTS_QUERY_KEY],
-    }),
-  ]);
+        queryClient.invalidateQueries({
+          queryKey: [SAVINGS_INVESTMENTS_QUERY_KEY],
+        }),
+      ]);
     },
 
     onError: (error) => {

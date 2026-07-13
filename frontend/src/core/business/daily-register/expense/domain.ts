@@ -15,6 +15,7 @@ export type ExpenseResponseDto = {
   notes: string | null;
   category_id: number | null;
   family_id: number;
+  savings_investment_id: number | null;
   items: ExpenseItemResponseDto[];
   category: ExpenseCategoryResponseDto | null;
 };
@@ -46,5 +47,6 @@ export type UpdateExpenseRequestDto = {
 export type ExpenseCategoryResponseDto = {
   id: number;
   name: string;
+  normalized_name: string;
   record_type_id: number;
 };

@@ -110,7 +110,7 @@ class IncomeService(ServiceBase):
             ),
             model=Income,
         )
-    
+
     @classmethod
     def has_incomes_by_month_and_year(
         cls,
@@ -130,4 +130,16 @@ class IncomeService(ServiceBase):
                 model=Income,
             )
             is not None
+        )
+
+    @classmethod
+    def get_income_by_savings_investment(
+        cls,
+        session: "scoped_session",
+        savings_investment_id: int,
+    ) -> Optional[Income]:
+        return cls.find(
+            session,
+            Income.savings_investment_id == savings_investment_id,
+            model=Income,
         )

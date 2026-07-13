@@ -19,22 +19,14 @@ const mapSavingsInvestments = (
   id: savingsInvestments.id,
   year: savingsInvestments.year,
   month: savingsInvestments.month,
-  availableAmount: Number(
-    savingsInvestments.available_amount,
-  ),
-  savingsAmount: Number(
-    savingsInvestments.savings_amount,
-  ),
-  investmentAmount: Number(
-    savingsInvestments.investment_amount,
-  ),
+  availableAmount: Number(savingsInvestments.available_amount),
+  savingsAmount: Number(savingsInvestments.savings_amount),
+  investmentAmount: Number(savingsInvestments.investment_amount),
   familyId: savingsInvestments.family_id,
 });
 
 const mapSavingsInvestmentsRequest = (
-  request:
-    | CreateSavingsInvestmentsRequest
-    | UpdateSavingsInvestmentsRequest,
+  request: CreateSavingsInvestmentsRequest | UpdateSavingsInvestmentsRequest,
 ): SavingsInvestmentsRequestDto => ({
   year: request.year,
   month: request.month,
@@ -48,22 +40,17 @@ class SavingsInvestmentssRepository {
     month: number,
     year: number,
   ): Promise<SavingsInvestments | null> {
-    const response =
-      await httpClient.get<SavingsInvestmentsResponseDto | null>(
-        `/savings-investments/${month}/${year}`,
-      );
+    const response = await httpClient.get<SavingsInvestmentsResponseDto | null>(
+      `/savings-investments/${month}/${year}`,
+    );
 
-    return response.data
-      ? mapSavingsInvestments(response.data)
-      : null;
+    return response.data ? mapSavingsInvestments(response.data) : null;
   }
 
-  async getByYear(
-    year: number,
-  ): Promise<SavingsInvestments[]> {
-    const response = await httpClient.get<
-      SavingsInvestmentsResponseDto[]
-    >(`/savings-investments/history/${year}`);
+  async getByYear(year: number): Promise<SavingsInvestments[]> {
+    const response = await httpClient.get<SavingsInvestmentsResponseDto[]>(
+      `/savings-investments/history/${year}`,
+    );
 
     return response.data.map(mapSavingsInvestments);
   }
@@ -85,11 +72,10 @@ class SavingsInvestmentssRepository {
   async create(
     request: CreateSavingsInvestmentsRequest,
   ): Promise<SavingsInvestments> {
-    const response =
-      await httpClient.post<SavingsInvestmentsResponseDto>(
-        "/savings-investments",
-        mapSavingsInvestmentsRequest(request),
-      );
+    const response = await httpClient.post<SavingsInvestmentsResponseDto>(
+      "/savings-investments",
+      mapSavingsInvestmentsRequest(request),
+    );
 
     return mapSavingsInvestments(response.data);
   }
@@ -97,11 +83,10 @@ class SavingsInvestmentssRepository {
   async update(
     request: UpdateSavingsInvestmentsRequest,
   ): Promise<SavingsInvestments> {
-    const response =
-      await httpClient.put<SavingsInvestmentsResponseDto>(
-        `/savings-investments/${request.id}`,
-        mapSavingsInvestmentsRequest(request),
-      );
+    const response = await httpClient.put<SavingsInvestmentsResponseDto>(
+      `/savings-investments/${request.id}`,
+      mapSavingsInvestmentsRequest(request),
+    );
 
     return mapSavingsInvestments(response.data);
   }

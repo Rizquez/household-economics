@@ -8,6 +8,7 @@ import type { MonthlySummaryRow, UseMonthlySummaryParams } from "../types";
 const useMonthlySummary = ({
   selectedPeriod,
   expenses,
+  incomes,
 }: UseMonthlySummaryParams) => {
   const [yearValue, monthValue] = selectedPeriod.split("-");
 
@@ -27,35 +28,43 @@ const useMonthlySummary = ({
           budgetGroup.budgets.find((budget) => budget.month === month)
             ?.amount ?? 0;
 
-        const actualExpenditure = expenses.reduce((total, expense) => {
+        const expensesTotal = expenses.reduce((total, expense) => {
           if (expense.items.length > 0) {
-            const itemsTotal = expense.items.reduce(
-              (currentItemsTotal, item) =>
-                item.categoryId === budgetGroup.categoryId
-                  ? currentItemsTotal + item.amount
-                  : currentItemsTotal,
-              0,
+            return (
+              total +
+              expense.items.reduce(
+                (itemsTotal, item) =>
+                  item.categoryNormalizedName === budgetGroup.normalizedName
+                    ? itemsTotal + item.amount
+                    : itemsTotal,
+                0,
+              )
             );
-
-            return total + itemsTotal;
           }
 
-          if (expense.categoryId === budgetGroup.categoryId) {
-            return total + expense.amount;
-          }
-
-          return total;
+          return expense.categoryNormalizedName === budgetGroup.normalizedName
+            ? total + expense.amount
+            : total;
         }, 0);
+
+        const incomesTotal = incomes.reduce(
+          (total, income) =>
+            income.categoryNormalizedName === budgetGroup.normalizedName
+              ? total + income.amount
+              : total,
+          0,
+        );
 
         return {
           categoryId: budgetGroup.categoryId,
           categoryName: budgetGroup.name,
           budget: monthlyBudget,
-          actualExpenditure,
-          difference: monthlyBudget - actualExpenditure,
+          expenses: expensesTotal,
+          income: incomesTotal,
+          difference: monthlyBudget - expensesTotal + incomesTotal,
         };
       }),
-    [query.data, expenses, month],
+    [query.data, expenses, incomes, month],
   );
 
   return {

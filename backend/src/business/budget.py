@@ -42,6 +42,7 @@ class BudgetBusiness(Business):
             session.commit()
             session.refresh(budget_group)
             budget_group.budgets
+            budget_group.category
             return budget_group
         except Exception:
             session.rollback()
@@ -68,6 +69,7 @@ class BudgetBusiness(Business):
             budget_groups = cls.db.get_budget_group(session, year, family_id)
             for budget_group in budget_groups:
                 budget_group.budgets
+                budget_group.category
             return budget_groups
         finally:
             session.close()

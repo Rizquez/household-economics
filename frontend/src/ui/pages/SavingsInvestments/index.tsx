@@ -27,8 +27,7 @@ const SavingsInvestments = () => {
           </h1>
 
           <p className="text-sm text-text-secondary">
-            Allocate what you have left for the
-            month and make your money grow.
+            Allocate what you have left for the month and make your money grow.
           </p>
         </div>
       </div>
@@ -41,17 +40,20 @@ const SavingsInvestments = () => {
 
       <div className="grid min-h-0 flex-1 grid-cols-[0.5fr_1fr] gap-4">
         <SavingsInvestmentsAllocation
+          key={[
+            year,
+            month,
+            savingsInvestment?.id ?? "new",
+            savingsInvestment?.savingsAmount ?? 0,
+            savingsInvestment?.investmentAmount ?? 0,
+          ].join("-")}
           year={year}
           month={month}
           availableAmount={availableAmount}
-          savingsInvestment={
-            savingsInvestment
-          }
+          savingsInvestment={savingsInvestment}
         />
 
-        <SavingsInvestmentsHistory
-          history={history}
-        />
+        <SavingsInvestmentsHistory history={history} />
       </div>
     </div>
   );

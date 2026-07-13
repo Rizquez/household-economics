@@ -10,27 +10,19 @@ import type {
 const repository = new SavingsInvestmentsRepository();
 
 class GetSavingsInvestments {
-  execute(
-    month: number,
-    year: number,
-  ): Promise<SavingsInvestments | null> {
+  execute(month: number, year: number): Promise<SavingsInvestments | null> {
     return repository.getByMonthAndYear(month, year);
   }
 }
 
 class GetSavingsInvestmentsByYear {
-  execute(
-    year: number,
-  ): Promise<SavingsInvestments[]> {
+  execute(year: number): Promise<SavingsInvestments[]> {
     return repository.getByYear(year);
   }
 }
 
 class GetSavingsInvestmentsAvailableAmount {
-  execute(
-    month: number,
-    year: number,
-  ): Promise<SavingsInvestmentsAvailable> {
+  execute(month: number, year: number): Promise<SavingsInvestmentsAvailable> {
     return repository.getAvailableAmount(month, year);
   }
 }
@@ -51,17 +43,13 @@ class UpdateSavingsInvestments {
   }
 }
 
-export const getSavingsInvestments =
-  new GetSavingsInvestments();
+export const getSavingsInvestments = new GetSavingsInvestments();
 
-export const getSavingsInvestmentsByYear =
-  new GetSavingsInvestmentsByYear();
+export const getSavingsInvestmentsByYear = new GetSavingsInvestmentsByYear();
 
 export const getSavingsInvestmentsAvailableAmount =
   new GetSavingsInvestmentsAvailableAmount();
 
-export const createSavingsInvestments =
-  new CreateSavingsInvestments();
+export const createSavingsInvestments = new CreateSavingsInvestments();
 
-export const updateSavingsInvestments =
-  new UpdateSavingsInvestments();
+export const updateSavingsInvestments = new UpdateSavingsInvestments();

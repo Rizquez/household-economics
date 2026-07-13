@@ -1,8 +1,6 @@
-export const SAVINGS_INVESTMENTS_QUERY_KEY =
-  "savings-investments";
+export const SAVINGS_INVESTMENTS_QUERY_KEY = "savings-investments";
 
-export const SAVINGS_INVESTMENT_QUERY_KEY =
-  "savings-investment";
+export const SAVINGS_INVESTMENT_QUERY_KEY = "savings-investment";
 
 export const SAVINGS_INVESTMENTS_HISTORY_QUERY_KEY =
   "savings-investments-history";
