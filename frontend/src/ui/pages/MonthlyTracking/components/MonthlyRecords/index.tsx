@@ -38,8 +38,8 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
           <table className="w-full min-w-180 border-collapse bg-surface text-sm">
             <thead className="sticky top-0 z-10 bg-background text-text-secondary">
               <tr>
-                <th className="w-60 max-w-60 px-4 py-3 text-left font-medium">Name</th>
-                <th className="w-28 px-4 py-3 text-left font-medium">Type</th>
+                <th className="w-60 max-w-60 px-4 py-3 text-left font-medium">Record name</th>
+                <th className="w-28 px-4 py-3 text-left font-medium">Record type</th>
                 <th className="w-28 px-4 py-3 text-left font-medium">Category</th>
                 <th className="w-28 px-4 py-3 text-left font-medium">Amount</th>
                 <th className="w-28 max-w-28 px-4 py-3 text-left font-medium">Note</th>
