@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from sqlalchemy import Column, BigInteger, ForeignKey, DateTime
+from sqlalchemy import Column, BigInteger, ForeignKey, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.sql import func
 
@@ -15,6 +15,13 @@ if TYPE_CHECKING:
 
 class FamilyMembers(ModelBase):
     __tablename__ = "family_members"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id",
+            name="uq_family_members_user_id",
+        ),
+    )
 
     family_id = Column(
         BigInteger,
