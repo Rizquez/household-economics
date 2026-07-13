@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from sqlalchemy import Column, BigInteger, ForeignKey, String, DateTime, Numeric
+from sqlalchemy import Column, BigInteger, ForeignKey, String, DateTime, Numeric, UniqueConstraint
 from sqlalchemy.orm import relationship, Mapped
 
 from models.core import ModelBase
@@ -13,6 +13,13 @@ if TYPE_CHECKING:
 
 class Income(ModelBase):
     __tablename__ = "income"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "savings_investment_id",
+            name="uq_income_savings_investment",
+        ),
+    )
 
     name = Column(String, nullable=False)
 
@@ -32,6 +39,16 @@ class Income(ModelBase):
         BigInteger,
         ForeignKey("family.id", name="fk_income_family_id"),
         nullable=False,
+    )
+
+    savings_investment_id = Column(
+        BigInteger,
+        ForeignKey(
+            "savings_investment.id",
+            name="fk_income_savings_investment_id",
+            ondelete="CASCADE",
+        ),
+        nullable=True,
     )
 
     category: Mapped["Category"] = relationship(back_populates="incomes")

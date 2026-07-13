@@ -67,6 +67,7 @@ class ExpenseRepository {
       notes: dto.notes,
       categoryId: dto.category_id,
       familyId: dto.family_id,
+      savingsInvestmentId: dto.savings_investment_id,
       items: dto.items.map((item) => ({
         id: item.id,
         product: item.product,

@@ -123,25 +123,35 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                         </Tooltip>
                       ) : null}
 
-                      <Tooltip text="Edit">
-                        <Button
-                          variant="secondary"
-                          disabled={isDeleting}
-                          onClick={() => editRecord(record)}
-                        >
-                          <FontAwesomeIcon icon={faPenToSquare} />
-                        </Button>
-                      </Tooltip>
+                      {!record.isSystemGenerated ? (
+                        <>
+                          <Tooltip text="Edit">
+                            <Button
+                              variant="secondary"
+                              disabled={isDeleting}
+                              onClick={() => editRecord(record)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faPenToSquare}
+                              />
+                            </Button>
+                          </Tooltip>
 
-                      <Tooltip text="Delete">
-                        <Button
-                          variant="danger"
-                          disabled={isDeleting}
-                          onClick={() => confirmDelete(record)}
-                        >
-                          <FontAwesomeIcon icon={faTrashCan} />
-                        </Button>
-                      </Tooltip>
+                          <Tooltip text="Delete">
+                            <Button
+                              variant="danger"
+                              disabled={isDeleting}
+                              onClick={() => confirmDelete(record)}
+                            >
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                              />
+                            </Button>
+                          </Tooltip>
+                        </>
+                      ) : (
+                        <span className="text-text-secondary text-right text-xs">No actions allowed</span>
+                      )}
                     </div>
                   </td>
                 </tr>

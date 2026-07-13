@@ -6,6 +6,7 @@ export type IncomeResponseDto = {
   notes: string | null;
   category_id: number | null;
   family_id: number;
+  savings_investment_id: number | null;
   category: IncomeCategoryResponseDto | null;
 };
 

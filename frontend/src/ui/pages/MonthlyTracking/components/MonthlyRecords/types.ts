@@ -28,6 +28,7 @@ export type MonthlyRecord = {
   amount: number;
   notes: string | null;
   categoryName: string | null;
+  isSystemGenerated: boolean;
   income: Income | null;
   expense: Expense | null;
 };

@@ -16,6 +16,7 @@ export type Expense = {
   notes: string | null;
   categoryId: number | null;
   familyId: number;
+  savingsInvestmentId: number | null;
   items: ExpenseItem[];
   categoryName: string | null;
   categoryNormalizedName: string | null;

@@ -35,6 +35,10 @@ class SavingsInvestmentsBusiness(Business):
             a_dict["family_id"] = family_id
             savings_investment = cls.db.create_savings_investment(session, a_dict)
 
+            session.flush()
+
+            cls.db.synchronize_remaining_record(session, savings_investment)
+
             session.commit()
             session.refresh(savings_investment)
             return savings_investment
@@ -81,6 +85,10 @@ class SavingsInvestmentsBusiness(Business):
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No savings and investments were found associated with ID: {savings_investment_id}."
                 )
+            
+            session.flush()
+
+            cls.db.synchronize_remaining_record(session, savings_investment)
 
             session.commit()
             session.refresh(savings_investment)
@@ -142,7 +150,7 @@ class SavingsInvestmentsBusiness(Business):
             )
         finally:
             session.close()
-
+        
     @staticmethod
     def __validate_assigned_amount(
         available_amount: Decimal,
@@ -150,8 +158,15 @@ class SavingsInvestmentsBusiness(Business):
         investment_amount: Decimal,
     ) -> None:
         assigned_amount = savings_amount + investment_amount
-        if assigned_amount > available_amount:
+
+        if available_amount < Decimal("0") and assigned_amount != Decimal("0"):
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="The amount assigned to savings and investments cannot exceed the available amount."
+                status_code=status.HTTP_406_NOT_ACCEPTABLE,
+                detail="Savings and investments must be zero when the available amount is negative."
+            )
+
+        if available_amount >= Decimal("0") and assigned_amount > available_amount:
+            raise HTTPException(
+                status_code=status.HTTP_406_NOT_ACCEPTABLE,
+                detail="The assigned amount cannot exceed the available amount."
             )

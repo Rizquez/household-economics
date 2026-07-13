@@ -110,6 +110,12 @@ class ExpenseBusiness(Business):
                     detail=f"No expense were found associated with ID: {expense_id}."
                 )
             
+            if existing.savings_investment_id is not None:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="System-generated expense records cannot be updated.",
+                )
+            
             previous_month = existing.created_at.month
             previous_year = existing.created_at.year
 
@@ -173,6 +179,12 @@ class ExpenseBusiness(Business):
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail=f"No expense were found associated with ID: {expense_id}.",
+                )
+            
+            if existing.savings_investment_id is not None:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="System-generated expense records cannot be deleted.",
                 )
             
             month = existing.created_at.month

@@ -58,6 +58,7 @@ class IncomeRepository {
       notes: dto.notes,
       categoryId: dto.category_id,
       familyId: dto.family_id,
+      savingsInvestmentId: dto.savings_investment_id,
       categoryName: dto.category?.name ?? null,
       categoryNormalizedName: dto.category?.normalized_name ?? null
     };

@@ -40,6 +40,8 @@ const useMonthlyRecords = ({
             amount: income.amount,
             notes: income.notes,
             categoryName: income.categoryName,
+            isSystemGenerated:
+              income.savingsInvestmentId !== null,
             income,
             expense: null,
           }),
@@ -54,6 +56,8 @@ const useMonthlyRecords = ({
             amount: expense.amount,
             notes: expense.notes,
             categoryName: expense.categoryName,
+            isSystemGenerated:
+              expense.savingsInvestmentId !== null,
             income: null,
             expense,
           }),
@@ -83,6 +87,8 @@ const useMonthlyRecords = ({
   };
 
   const editRecord = (record: MonthlyRecord) => {
+    if (record.isSystemGenerated) return;
+
     if (record.income) {
       onEdit({
         type: "Income",
@@ -110,6 +116,8 @@ const useMonthlyRecords = ({
   };
 
   const confirmDelete = (record: MonthlyRecord) => {
+    if (record.isSystemGenerated) return;
+    
     const recordId = record.income?.id ?? record.expense?.id;
 
     if (recordId === undefined) return;
