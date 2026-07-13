@@ -74,8 +74,10 @@ class ExpenseRepository {
         categoryId: item.category_id,
         expenseId: item.expense_id,
         categoryName: item.category?.name ?? null,
+        categoryNormalizedName: item.category?.normalized_name ?? null
       })),
       categoryName: dto.category?.name ?? null,
+      categoryNormalizedName: dto.category?.normalized_name ?? null
     };
   }
 

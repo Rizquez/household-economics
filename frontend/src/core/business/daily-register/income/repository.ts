@@ -59,6 +59,7 @@ class IncomeRepository {
       categoryId: dto.category_id,
       familyId: dto.family_id,
       categoryName: dto.category?.name ?? null,
+      categoryNormalizedName: dto.category?.normalized_name ?? null
     };
   }
 }

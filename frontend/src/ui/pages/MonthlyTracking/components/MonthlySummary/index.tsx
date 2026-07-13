@@ -4,11 +4,13 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
   const totals = rows.reduce(
     (accumulator, row) => ({
       budget: accumulator.budget + row.budget,
-      expenses: accumulator.expenses + row.actualExpenditure,
+      expenses: accumulator.expenses + row.expenses,
+      income: accumulator.income + row.income,
     }),
     {
       budget: 0,
       expenses: 0,
+      income: 0,
     },
   );
 
@@ -29,6 +31,8 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
               <th className="px-4 py-3 text-right font-medium">Budget</th>
 
               <th className="px-4 py-3 text-right font-medium">Expenses</th>
+
+              <th className="px-4 py-3 text-right font-medium">Income</th>
 
               <th className="px-4 py-3 text-right font-medium">Available</th>
             </tr>
@@ -60,7 +64,11 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.actualExpenditure.toFixed(2)}
+                  {row.expenses.toFixed(2)}
+                </td>
+
+                <td className="px-4 py-3 text-right text-text-primary">
+                  {row.income.toFixed(2)}
                 </td>
 
                 <td
@@ -86,6 +94,10 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
 
                 <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
                   {totals.expenses.toFixed(2)}
+                </td>
+
+                <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
+                  {totals.income.toFixed(2)}
                 </td>
 
                 <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>
