@@ -110,8 +110,13 @@ const SavingsInvestmentsAllocation = (
 
         <div className="grid gap-4 border-t border-text-secondary/10 pt-4 md:grid-cols-2">
           <div className="flex flex-col gap-1">
-            <span className="text-sm text-text-secondary">
-              Assigned
+            <span className="flex items-center gap-2 text-sm text-text-secondary">
+              <span className="">Assigned</span>
+              <Tooltip text="The amount assigned for savings and investments will be reset to zero whenever the available balance decreases.">
+                <span className="cursor-pointer">
+                  <FontAwesomeIcon icon={faCircleInfo} />
+                </span>
+              </Tooltip>
             </span>
 
             <span className="text-lg font-semibold text-text-primary">
