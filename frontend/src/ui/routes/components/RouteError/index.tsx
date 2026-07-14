@@ -5,17 +5,10 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import useRouteErrorPage from "./hooks/useRouteErrorPage";
-import { useEffect } from 'react';
 
 const RouteError = () => {
   const { isLoaded, status, title, description, homeLabel, goBack, goHome } =
-    useRouteErrorPage();
-
-  useEffect(() => {
-    if (status === 401)
-      goHome();
-  }, [status, goHome])
-  
+    useRouteErrorPage(); 
   if (!isLoaded) return null;
 
   return (
