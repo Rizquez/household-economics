@@ -53,7 +53,7 @@ const MonthlyTracking = () => {
           </h1>
 
           <p className="text-sm text-text-secondary">
-            Track and monitor your monthly income and expenses.
+            Keep track of, record, and monitor your monthly income and expenses.
           </p>
         </div>
       </div>

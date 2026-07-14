@@ -27,7 +27,8 @@ const SavingsInvestments = () => {
           </h1>
 
           <p className="text-sm text-text-secondary">
-            Allocate what you have left for the month and make your money grow.
+            Organize your finances by allocating what you have left for the
+            month and make your money grow.
           </p>
         </div>
       </div>

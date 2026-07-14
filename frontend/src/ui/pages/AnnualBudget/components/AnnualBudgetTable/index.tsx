@@ -43,7 +43,7 @@ const AnnualBudgetTable = ({
                 colSpan={months.length + 2}
                 className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
               >
-                No budget groups found for this year.
+                No budget groups found for this period.
               </td>
             </tr>
           )}

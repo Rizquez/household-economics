@@ -127,6 +127,7 @@ backend/
 │   │   ├── auth.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py
 │   │   ├── income.py
@@ -140,6 +141,7 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py
 │   │   ├── income.py
@@ -158,6 +160,7 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py
 │   │   ├── income.py

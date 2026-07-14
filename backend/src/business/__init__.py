@@ -2,6 +2,7 @@ from .core import setup_business_layer
 from .auth import AuthBusiness
 from .budget import BudgetBusiness
 from .category import CategoryBusiness
+from .dashboard import DashboardBusiness
 from .expense import ExpenseBusiness
 from .family import FamilyBusiness
 from .income import IncomeBusiness
