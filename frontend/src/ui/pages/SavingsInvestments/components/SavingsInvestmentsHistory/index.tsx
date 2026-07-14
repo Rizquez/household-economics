@@ -14,7 +14,7 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
         </h2>
 
         <p className="text-sm text-text-secondary">
-          Review your allocations for the selected year.
+          Review your allocations on an annual basis.
         </p>
       </div>
 
@@ -67,7 +67,7 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
                   colSpan={4}
                   className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
                 >
-                  No savings or investments found for this year.
+                  No savings or investments found for this period.
                 </td>
               </tr>
             )}

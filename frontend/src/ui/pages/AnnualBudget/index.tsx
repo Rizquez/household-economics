@@ -26,7 +26,7 @@ const AnnualBudget = () => {
         </h1>
 
         <p className="text-sm text-text-secondary">
-          Plan your family budget month by month.
+          Plan, adjust, and keep track of your family budget by category.
         </p>
       </div>
 

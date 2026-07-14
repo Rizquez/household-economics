@@ -42,7 +42,7 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
             {!rows.length && (
               <tr>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
                 >
                   No annual budget categories found for this period.

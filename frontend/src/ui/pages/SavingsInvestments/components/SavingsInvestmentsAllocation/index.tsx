@@ -35,7 +35,7 @@ const SavingsInvestmentsAllocation = (
         </h2>
 
         <p className="text-sm text-text-secondary">
-          Assign the available amount to savings and investments.
+          Allocate the available amount to savings and investments.
         </p>
       </div>
 
