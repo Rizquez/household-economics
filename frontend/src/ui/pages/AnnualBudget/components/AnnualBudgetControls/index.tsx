@@ -16,7 +16,7 @@ const AnnualBudgetControls = ({
       <div className="w-fit">
         <Select
           id="annual-budget-year"
-          label="Filter budgets by year"
+          label="Filter by year"
           className="text-right"
           value={year}
           placeholder={yearOptions.length ? undefined : "No periods available"}

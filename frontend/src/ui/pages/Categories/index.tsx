@@ -17,7 +17,7 @@ const Categories = () => {
         <h1 className="text-xl font-semibold text-text-primary">Categories</h1>
 
         <p className="text-sm text-text-secondary">
-          Manage your categories based on the record type.
+          Manage and keep your categories organized by record type.
         </p>
       </div>
 

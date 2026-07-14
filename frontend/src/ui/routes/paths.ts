@@ -15,8 +15,8 @@ export const paths = {
   },
   dashboard: {
     href: "/dashboard",
-    title: "Dashboard (TODO)",
-    label: "Dashboard (TODO)",
+    title: "Dashboard",
+    label: "Dashboard",
     icon: faChartPie,
   },
   monthlytracking: {
