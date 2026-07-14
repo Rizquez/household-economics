@@ -6,6 +6,7 @@ export type Income = {
   notes: string | null;
   categoryId: number | null;
   familyId: number;
+  savingsInvestmentId: number | null;
   categoryName: string | null;
   categoryNormalizedName: string | null;
 };

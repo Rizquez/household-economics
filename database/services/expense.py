@@ -147,7 +147,7 @@ class ExpenseService(ServiceBase):
             ),
             model=Expense,
         )
-    
+
     @classmethod
     def has_expenses_by_month_and_year(
         cls,
@@ -167,4 +167,16 @@ class ExpenseService(ServiceBase):
                 model=Expense,
             )
             is not None
+        )
+
+    @classmethod
+    def get_expense_by_savings_investment(
+        cls,
+        session: "scoped_session",
+        savings_investment_id: int,
+    ) -> Optional[Expense]:
+        return cls.find(
+            session,
+            Expense.savings_investment_id == savings_investment_id,
+            model=Expense,
         )

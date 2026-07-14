@@ -15,6 +15,7 @@ class BudgetResponse(ResponseBase):
 class BudgetGroupResponse(ResponseBase):
     id: int
     name: str
+    normalized_name: str
     year: int
     category_id: int
     budgets: List[BudgetResponse]

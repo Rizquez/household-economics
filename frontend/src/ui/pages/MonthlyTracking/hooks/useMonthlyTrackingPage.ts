@@ -82,7 +82,7 @@ const useMonthlyTrackingPage = () => {
   } = useMonthlySummary({
     selectedPeriod: activePeriod,
     expenses,
-    incomes
+    incomes,
   });
 
   const isLoading =

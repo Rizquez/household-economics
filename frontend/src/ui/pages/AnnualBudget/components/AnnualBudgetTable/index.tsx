@@ -7,7 +7,9 @@ const AnnualBudgetTable = ({
   onAmountChange,
   hasFieldError,
 }: AnnualBudgetTableProps) => {
-  const months = budgetGroups.length ? getMonths(budgetGroups) : Array.from({ length: 12 }, (_, index) => index + 1);
+  const months = budgetGroups.length
+    ? getMonths(budgetGroups)
+    : Array.from({ length: 12 }, (_, index) => index + 1);
   const monthlyTotals = getMonthlyTotals(months, budgetGroups);
 
   return (
@@ -72,16 +74,11 @@ const AnnualBudgetTable = ({
                         value={budget?.amount ?? 0}
                         className="ml-auto h-9 w-20 px-2"
                         error={
-                          budget
-                            ? hasFieldError(`budget.${budget.id}`)
-                            : false
+                          budget ? hasFieldError(`budget.${budget.id}`) : false
                         }
                         onChange={(event) =>
                           budget &&
-                          onAmountChange(
-                            budget.id,
-                            Number(event.target.value),
-                          )
+                          onAmountChange(budget.id, Number(event.target.value))
                         }
                       />
                     </td>

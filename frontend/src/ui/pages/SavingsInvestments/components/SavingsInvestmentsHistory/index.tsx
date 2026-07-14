@@ -2,15 +2,9 @@ import useSavingsInvestmentsHistory from "./hooks/useSavingsInvestmentsHistory";
 
 import type { SavingsInvestmentsHistoryProps } from "./types";
 
-const SavingsInvestmentsHistory = (
-  props: SavingsInvestmentsHistoryProps,
-) => {
-  const {
-    rows,
-    totalSaved,
-    totalInvested,
-    totalAssigned,
-  } = useSavingsInvestmentsHistory(props);
+const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
+  const { rows, totalSaved, totalInvested, totalAssigned } =
+    useSavingsInvestmentsHistory(props);
 
   return (
     <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
@@ -62,9 +56,7 @@ const SavingsInvestmentsHistory = (
                 Allocated investments
               </th>
 
-              <th className="px-4 py-3 text-right font-medium">
-                Accumulated
-              </th>
+              <th className="px-4 py-3 text-right font-medium">Accumulated</th>
             </tr>
           </thead>
 
@@ -81,42 +73,39 @@ const SavingsInvestmentsHistory = (
             )}
 
             {rows.map((row) => (
-              <tr
-                key={row.id}
-                className="border-t border-text-secondary/10"
-              >
+              <tr key={row.id} className="border-t border-text-secondary/10">
                 <td className="px-4 py-3 font-medium text-text-primary">
                   {row.label}
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-  {row.savingsAmount.toFixed(2)}
-</td>
+                  {row.savingsAmount.toFixed(2)}
+                </td>
 
-<td className="px-4 py-3 text-right text-text-primary">
-  {row.investmentAmount.toFixed(2)}
-</td>
+                <td className="px-4 py-3 text-right text-text-primary">
+                  {row.investmentAmount.toFixed(2)}
+                </td>
 
-<td className="px-4 py-3 text-right font-semibold text-text-primary">
-  {row.accumulatedAmount.toFixed(2)}
-</td>
+                <td className="px-4 py-3 text-right font-semibold text-text-primary">
+                  {row.accumulatedAmount.toFixed(2)}
+                </td>
               </tr>
             ))}
           </tbody>
 
           <tfoot>
-  <tr className="border-t border-text-secondary/10 bg-background font-semibold">
-    <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary" />
+            <tr className="border-t border-text-secondary/10 bg-background font-semibold">
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-text-primary" />
 
-    <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary" />
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary" />
 
-    <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary" />
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary" />
 
-    <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-      Total: {totalAssigned.toFixed(2)}
-    </td>
-  </tr>
-</tfoot>
+              <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
+                Total: {totalAssigned.toFixed(2)}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </section>

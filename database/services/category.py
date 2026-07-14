@@ -25,7 +25,7 @@ class CategoryService(ServiceBase):
             model=Category,
             order_by=Category.name,
         )
-    
+
     @classmethod
     def get_category_by_normalized_name(
         cls,

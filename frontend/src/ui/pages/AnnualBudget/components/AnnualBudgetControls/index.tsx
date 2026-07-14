@@ -27,15 +27,14 @@ const AnnualBudgetControls = ({
       </div>
 
       <div className="flex flex-col items-end gap-2">
-      <Button disabled={!hasBudgetGroups || isUpdatingBudgets} onClick={onSaveBudgets}>
-        {isUpdatingBudgets ? "Saving..." : "Save changes"}
-      </Button>
-      {formError && (
-      <p className="text-sm text-error">
-        {formError}
-      </p>
-    )}
-    </div>
+        <Button
+          disabled={!hasBudgetGroups || isUpdatingBudgets}
+          onClick={onSaveBudgets}
+        >
+          {isUpdatingBudgets ? "Saving..." : "Save changes"}
+        </Button>
+        {formError && <p className="text-sm text-error">{formError}</p>}
+      </div>
     </section>
   );
 };

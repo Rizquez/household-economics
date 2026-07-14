@@ -6,10 +6,7 @@ import {
   SAVINGS_INVESTMENT_QUERY_KEY,
 } from "./constants";
 
-const useSavingsInvestments = (
-  month: number,
-  year: number,
-) => {
+const useSavingsInvestments = (month: number, year: number) => {
   const query = useQuery({
     queryKey: [
       SAVINGS_INVESTMENTS_QUERY_KEY,
@@ -17,8 +14,7 @@ const useSavingsInvestments = (
       year,
       month,
     ],
-    queryFn: () =>
-      getSavingsInvestments.execute(month, year),
+    queryFn: () => getSavingsInvestments.execute(month, year),
     enabled: month >= 1 && month <= 12 && year >= 1,
   });
 
