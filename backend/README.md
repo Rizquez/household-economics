@@ -121,16 +121,21 @@ backend/
 │   ├── business
 │   │   ├── core
 │   │   │   ├── __init__.py
-│   │   │   ├── base.py
+│   │   │   └── base.py
+│   │   ├── services
+│   │   │   ├── __init__.py
 │   │   │   └── email.py
 │   │   ├── __init__.py
 │   │   ├── auth.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
-│   │   └── record_type.py
+│   │   ├── record_type.py
+│   │   └── savings_investment.py
 │   ├── routes
 │   │   ├── helpers
 │   │   │   ├── __init__.py
@@ -138,26 +143,34 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
+│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── schemas
 │   │   ├── core
 │   │   │   ├── __init__.py
-│   │   │   ├── base.py
-│   │   │   └── handler.py
+│   │   │   └── base.py
 │   │   ├── enums
 │   │   │   ├── __init__.py
 │   │   │   └── role.py
+│   │   ├── helpers
+│   │   │   ├── __init__.py
+│   │   │   └── handler.py
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── dashboard.py
 │   │   ├── expense.py
+│   │   ├── family.py
 │   │   ├── income.py
 │   │   ├── monthly_tracking.py
 │   │   ├── record_type.py
+│   │   ├── savings_investment.py
 │   │   └── user.py
 │   ├── constants.py
 │   ├── env.py

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from typing import List, TYPE_CHECKING
-
 from fastapi import APIRouter, Depends, status
 
 from src.auth import get_allowed_user

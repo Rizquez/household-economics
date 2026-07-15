@@ -13,9 +13,8 @@ if TYPE_CHECKING:
 
 class ExpenseService(ServiceBase):
 
-    @classmethod
+    @staticmethod
     def get_expenses_by_month_and_year(
-        cls,
         session: "scoped_session",
         month: int,
         year: int,
@@ -146,5 +145,38 @@ class ExpenseService(ServiceBase):
                 Expense.id == expense_id,
                 Expense.family_id == family_id,
             ),
+            model=Expense,
+        )
+
+    @classmethod
+    def has_expenses_by_month_and_year(
+        cls,
+        session: "scoped_session",
+        month: int,
+        year: int,
+        family_id: int,
+    ) -> bool:
+        return (
+            cls.find(
+                session,
+                and_(
+                    Expense.family_id == family_id,
+                    extract("month", Expense.created_at) == month,
+                    extract("year", Expense.created_at) == year,
+                ),
+                model=Expense,
+            )
+            is not None
+        )
+
+    @classmethod
+    def get_expense_by_savings_investment(
+        cls,
+        session: "scoped_session",
+        savings_investment_id: int,
+    ) -> Optional[Expense]:
+        return cls.find(
+            session,
+            Expense.savings_investment_id == savings_investment_id,
             model=Expense,
         )

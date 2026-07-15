@@ -17,6 +17,9 @@ const useDailyRegisterPage = () => {
       {
         queryKey: [RECORD_TYPES_QUERY_KEY],
         queryFn: () => listRecordTypes.execute(),
+        meta: {
+          blocksAppLayout: false,
+        },
       },
     ],
   })[0];
@@ -38,6 +41,9 @@ const useDailyRegisterPage = () => {
         queryKey: [CATEGORIES_QUERY_KEY, recordType!.id],
         queryFn: () => listCategories.execute(recordType!.id),
         enabled: Boolean(recordType),
+        meta: {
+          blocksAppLayout: false,
+        },
       })),
   });
 

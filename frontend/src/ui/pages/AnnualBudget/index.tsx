@@ -7,8 +7,10 @@ const AnnualBudget = () => {
     year,
     yearOptions,
     budgetGroups,
+    formError,
     isReady,
     isUpdatingBudgets,
+    hasFieldError,
     setYear,
     updateBudgetAmount,
     saveBudgets,
@@ -24,20 +26,23 @@ const AnnualBudget = () => {
         </h1>
 
         <p className="text-sm text-text-secondary">
-          Plan your family budget month by month.
+          Plan, adjust, and keep track of your family budget by category.
         </p>
       </div>
 
       <AnnualBudgetControls
         year={year}
         yearOptions={yearOptions}
+        hasBudgetGroups={Boolean(budgetGroups.length)}
         isUpdatingBudgets={isUpdatingBudgets}
+        formError={formError}
         onYearChange={setYear}
         onSaveBudgets={saveBudgets}
       />
 
       <AnnualBudgetTable
         budgetGroups={budgetGroups}
+        hasFieldError={hasFieldError}
         onAmountChange={updateBudgetAmount}
       />
     </div>

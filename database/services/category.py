@@ -27,6 +27,24 @@ class CategoryService(ServiceBase):
         )
 
     @classmethod
+    def get_category_by_normalized_name(
+        cls,
+        session: "scoped_session",
+        normalized_name: str,
+        record_type_id: int,
+        family_id: int,
+    ) -> Optional[Category]:
+        return cls.find(
+            session,
+            and_(
+                Category.normalized_name == normalized_name,
+                Category.record_type_id == record_type_id,
+                Category.family_id == family_id,
+            ),
+            model=Category,
+        )
+
+    @classmethod
     def create_category(cls, session: "scoped_session", a_dict: Dict) -> Category:
         return cls.create(session, a_dict, Category)
 

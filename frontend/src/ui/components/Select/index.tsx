@@ -7,6 +7,7 @@ const Select = ({
   placeholder,
   className = "",
   id,
+  disabled = false,
   ...props
 }: SelectProps) => {
   return (
@@ -19,7 +20,18 @@ const Select = ({
 
       <select
         id={id}
-        className={`appearance-none cursor-pointer h-10 rounded-xl border bg-surface px-3 text-sm text-text-primary outline-none focus:border-primary ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
+        disabled={disabled}
+        className={`
+          h-10 appearance-none rounded-xl border px-3 text-sm outline-none transition-colors
+          ${
+            disabled
+              ? "cursor-not-allowed border-text-secondary/10 bg-background text-text-secondary opacity-60"
+              : `cursor-pointer bg-surface text-text-primary focus:border-primary ${
+                  error ? "border-error" : "border-text-secondary/20"
+                }`
+          }
+          ${className}
+        `}
         {...props}
       >
         {placeholder && <option value="">{placeholder}</option>}
