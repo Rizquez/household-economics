@@ -1,11 +1,24 @@
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import type { AccessErrorProps } from "./types";
+import { useNavigate } from "react-router";
+import { paths } from "@/ui/routes/paths";
+import Button from "@/ui/components/Button";
 
 const AccessError = ({ message }: AccessErrorProps) => {
+  const navigate = useNavigate();
   const { closeModal } = useModal();
+
+  const goHome = () => {
+    navigate(paths.home.href, {
+      replace: true,
+    });
+  };
 
   useEffect(() => {
     closeModal();
@@ -35,6 +48,13 @@ const AccessError = ({ message }: AccessErrorProps) => {
 
         <div className="w-full rounded-xl bg-background px-5 py-4 text-sm text-error">
           {message}
+        </div>
+
+        <div className="flex gap-3">
+          <Button onClick={goHome} className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faHouse} className="text-sm" />
+            {"Home"}
+          </Button>
         </div>
       </section>
     </div>
