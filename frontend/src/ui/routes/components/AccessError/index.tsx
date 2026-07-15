@@ -5,19 +5,21 @@ import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import type { AccessErrorProps } from "./types";
 import { useNavigate } from "react-router";
 import { paths } from "@/ui/routes/paths";
+import Button from "@/ui/components/Button"
 
 const AccessError = ({ message }: AccessErrorProps) => {
+  const navigate = useNavigate();
   const { closeModal } = useModal();
+
+  const goHome = () => {
+    navigate(paths.home.href, {
+      replace: true,
+    })
+  }
 
   useEffect(() => {
     closeModal();
   }, [closeModal]);
-
-  const navigate = useNavigate();
-
-  const goHome = () => {
-    navigate(paths.home.href)
-  }
 
   return (
     <div className="flex h-full items-center justify-center bg-background p-8">
@@ -47,13 +49,13 @@ const AccessError = ({ message }: AccessErrorProps) => {
 
         <div className="flex gap-3">
 
-          <button
+          <Button
             onClick={goHome}
-            className="flex cursor-pointer items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90"
-          >
-            <FontAwesomeIcon icon={faHouse} />
+            className = "flex items-center gap-2">
+             <FontAwesomeIcon icon={faHouse} className="text-sm"/>
             {"Home"}
-          </button>
+          </Button>
+
         </div>
 
       </section>
