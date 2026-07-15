@@ -70,6 +70,10 @@ The architecture is organized into several independent projects with clearly def
     {
         "folders": [
             {
+                "name": ".github",
+                "path": ".github"
+            },
+            {
                 "name": "backend",
                 "path": "backend"
             },
@@ -86,6 +90,22 @@ The architecture is organized into several independent projects with clearly def
     ```
 
     This tells the workspace which folders should be included in it.
+
+## 📂 Project structure
+
+```
+├── .github
+│   ├── workflows
+│   │   ├── format-check.yml
+│   │   └── main-source-check.yml
+│   └── CODEOWNERS
+├── backend/...
+├── database/...
+├── frontend/...
+├── .gitignore
+├── LICENSE
+└── README.md
+```
 
 In each `README` file, you'll find information about installing and running each project:
 
