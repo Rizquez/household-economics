@@ -6,7 +6,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker, scoped_session
 from dotenv import load_dotenv
 
-from models import ModelBase
+from models.core import ModelBase
 from services import (
     BudgetService,
     CategoryService,

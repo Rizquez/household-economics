@@ -62,6 +62,51 @@ The architecture is organized into several independent projects with clearly def
     cd household-economics
     ```
 
+3. Activate workspace: 
+
+    This repository requires the `household-economics.code-workspace` file to be present in the root of the directory. The file must contain at least the following:
+
+    ```json
+    {
+        "folders": [
+            {
+                "name": ".github",
+                "path": ".github"
+            },
+            {
+                "name": "backend",
+                "path": "backend"
+            },
+            {
+                "name": "database",
+                "path": "database"
+            },
+            {
+                "name": "frontend",
+                "path": "frontend"
+            }
+        ]
+    }
+    ```
+
+    This tells the workspace which folders should be included in it.
+
+## 📂 Project structure
+
+```
+├── .github
+│   ├── workflows
+│   │   ├── format-check.yml
+│   │   └── main-source-check.yml
+│   └── CODEOWNERS
+├── backend/...
+├── database/...
+├── frontend/...
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
 In each `README` file, you'll find information about installing and running each project:
 
 * [Backend (README)](./backend/README.md)

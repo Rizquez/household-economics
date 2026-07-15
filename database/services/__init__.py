@@ -1,4 +1,3 @@
-from .core import ServiceBase
 from .budget import BudgetService
 from .category import CategoryService
 from .expense import ExpenseService

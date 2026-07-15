@@ -3,8 +3,10 @@ from typing import Dict, Any
 from fastapi import HTTPException, status
 import logging
 
-from src.schemas import CurrentUser, Role
-from src.business.core import Business, send_access_request_email
+from src.schemas import CurrentUser
+from src.schemas.enums import Role
+from src.business.core import Business
+from src.business.services import send_access_request_email
 
 
 class AuthBusiness(Business):

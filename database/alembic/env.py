@@ -2,7 +2,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import create_engine, pool
 
-from models import ModelBase
+from models.core import ModelBase
 from db import get_database_uri
 
 config = context.config
