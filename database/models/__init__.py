@@ -1,4 +1,3 @@
-from .core import ModelBase
 from .budget_group import BudgetGroup
 from .budget import Budget
 from .category import Category

@@ -1,8 +1,7 @@
-from typing import Any
 from fastapi import status, HTTPException
 
 
-def validate_non_negative_num(num: Any) -> int:
+def validate_non_negative_num(num: str) -> int:
     try:
         int_num = int(num)
     except (TypeError, ValueError):

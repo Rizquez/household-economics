@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 
 from database import Database, get_database_uri
-from src.business import setup_business_layer
+from src.business.core import setup_business_layer
 
 
 def _configure_database() -> Database:
