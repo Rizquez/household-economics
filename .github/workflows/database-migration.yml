@@ -1,0 +1,53 @@
+name: Production Database Migration
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-database-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate-production-database:
+    name: migrate-production-database
+
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'release' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      POSTGRES_URI: ${{ secrets.CLEVER_CLOUD_POSTGRES_URI }}
+
+    steps:
+      - name: Checkout merged main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: database/requirements.txt
+
+      - name: Install database dependencies
+        working-directory: database
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Apply production migrations
+        working-directory: database
+        run: alembic upgrade head
