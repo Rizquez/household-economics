@@ -32,6 +32,33 @@
 
 ## 🚀 Execution
 
+### Local
+
+1. Create and run the container:
+    ```sh
+    docker compose up -d postgres
+    ```
+
+2. Migrate the models:
+    ```sh
+    alembic upgrade head
+    ```
+
+3. Enable access for the user created in the database (pre-registration).
+
+4. Migrate development data:
+    ```sh
+    python -m scripts.seed_local_db
+    ```
+
+5. Restart the database (delete the container and volume):
+    ```
+    docker compose down -v
+    ```
+
+> [!IMPORNTAT]
+> The last step (5) is only necessary if you want to restore all default values and settings. It is important to note that this will completely delete any data or configurations made to the database. Once you have completed step (5), repeat steps (1) through (4).
+
 ### Environment variables
 
 The project requires certain environment variables to run, these variables must be defined in a `.env` file in the project root directory.
@@ -39,7 +66,7 @@ The project requires certain environment variables to run, these variables must 
 An example of what the `.env` file should look like:
 
 ```sh
-POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
+POSTGRES_URI=postgresql://household_economics:household_economics_password@localhost:5432/household_economics
 ```
 
 > [!IMPORTANT]
@@ -94,6 +121,11 @@ database/
 │   ├── role.py
 │   ├── pysavings_investment.py
 │   └── user.py
+├── scripts
+│   ├── __init__.py
+│   ├── constants.py
+│   ├── helpes.py
+│   └── seed_local_db.py
 ├── services
 │   ├── core
 │   │   ├── __init__.py
@@ -112,6 +144,7 @@ database/
 ├── .gitignore
 ├── alembic.ini
 ├── db.py
+├── docker-compose.yml
 ├── pyproject.toml
 ├── README.md
 └── requirements.txt
