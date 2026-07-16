@@ -60,3 +60,7 @@ jobs:
       - name: Check frontend formatting
         working-directory: frontend
         run: make format-check
+      
+      - name: Check frontend lint
+        working-directory: frontend
+        run: make lint

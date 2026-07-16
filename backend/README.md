@@ -49,7 +49,7 @@ The project requires certain environment variables to run, these variables must 
 An example of what the `.env` file should look like:
 
 ```sh
-POSTGRES_URI=postgresql://xxxxx:xxxxx@xxxxx-xxxxx:xxxxx/xxxxx
+POSTGRES_URI=postgresql://household_economics:household_economics_password@localhost:5432/household_economics
 ENVIRONMENT=LOCAL
 CLERK_ISSUER=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev
 CLERK_JWKS_URL=https://xxxxxxxx-xxxx-xx.clerk.accounts.dev/.well-known/jwks.json
