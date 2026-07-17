@@ -20,25 +20,27 @@ const AnnualBudget = () => {
 
   return (
     <div className="flex h-full flex-col gap-6 bg-surface p-6 card">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-semibold text-text-primary">
-          Annual Budget
-        </h1>
+      <div className="flex items-center justify-between gap-4">
+        <header className="flex flex-col gap-1">
+          <h1 className="text-xl font-semibold text-text-primary">
+            Annual Budget
+          </h1>
 
-        <p className="text-sm text-text-secondary">
-          Plan, adjust, and keep track of your family budget by category.
-        </p>
+          <p className="text-sm text-text-secondary">
+            Plan, adjust, and keep track of your family budget by category.
+          </p>
+        </header>
+
+        <AnnualBudgetControls
+          year={year}
+          yearOptions={yearOptions}
+          hasBudgetGroups={Boolean(budgetGroups.length)}
+          isUpdatingBudgets={isUpdatingBudgets}
+          formError={formError}
+          onYearChange={setYear}
+          onSaveBudgets={saveBudgets}
+        />
       </div>
-
-      <AnnualBudgetControls
-        year={year}
-        yearOptions={yearOptions}
-        hasBudgetGroups={Boolean(budgetGroups.length)}
-        isUpdatingBudgets={isUpdatingBudgets}
-        formError={formError}
-        onYearChange={setYear}
-        onSaveBudgets={saveBudgets}
-      />
 
       <AnnualBudgetTable
         budgetGroups={budgetGroups}

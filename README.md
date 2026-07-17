@@ -96,6 +96,7 @@ The architecture is organized into several independent projects with clearly def
 ```
 ├── .github
 │   ├── workflows
+│   │   ├── database-migration.yml
 │   │   ├── format-check.yml
 │   │   └── main-source-check.yml
 │   └── CODEOWNERS

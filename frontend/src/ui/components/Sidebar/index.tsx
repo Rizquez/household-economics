@@ -19,13 +19,21 @@ const Sidebar = () => {
   if (!isVisible || !family) return null;
 
   return (
-    <aside className="flex h-full shrink-0 flex-col bg-surface card">
+    <aside className="flex h-full w-70 shrink-0 flex-col bg-surface card">
       <div className="flex justify-end px-6 pt-6">
         <div className="scale-150">
           <UserButton />
         </div>
       </div>
-      <h1 className="text-lg pl-5 pt-5 font-semibold">{family.name} </h1>
+
+      <div className="px-5 pt-5">
+        <h1
+          className="block w-full truncate text-lg font-semibold"
+          title={family.name}
+        >
+          {family.name}
+        </h1>
+      </div>
       <nav className="flex flex-col gap-1 p-5">
         {sidebarPathKeys.map((key) => {
           const path = paths[key];

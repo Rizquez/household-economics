@@ -21,13 +21,6 @@ const useCreateCategoryForm = () => {
   const { mutate, isPending, error } = useCreateCategory();
 
   const validate = (): CreateCategoryValidationError | null => {
-    if (!category.trim() && !recordTypeId) {
-      return {
-        field: "category",
-        message: "Please enter a category and select a record type.",
-      };
-    }
-
     if (!category.trim()) {
       return {
         field: "category",

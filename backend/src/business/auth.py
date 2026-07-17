@@ -7,6 +7,7 @@ from src.schemas import CurrentUser
 from src.schemas.enums import Role
 from src.business.core import Business
 from src.business.services import send_access_request_email
+from src.env import is_render_environment
 
 
 class AuthBusiness(Business):
@@ -43,15 +44,16 @@ class AuthBusiness(Business):
                     user.access_allowed = False
                 session.flush()
 
-                try:
-                    send_access_request_email(
-                        user.name,
-                        user.email,
-                        user.clerk_id,
-                    )
-                except Exception as ex:
-                    # TODO: improve loggin
-                    logging.exception("Unable to send access request email: %s", ex)
+                if is_render_environment():
+                    try:
+                        send_access_request_email(
+                            user.name,
+                            user.email,
+                            user.clerk_id,
+                        )
+                    except Exception as ex:
+                        # TODO: improve loggin
+                        logging.exception("Unable to send access request email: %s", ex)
 
             family_member = cls.db.get_family_member_by_user_id(session, user.id)
             if family_member is None:
@@ -113,5 +115,4 @@ class AuthBusiness(Business):
         first_name = clerk_user.get("first_name") or ""
         last_name = clerk_user.get("last_name") or ""
         full_name = f"{first_name} {last_name}".strip()
-
         return full_name or clerk_user.get("username") or fallback_email
