@@ -1,3 +1,4 @@
+name: household_economics
 services:
   postgres:
     image: postgres:14-alpine
