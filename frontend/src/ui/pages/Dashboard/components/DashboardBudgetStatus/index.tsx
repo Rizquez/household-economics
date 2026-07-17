@@ -1,12 +1,24 @@
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+
 import type { DashboardBudgetStatusProps } from "./types";
+import getBudgetStatusChartData from "./utils/getBudgetStatusChartData";
 
 const DashboardBudgetStatus = ({
   budgetStatus,
 }: DashboardBudgetStatusProps) => {
   if (!budgetStatus.length) {
     return (
-      <section className="flex min-h-64 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-        <div className="border-b border-text-secondary/10 p-4">
+      <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+        <div className="shrink-0 border-b border-text-secondary/10 p-4">
           <h2 className="text-lg font-semibold text-text-primary">
             Budget status by category
           </h2>
@@ -16,7 +28,7 @@ const DashboardBudgetStatus = ({
           </p>
         </div>
 
-        <div className="flex flex-1 items-center justify-center p-6">
+        <div className="flex min-h-0 flex-1 items-center justify-center p-6">
           <p className="text-center text-sm text-text-secondary">
             No budget information found for this period.
           </p>
@@ -25,85 +37,84 @@ const DashboardBudgetStatus = ({
     );
   }
 
-  const visibleCategories = [...budgetStatus]
-    .sort((first, second) => {
-      const firstIsExceeded = first.available < 0;
-      const secondIsExceeded = second.available < 0;
-
-      if (firstIsExceeded !== secondIsExceeded) {
-        return firstIsExceeded ? -1 : 1;
-      }
-
-      const firstUsage = first.budget > 0 ? first.expenses / first.budget : 0;
-
-      const secondUsage =
-        second.budget > 0 ? second.expenses / second.budget : 0;
-
-      return secondUsage - firstUsage;
-    })
-    .slice(0, 5);
+  const chartData = getBudgetStatusChartData(budgetStatus);
 
   return (
-    <section className="flex min-h-64 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-      <div className="border-b border-text-secondary/10 p-4">
+    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <div className="shrink-0 border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Budget status by category
         </h2>
 
         <p className="text-sm text-text-secondary">
-          Compare your monthly budget with your actual records.
+          Compare the planned budget with the net amount used.
         </p>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-auto">
-        <table className="w-full border-collapse bg-surface text-sm">
-          <thead className="sticky top-0 z-10 bg-background text-text-secondary">
-            <tr>
-              <th className="px-4 py-3 text-left font-medium">Category</th>
+      <div className="min-h-0 flex-1 p-4">
+        <ResponsiveContainer width="100%" height="100%" minHeight={220}>
+          <BarChart
+            data={chartData}
+            layout="vertical"
+            margin={{
+              top: 0,
+              right: 24,
+              bottom: 0,
+              left: 8,
+            }}
+          >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              horizontal={false}
+              stroke="currentColor"
+              className="text-text-secondary/10"
+            />
 
-              <th className="px-4 py-3 text-right font-medium">Budget</th>
+            <XAxis
+              type="number"
+              tick={{
+                fontSize: 12,
+              }}
+              stroke="currentColor"
+              className="text-text-secondary"
+            />
 
-              <th className="px-4 py-3 text-right font-medium">Expenses</th>
+            <YAxis
+              type="category"
+              dataKey="categoryName"
+              width={110}
+              tick={{
+                fontSize: 12,
+              }}
+              stroke="currentColor"
+              className="text-text-secondary"
+            />
 
-              <th className="px-4 py-3 text-right font-medium">Income</th>
+            <Tooltip
+              formatter={(value, name) => [Number(value).toFixed(2), name]}
+            />
 
-              <th className="px-4 py-3 text-right font-medium">Available</th>
-            </tr>
-          </thead>
+            <Legend />
 
-          <tbody>
-            {visibleCategories.map((category) => (
-              <tr
-                key={category.categoryId}
-                className="border-t border-text-secondary/10"
-              >
-                <td className="px-4 py-3 font-medium text-text-primary">
-                  {category.categoryName}
-                </td>
+            <Bar
+              dataKey="budget"
+              name="Budget"
+              fill="currentColor"
+              className="text-primary"
+              radius={[0, 6, 6, 0]}
+              maxBarSize={18}
+            />
 
-                <td className="px-4 py-3 text-right text-text-primary">
-                  {category.budget.toFixed(2)}
-                </td>
-
-                <td className="px-4 py-3 text-right text-text-primary">
-                  {category.expenses.toFixed(2)}
-                </td>
-
-                <td className="px-4 py-3 text-right text-text-primary">
-                  {category.income.toFixed(2)}
-                </td>
-
-                <td
-                  className={`px-4 py-3 text-right font-semibold ${
-                    category.available >= 0 ? "text-success" : "text-error"
-                  }`}
-                >
-                  {category.available.toFixed(2)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <Bar
+              dataKey="netUsed"
+              name="Net used"
+              fill="currentColor"
+              className="text-secondary"
+              radius={[0, 6, 6, 0]}
+              maxBarSize={18}
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </section>
   );

@@ -21,7 +21,7 @@ const SavingsInvestments = () => {
   return (
     <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
       <div className="flex items-center justify-between gap-4">
-        <div className="flex flex-col gap-1">
+        <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-text-primary">
             Saving and investments
           </h1>
@@ -30,14 +30,14 @@ const SavingsInvestments = () => {
             Organize your finances by allocating what you have left for the
             month and make your money grow.
           </p>
-        </div>
-      </div>
+        </header>
 
-      <SavingsInvestmentsControls
-        selectedPeriod={selectedPeriod}
-        periodOptions={periodOptions}
-        onPeriodChange={setSelectedPeriod}
-      />
+        <SavingsInvestmentsControls
+          selectedPeriod={selectedPeriod}
+          periodOptions={periodOptions}
+          onPeriodChange={setSelectedPeriod}
+        />
+      </div>
 
       <div className="grid min-h-0 flex-1 grid-cols-[0.5fr_1fr] gap-4">
         <SavingsInvestmentsAllocation
