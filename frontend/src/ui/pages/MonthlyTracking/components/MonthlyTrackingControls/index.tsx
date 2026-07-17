@@ -1,6 +1,8 @@
 import Button from "@/ui/components/Button";
 import Select from "@/ui/components/Select";
 import type { MonthlyTrackingControlsProps } from "./types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const MonthlyTrackingControls = ({
   selectedPeriod,
@@ -9,12 +11,13 @@ const MonthlyTrackingControls = ({
   onNewRecord,
 }: MonthlyTrackingControlsProps) => {
   return (
-    <section className="flex items-end justify-between gap-4">
-      <div className="w-fit">
+    <section className="flex items-center gap-4">
+      <Button onClick={onNewRecord}>Add record</Button>
+
+      <div className="relative w-fit">
         <Select
           id="monthly-tracking-period"
-          label="Filter by month and year"
-          className="text-right"
+          className="pl-10 text-right"
           value={selectedPeriod}
           placeholder={
             periodOptions.length ? undefined : "No periods available"
@@ -23,9 +26,13 @@ const MonthlyTrackingControls = ({
           options={periodOptions}
           onChange={(event) => onPeriodChange(event.target.value)}
         />
-      </div>
 
-      <Button onClick={onNewRecord}>Add record</Button>
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          aria-hidden="true"
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-primary"
+        />
+      </div>
     </section>
   );
 };
