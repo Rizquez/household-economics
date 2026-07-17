@@ -31,35 +31,31 @@ const useMonthlyRecords = ({
   const records = useMemo<MonthlyRecord[]>(
     () =>
       [
-        ...incomes.map(
-          (income): MonthlyRecord => ({
-            id: `income-${income.id}`,
-            type: "Income",
-            name: income.name,
-            createdAt: income.createdAt,
-            amount: income.amount,
-            notes: income.notes,
-            categoryName: income.categoryName,
-            isSystemGenerated: income.savingsInvestmentId !== null,
-            income,
-            expense: null,
-          }),
-        ),
+        ...incomes.map((income): MonthlyRecord => ({
+          id: `income-${income.id}`,
+          type: "Income",
+          name: income.name,
+          createdAt: income.createdAt,
+          amount: income.amount,
+          notes: income.notes,
+          categoryName: income.categoryName,
+          isSystemGenerated: income.savingsInvestmentId !== null,
+          income,
+          expense: null,
+        })),
 
-        ...expenses.map(
-          (expense): MonthlyRecord => ({
-            id: `expense-${expense.id}`,
-            type: "Expenses",
-            name: expense.name,
-            createdAt: expense.createdAt,
-            amount: expense.amount,
-            notes: expense.notes,
-            categoryName: expense.categoryName,
-            isSystemGenerated: expense.savingsInvestmentId !== null,
-            income: null,
-            expense,
-          }),
-        ),
+        ...expenses.map((expense): MonthlyRecord => ({
+          id: `expense-${expense.id}`,
+          type: "Expenses",
+          name: expense.name,
+          createdAt: expense.createdAt,
+          amount: expense.amount,
+          notes: expense.notes,
+          categoryName: expense.categoryName,
+          isSystemGenerated: expense.savingsInvestmentId !== null,
+          income: null,
+          expense,
+        })),
       ].sort(
         (first, second) =>
           new Date(second.createdAt).getTime() -
