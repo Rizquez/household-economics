@@ -1,61 +1,93 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowTrendDown,
-  faArrowTrendUp,
-  faCoins,
-  faWallet,
-} from "@fortawesome/free-solid-svg-icons";
-
+  PolarAngleAxis,
+  RadialBar,
+  RadialBarChart,
+  ResponsiveContainer,
+} from "recharts";
 import type { DashboardOverviewProps } from "./types";
+import getOverviewCharts from "./utils/getOverviewCharts";
 
-const DashboardOverview = ({ overview }: DashboardOverviewProps) => {
-  const cards = [
-    {
-      label: "Income",
-      value: overview.income,
-      icon: faArrowTrendUp,
-      valueClassName: "text-success",
-    },
-    {
-      label: "Expenses",
-      value: overview.expenses,
-      icon: faArrowTrendDown,
-      valueClassName: "text-error",
-    },
-    {
-      label: "Available",
-      value: overview.available,
-      icon: faWallet,
-      valueClassName: overview.available >= 0 ? "text-success" : "text-error",
-    },
-    {
-      label: "Remaining",
-      value: overview.remaining,
-      icon: faCoins,
-      valueClassName: overview.remaining >= 0 ? "text-success" : "text-error",
-    },
-  ];
-
+const DashboardOverview = ({
+  overview,
+}: DashboardOverviewProps) => {
+  const charts = getOverviewCharts(overview);
   return (
-    <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-      {cards.map((card) => (
+    <section className="grid h-full min-h-0 grid-cols-2 grid-rows-2 gap-3">
+      {charts.map((chart) => (
         <article
-          key={card.label}
-          className="flex items-center justify-between gap-4 rounded-xl border border-text-secondary/10 bg-background p-5"
+          key={chart.label}
+          className="grid min-h-0 grid-cols-[108px_minmax(0,1fr)] items-center gap-3 rounded-xl border border-text-secondary/10 bg-background px-3 py-2"
         >
-          <div className="flex min-w-0 flex-col gap-2">
-            <span className="text-sm text-text-secondary">{card.label}</span>
-
-            <span
-              className={`truncate text-2xl font-semibold ${card.valueClassName}`}
-              title={card.value.toFixed(2)}
+          <div className="relative h-24 w-24">
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
             >
-              {card.value.toFixed(2)}
-            </span>
+              <RadialBarChart
+                cx="50%"
+                cy="50%"
+                innerRadius="72%"
+                outerRadius="100%"
+                barSize={8}
+                startAngle={90}
+                endAngle={-270}
+                data={[
+                  {
+                    value:
+                      chart.chartPercentage,
+                  },
+                ]}
+              >
+                <PolarAngleAxis
+                  type="number"
+                  domain={[0, 100]}
+                  angleAxisId={0}
+                  tick={false}
+                />
+
+                <RadialBar
+                  dataKey="value"
+                  angleAxisId={0}
+                  background
+                  cornerRadius={8}
+                  fill="currentColor"
+                  className={
+                    chart.chartClassName
+                  }
+                  isAnimationActive={false}
+                />
+              </RadialBarChart>
+            </ResponsiveContainer>
+
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <span className="text-sm font-semibold text-text-primary">
+                {Math.round(
+                  chart.percentage,
+                )}
+                %
+              </span>
+            </div>
           </div>
 
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface text-lg text-primary">
-            <FontAwesomeIcon icon={card.icon} />
+          <div className="flex min-w-0 flex-col gap-1">
+            <span className="text-sm text-text-secondary">
+              {chart.label}
+            </span>
+
+            <span
+              className={`truncate text-xl font-semibold ${chart.valueClassName}`}
+              title={chart.value.toFixed(
+                2,
+              )}
+            >
+              {chart.value.toFixed(2)}
+            </span>
+
+            <span className="text-xs text-text-secondary">
+              {chart.label === "Income"
+                ? "Monthly income"
+                : "Of monthly income"}
+            </span>
           </div>
         </article>
       ))}

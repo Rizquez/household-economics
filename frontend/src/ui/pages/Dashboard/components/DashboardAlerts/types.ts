@@ -11,3 +11,14 @@ export type DashboardAlertsProps = {
   budgetStatus: DashboardBudgetStatus[];
   previousMonthTransfer: DashboardPreviousMonthTransfer | null;
 };
+
+export type DashboardAlert = {
+  id: string;
+  type: "error" | "warning" | "info";
+  message: string;
+};
+
+export type GetDashboardAlertsParams = Pick<
+  DashboardAlertsProps,
+  "overview" | "allocation" | "budgetStatus" | "previousMonthTransfer"
+>;
