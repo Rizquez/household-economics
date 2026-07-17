@@ -21,7 +21,10 @@ const CreateCategoryForm = ({ recordTypes }: CreateCategoryFormProps) => {
   } = useCreateCategoryForm();
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex flex-wrap items-center gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="relative flex flex-wrap items-center gap-4"
+    >
       <Input
         id="category"
         placeholder="Category name..."

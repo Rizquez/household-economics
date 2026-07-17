@@ -10,8 +10,7 @@ const getBudgetStatusChartData = (budgetStatus: BudgetStatus) =>
         return firstIsExceeded ? -1 : 1;
       }
 
-      const firstUsage =
-        first.budget > 0 ? first.expenses / first.budget : 0;
+      const firstUsage = first.budget > 0 ? first.expenses / first.budget : 0;
 
       const secondUsage =
         second.budget > 0 ? second.expenses / second.budget : 0;

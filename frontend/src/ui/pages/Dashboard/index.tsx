@@ -25,9 +25,7 @@ const Dashboard = () => {
     <div className="flex h-full min-h-0 flex-col overflow-hidden bg-surface p-6 card">
       <header className="flex shrink-0 flex-col gap-4 pb-4 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-semibold text-text-primary">
-            Dashboard
-          </h1>
+          <h1 className="text-xl font-semibold text-text-primary">Dashboard</h1>
 
           <p className="text-sm text-text-secondary">
             Take a quick look at your family&apos;s finances for the selected
@@ -51,9 +49,7 @@ const Dashboard = () => {
         "
       >
         <div className="min-h-0">
-          <DashboardOverview
-            overview={overview}
-          />
+          <DashboardOverview overview={overview} />
         </div>
 
         <div className="min-h-0">
@@ -61,23 +57,16 @@ const Dashboard = () => {
             overview={overview}
             allocation={allocation}
             budgetStatus={budgetStatus}
-            previousMonthTransfer={
-              dashboard?.previousMonthTransfer ??
-              null
-            }
+            previousMonthTransfer={dashboard?.previousMonthTransfer ?? null}
           />
         </div>
 
         <div className="min-h-0">
-          <DashboardAllocation
-            allocation={allocation}
-          />
+          <DashboardAllocation allocation={allocation} />
         </div>
 
         <div className="min-h-0">
-          <DashboardBudgetStatus
-            budgetStatus={budgetStatus}
-          />
+          <DashboardBudgetStatus budgetStatus={budgetStatus} />
         </div>
       </div>
     </div>

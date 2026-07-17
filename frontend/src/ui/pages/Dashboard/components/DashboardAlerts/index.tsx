@@ -13,7 +13,6 @@ const DashboardAlerts = ({
   budgetStatus,
   previousMonthTransfer,
 }: DashboardAlertsProps) => {
-  
   const alerts = getDashboardAlerts({
     overview,
     allocation,
@@ -50,7 +49,9 @@ const DashboardAlerts = ({
               }`}
             >
               <FontAwesomeIcon
-                icon={alert.type === "info" ? faCircleInfo : faTriangleExclamation}
+                icon={
+                  alert.type === "info" ? faCircleInfo : faTriangleExclamation
+                }
                 className="mt-0.5 shrink-0"
               />
               <p className="text-sm leading-5">{alert.message}</p>

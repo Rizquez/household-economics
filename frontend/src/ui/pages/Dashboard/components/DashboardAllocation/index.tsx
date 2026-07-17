@@ -1,17 +1,9 @@
-import {
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import type { DashboardAllocationProps } from "./types";
 import getAllocationChartData from "./utils/getAllocationChartData";
 
-const DashboardAllocation = ({
-  allocation,
-}: DashboardAllocationProps) => {
+const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
   if (!allocation.hasAllocation) {
     return (
       <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
@@ -34,8 +26,9 @@ const DashboardAllocation = ({
     );
   }
 
-  const { chartData, assigned, chartTotal } = getAllocationChartData(allocation);
-  
+  const { chartData, assigned, chartTotal } =
+    getAllocationChartData(allocation);
+
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
       <div className="shrink-0 border-b border-text-secondary/10 p-4">
@@ -51,11 +44,7 @@ const DashboardAllocation = ({
       <div className="grid min-h-0 flex-1 gap-4 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(160px,0.8fr)]">
         <div className="min-h-0">
           {chartTotal > 0 ? (
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-              minHeight={180}
-            >
+            <ResponsiveContainer width="100%" height="100%" minHeight={180}>
               <PieChart>
                 <Pie
                   data={chartData}
@@ -78,17 +67,14 @@ const DashboardAllocation = ({
                   ))}
                 </Pie>
 
-                <Tooltip
-                  formatter={(value) =>
-                    Number(value).toFixed(2)
-                  }
-                />
+                <Tooltip formatter={(value) => Number(value).toFixed(2)} />
               </PieChart>
             </ResponsiveContainer>
           ) : (
             <div className="flex h-full min-h-44 items-center justify-center">
               <p className="text-center text-sm text-text-secondary">
-                There is no positive amount to represent in the allocation chart.
+                There is no positive amount to represent in the allocation
+                chart.
               </p>
             </div>
           )}
@@ -99,9 +85,7 @@ const DashboardAllocation = ({
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-success" />
 
-              <span className="text-sm text-text-secondary">
-                Savings
-              </span>
+              <span className="text-sm text-text-secondary">Savings</span>
             </div>
 
             <span className="font-semibold text-text-primary">
@@ -113,9 +97,7 @@ const DashboardAllocation = ({
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-primary" />
 
-              <span className="text-sm text-text-secondary">
-                Investments
-              </span>
+              <span className="text-sm text-text-secondary">Investments</span>
             </div>
 
             <span className="font-semibold text-text-primary">
@@ -127,22 +109,16 @@ const DashboardAllocation = ({
             <div className="flex items-center gap-2">
               <span
                 className={`h-3 w-3 rounded-full ${
-                  allocation.remaining >= 0
-                    ? "bg-secondary"
-                    : "bg-error"
+                  allocation.remaining >= 0 ? "bg-secondary" : "bg-error"
                 }`}
               />
 
-              <span className="text-sm text-text-secondary">
-                Remaining
-              </span>
+              <span className="text-sm text-text-secondary">Remaining</span>
             </div>
 
             <span
               className={`font-semibold ${
-                allocation.remaining >= 0
-                  ? "text-text-primary"
-                  : "text-error"
+                allocation.remaining >= 0 ? "text-text-primary" : "text-error"
               }`}
             >
               {allocation.remaining.toFixed(2)}
@@ -150,9 +126,7 @@ const DashboardAllocation = ({
           </div>
 
           <div className="mt-2 flex items-center justify-between gap-3 border-t border-text-secondary/10 pt-3">
-            <span className="text-sm text-text-secondary">
-              Total assigned
-            </span>
+            <span className="text-sm text-text-secondary">Total assigned</span>
 
             <span className="font-semibold text-text-primary">
               {assigned.toFixed(2)}

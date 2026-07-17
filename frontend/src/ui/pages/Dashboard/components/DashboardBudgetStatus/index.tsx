@@ -52,11 +52,7 @@ const DashboardBudgetStatus = ({
       </div>
 
       <div className="min-h-0 flex-1 p-4">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          minHeight={220}
-        >
+        <ResponsiveContainer width="100%" height="100%" minHeight={220}>
           <BarChart
             data={chartData}
             layout="vertical"
@@ -95,10 +91,7 @@ const DashboardBudgetStatus = ({
             />
 
             <Tooltip
-              formatter={(value, name) => [
-                Number(value).toFixed(2),
-                name,
-              ]}
+              formatter={(value, name) => [Number(value).toFixed(2), name]}
             />
 
             <Legend />
