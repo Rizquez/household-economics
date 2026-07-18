@@ -13,7 +13,7 @@ from src.env import (
 class Base:
     PORT: int = 8080
     WORKERS: int = 1
-    VERSION = "0.1.0"
+    VERSION = "1.0.0"
     ROOT: str = "/api/v1"
     CLERK_ISSUER: str = get_clerk_issuer()
     CLERK_JWKS_URL: str = get_clerk_jwks_url()
