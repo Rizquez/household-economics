@@ -95,6 +95,8 @@ class BudgetBusiness(Business):
                 )
 
             session.commit()
+            for updated in updated_budgets:
+                session.refresh(updated)
             return updated_budgets
         except Exception:
             session.rollback()

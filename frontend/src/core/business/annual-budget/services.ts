@@ -1,10 +1,10 @@
 import AnnualBudgetRepository from "./repository";
-import type { BudgetGroup, UpdateBudgetRequest } from "./types";
+import type { Budget, BudgetGroup, UpdateBudgetRequest } from "./types";
 
 const repository = new AnnualBudgetRepository();
 
 class CreateBudgetGroupFromCategory {
-  execute(categoryId: number): Promise<void> {
+  execute(categoryId: number): Promise<BudgetGroup> {
     return repository.createFromCategory(categoryId);
   }
 }
@@ -22,7 +22,7 @@ class GetBudgetGroups {
 }
 
 class UpdateBudgets {
-  execute(payload: UpdateBudgetRequest[]): Promise<void> {
+  execute(payload: UpdateBudgetRequest[]): Promise<Budget[]> {
     return repository.updateBudgets(payload);
   }
 }

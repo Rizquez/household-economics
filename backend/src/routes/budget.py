@@ -15,12 +15,12 @@ if TYPE_CHECKING:
 router = APIRouter()
 
 
-@router.post("/{category_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("/{category_id}")
 def route_create_budget_group(
     category_id: str,
     current_user: "CurrentUser" = Depends(get_allowed_user),
-) -> None:
-    BudgetBusiness.create_budget_group(
+) -> BudgetGroupResponse:
+    return BudgetBusiness.create_budget_group(
         validate_non_negative_num(category_id),
         current_user.family_id,
     )

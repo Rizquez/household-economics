@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends
 
 from src.auth import get_allowed_user
 from src.business import FamilyBusiness
-from src.schemas import FamilyResponse
+from src.schemas import FamilyResponse, FamilyUpdateRequest
 
 if TYPE_CHECKING:
     from src.schemas import CurrentUser
@@ -19,3 +19,13 @@ def route_get_family_by_user_id(
     current_user: "CurrentUser" = Depends(get_allowed_user),
 ) -> FamilyResponse:
     return FamilyBusiness.get_family_by_user_id(current_user.id)
+
+@router.put("")
+def route_update_family(
+    request: FamilyUpdateRequest,
+    current_user: "CurrentUser" = Depends(get_allowed_user),
+) -> FamilyResponse:
+    return FamilyBusiness.update_family(
+        request.name,
+        current_user.family_id,
+    )

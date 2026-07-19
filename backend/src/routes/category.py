@@ -25,12 +25,12 @@ def route_all_categories(
     )
 
 
-@router.post("", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("")
 def route_create_category(
     request: CategoryRequest,
     current_user: "CurrentUser" = Depends(get_allowed_user),
-) -> None:
-    CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
+) -> CategoryResponse:
+    return CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
 
 
 @router.put("/{category_id}")

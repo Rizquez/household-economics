@@ -15,7 +15,7 @@ from .expense import (
     ExpenseRequest,
     ExpenseResponse,
 )
-from .family import FamilyResponse
+from .family import FamilyResponse, FamilyUpdateRequest
 from .income import IncomeRequest, IncomeResponse
 from .monthly_tracking import MonthlyTrackingPeriodResponse
 from .record_type import RecordTypeResponse
