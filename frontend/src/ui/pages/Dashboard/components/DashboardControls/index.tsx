@@ -8,8 +8,7 @@ const DashboardControls = ({
   onPeriodChange,
 }: DashboardControlsProps) => {
   return (
-    <section className="flex items-center gap-4">
-      <div className="w-fit">
+    <section>
         <Select
           id="dashboard-period"
           className="pl-10 text-right"
@@ -21,7 +20,6 @@ const DashboardControls = ({
           options={periodOptions}
           onChange={(value) => onPeriodChange(String(value))}
         />
-      </div>
     </section>
   );
 };

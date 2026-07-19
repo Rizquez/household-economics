@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden bg-surface p-6 card">
-      <header className="flex shrink-0 flex-col gap-4 pb-4 md:flex-row md:items-end md:justify-between">
+      <header className="flex shrink-0 flex-col gap-4 pb-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-text-primary">Dashboard</h1>
 
