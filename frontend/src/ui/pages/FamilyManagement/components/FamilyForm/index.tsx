@@ -34,7 +34,8 @@ const FamilyForm = ({ family }: FamilyFormProps) => {
         <div className="w-full max-w-md">
           <Input
             id="family-name"
-            label="Family name"
+            label="Name"
+            placeholder="Family valid name..."
             value={name}
             error={hasFieldError("name")}
             disabled={isPending}

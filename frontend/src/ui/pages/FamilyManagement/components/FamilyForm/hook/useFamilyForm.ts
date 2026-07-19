@@ -28,7 +28,7 @@ const useFamilyForm = (initialName: string) => {
     if (name.trim().length > 15) {
       return {
         field: "name",
-        message: "Family name cannot contain more than 50 characters.",
+        message: "Family name cannot contain more than 15 characters.",
       };
     }
 
