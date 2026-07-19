@@ -1,8 +1,6 @@
 import Select from "@/ui/components/Select";
 
 import type { DashboardControlsProps } from "./types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const DashboardControls = ({
   selectedPeriod,
@@ -11,7 +9,7 @@ const DashboardControls = ({
 }: DashboardControlsProps) => {
   return (
     <section className="flex items-center gap-4">
-      <div className="relative w-fit">
+      <div className="w-fit">
         <Select
           id="dashboard-period"
           className="pl-10 text-right"
@@ -21,13 +19,7 @@ const DashboardControls = ({
           }
           disabled={!periodOptions.length}
           options={periodOptions}
-          onChange={(event) => onPeriodChange(event.target.value)}
-        />
-
-        <FontAwesomeIcon
-          icon={faChevronDown}
-          aria-hidden="true"
-          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-text-primary"
+          onChange={(value) => onPeriodChange(String(value))}
         />
       </div>
     </section>

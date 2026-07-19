@@ -14,7 +14,8 @@ const FamilyManagement = () => {
         </h1>
 
         <p className="text-sm text-text-secondary">
-          Manage your family group&apos;s information, as well as its members and active invitations.
+          Manage your family group&apos;s information, as well as its members
+          and active invitations.
         </p>
       </header>
 
