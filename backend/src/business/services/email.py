@@ -55,15 +55,12 @@ def send_family_invitation(
             "name": user_name,
             "to_email": to_email,
             "from_email": from_email,
-            "subject": f"New invitation to join the {family_name} family group in household economics",
+            "subject": f"You're invited to join the {family_name} family group",
             "message": (
-                f"Hello {user_name},\n\n"
-                f"You have been invited to join the '{family_name}' family group in Household Economics.\n\n"
-                f"This invitation was sent by {from_email}.\n\n"
-                f"Once you accept the invitation, you'll be able to collaborate with your family by sharing budgets, "
-                f"tracking expenses and income, managing savings, and organizing your household finances together.\n\n"
-                f"If you were not expecting this invitation, you can safely ignore this email.\n\n"
-                f"See you soon!"
+                f"Hello,\n\n"
+                f"{user_name} ({from_email}) has invited you to join the '{family_name}' family group in Household Economics.\n\n"
+                f"Once you join, you'll be able to manage your household finances together with the other family members.\n\n"
+                f"If you weren't expecting this invitation, you can safely ignore this email."
             ),
         },
     }
