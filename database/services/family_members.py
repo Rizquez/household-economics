@@ -21,7 +21,9 @@ class FamilyMembersService(ServiceBase):
     def get_family_members_by_family_id(
         cls, session: "scoped_session", family_id: int
     ) -> List[FamilyMembers]:
-        return cls.find_all(session, FamilyMembers.family_id == family_id, model=FamilyMembers)
+        return cls.find_all(
+            session, FamilyMembers.family_id == family_id, model=FamilyMembers
+        )
 
     @classmethod
     def create_family_member(

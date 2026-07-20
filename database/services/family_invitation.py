@@ -23,7 +23,7 @@ class FamilyInvitationService(ServiceBase):
             FamilyInvitation.accepted.is_(None),
             model=FamilyInvitation,
         )
-    
+
     @classmethod
     def create_invitation(
         cls,
@@ -31,4 +31,3 @@ class FamilyInvitationService(ServiceBase):
         a_dict: Dict,
     ) -> FamilyInvitation:
         return cls.create(session, a_dict, FamilyInvitation)
-
