@@ -1,9 +1,9 @@
 import Button from "@/ui/components/Button";
 import Input from "@/ui/components/Input";
-import type { FamilyFormProps } from "./types";
-import useFamilyForm from "./hook/useFamilyForm";
+import type { FamilyInformationProps } from "./types";
+import useFamilyInformation from "./hook/useFamilyInformation";
 
-const FamilyForm = ({ family }: FamilyFormProps) => {
+const FamilyInformation = ({ family }: FamilyInformationProps) => {
   const {
     name,
     formError,
@@ -13,7 +13,7 @@ const FamilyForm = ({ family }: FamilyFormProps) => {
     hasFieldError,
     clearFieldError,
     setName,
-  } = useFamilyForm(family.name);
+  } = useFamilyInformation(family.name);
 
   return (
     <section className="rounded-xl border border-text-secondary/10 bg-background p-6">
@@ -61,4 +61,4 @@ const FamilyForm = ({ family }: FamilyFormProps) => {
   );
 };
 
-export default FamilyForm;
+export default FamilyInformation;

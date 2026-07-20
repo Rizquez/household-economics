@@ -1,10 +1,13 @@
 import { useState, type ComponentProps } from "react";
 
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
-import useUpdateFamily from "./useUpdateFamily";
-import type { FamilyFormErrorField, FamilyFormValidationError } from "../types";
+import type {
+  FamilyInformationErrorField,
+  FamilyInformationValidationError,
+} from "../types";
+import useUpdateFamilyInformation from "./useUpdateFamilyInformation";
 
-const useFamilyForm = (initialName: string) => {
+const useFamilyInformation = (initialName: string) => {
   const [name, setName] = useState(initialName);
 
   const {
@@ -13,11 +16,11 @@ const useFamilyForm = (initialName: string) => {
     clearFieldError,
     clearFormError,
     hasFieldError,
-  } = useFormFieldError<FamilyFormErrorField>();
+  } = useFormFieldError<FamilyInformationErrorField>();
 
-  const { mutate, isPending, error } = useUpdateFamily();
+  const { mutate, isPending, error } = useUpdateFamilyInformation();
 
-  const validate = (): FamilyFormValidationError | null => {
+  const validate = (): FamilyInformationValidationError | null => {
     if (!name.trim()) {
       return {
         field: "name",
@@ -80,4 +83,4 @@ const useFamilyForm = (initialName: string) => {
   };
 };
 
-export default useFamilyForm;
+export default useFamilyInformation;

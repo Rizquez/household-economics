@@ -72,7 +72,9 @@ class AuthBusiness(Business):
                 clerk_id=user.clerk_id,
                 email=user.email,
                 name=user.name,
-                family_id=family_member.family_id if family_member is not None else None,
+                family_id=(
+                    family_member.family_id if family_member is not None else None
+                ),
                 access_allowed=user.access_allowed,
             )
         except Exception:
@@ -114,11 +116,11 @@ class AuthBusiness(Business):
         family_member = cls.db.get_family_member_by_user_id(session, user.id)
         if family_member is not None:
             return family_member
-        
+
         invitation = cls.db.get_pending_family_invitation_by_email(session, user.email)
         if invitation is not None:
             return cls.__join_invited_family(session, user, invitation)
-        
+
         return cls.__create_owner_family_member(session, user)
 
     @classmethod
@@ -132,7 +134,7 @@ class AuthBusiness(Business):
         if family is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="The invited family does not exist."
+                detail="The invited family does not exist.",
             )
 
         members_count = cls.db.count_family_members(session, family.id)

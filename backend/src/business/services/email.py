@@ -2,9 +2,10 @@ import requests
 
 from src.env import (
     get_email_service_id,
-    get_email_template_id,
+    get_email_new_user_template_id,
     get_email_user_id,
     get_email_private_key,
+    get_email_family_invitation_template_id,
 )
 from src.constants import EMAILJS_API_URL
 
@@ -17,7 +18,7 @@ def send_access_request_email(
 ) -> None:
     payload = {
         "service_id": get_email_service_id(),
-        "template_id": get_email_template_id(),
+        "template_id": get_email_new_user_template_id(),
         "user_id": get_email_user_id(),
         "accessToken": get_email_private_key(),
         "template_params": {
@@ -41,21 +42,28 @@ def send_access_request_email(
 
     response.raise_for_status()
 
-# TODO: The email is sent to the administrator; a new template must be created and used to send the email to the guest
-def send_family_invitation(name: str, email: str, timeout: int = 10) -> None:
+
+def send_family_invitation(
+    user_name: str, family_name: str, to_email: str, from_email: str, timeout: int = 10
+) -> None:
     payload = {
         "service_id": get_email_service_id(),
-        "template_id": get_email_template_id(),
+        "template_id": get_email_family_invitation_template_id(),
         "user_id": get_email_user_id(),
         "accessToken": get_email_private_key(),
         "template_params": {
-            "name": name,
-            "email": email,
-            "subject": "New Household Economics access request",
+            "name": user_name,
+            "to_email": to_email,
+            "from_email": from_email,
+            "subject": f"New invitation to join the {family_name} family group in household economics",
             "message": (
-                f"New user pending approval:\n\n"
-                f"Name: {name}\n"
-                f"Email: {email}\n"
+                f"Hello {user_name},\n\n"
+                f"You have been invited to join the '{family_name}' family group in Household Economics.\n\n"
+                f"This invitation was sent by {from_email}.\n\n"
+                f"Once you accept the invitation, you'll be able to collaborate with your family by sharing budgets, "
+                f"tracking expenses and income, managing savings, and organizing your household finances together.\n\n"
+                f"If you were not expecting this invitation, you can safely ignore this email.\n\n"
+                f"See you soon!"
             ),
         },
     }

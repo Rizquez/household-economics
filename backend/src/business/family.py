@@ -71,11 +71,20 @@ class FamilyBusiness(Business):
     def create_invitation(
         cls,
         email: str,
-        family_id: int,
         invited_by_user_id: int,
+        invited_by_user_name: str,
+        invited_by_user_email: str,
+        family_id: int,
     ) -> None:
         session = cls.create_session()
         try:
+            member = cls.__get_family_member(session, invited_by_user_id)
+            if member.role.name != Role.OWNER:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Only the family owner can invite new members.",
+                )
+
             family = cls.db.get_family_by_id(session, family_id)
 
             if family is None:
@@ -91,13 +100,15 @@ class FamilyBusiness(Business):
                 {
                     "email": normalized_email,
                     "family_id": family_id,
-                    "invited_by_user_id": invited_by_user_id
+                    "invited_by_user_id": invited_by_user_id,
                 },
             )
 
             session.flush()
 
-            send_family_invitation(family.name, normalized_email)
+            send_family_invitation(
+                invited_by_user_name, family.name, email, invited_by_user_email
+            )
 
             session.commit()
         except Exception:
@@ -111,7 +122,9 @@ class FamilyBusiness(Business):
         session = cls.create_session()
         try:
             member = cls.__get_family_member(session, user_id)
-            family_members = cls.db.get_family_members_by_family_id(session, member.family_id)
+            family_members = cls.db.get_family_members_by_family_id(
+                session, member.family_id
+            )
             return [
                 {
                     "id": family_member.id,
@@ -133,7 +146,7 @@ class FamilyBusiness(Business):
             if member.role.name != Role.OWNER:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
-                    detail="Only the family owner can remove members."
+                    detail="Only the family owner can remove members.",
                 )
 
             if user_id == member_id:
@@ -160,7 +173,9 @@ class FamilyBusiness(Business):
             session.close()
 
     @classmethod
-    def __get_family_member(cls, session: "scoped_session", user_id: int) -> FamilyMembers:
+    def __get_family_member(
+        cls, session: "scoped_session", user_id: int
+    ) -> FamilyMembers:
         family_member = cls.db.get_family_member_by_user_id(
             session,
             user_id,

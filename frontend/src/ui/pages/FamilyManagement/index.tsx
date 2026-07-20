@@ -1,8 +1,9 @@
-import FamilyForm from "./components/FamilyForm";
+import FamilyInformation from "./components/FamilyInformation";
+import FamilyMembers from "./components/FamilyMembers";
 import useFamilyManagementPage from "./hooks/useFamilyManagementPage";
 
 const FamilyManagement = () => {
-  const { isReady, family } = useFamilyManagementPage();
+  const { isReady, family, familyMembers } = useFamilyManagementPage();
 
   if (!isReady || !family) return null;
 
@@ -19,7 +20,9 @@ const FamilyManagement = () => {
         </p>
       </header>
 
-      <FamilyForm family={family} />
+      <FamilyInformation family={family} />
+
+      <FamilyMembers familyMembers={familyMembers} />
     </div>
   );
 };

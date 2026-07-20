@@ -9,11 +9,13 @@ class FamilyResponse(ResponseBase):
     id: int
     name: str
 
+
 class FamilyUpdateRequest(RequestBase):
     name: Annotated[
         StrictStr,
         Field(min_length=5, max_length=15),
     ]
+
 
 class FamilyMemberResponse(ResponseBase):
     id: int
@@ -21,6 +23,7 @@ class FamilyMemberResponse(ResponseBase):
     name: str
     email: str
     role: Role
+
 
 class CreateInvitationRequest(RequestBase):
     email: EmailStr

@@ -9,17 +9,15 @@ const DashboardControls = ({
 }: DashboardControlsProps) => {
   return (
     <section>
-        <Select
-          id="dashboard-period"
-          className="pl-10 text-right"
-          value={selectedPeriod}
-          placeholder={
-            periodOptions.length ? undefined : "No periods available"
-          }
-          disabled={!periodOptions.length}
-          options={periodOptions}
-          onChange={(value) => onPeriodChange(String(value))}
-        />
+      <Select
+        id="dashboard-period"
+        className="pl-10 text-right"
+        value={selectedPeriod}
+        placeholder={periodOptions.length ? undefined : "No periods available"}
+        disabled={!periodOptions.length}
+        options={periodOptions}
+        onChange={(value) => onPeriodChange(String(value))}
+      />
     </section>
   );
 };

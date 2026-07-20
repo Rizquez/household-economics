@@ -5,7 +5,7 @@ import type { UpdateFamilyRequest } from "@/core/business/family/types";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import { FAMILY_QUERY_KEY } from "@/ui/components/Sidebar/hooks/constants";
 
-const useUpdateFamily = () => {
+const useUpdateFamilyInformation = () => {
   const queryClient = useQueryClient();
   const { showLoading, showModal, closeModal } = useModal();
 
@@ -34,4 +34,4 @@ const useUpdateFamily = () => {
   });
 };
 
-export default useUpdateFamily;
+export default useUpdateFamilyInformation;

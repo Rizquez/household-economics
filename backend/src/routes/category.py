@@ -30,7 +30,9 @@ def route_create_category(
     request: CategoryRequest,
     current_user: "CurrentUser" = Depends(get_valid_user),
 ) -> CategoryResponse:
-    return CategoryBusiness.create_category(request.model_dump(), current_user.family_id)
+    return CategoryBusiness.create_category(
+        request.model_dump(), current_user.family_id
+    )
 
 
 @router.put("/{category_id}")
