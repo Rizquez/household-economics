@@ -9,6 +9,7 @@ from models.core import ModelBase
 
 if TYPE_CHECKING:
     from .family_members import FamilyMembers
+    from .family_invitation import FamilyInvitation
 
 
 # Internally, the database stores records under the name `user`,
@@ -37,3 +38,7 @@ class User(ModelBase):
     access_allowed = Column(Boolean, nullable=False, default=False)
 
     family_members: Mapped[List["FamilyMembers"]] = relationship(back_populates="user")
+
+    sent_family_invitations: Mapped[List["FamilyInvitation"]] = relationship(
+        back_populates="invited_by",
+    )

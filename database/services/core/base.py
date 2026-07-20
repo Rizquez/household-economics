@@ -86,3 +86,16 @@ class ServiceBase(object):
             query = query.order_by(order_by)
 
         return query.all()
+
+    @staticmethod
+    def count(
+        session: "scoped_session",
+        *filters: Any,
+        model: Type[TModel],
+    ) -> int:
+        query = session.query(model)
+
+        if filters:
+            query = query.filter(*filters)
+
+        return query.count()

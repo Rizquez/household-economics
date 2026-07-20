@@ -6,6 +6,7 @@ from models import (
     ExpenseItem,
     Expense,
     RecordType,
+    FamilyInvitation,
     FamilyMembers,
     Family,
     Income,

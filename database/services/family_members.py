@@ -22,3 +22,13 @@ class FamilyMembersService(ServiceBase):
         cls, session: "scoped_session", a_dict: Dict
     ) -> FamilyMembers:
         return cls.create(session, a_dict, FamilyMembers)
+
+    @classmethod
+    def count_family_members(
+        cls,
+        session: "scoped_session",
+        family_id: int,
+    ) -> int:
+        return cls.count(
+            session, FamilyMembers.family_id == family_id, model=FamilyMembers
+        )
