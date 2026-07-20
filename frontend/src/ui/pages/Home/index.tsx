@@ -42,13 +42,8 @@ const Home = () => {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <SignInButton mode="modal" forceRedirectUrl={paths.dashboard.href}>
-              {/*<button className="flex cursor-pointer items-center gap-3 rounded-lg bg-primary px-6 py-3 font-medium text-white transition-all hover:scale-[1.02] hover:opacity-90">
-                <FontAwesomeIcon icon={faArrowRightToBracket} />
-                Sign in
-              </button>
-              */}
               <Button
-                btnSize="text-base"
+                textSize="text-base"
                 className="flex items-center gap-3 bg-primary font-medium text-white transition-all hover:scale-[1.02]"
               >
                 <FontAwesomeIcon icon={faArrowRightToBracket} />

@@ -51,7 +51,11 @@ const AccessError = ({ message }: AccessErrorProps) => {
         </div>
 
         <div className="flex gap-3">
-          <Button onClick={goHome} className="flex items-center gap-2">
+          <Button
+            onClick={goHome}
+            textSize="text-base"
+            className="flex items-center gap-2"
+          >
             <FontAwesomeIcon icon={faHouse} />
             {"Home"}
           </Button>

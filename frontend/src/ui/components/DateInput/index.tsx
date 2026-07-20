@@ -37,7 +37,7 @@ const DateInput = ({
         </label>
       )}
 
-      {/*<button
+      <button
         id={id}
         type="button"
         disabled={disabled}
@@ -50,20 +50,6 @@ const DateInput = ({
           <span className="text-text-secondary">{placeholder}</span>
         )}
       </button>
-        */}
-      <Button
-        id={id}
-        type="button"
-        disabled={disabled}
-        onClick={() => setIsOpen((current) => !current)}
-        className={`h-10 border bg-surface px-3 text-left text-text-primary outline-none focus:border-primary ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
-      >
-        {selectedDate ? (
-          format(selectedDate, "MMM dd, yyyy", { locale: enUS })
-        ) : (
-          <span className="text-text-secondary">{placeholder}</span>
-        )}
-      </Button>
 
       {isOpen && !disabled && (
         <div className="absolute top-17 z-50 rounded-xl border border-text-secondary/10 bg-surface p-3 shadow-xl">

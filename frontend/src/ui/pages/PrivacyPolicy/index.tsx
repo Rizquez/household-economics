@@ -21,19 +21,10 @@ const PrivacyPolicy = () => {
           </p>
         </div>
 
-        {/*
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="flex h-12 w-12 items-center justify-center rounded-md text-text-primary transition-colors hover:bg-background hover:text-primary cursor-pointer"
-        >
-          <FontAwesomeIcon icon={faArrowRightToBracket} className="text-2xl" />
-        </button>
-        */}
         <Button
           onClick={() => navigate(-1)}
           variant="background"
-          className="flex h-12 w-12 items-center justify-center text-text-primary transition-colors hover:bg-background hover:text-primary cursor-pointer"
+          className="flex h-12 w-12 items-center justify-center transition-colors hover:text-primary"
         >
           <FontAwesomeIcon icon={faArrowRightToBracket} className="text-2xl" />
         </Button>
