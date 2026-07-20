@@ -11,6 +11,7 @@ import {
 
 import { paths } from "@/ui/routes/paths";
 import FeatureCard from "@/ui/components/FeatureCard";
+import Button from "@/ui/components/Button";
 
 const Home = () => {
   const { isLoaded, isSignedIn } = useUser();
@@ -41,10 +42,13 @@ const Home = () => {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <SignInButton mode="modal" forceRedirectUrl={paths.dashboard.href}>
-              <button className="flex cursor-pointer items-center gap-3 rounded-lg bg-primary px-6 py-3 font-medium text-white transition-all hover:scale-[1.02] hover:opacity-90">
+              <Button
+                textSize="text-base"
+                className="flex items-center gap-3 font-medium transition-all hover:scale-[1.02]"
+              >
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
                 Sign in
-              </button>
+              </Button>
             </SignInButton>
           </div>
         </div>

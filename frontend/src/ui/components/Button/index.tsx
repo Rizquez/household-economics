@@ -4,6 +4,7 @@ const variants = {
   primary: "bg-primary text-surface",
   secondary: "bg-secondary text-surface",
   danger: "bg-error text-surface",
+  background: "bg-background text-text-primary",
 };
 
 const Button = ({
@@ -12,6 +13,7 @@ const Button = ({
   className = "",
   type = "button",
   disabled,
+  textSize = "text-sm",
   ...props
 }: ButtonProps) => {
   return (
@@ -19,7 +21,8 @@ const Button = ({
       type={type}
       disabled={disabled}
       className={`
-        rounded-xl px-4 py-2 text-sm transition-opacity
+        rounded-xl px-4 py-2 transition-opacity
+        ${textSize}
         ${variants[variant]}
         ${
           disabled
