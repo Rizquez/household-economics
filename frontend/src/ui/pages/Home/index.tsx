@@ -44,7 +44,7 @@ const Home = () => {
             <SignInButton mode="modal" forceRedirectUrl={paths.dashboard.href}>
               <Button
                 textSize="text-base"
-                className="flex items-center gap-3 bg-primary font-medium text-white transition-all hover:scale-[1.02]"
+                className="flex items-center gap-3 font-medium transition-all hover:scale-[1.02]"
               >
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
                 Sign in

@@ -36,7 +36,7 @@ const RouteError = () => {
             onClick={goBack}
             textSize="text-base"
             variant="background"
-            className="flex items-center gap-2 border border-text-secondary/20 transition-colors hover:bg-background/90"
+            className="flex items-center gap-2 border border-text-secondary/10"
           >
             <FontAwesomeIcon icon={faArrowRotateLeft} />
             Go back
