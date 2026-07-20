@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional, TYPE_CHECKING
+from typing import Optional, Dict, TYPE_CHECKING
 from models import FamilyInvitation
 
 from .core import ServiceBase
@@ -23,3 +23,12 @@ class FamilyInvitationService(ServiceBase):
             FamilyInvitation.accepted.is_(None),
             model=FamilyInvitation,
         )
+    
+    @classmethod
+    def create_invitation(
+        cls,
+        session: "scoped_session",
+        a_dict: Dict,
+    ) -> FamilyInvitation:
+        return cls.create(session, a_dict, FamilyInvitation)
+

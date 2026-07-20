@@ -29,7 +29,8 @@ class Family(ModelBase):
     members: Mapped[List["FamilyMembers"]] = relationship(back_populates="family")
 
     invitations: Mapped[List["FamilyInvitation"]] = relationship(
-        back_populates="family"
+        back_populates="family",
+        cascade="all, delete-orphan",
     )
 
     incomes: Mapped[List["Income"]] = relationship(back_populates="family")
