@@ -26,4 +26,5 @@ export type SavingsInvestmentsAvailable = {
 };
 
 export type SaveSavingsInvestmentsRequest =
-  CreateSavingsInvestmentsRequest | UpdateSavingsInvestmentsRequest;
+  | CreateSavingsInvestmentsRequest
+  | UpdateSavingsInvestmentsRequest;
