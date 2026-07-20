@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from fastapi import APIRouter, Depends
 
-from src.auth import get_allowed_user
+from src.auth import get_valid_user
 from src.business import FamilyBusiness
 from src.schemas import FamilyResponse, FamilyUpdateRequest
 
@@ -16,14 +16,14 @@ router = APIRouter()
 
 @router.get("")
 def route_get_family_by_user_id(
-    current_user: "CurrentUser" = Depends(get_allowed_user),
+    current_user: "CurrentUser" = Depends(get_valid_user),
 ) -> FamilyResponse:
     return FamilyBusiness.get_family_by_user_id(current_user.id)
 
 @router.put("")
 def route_update_family(
     request: FamilyUpdateRequest,
-    current_user: "CurrentUser" = Depends(get_allowed_user),
+    current_user: "CurrentUser" = Depends(get_valid_user),
 ) -> FamilyResponse:
     return FamilyBusiness.update_family(
         request.name,

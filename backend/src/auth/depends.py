@@ -45,3 +45,12 @@ def get_allowed_user(
         )
 
     return current_user
+
+def get_valid_user(current_user: "CurrentUser" = Depends(get_allowed_user)) -> "CurrentUser":
+    if current_user.family_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="User does not belong to a family.",
+        )
+
+    return current_user
