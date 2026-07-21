@@ -11,7 +11,9 @@ const useFamilyInformation = (
   initialCurrencyTypeId: number,
 ) => {
   const [name, setName] = useState(initialName);
-  const [currencyTypeId, setCurrencyTypeId] = useState(String(initialCurrencyTypeId));
+  const [currencyTypeId, setCurrencyTypeId] = useState(
+    String(initialCurrencyTypeId),
+  );
 
   const {
     errorMessage: formError,

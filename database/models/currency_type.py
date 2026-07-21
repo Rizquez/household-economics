@@ -20,8 +20,8 @@ class CurrencyType(ModelBase):
         ),
     )
 
-    code = Column(String(3), nullable=False)    # EUR
+    code = Column(String(3), nullable=False)  # EUR
     symbol = Column(String(5), nullable=False)  # €
-    name = Column(String(50), nullable=False)   # Euro
+    name = Column(String(50), nullable=False)  # Euro
 
     families: Mapped[List["Family"]] = relationship(back_populates="currency_type")

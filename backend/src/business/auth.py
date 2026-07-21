@@ -171,10 +171,7 @@ class AuthBusiness(Business):
 
         family = cls.db.create_family(
             session,
-            {
-                "name": f"{user.name}'s Family",
-                "currency_type_id": currency_type.id
-            },
+            {"name": f"{user.name}'s Family", "currency_type_id": currency_type.id},
         )
 
         session.flush()

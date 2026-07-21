@@ -44,12 +44,12 @@ class FamilyBusiness(Business):
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail="Family name cannot be empty.",
                 )
-            
+
             currency_type = cls.db.get_currency_type_by_id(session, currency_type_id)
             if currency_type is None:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
-                    detail=f"No currency type was found associated with ID: {currency_type_id}."
+                    detail=f"No currency type was found associated with ID: {currency_type_id}.",
                 )
 
             family = cls.db.update_family(

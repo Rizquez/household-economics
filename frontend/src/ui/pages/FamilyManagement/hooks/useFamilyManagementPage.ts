@@ -30,7 +30,8 @@ const useFamilyManagementPage = () => {
 
   const { showLoading, showModal, closeModal } = useModal();
 
-  const isPending = isFamilyPending || areMembersPending || areCurrencyTypesPending;
+  const isPending =
+    isFamilyPending || areMembersPending || areCurrencyTypesPending;
   const isError = isFamilyError || areMembersError || areCurrencyTypesError;
   const error = familyError ?? membersError ?? currencyTypesError;
 

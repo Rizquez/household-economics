@@ -12,11 +12,15 @@ if TYPE_CHECKING:
 class CurrencyTypeService(ServiceBase):
 
     @classmethod
-    def get_currency_type_by_name(cls, session: "scoped_session", name: str) -> Optional[CurrencyType]:
+    def get_currency_type_by_name(
+        cls, session: "scoped_session", name: str
+    ) -> Optional[CurrencyType]:
         return cls.find(session, CurrencyType.name == name, model=CurrencyType)
 
     @classmethod
-    def get_currency_type_by_id(cls, session: "scoped_session", currency_type_id: int) -> Optional[CurrencyType]:
+    def get_currency_type_by_id(
+        cls, session: "scoped_session", currency_type_id: int
+    ) -> Optional[CurrencyType]:
         return cls.get(session, currency_type_id, CurrencyType)
 
     @classmethod
