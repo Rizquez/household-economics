@@ -24,22 +24,25 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
 
   return (
     <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-      <header className="flex flex-col gap-1 p-6">
-        <h2 className="text-lg font-semibold text-text-primary">
-          Family members
-        </h2>
+      <header className="flex items-start justify-between gap-8 p-6">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Family members
+          </h2>
 
-        <p className="text-sm text-text-secondary">
-          Manage all your family members directly.
-        </p>
+          <p className="text-sm text-text-secondary">
+            Manage all your family members directly.
+          </p>
+        </div>
+
         <form
           noValidate
-          className="relative mt-6 flex items-end gap-3"
+          className="relative flex items-end gap-3"
           onSubmit={handleSubmit}
         >
           <div className="w-full max-w-md">
             <Input
-              label="Invite a new member to the family"
+              label="Invite a new member"
               name="email"
               type="email"
               value={email}
@@ -54,7 +57,7 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
 
             {hasFieldError("email") && formError && (
               <div className="absolute left-0 top-full mt-2 text-sm text-error">
-                {formError && <p>{formError}</p>}
+                <p>{formError}</p>
               </div>
             )}
           </div>
