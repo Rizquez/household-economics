@@ -24,8 +24,12 @@ def get_email_service_id() -> str:
     return os.getenv("EMAIL_SERVICE_ID", "undefined")
 
 
-def get_email_template_id() -> str:
-    return os.getenv("EMAIL_TEMPLATE_ID", "undefined")
+def get_email_new_user_template_id() -> str:
+    return os.getenv("EMAIL_NEW_USER_TEMPLATE_ID", "undefined")
+
+
+def get_email_family_invitation_template_id() -> str:
+    return os.getenv("EMAIL_FAMILY_INVITATION_TEMPLATE_ID", "undefined")
 
 
 def get_email_user_id() -> str:

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from fastapi import APIRouter, Depends
 
-from src.auth import get_allowed_user
+from src.auth import get_valid_user
 from src.business import DashboardBusiness
 from src.routes.helpers import validate_non_negative_num
 from src.schemas import DashboardResponse
@@ -19,7 +19,7 @@ router = APIRouter()
 def route_get_dashboard(
     month: str,
     year: str,
-    current_user: "CurrentUser" = Depends(get_allowed_user),
+    current_user: "CurrentUser" = Depends(get_valid_user),
 ) -> DashboardResponse:
     return DashboardBusiness.get_dashboard(
         validate_non_negative_num(month),

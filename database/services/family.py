@@ -26,3 +26,27 @@ class FamilyService(ServiceBase):
             .filter(FamilyMembers.user_id == user_id)
             .one_or_none()
         )
+
+    @classmethod
+    def get_family_by_id(
+        cls,
+        session: "scoped_session",
+        family_id: int,
+    ) -> Optional[Family]:
+        return cls.find(
+            session,
+            Family.id == family_id,
+            model=Family,
+        )
+
+    @classmethod
+    def update_family(
+        cls,
+        session: "scoped_session",
+        a_dict: Dict,
+        family_id: int,
+    ) -> Optional[Family]:
+        family = cls.get_family_by_id(session, family_id)
+        if family is None:
+            return None
+        return cls.update(family, a_dict)

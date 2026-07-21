@@ -1,50 +1,66 @@
-# Household-Economics
+# Household Economics - v1.1.0
 
 ## 🧾 Project description
 
-Household Economics is an application designed to assist with household financial management. The goal of the project is to centralize the planning, tracking, and organization of household finances on a single platform, providing a simple interface and tools that facilitate decision-making.
+Household Economics is an app designed to simplify household financial management. Its goal is to centralize the planning, tracking, and organization of family finances on a single platform, providing a simple interface and tools to help users make better financial decisions.
 
-The project is divided into three independent applications:
+The app is intended for both individuals and families who want a comprehensive overview of their financial situation without having to rely on multiple separate tools.
+
+The project is divided into three completely independent applications:
 
 - **Backend:** An API responsible for business logic and communication with the database.
-- **Database:** A library that encapsulates data models and data access services.
-- **Frontend:** A web application developed for user interaction.
+- **Database:** An independent library that encapsulates data models and database access services.
+- **Frontend:** A web application responsible for user interaction.
 
-Each of these projects maintains its own documentation and can evolve independently.
+Each of these projects has its own documentation and can evolve independently.
 
 ## 📑 Context
 
-Household financial management is often spread across spreadsheets, note-taking apps, banks, wish lists, and other standalone tools. This leads to duplicate information and makes it difficult to get a comprehensive view of the family’s financial situation.
+Household financial management is often spread across spreadsheets, banking apps, wish lists, note-taking apps, and other standalone tools. As a result, information ends up being duplicated, and it becomes difficult to get a clear picture of the family’s financial situation.
 
-This project was created with the goal of consolidating that information into a single app, allowing users to manage the various aspects of household finances in an organized manner.
+Household Economics was created with the goal of consolidating all that information into a single platform, allowing users to record, plan, and review all aspects of household finances in one place.
 
-### Who is it useful for?
+The project is designed to become the central hub for managing family finances over the long term.
 
-Currently, the project is designed for families or individuals who want to maintain greater control over their personal finances using a single tool.
+### Who is it designed for?
 
-### Examples of use
+Currently, the app is designed for:
 
-- Managing income and expense categories.
-- Organizing annual budgets.
-- Recording daily financial transactions.
-- Tracking expenses.
-- Managing wish lists.
-- Monitoring savings and investments.
+- People who want to keep better track of their personal finances.
+- Couples who manage their household finances together.
+- Families looking to plan budgets, control expenses, and track their savings and investments.
 
+### Use cases
+
+The app’s main features include:
+
+- Income and expense management.
+- Organization of financial categories.
+- Annual budget planning.
+- Daily recording of financial transactions.
+- Monthly tracking of financial status.
+- Visualization via a dashboard with indicators and charts.
+- Monthly savings management.
+- Investment tracking.
+- Household financial management.
 
 ## 🛠️ Key features
 
-The project is currently under active development.
+Household Economics has been developed using a modular architecture that clearly separates the responsibilities of each application.
 
-The architecture is organized into several independent projects with clearly defined responsibilities:
+Its key features include:
 
-- Backend based on FastAPI.
-- Independent library for database access using SQLAlchemy.
+- REST API developed with FastAPI.
+- Standalone data access library based on SQLAlchemy.
 - Frontend developed with React, TypeScript, and Vite.
-- Modular architecture designed to separate business logic from the user interface.
-- Authentication via Google OAuth.
+- Modular architecture based on the separation of business logic and the user interface.
+- Database completely decoupled from the backend.
+- Authentication via Google and Microsoft OAuth (Clerk).
+- Architecture designed for managing families and multiple users.
+- Separation between development and production environments.
+- Migration system using Alembic.
 
-## 🚀 Getting Started
+## 🚀 Getting started
 
 1. Clone this repository:
     - (ssh):
@@ -108,16 +124,44 @@ The architecture is organized into several independent projects with clearly def
 └── README.md
 ```
 
-In each `README` file, you'll find information about installing and running each project:
+## 📚 Documentation
 
-* [Backend (README)](./backend/README.md)
-* [Database (README)](./database/README.md)
-* [Frontend (README)](./frontend/README.md)
+Each project has its own documentation, which explains its installation, configuration, and operation:
+
+- [Backend (README)](./backend/README.md)
+- [Database (README)](./database/README.md)
+- [Frontend (README)](./frontend/README.md)
+
+## 🚧 Roadmap
+
+Household Economics will continue to evolve through new versions.
+
+Some of the features planned for future versions include:
+
+- Comprehensive management of family members.
+- Invitation system.
+- Roles and permissions.
+- Financial goals.
+- Notifications.
+- Advanced statistics.
+- Mobile app/PWA.
+
+## 🎯 Project philosophy
+
+Household Economics is not intended to replace a banking app or a professional accounting tool.
+
+Its goal is to become the hub of household financial organization, providing a simple, intuitive experience that is fully tailored to a family’s real needs.
+
+Every new feature is designed according to three fundamental principles:
+
+- Simplicity over complexity.
+- Organization over automation.
+- Useful information over data overload.
 
 ## 🔒 License
 
 This project is licensed under the MIT license, which allows its use, distribution, and modification under the conditions specified in the `LICENSE` file.
 
-## ⚙ Contact, support, and development
+## 👨‍💻 Autor
 
 - Pedro Rizquez: pedro.rizquez.94@hotmail.com

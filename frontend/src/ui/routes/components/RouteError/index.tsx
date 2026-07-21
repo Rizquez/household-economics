@@ -5,6 +5,7 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import useRouteErrorPage from "./hooks/useRouteErrorPage";
+import Button from "@/ui/components/Button";
 
 const RouteError = () => {
   const { isLoaded, status, title, description, homeLabel, goBack, goHome } =
@@ -31,21 +32,23 @@ const RouteError = () => {
         </div>
 
         <div className="flex gap-3">
-          <button
+          <Button
             onClick={goBack}
-            className="flex cursor-pointer items-center gap-2 rounded-md border border-text-secondary/20 px-4 py-2 transition-colors hover:bg-background"
+            textSize="text-base"
+            variant="background"
+            className="flex items-center gap-2 border border-text-secondary/10"
           >
             <FontAwesomeIcon icon={faArrowRotateLeft} />
             Go back
-          </button>
-
-          <button
+          </Button>
+          <Button
             onClick={goHome}
-            className="flex cursor-pointer items-center gap-2 rounded-md bg-primary px-4 py-2 text-white transition-opacity hover:opacity-90"
+            textSize="text-base"
+            className="flex items-center gap-2 text-white transition-opacity"
           >
             <FontAwesomeIcon icon={faHouse} />
             {homeLabel}
-          </button>
+          </Button>
         </div>
 
         <p className="text-xs text-text-secondary">

@@ -50,8 +50,8 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
           value={recordTypeId}
           disabled={isEditing}
           error={hasFieldError("recordType")}
-          onChange={(event) => {
-            handleRecordTypeChange(event.target.value);
+          onChange={(value) => {
+            handleRecordTypeChange(String(value));
             clearFieldError("recordType");
           }}
           options={recordTypes.map((recordType) => ({
@@ -106,8 +106,8 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
           value={hasItems ? "" : categoryId}
           disabled={hasItems}
           error={hasFieldError("category")}
-          onChange={(event) => {
-            setCategoryId(event.target.value);
+          onChange={(value) => {
+            setCategoryId(String(value));
             clearFieldError("category");
           }}
           options={categories.map((category) => ({
@@ -191,12 +191,14 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
                         value: category.id,
                       }))}
                       error={hasFieldError(`item.${index}.category`)}
-                      onChange={(event) => {
-                        const value = event.target.value;
+                      onChange={(value) => {
                         setItems((currentItems) =>
                           currentItems.map((currentItem, currentIndex) =>
                             currentIndex === index
-                              ? { ...currentItem, categoryId: value }
+                              ? {
+                                  ...currentItem,
+                                  categoryId: String(value),
+                                }
                               : currentItem,
                           ),
                         );

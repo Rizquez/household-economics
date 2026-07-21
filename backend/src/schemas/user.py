@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -7,5 +8,5 @@ class CurrentUser:
     clerk_id: str
     email: str
     name: str
-    family_id: int
+    family_id: Optional[int]
     access_allowed: bool

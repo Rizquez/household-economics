@@ -51,13 +51,18 @@
     python -m scripts.seed_local_db
     ```
 
-5. Restart the database (delete the container and volume):
+5. Delete container (the `-f` flag to force deletion if the container is running):
+    ```sh
+    docker rm -f household_economics_postgres
+    ```
+
+6. Delete volume:
     ```
     docker compose down -v
     ```
 
 > [!IMPORNTAT]
-> The last step (5) is only necessary if you want to restore all default values and settings. It is important to note that this will completely delete any data or configurations made to the database. Once you have completed step (5), repeat steps (1) through (4).
+> The final steps (5 and 6) are only necessary if you want to restore all default values and settings. It is important to note that this will completely delete any data or configurations made to the database. Once you have completed step (6), repeat steps (1) through (4).
 
 ### Environment variables
 
@@ -114,6 +119,7 @@ database/
 │   ├── category.py
 │   ├── expense_item.py
 │   ├── expense.py
+│   ├── famlily_invitation.py
 │   ├── famlily_members.py
 │   ├── family.py
 │   ├── income.py
@@ -134,6 +140,7 @@ database/
 │   ├── budget.py
 │   ├── category.py
 │   ├── expense.py
+│   ├── famlily_invitation.py
 │   ├── famlily_members.py
 │   ├── family.py
 │   ├── income.py

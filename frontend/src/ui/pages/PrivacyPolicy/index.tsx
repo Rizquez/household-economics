@@ -1,3 +1,4 @@
+import Button from "@/ui/components/Button";
 import { paths } from "@/ui/routes/paths";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,13 +21,13 @@ const PrivacyPolicy = () => {
           </p>
         </div>
 
-        <button
-          type="button"
+        <Button
           onClick={() => navigate(-1)}
-          className="flex h-12 w-12 items-center justify-center rounded-md text-text-primary transition-colors hover:bg-background hover:text-primary cursor-pointer"
+          variant="background"
+          className="flex h-12 w-12 items-center justify-center transition-colors hover:text-primary"
         >
           <FontAwesomeIcon icon={faArrowRightToBracket} className="text-2xl" />
-        </button>
+        </Button>
       </header>
 
       <div className="flex-1 overflow-y-auto py-6">

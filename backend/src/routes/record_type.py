@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, TYPE_CHECKING
 from fastapi import APIRouter, Depends
 
-from src.auth import get_allowed_user
+from src.auth import get_valid_user
 from src.business import RecordTypeBusiness
 from src.schemas import RecordTypeResponse
 
@@ -15,6 +15,6 @@ router = APIRouter()
 
 @router.get("")
 def route_all_record_types(
-    _: "CurrentUser" = Depends(get_allowed_user),
+    _: "CurrentUser" = Depends(get_valid_user),
 ) -> List[RecordTypeResponse]:
     return RecordTypeBusiness.get_all_record_types()

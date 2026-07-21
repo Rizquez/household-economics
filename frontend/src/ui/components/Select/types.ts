@@ -1,13 +1,24 @@
-import type { SelectHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type SelectOption = {
+export type SelectValue = string | number;
+
+export type SelectOption = {
   label: string;
-  value: string | number;
+  value: SelectValue;
+  disabled?: boolean;
+  icon?: ReactNode;
 };
 
-export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
+export type SelectProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "value" | "defaultValue" | "onChange" | "name"
+> & {
   label?: string;
   error?: boolean;
+  errorMessage?: string;
   options: SelectOption[];
   placeholder?: string;
+  value?: SelectValue;
+  onChange: (value: SelectValue) => void;
+  name?: string;
 };

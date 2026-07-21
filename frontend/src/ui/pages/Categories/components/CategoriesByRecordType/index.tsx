@@ -40,7 +40,7 @@ const CategoriesByRecordType = ({
         <span>{recordType.name}</span>
 
         {canExportToAnnualBudget && (
-          <Tooltip text="Only expense categories can be exported to the Annual Budget. Exports apply only to the current year. Export the category again next year to include it in a new annual budget.">
+          <Tooltip text="Only expense categories can be exported to the annual budget. Exports apply only to the current year. Export the category again next year to include it in a new annual budget.">
             <FontAwesomeIcon
               icon={faCircleInfo}
               className="ml-2 h-4 w-4 cursor-pointer text-text-secondary"

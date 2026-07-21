@@ -4,7 +4,7 @@ import {
   faWallet,
   faPiggyBank,
   faTags,
-  faGear,
+  faPeopleRoof,
   faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -43,11 +43,11 @@ export const paths = {
     label: "Categories",
     icon: faTags,
   },
-  configuration: {
-    href: "/configuration",
-    title: "Configuration (TODO)",
-    label: "Configuration (TODO)",
-    icon: faGear,
+  familymanagement: {
+    href: "/family-management",
+    title: "Family management",
+    label: "Family management",
+    icon: faPeopleRoof,
   },
   privacypolicy: {
     href: "/privacy-policy",

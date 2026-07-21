@@ -1,6 +1,7 @@
 from .budget import BudgetService
 from .category import CategoryService
 from .expense import ExpenseService
+from .family_invitation import FamilyInvitationService
 from .family_members import FamilyMembersService
 from .family import FamilyService
 from .income import IncomeService

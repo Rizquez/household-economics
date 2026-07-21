@@ -41,8 +41,8 @@ const AccessError = ({ message }: AccessErrorProps) => {
           </h1>
 
           <p className="mt-3 text-text-secondary">
-            We couldn't verify your account at this time. Please try again in a
-            few moments. If the problem persists, contact an administrator.
+            We couldn&apos;t verify your account at this time. Please try again
+            in a few moments. If the problem persists, contact an administrator.
           </p>
         </div>
 
@@ -51,8 +51,12 @@ const AccessError = ({ message }: AccessErrorProps) => {
         </div>
 
         <div className="flex gap-3">
-          <Button onClick={goHome} className="flex items-center gap-2">
-            <FontAwesomeIcon icon={faHouse} className="text-sm" />
+          <Button
+            onClick={goHome}
+            textSize="text-base"
+            className="flex items-center gap-2"
+          >
+            <FontAwesomeIcon icon={faHouse} />
             {"Home"}
           </Button>
         </div>

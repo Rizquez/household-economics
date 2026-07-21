@@ -13,28 +13,6 @@ import type {
   UpdateSavingsInvestmentsRequest,
 } from "./types";
 
-const mapSavingsInvestments = (
-  savingsInvestments: SavingsInvestmentsResponseDto,
-): SavingsInvestments => ({
-  id: savingsInvestments.id,
-  year: savingsInvestments.year,
-  month: savingsInvestments.month,
-  availableAmount: Number(savingsInvestments.available_amount),
-  savingsAmount: Number(savingsInvestments.savings_amount),
-  investmentAmount: Number(savingsInvestments.investment_amount),
-  familyId: savingsInvestments.family_id,
-});
-
-const mapSavingsInvestmentsRequest = (
-  request: CreateSavingsInvestmentsRequest | UpdateSavingsInvestmentsRequest,
-): SavingsInvestmentsRequestDto => ({
-  year: request.year,
-  month: request.month,
-  available_amount: request.availableAmount,
-  savings_amount: request.savingsAmount,
-  investment_amount: request.investmentAmount,
-});
-
 class SavingsInvestmentssRepository {
   async getByMonthAndYear(
     month: number,
@@ -44,7 +22,7 @@ class SavingsInvestmentssRepository {
       `/savings-investments/${month}/${year}`,
     );
 
-    return response.data ? mapSavingsInvestments(response.data) : null;
+    return response.data ? this.toSavingsInvestments(response.data) : null;
   }
 
   async getByYear(year: number): Promise<SavingsInvestments[]> {
@@ -52,7 +30,7 @@ class SavingsInvestmentssRepository {
       `/savings-investments/history/${year}`,
     );
 
-    return response.data.map(mapSavingsInvestments);
+    return response.data.map((item) => this.toSavingsInvestments(item));
   }
 
   async getAvailableAmount(
@@ -74,10 +52,10 @@ class SavingsInvestmentssRepository {
   ): Promise<SavingsInvestments> {
     const response = await httpClient.post<SavingsInvestmentsResponseDto>(
       "/savings-investments",
-      mapSavingsInvestmentsRequest(request),
+      this.toSavingsInvestmentsRequest(request),
     );
 
-    return mapSavingsInvestments(response.data);
+    return this.toSavingsInvestments(response.data);
   }
 
   async update(
@@ -85,10 +63,36 @@ class SavingsInvestmentssRepository {
   ): Promise<SavingsInvestments> {
     const response = await httpClient.put<SavingsInvestmentsResponseDto>(
       `/savings-investments/${request.id}`,
-      mapSavingsInvestmentsRequest(request),
+      this.toSavingsInvestmentsRequest(request),
     );
 
-    return mapSavingsInvestments(response.data);
+    return this.toSavingsInvestments(response.data);
+  }
+
+  private toSavingsInvestments(
+    dto: SavingsInvestmentsResponseDto,
+  ): SavingsInvestments {
+    return {
+      id: dto.id,
+      year: dto.year,
+      month: dto.month,
+      availableAmount: Number(dto.available_amount),
+      savingsAmount: Number(dto.savings_amount),
+      investmentAmount: Number(dto.investment_amount),
+      familyId: dto.family_id,
+    };
+  }
+
+  private toSavingsInvestmentsRequest(
+    request: CreateSavingsInvestmentsRequest | UpdateSavingsInvestmentsRequest,
+  ): SavingsInvestmentsRequestDto {
+    return {
+      year: request.year,
+      month: request.month,
+      available_amount: request.availableAmount,
+      savings_amount: request.savingsAmount,
+      investment_amount: request.investmentAmount,
+    };
   }
 }
 

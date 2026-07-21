@@ -19,7 +19,7 @@ const Sidebar = () => {
   if (!isVisible || !family) return null;
 
   return (
-    <aside className="flex h-full w-70 shrink-0 flex-col bg-surface card">
+    <aside className="flex h-full w-65 flex-none flex-col bg-surface card">
       <div className="flex justify-end px-6 pt-6">
         <div className="scale-150">
           <UserButton />
@@ -59,8 +59,8 @@ const Sidebar = () => {
       </nav>
       <div className="mt-auto p-5">
         <NavLink
-          key={paths.configuration.href}
-          to={paths.configuration.href}
+          key={paths.familymanagement.href}
+          to={paths.familymanagement.href}
           end
           className={({ isActive }) =>
             [
@@ -71,8 +71,8 @@ const Sidebar = () => {
             ].join(" ")
           }
         >
-          <FontAwesomeIcon icon={paths.configuration.icon} />
-          <span>{paths.configuration.label}</span>
+          <FontAwesomeIcon icon={paths.familymanagement.icon} />
+          <span>{paths.familymanagement.label}</span>
         </NavLink>
       </div>
     </aside>
