@@ -91,6 +91,7 @@ def create_family_members(
 
     session.flush()
 
+
 def create_categories(
     session: "scoped_session",
     db: Database,
