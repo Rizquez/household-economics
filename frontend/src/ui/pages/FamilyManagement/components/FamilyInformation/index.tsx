@@ -53,7 +53,7 @@ const FamilyInformation = ({
           />
         </div>
 
-        <div className="w-full max-w-xs">
+        <div className="w-full max-w-3xs">
           <Select
             id="family-currency"
             label="Currency"
