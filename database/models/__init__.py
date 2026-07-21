@@ -3,6 +3,7 @@ from .budget import Budget
 from .category import Category
 from .expense_item import ExpenseItem
 from .expense import Expense
+from .family_invitation import FamilyInvitation
 from .family_members import FamilyMembers
 from .family import Family
 from .income import Income

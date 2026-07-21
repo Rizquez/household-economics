@@ -3,7 +3,7 @@ import AnnualBudget from "@/ui/pages/AnnualBudget";
 import MonthlyTracking from "@/ui/pages/MonthlyTracking";
 import SavingsInvestments from "@/ui/pages/SavingsInvestments";
 import Categories from "@/ui/pages/Categories";
-import Configuration from "@/ui/pages/Configuration";
+import FamilyManagement from "@/ui/pages/FamilyManagement";
 import { paths } from "@/ui/routes/paths";
 import Home from "@/ui/pages/Home";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
@@ -46,9 +46,9 @@ const routes = [
     authRequired: true,
   },
   {
-    path: paths.configuration.href,
-    component: Configuration,
-    title: paths.configuration.title,
+    path: paths.familymanagement.href,
+    component: FamilyManagement,
+    title: paths.familymanagement.title,
     authRequired: true,
   },
   {

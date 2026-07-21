@@ -41,8 +41,8 @@ const AccessError = ({ message }: AccessErrorProps) => {
           </h1>
 
           <p className="mt-3 text-text-secondary">
-            We couldn't verify your account at this time. Please try again in a
-            few moments. If the problem persists, contact an administrator.
+            We couldn&apos;t verify your account at this time. Please try again
+            in a few moments. If the problem persists, contact an administrator.
           </p>
         </div>
 

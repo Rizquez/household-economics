@@ -20,7 +20,7 @@ class CategoryBusiness(Business):
             session.close()
 
     @classmethod
-    def create_category(cls, a_dict: Dict, family_id: int) -> None:
+    def create_category(cls, a_dict: Dict, family_id: int) -> Category:
         session = cls.create_session()
         try:
             record_type_id = a_dict["record_type_id"]
@@ -49,8 +49,10 @@ class CategoryBusiness(Business):
 
             a_dict["normalized_name"] = normalized_name
             a_dict["family_id"] = family_id
-            cls.db.create_category(session, a_dict)
+            category = cls.db.create_category(session, a_dict)
             session.commit()
+            session.refresh(category)
+            return category
         except Exception:
             session.rollback()
             raise
@@ -117,6 +119,7 @@ class CategoryBusiness(Business):
                 cls.db.update(budget_group, {"name": updated.name})
 
             session.commit()
+            session.refresh(updated)
             return updated
         except Exception:
             session.rollback()

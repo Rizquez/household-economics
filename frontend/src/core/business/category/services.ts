@@ -14,13 +14,13 @@ class ListCategories {
 }
 
 class CreateCategory {
-  execute(payload: CreateCategoryRequest): Promise<void> {
+  execute(payload: CreateCategoryRequest): Promise<Category> {
     return repository.create(payload);
   }
 }
 
 class UpdateCategory {
-  execute(payload: UpdateCategoryRequest): Promise<void> {
+  execute(payload: UpdateCategoryRequest): Promise<Category> {
     return repository.update(payload);
   }
 }

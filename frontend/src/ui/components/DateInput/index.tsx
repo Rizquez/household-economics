@@ -42,7 +42,7 @@ const DateInput = ({
         type="button"
         disabled={disabled}
         onClick={() => setIsOpen((current) => !current)}
-        className={`h-10 rounded-xl border bg-surface px-3 text-left text-sm text-text-primary outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-60 ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
+        className={`cursor-pointer h-10 rounded-xl border bg-surface px-3 text-left text-sm text-text-primary outline-none focus:border-primary disabled:cursor-not-allowed disabled:opacity-60 ${error ? "border-error" : "border-text-secondary/20"} ${className}`}
       >
         {selectedDate ? (
           format(selectedDate, "MMM dd, yyyy", { locale: enUS })
@@ -88,7 +88,7 @@ const DateInput = ({
               variant="secondary"
               onClick={() => setIsOpen(false)}
             >
-              Cancel
+              Close
             </Button>
           </div>
         </div>
