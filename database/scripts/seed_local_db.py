@@ -28,6 +28,69 @@ if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
 
 
+def create_family_members(
+    session: "scoped_session",
+    db: Database,
+    family_id: int,
+) -> None:
+    member_role = db.get_role_by_name(session, "Member")
+    if member_role is None:
+        raise RuntimeError(
+            "Seed aborted: required role 'MEMBER' was not found. "
+            "Apply all Alembic migrations before running the seed."
+        )
+
+    definitions = [
+        {
+            "clerk_id": "local_seed_alex_morgan",
+            "name": "Alex Morgan",
+            "email": "alex.morgan@example.com",
+            "role_id": member_role.id,
+        },
+        {
+            "clerk_id": "local_seed_sophia_bennett",
+            "name": "Sophia Bennett",
+            "email": "sophia.bennett@example.com",
+            "role_id": member_role.id,
+        },
+        {
+            "clerk_id": "local_seed_daniel_carter",
+            "name": "Daniel Carter",
+            "email": "daniel.carter@example.com",
+            "role_id": member_role.id,
+        },
+        {
+            "clerk_id": "local_seed_emily_parker",
+            "name": "Emily Parker",
+            "email": "emily.parker@example.com",
+            "role_id": member_role.id,
+        },
+    ]
+
+    for definition in definitions:
+        user = db.create_user(
+            session,
+            {
+                "clerk_id": definition["clerk_id"],
+                "name": definition["name"],
+                "email": definition["email"],
+                "access_allowed": True,
+            },
+        )
+
+        session.flush()
+
+        db.create_family_member(
+            session,
+            {
+                "family_id": family_id,
+                "user_id": user.id,
+                "role_id": definition["role_id"],
+            },
+        )
+
+    session.flush()
+
 def create_categories(
     session: "scoped_session",
     db: Database,
@@ -515,6 +578,8 @@ def main() -> None:
     try:
         user, family = get_single_developer_context(session)
         assert_family_is_empty(session, family.id)
+
+        create_family_members(session, db, family.id)
 
         income_record_type = get_required_record_type(session, "Income")
         expense_record_type = get_required_record_type(session, "Expenses")
