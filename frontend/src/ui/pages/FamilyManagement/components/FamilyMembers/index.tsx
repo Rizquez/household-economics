@@ -39,7 +39,7 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
         >
           <div className="w-full max-w-md">
             <Input
-              label="Invite a family member"
+              label="Invite a new member to the family"
               name="email"
               type="email"
               value={email}
