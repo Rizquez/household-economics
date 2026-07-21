@@ -1,6 +1,7 @@
 from .budget_group import BudgetGroup
 from .budget import Budget
 from .category import Category
+from .currency_type import CurrencyType
 from .expense_item import ExpenseItem
 from .expense import Expense
 from .family_invitation import FamilyInvitation

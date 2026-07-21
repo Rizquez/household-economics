@@ -1,5 +1,4 @@
 import { useState, type ComponentProps } from "react";
-
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
 import type {
   FamilyInformationErrorField,
@@ -7,8 +6,12 @@ import type {
 } from "../types";
 import useUpdateFamilyInformation from "./useUpdateFamilyInformation";
 
-const useFamilyInformation = (initialName: string) => {
+const useFamilyInformation = (
+  initialName: string,
+  initialCurrencyTypeId: number,
+) => {
   const [name, setName] = useState(initialName);
+  const [currencyTypeId, setCurrencyTypeId] = useState(String(initialCurrencyTypeId));
 
   const {
     errorMessage: formError,
@@ -28,10 +31,10 @@ const useFamilyInformation = (initialName: string) => {
       };
     }
 
-    if (name.trim().length > 15) {
+    if (name.trim().length > 25) {
       return {
         field: "name",
-        message: "Family name cannot contain more than 15 characters.",
+        message: "Family name cannot contain more than 25 characters.",
       };
     }
 
@@ -61,10 +64,12 @@ const useFamilyInformation = (initialName: string) => {
     mutate(
       {
         name: name.trim(),
+        currencyTypeId: Number(currencyTypeId),
       },
       {
         onSuccess: (_, payload) => {
           setName(payload.name);
+          setCurrencyTypeId(String(payload.currencyTypeId));
           clearFormError();
         },
       },
@@ -73,6 +78,7 @@ const useFamilyInformation = (initialName: string) => {
 
   return {
     name,
+    currencyTypeId,
     formError,
     isPending,
     error,
@@ -80,6 +86,7 @@ const useFamilyInformation = (initialName: string) => {
     hasFieldError,
     clearFieldError,
     setName,
+    setCurrencyTypeId,
   };
 };
 

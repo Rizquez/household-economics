@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, List
 from sqlalchemy.orm import relationship, Mapped
-from sqlalchemy import Column, String, DateTime, Integer
+from sqlalchemy import Column, String, DateTime, Integer, BigInteger, ForeignKey
 from sqlalchemy.sql import func
 
 from models.core import ModelBase
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from .income import Income
     from .expense import Expense
     from .savings_investments import SavingsInvestments
+    from .currency_type import CurrencyType
 
 
 class Family(ModelBase):
@@ -24,6 +25,12 @@ class Family(ModelBase):
 
     created_at = Column(
         DateTime(timezone=False), nullable=False, server_default=func.now()
+    )
+
+    currency_type_id = Column(
+        BigInteger,
+        ForeignKey("currency_type.id", name="fk_family_currency_type_id"),
+        nullable=False,
     )
 
     members: Mapped[List["FamilyMembers"]] = relationship(back_populates="family")
@@ -40,3 +47,5 @@ class Family(ModelBase):
     savings_investments: Mapped[List["SavingsInvestments"]] = relationship(
         back_populates="family"
     )
+
+    currency_type: Mapped["CurrencyType"] = relationship(back_populates="families")

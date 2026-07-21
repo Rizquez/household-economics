@@ -1,5 +1,6 @@
 from .budget import BudgetService
 from .category import CategoryService
+from .currency_type import CurrencyTypeService
 from .expense import ExpenseService
 from .family_invitation import FamilyInvitationService
 from .family_members import FamilyMembersService

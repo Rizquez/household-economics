@@ -1,5 +1,6 @@
 from .budget import BudgetGroupResponse, BudgetResponse, BudgetUpdateRequest
 from .category import CategoryResponse, CategoryRequest
+from .currency_type import CurrencyTypeResponse
 from .dashboard import (
     DashboardResponse,
     DashboardBudgetStatusResponse,

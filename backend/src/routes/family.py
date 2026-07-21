@@ -34,6 +34,7 @@ def route_update_family(
 ) -> FamilyResponse:
     return FamilyBusiness.update_family(
         request.name,
+        request.currency_type_id,
         current_user.family_id,
     )
 

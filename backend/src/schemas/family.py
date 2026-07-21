@@ -8,13 +8,15 @@ from src.schemas.enums import Role
 class FamilyResponse(ResponseBase):
     id: int
     name: str
+    currency_type_id: int
 
 
 class FamilyUpdateRequest(RequestBase):
     name: Annotated[
         StrictStr,
-        Field(min_length=5, max_length=15),
+        Field(min_length=5, max_length=25),
     ]
+    currency_type_id: Annotated[int, Field(strict=True, ge=1)]
 
 
 class FamilyMemberResponse(ResponseBase):

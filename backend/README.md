@@ -129,6 +129,7 @@ backend/
 │   │   ├── auth.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── currency_type.py
 │   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py
@@ -143,6 +144,7 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── currency_type.py
 │   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py
@@ -157,6 +159,7 @@ backend/
 │   │   │   └── base.py
 │   │   ├── enums
 │   │   │   ├── __init__.py
+│   │   │   ├── currency_type.py
 │   │   │   └── role.py
 │   │   ├── helpers
 │   │   │   ├── __init__.py
@@ -164,6 +167,7 @@ backend/
 │   │   ├── __init__.py
 │   │   ├── budget.py
 │   │   ├── category.py
+│   │   ├── currency_type.py
 │   │   ├── dashboard.py
 │   │   ├── expense.py
 │   │   ├── family.py

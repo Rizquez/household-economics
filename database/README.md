@@ -117,6 +117,7 @@ database/
 │   ├── budget_group.py
 │   ├── budget.py
 │   ├── category.py
+│   ├── currency_type.py
 │   ├── expense_item.py
 │   ├── expense.py
 │   ├── famlily_invitation.py
@@ -139,6 +140,7 @@ database/
 │   ├── __init__.py
 │   ├── budget.py
 │   ├── category.py
+│   ├── currency_type.py
 │   ├── expense.py
 │   ├── famlily_invitation.py
 │   ├── famlily_members.py
