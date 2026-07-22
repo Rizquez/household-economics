@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
 import Button from "@/ui/components/Button";
 import Tooltip from "@/ui/components/Tooltip";
-
 import type { FamilyMembersProps } from "./types";
 import useFamilyMembersControls from "./hooks/useFamilyMembersControls";
 import useFamilyInvitationForm from "./hooks/useFamilyInvitationForm";

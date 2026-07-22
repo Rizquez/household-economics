@@ -1,12 +1,12 @@
 import { useState, type SubmitEventHandler } from "react";
-
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
 import useSaveSavingsInvestments from "./useSaveSavingsInvestments";
+import type { SavingsInvestmentsAllocationProps } from "../types";
 
-import type {
-  SavingsInvestmentsAllocationProps,
-  SavingsInvestmentsFormField,
-} from "../types";
+type SavingsInvestmentsFormField =
+  | "savingsAmount"
+  | "investmentAmount"
+  | "form";
 
 const useSavingsInvestmentsForm = ({
   year,

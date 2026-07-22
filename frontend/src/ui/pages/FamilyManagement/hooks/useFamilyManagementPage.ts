@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-
-import useFamilyUser from "@/ui/components/Sidebar/hooks/useFamilyUser";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
-
 import useFamilyMembers from "../components/FamilyMembers/hooks/useFamilyMembers";
 import useCurrencyTypes from "./useCurrencyTypes";
 

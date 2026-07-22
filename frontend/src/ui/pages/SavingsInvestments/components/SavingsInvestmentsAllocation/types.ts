@@ -6,8 +6,3 @@ export type SavingsInvestmentsAllocationProps = {
   availableAmount: number;
   savingsInvestment: SavingsInvestments | null;
 };
-
-export type SavingsInvestmentsFormField =
-  | "savingsAmount"
-  | "investmentAmount"
-  | "form";

@@ -1,18 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
-import {
-  createSavingsInvestments,
-  updateSavingsInvestments,
-} from "@/core/business/savings-investments/services";
-
+import { createSavingsInvestments, updateSavingsInvestments } from "@/core/business/savings-investments/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
+import type { CreateSavingsInvestmentsRequest, UpdateSavingsInvestmentsRequest } from "@/core/business/savings-investments/types";
+import { SAVINGS_INVESTMENT_QUERY_KEY, SAVINGS_INVESTMENTS_HISTORY_QUERY_KEY, SAVINGS_INVESTMENTS_QUERY_KEY } from "../../../hooks/constants";
 
-import {
-  SAVINGS_INVESTMENTS_HISTORY_QUERY_KEY,
-  SAVINGS_INVESTMENTS_QUERY_KEY,
-  SAVINGS_INVESTMENT_QUERY_KEY,
-} from "../../../hooks/constants";
-import type { SaveSavingsInvestmentRequest } from "./types";
+type SaveSavingsInvestmentRequest =
+  | CreateSavingsInvestmentsRequest
+  | UpdateSavingsInvestmentsRequest;
 
 const useSaveSavingsInvestments = () => {
   const queryClient = useQueryClient();

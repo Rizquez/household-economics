@@ -1,11 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { updateIncome } from "@/core/business/daily-register/income/services";
 import { updateExpense } from "@/core/business/daily-register/expense/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import { MONTHLY_TRACKING_QUERY_KEY } from "@/ui/pages/MonthlyTracking/hooks/constants";
-import type { UpdateDailyRegisterPayload } from "./types";
 import { SAVINGS_INVESTMENTS_QUERY_KEY } from "@/ui/pages/SavingsInvestments/hooks/constants";
+import type { UpdateIncomeRequest } from "@/core/business/daily-register/income/types";
+import type { UpdateExpenseRequest } from "@/core/business/daily-register/expense/types";
+
+type UpdateDailyRegisterPayload =
+  | {
+      type: "Income";
+      payload: UpdateIncomeRequest;
+    }
+  | {
+      type: "Expenses";
+      payload: UpdateExpenseRequest;
+    };
+
 
 const useUpdateDailyRegister = () => {
   const queryClient = useQueryClient();

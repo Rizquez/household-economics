@@ -1,7 +1,7 @@
 import Button from "@/ui/components/Button";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 
-const typeStyles = {
+const TYPE_STYLES = {
   info: "text-info",
   success: "text-success",
   warning: "text-warning",
@@ -17,7 +17,7 @@ const AppModal = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-text-primary/40 p-4">
       <div className="flex w-full max-w-md flex-col items-center gap-5 rounded-2xl bg-surface p-8 text-center shadow-xl">
-        <h2 className={`text-xl font-semibold ${typeStyles[modal.type]}`}>
+        <h2 className={`text-xl font-semibold ${TYPE_STYLES[modal.type]}`}>
           {modal.title}
         </h2>
 

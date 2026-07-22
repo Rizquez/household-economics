@@ -1,5 +1,4 @@
 import useSavingsInvestmentsHistory from "./hooks/useSavingsInvestmentsHistory";
-
 import type { SavingsInvestmentsHistoryProps } from "./types";
 
 const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {

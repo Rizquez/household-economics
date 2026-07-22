@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getCurrencyTypes } from "@/core/business/currency-type/services";
 import { CURRENCY_TYPES_QUERY_KEY } from "./constants";
 

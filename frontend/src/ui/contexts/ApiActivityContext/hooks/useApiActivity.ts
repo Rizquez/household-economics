@@ -6,9 +6,7 @@ export const useApiActivity = () => {
   const context = useContext(ApiActivityContext);
 
   if (!context) {
-    throw new ApplicationError(
-      "useApiActivity must be used inside ApiActivityProvider",
-    );
+    throw new ApplicationError("useApiActivity must be used inside ApiActivityProvider");
   }
 
   return context;

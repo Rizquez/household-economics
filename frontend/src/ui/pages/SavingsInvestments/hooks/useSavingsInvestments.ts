@@ -1,10 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getSavingsInvestments } from "@/core/business/savings-investments/services";
-import {
-  SAVINGS_INVESTMENTS_QUERY_KEY,
-  SAVINGS_INVESTMENT_QUERY_KEY,
-} from "./constants";
+import { SAVINGS_INVESTMENTS_QUERY_KEY, SAVINGS_INVESTMENT_QUERY_KEY } from "./constants";
 
 const useSavingsInvestments = (month: number, year: number) => {
   const query = useQuery({

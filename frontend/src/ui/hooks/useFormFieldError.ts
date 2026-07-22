@@ -1,5 +1,9 @@
 import { useState } from "react";
-import type { FieldError } from "./types";
+
+type FieldError<TField extends string> = {
+  field: TField;
+  message: string;
+};
 
 const useFormFieldError = <TField extends string>() => {
   const [error, setError] = useState<FieldError<TField> | null>(null);

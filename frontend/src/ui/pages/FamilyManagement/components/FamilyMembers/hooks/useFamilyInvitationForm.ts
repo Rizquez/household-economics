@@ -1,12 +1,13 @@
 import { useState, type ComponentProps } from "react";
-
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
-
 import useCreateFamilyInvitation from "./useCreateFamilyInvitation";
-import type {
-  FamilyInvitationErrorField,
-  FamilyInvitationValidationError,
-} from "./types";
+
+type FamilyInvitationErrorField = "email";
+
+type FamilyInvitationValidationError = {
+  field: FamilyInvitationErrorField;
+  message: string;
+};
 
 const useFamilyInvitationForm = () => {
   const [email, setEmail] = useState("");

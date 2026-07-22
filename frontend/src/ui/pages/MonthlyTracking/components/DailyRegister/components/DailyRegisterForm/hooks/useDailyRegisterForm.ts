@@ -1,14 +1,30 @@
 import { useMemo, useState, type ComponentProps } from "react";
-
 import useCreateDailyRegister from "./useCreateDailyRegister";
 import useUpdateDailyRegister from "./useUpdateDailyRegister";
 import type { DailyRegisterFormProps } from "../types";
-import type {
-  DailyRegisterErrorField,
-  DailyRegisterValidationError,
-  ItemForm,
-} from "./types";
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
+
+type ItemForm = {
+  product: string;
+  categoryId: string;
+  amount: string;
+};
+
+type DailyRegisterErrorField =
+  | "recordType"
+  | "name"
+  | "createdAt"
+  | "category"
+  | "amount"
+  | "notes"
+  | `item.${number}.product`
+  | `item.${number}.category`
+  | `item.${number}.amount`;
+
+type DailyRegisterValidationError = {
+  field: DailyRegisterErrorField;
+  message: string;
+};
 
 const emptyItem = (): ItemForm => ({
   product: "",

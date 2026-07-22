@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-
 import type { UpdateBudgetRequest } from "@/core/business/annual-budget/types";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useBudgetGroups from "./useBudgetGroups";
 import useBudgetYears from "./useBudgetYears";
 import useUpdateBudgets from "./useUpdateBudgets";
-import type { AnnualBudgetErrorField } from "./types";
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
+
+type AnnualBudgetErrorField = `budget.${number}`;
 
 const useAnnualBudgetPage = () => {
   const {

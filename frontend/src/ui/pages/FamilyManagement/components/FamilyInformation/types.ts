@@ -6,9 +6,3 @@ export type FamilyInformationProps = {
   currencyTypes: CurrencyType[];
 };
 
-export type FamilyInformationErrorField = "name" | "currencyType";
-
-export type FamilyInformationValidationError = {
-  field: FamilyInformationErrorField;
-  message: string;
-};

@@ -1,5 +1,4 @@
 import { createPortal } from "react-dom";
-
 import type { TooltipProps } from "./types";
 import useTooltip from "./hooks/useTooltip";
 

@@ -1,10 +1,13 @@
 import { useState, type ComponentProps } from "react";
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
-import type {
-  FamilyInformationErrorField,
-  FamilyInformationValidationError,
-} from "../types";
 import useUpdateFamilyInformation from "./useUpdateFamilyInformation";
+
+type FamilyInformationErrorField = "name" | "currencyType";
+
+type FamilyInformationValidationError = {
+  field: FamilyInformationErrorField;
+  message: string;
+};
 
 const useFamilyInformation = (
   initialName: string,
