@@ -5,4 +5,3 @@ export type FamilyInformationProps = {
   family: Family;
   currencyTypes: CurrencyType[];
 };
-

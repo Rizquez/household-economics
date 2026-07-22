@@ -3,7 +3,10 @@ import { useQueries } from "@tanstack/react-query";
 import { listRecordTypes } from "@/core/business/record-type/services";
 import { listCategories } from "@/core/business/category/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
-import { CATEGORIES_QUERY_KEY, RECORD_TYPES_QUERY_KEY } from "../../../hooks/constants";
+import {
+  CATEGORIES_QUERY_KEY,
+  RECORD_TYPES_QUERY_KEY,
+} from "../../../hooks/constants";
 
 const useDailyRegisterPage = () => {
   const { showLoading, showModal, closeModal } = useModal();

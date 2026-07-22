@@ -17,7 +17,6 @@ type UpdateDailyRegisterPayload =
       payload: UpdateExpenseRequest;
     };
 
-
 const useUpdateDailyRegister = () => {
   const queryClient = useQueryClient();
   const { showLoading, showModal, closeModal } = useModal();

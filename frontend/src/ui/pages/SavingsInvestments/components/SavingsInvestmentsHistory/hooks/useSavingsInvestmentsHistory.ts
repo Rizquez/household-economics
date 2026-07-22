@@ -1,6 +1,9 @@
 import { useMemo } from "react";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
-import type { SavingsInvestmentsHistoryProps, SavingsInvestmentsHistoryRow } from "../types";
+import type {
+  SavingsInvestmentsHistoryProps,
+  SavingsInvestmentsHistoryRow,
+} from "../types";
 
 const useSavingsInvestmentsHistory = ({
   history,

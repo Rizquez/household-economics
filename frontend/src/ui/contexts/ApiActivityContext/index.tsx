@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import { API_URL } from "@/core/env";
 import { ApiActivityContext } from "./context";
 import type { ApiActivityState, RegisterApiActivityPayload } from "./types";
