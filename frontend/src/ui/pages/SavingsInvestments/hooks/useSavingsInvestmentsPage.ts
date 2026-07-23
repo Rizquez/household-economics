@@ -4,8 +4,8 @@ import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useSavingsInvestments from "./useSavingsInvestments";
 import useSavingsInvestmentsAvailable from "./useSavingsInvestmentsAvailable";
 import useSavingsInvestmentsHistory from "./useSavingsInvestmentsHistory";
-import useSavingsInvestmentsPeriods from "./useSavingsInvestmentsPeriods";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
+import usePeriods from "@/ui/hooks/usePeriods";
 
 const useSavingsInvestmentsPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -24,7 +24,7 @@ const useSavingsInvestmentsPage = () => {
     isPending: isLoadingPeriods,
     isError: isPeriodsError,
     error: periodsError,
-  } = useSavingsInvestmentsPeriods();
+  } = usePeriods();
 
   const sortedPeriods = useMemo(
     () =>

@@ -3,9 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useMonthlySummary from "../components/MonthlySummary/hooks/useMonthlySummary";
 import useMonthlyRecords from "./useMonthlyRecords";
-import useMonthlyTrackingPeriods from "./useMonthlyTrackingPeriods";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
+import usePeriods from "@/ui/hooks/usePeriods";
 
 const useMonthlyTrackingPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -24,7 +24,7 @@ const useMonthlyTrackingPage = () => {
     isPending: isLoadingPeriods,
     isError: isPeriodsError,
     error: periodsError,
-  } = useMonthlyTrackingPeriods();
+  } = usePeriods();
 
   const sortedPeriods = useMemo(
     () =>
