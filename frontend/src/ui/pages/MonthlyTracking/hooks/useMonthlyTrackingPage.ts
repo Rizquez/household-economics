@@ -5,7 +5,7 @@ import useMonthlySummary from "../components/MonthlySummary/hooks/useMonthlySumm
 import useMonthlyRecords from "./useMonthlyRecords";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
-import usePeriodsAvailable from "@/ui/hooks/usePeriodsAvailable";
+import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useMonthlyTrackingPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -24,7 +24,7 @@ const useMonthlyTrackingPage = () => {
     isPending: isLoadingPeriods,
     isError: isPeriodsError,
     error: periodsError,
-  } = usePeriodsAvailable();
+  } = useAvaliablePeriods();
 
   const sortedPeriods = useMemo(
     () =>

@@ -3,7 +3,7 @@ import { MONTH_NAMES } from "@/ui/hooks/constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useDashboard from "./useDashboard";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
-import usePeriodsAvailable from "@/ui/hooks/usePeriodsAvailable";
+import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useDashboardPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -22,7 +22,7 @@ const useDashboardPage = () => {
     isPending: isLoadingPeriods,
     isError: isPeriodsError,
     error: periodsError,
-  } = usePeriodsAvailable();
+  } = useAvaliablePeriods();
 
   const sortedPeriods = useMemo(
     () =>
