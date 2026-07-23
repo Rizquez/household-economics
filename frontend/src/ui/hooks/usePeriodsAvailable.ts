@@ -10,7 +10,7 @@ import {
 } from "../pages/MonthlyTracking/hooks/constants";
 import { DASHBOARD_PERIODS_QUERY_KEY } from "../pages/Dashboard/hooks/constants";
 
-const usePeriods = () => {
+const usePeriodsAvailable = () => {
   const query = useQuery({
     queryKey: [
       SAVINGS_INVESTMENTS_PERIODS_QUERY_KEY,
@@ -27,4 +27,4 @@ const usePeriods = () => {
   };
 };
 
-export default usePeriods;
+export default usePeriodsAvailable;
