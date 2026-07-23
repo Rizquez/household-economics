@@ -4,6 +4,8 @@ import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
 
+const CONTACT_EMAIL = "pedro.rizquez.94@hotmail.com";
+
 const PrivacyPolicy = () => {
   const linkClassName =
     "inline-flex w-fit items-center text-sm text-primary transition-colors hover:underline py-3";
@@ -42,90 +44,95 @@ const PrivacyPolicy = () => {
 
           <p>
             If you have any questions regarding this privacy policy or the
-            processing of your data, you can contact the project managers
-            through the channels provided in the app.
+            processing of your data, you can contact the project administrator
+            at <span className="font-semibold">{CONTACT_EMAIL}</span>.
+          </p>
+
+          <h2 className="text-lg font-semibold pt-8">2. Account information</h2>
+
+          <p>
+            The application uses Clerk for sign-in and account authentication;
+            the app stores the account information needed to identify the user
+            inside the application: clerk user id, email address, name, access
+            status and the family associated with the account when access has
+            been granted.
           </p>
 
           <h2 className="text-lg font-semibold pt-8">
-            2. Information collected
+            3. Financial and family information
           </h2>
 
-          <p>
-            To use certain features of the app, you may need to create a user
-            account.
-          </p>
-
-          <p>
-            During the registration and authentication process, the following
-            data may be collected:
-          </p>
+          <p>The app allows authorized users to enter and manage:</p>
 
           <ul className="list-disc pl-6">
-            <li>Username.</li>
-            <li>Email address.</li>
-            <li>Technical identifiers associated with authentication.</li>
+            <li>Family name and family currency preference.</li>
+            <li>Family member names, email addresses and roles.</li>
+            <li>Family invitations sent to an email address.</li>
             <li>
-              Information necessary to verify your identity and allow secure
-              access to the app.
+              Income records, including name, date, amount, category and
+              optional notes.
+            </li>
+            <li>
+              Expense records, including name, date, amount, category, optional
+              notes and itemized products when entered.
+            </li>
+            <li>Financial categories.</li>
+            <li>Annual budget amounts by month and category.</li>
+            <li>Monthly savings and investment allocations.</li>
+          </ul>
+
+          <h2 className="text-lg font-semibold pt-8">
+            4. How the information is used
+          </h2>
+
+          <p>This information is used to:</p>
+
+          <ul className="list-disc pl-6">
+            <li>Authenticate users and control access to the private area.</li>
+            <li>Manage family membership and invitations.</li>
+            <li>Record, update, display and delete financial entries.</li>
+            <li>
+              Prepare budgets, monthly tracking views, dashboard summaries and
+              savings or investment views.
+            </li>
+            <li>
+              Apply the selected family currency when showing financial
+              information.
             </li>
           </ul>
 
           <p>
-            In addition, the app allows users to enter information related to
-            managing their personal finances, including categories, budgets,
-            income, expenses, savings goals, or other financial data voluntarily
-            provided by the user.
+            The financial information entered in the app is used to provide the
+            household financial management features of the application; it is
+            not sold to third parties and is not used for advertising or
+            profiling.
           </p>
 
-          <h2 className="text-lg font-semibold pt-8">
-            3. Purpose of data processing
-          </h2>
-
-          <p>The data collected is used exclusively to:</p>
+          <h2 className="text-lg font-semibold pt-8">5. Family sharing</h2>
 
           <ul className="list-disc pl-6">
-            <li>Create and manage user accounts.</li>
+            <li>Financial information belongs to a family group.</li>
             <li>
-              Enable the initiation and maintenance of authenticated sessions.
+              Authorized members of the same family can access the information
+              associated with that family.
             </li>
             <li>
-              Verify credentials and ensure secure access to the application.
-            </li>
-            <li>
-              Provide the technical features necessary for the proper
-              functioning of the service.
-            </li>
-            <li>
-              Manage, store, and display the financial information entered by
-              each user.
+              The family owner can invite new members and remove existing
+              members.
             </li>
           </ul>
 
-          <p>
-            The financial information entered by the user is used solely to
-            provide the financial management features offered by the application
-            and is not used for commercial analysis, advertising, profiling, or
-            disclosure to third parties.
-          </p>
-
-          <h2 className="text-lg font-semibold pt-8">
-            4. Third-party services
-          </h2>
+          <h2 className="text-lg font-semibold pt-8">6. External providers</h2>
 
           <p>
-            The application uses services provided by third parties for certain
-            technical functions and infrastructure.
+            The project currently includes the following external providers:
           </p>
 
           <h3 className="font-semibold pt-2">Clerk</h3>
           <p>
-            The authentication and identity management process is handled by
-            Clerk.
-          </p>
-          <p>
-            When using the registration and login mechanisms, certain data may
-            be processed by Clerk in accordance with its own terms and privacy
-            policies.
+            Clerk is used for authentication and user identity; the backend also
+            checks Clerk tokens and loads Clerk user information needed to
+            create or identify the app user.
           </p>
           <a
             href="https://clerk.com/legal/privacy"
@@ -138,11 +145,9 @@ const PrivacyPolicy = () => {
           </a>
 
           <h3 className="font-semibold pt-2">Render</h3>
-          <p>The app&apos;s backend infrastructure is hosted by Render.</p>
           <p>
-            Certain technical information related to the operation of the
-            service, access logs, or infrastructure metrics may be processed by
-            Render in accordance with its own policies.
+            The backend includes a Render production environment configuration;
+            when this environment is used, Render provides the backend runtime.
           </p>
           <a
             href="https://render.com/privacy"
@@ -154,30 +159,23 @@ const PrivacyPolicy = () => {
             <FontAwesomeIcon icon={paths.privacypolicy.icon} />
           </a>
 
-          <h3 className="font-semibold pt-2">Netlify</h3>
-          <p>The application may be hosted and distributed via Netlify.</p>
+          <h3 className="font-semibold pt-2">EmailJS</h3>
           <p>
-            As an infrastructure and web hosting provider, Netlify may process
-            certain technical information necessary for the provision of the
-            service, including IP addresses, access logs, browser information,
-            and metrics related to the platform&apos;s performance and security.
+            EmailJS is used by the backend to send access request emails and
+            family invitation emails.
           </p>
           <a
-            href="https://www.netlify.com/privacy/"
+            href="https://www.emailjs.com/legal/privacy-policy/"
             target="_blank"
             rel="noopener noreferrer"
             className={linkClassName}
           >
-            <span>Netlify Privacy Policy</span>
+            <span>EmailJS Privacy Policy</span>
             <FontAwesomeIcon icon={paths.privacypolicy.icon} />
           </a>
 
-          <h3 className="font-semibold pt-2">Google fonts</h3>
-          <p>The application uses fonts provided by Google Fonts.</p>
-          <p>
-            When loading these fonts, Google may receive technical information
-            such as the IP address or data related to the resource request.
-          </p>
+          <h3 className="font-semibold pt-2">Google Fonts</h3>
+          <p>The frontend loads the Inter font from Google Fonts.</p>
           <a
             href="https://policies.google.com/privacy"
             target="_blank"
@@ -189,61 +187,38 @@ const PrivacyPolicy = () => {
           </a>
 
           <h2 className="text-lg font-semibold pt-8">
-            5. Responsibility for external services
+            7. Security and retention
           </h2>
 
           <p>
-            The third-party services mentioned above operate under their own
-            privacy policies and terms of use.
+            Access to the private area requires authentication and approved
+            access; the application uses the current user&apos;s family to load
+            and manage family financial information.
           </p>
 
           <p>
-            The controller of this application does not control nor is it
-            responsible for the data processing carried out directly by those
-            providers outside the scope of the application&apos;s operation.
+            No automatic deletion period is defined in the application; data may
+            remain stored while it is needed to provide the app features, unless
+            it is changed or removed through the available app functions or a
+            request to the administrator is reviewed and handled.
           </p>
 
-          <p>
-            We recommend consulting their respective privacy policies for
-            detailed information on how they handle personal data.
-          </p>
-
-          <h2 className="text-lg font-semibold pt-8">6. Security</h2>
+          <h2 className="text-lg font-semibold pt-8">8. User rights</h2>
 
           <p>
-            Reasonable measures are taken to protect the information managed by
-            the application and to limit access solely to the processes
-            necessary for its operation.
-          </p>
-
-          <p>
-            However, no system connected to the Internet can guarantee absolute
-            security.
+            You can contact the project administrator to ask about the data
+            associated with your account or family, or to request that it be
+            reviewed, corrected, or deleted where the current application and
+            legal obligations allow it.
           </p>
 
           <h2 className="text-lg font-semibold pt-8">
-            7. Links to external sites
-          </h2>
-
-          <p>The app may contain links to external websites.</p>
-
-          <p>
-            We assume no responsibility for the privacy practices, content, or
-            services offered by such third-party sites.
-          </p>
-
-          <h2 className="text-lg font-semibold pt-8">
-            8. Changes to this policy
+            9. Changes to this policy
           </h2>
 
           <p>
-            This policy may be updated periodically to reflect legal, technical,
-            or functional changes to the app.
-          </p>
-
-          <p>
-            We recommend that you check this page from time to time to stay
-            informed about any changes.
+            This policy may be updated when the application changes, the date at
+            the top of this page indicates when it was last updated.
           </p>
         </div>
       </div>
