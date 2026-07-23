@@ -5,6 +5,7 @@ import useBudgetGroups from "./useBudgetGroups";
 import useBudgetYears from "./useBudgetYears";
 import useUpdateBudgets from "./useUpdateBudgets";
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 
 type AnnualBudgetErrorField = `budget.${number}`;
 
@@ -23,6 +24,13 @@ const useAnnualBudgetPage = () => {
   const [editedAmounts, setEditedAmounts] = useState<Record<number, number>>(
     {},
   );
+
+  const {
+    family,
+    isPending: isLoadingFamily,
+    isError: isFamilyError,
+    error: familyError,
+  } = useFamilyUser();
 
   const {
     years,
@@ -44,9 +52,11 @@ const useAnnualBudgetPage = () => {
     useUpdateBudgets();
 
   const isLoading =
-    isLoadingBudgetYears || Boolean(selectedYear && isLoadingBudgetGroups);
+    isLoadingFamily ||
+    isLoadingBudgetYears ||
+    Boolean(selectedYear && isLoadingBudgetGroups);
 
-  const hasError = isBudgetYearsError || isBudgetGroupsError;
+  const hasError = isFamilyError || isBudgetYearsError || isBudgetGroupsError;
 
   useEffect(() => {
     if (isLoading) {
@@ -59,6 +69,7 @@ const useAnnualBudgetPage = () => {
         type: "error",
         title: "Error loading annual budget",
         message:
+          familyError?.message ??
           budgetYearsError?.message ??
           budgetGroupsError?.message ??
           "Unexpected error",
@@ -70,6 +81,7 @@ const useAnnualBudgetPage = () => {
   }, [
     isLoading,
     hasError,
+    familyError,
     budgetYearsError,
     budgetGroupsError,
     showLoading,
@@ -161,6 +173,7 @@ const useAnnualBudgetPage = () => {
     year: selectedYear,
     yearOptions,
     budgetGroups,
+    family,
     formError,
     isReady: !isLoading && !hasError,
     isUpdatingBudgets,

@@ -68,8 +68,16 @@ class FamilyBusiness(Business):
                 )
 
             session.commit()
-            session.refresh(family)
-            return family
+            session.refresh(family, attribute_names=["currency_type"])
+
+            updated = cls.db.get_family_by_id(session, family_id)
+            if updated is None:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No family was found associated with ID: {family_id}.",
+                )
+
+            return updated
         except Exception:
             session.rollback()
             raise

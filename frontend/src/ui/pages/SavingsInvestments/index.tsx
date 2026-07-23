@@ -12,11 +12,12 @@ const SavingsInvestments = () => {
     availableAmount,
     savingsInvestment,
     history,
+    family,
     isReady,
     setSelectedPeriod,
   } = useSavingsInvestmentsPage();
 
-  if (!isReady) return null;
+  if (!isReady || !family) return null;
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
@@ -52,9 +53,13 @@ const SavingsInvestments = () => {
           month={month}
           availableAmount={availableAmount}
           savingsInvestment={savingsInvestment}
+          currencyType={family.currencyType}
         />
 
-        <SavingsInvestmentsHistory history={history} />
+        <SavingsInvestmentsHistory
+          history={history}
+          currencyType={family.currencyType}
+        />
       </div>
     </div>
   );

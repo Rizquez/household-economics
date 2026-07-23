@@ -24,11 +24,12 @@ const Dashboard = () => {
     selectedPeriod,
     periodOptions,
     dashboard,
+    family,
     isReady,
     setSelectedPeriod,
   } = useDashboardPage();
 
-  if (!isReady) return null;
+  if (!isReady || !family) return null;
 
   const overview = dashboard?.overview ?? EMPTY_OVERVIEW;
   const allocation = dashboard?.allocation ?? EMPTY_ALLOCATION;
@@ -62,7 +63,10 @@ const Dashboard = () => {
         "
       >
         <div className="min-h-0">
-          <DashboardOverview overview={overview} />
+          <DashboardOverview
+            overview={overview}
+            currencyType={family.currencyType}
+          />
         </div>
 
         <div className="min-h-0">
@@ -75,11 +79,17 @@ const Dashboard = () => {
         </div>
 
         <div className="min-h-0">
-          <DashboardAllocation allocation={allocation} />
+          <DashboardAllocation
+            allocation={allocation}
+            currencyType={family.currencyType}
+          />
         </div>
 
         <div className="min-h-0">
-          <DashboardBudgetStatus budgetStatus={budgetStatus} />
+          <DashboardBudgetStatus
+            budgetStatus={budgetStatus}
+            currencyType={family.currencyType}
+          />
         </div>
       </div>
     </div>

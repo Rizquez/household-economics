@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional, TYPE_CHECKING
+from sqlalchemy.orm import joinedload
 
 from models import Family, FamilyMembers
 from .core import ServiceBase
@@ -22,6 +23,7 @@ class FamilyService(ServiceBase):
     ) -> Optional[Family]:
         return (
             session.query(Family)
+            .options(joinedload(Family.currency_type))
             .join(Family.members)
             .filter(FamilyMembers.user_id == user_id)
             .one_or_none()
@@ -33,10 +35,11 @@ class FamilyService(ServiceBase):
         session: "scoped_session",
         family_id: int,
     ) -> Optional[Family]:
-        return cls.find(
-            session,
-            Family.id == family_id,
-            model=Family,
+        return (
+            session.query(Family)
+            .options(joinedload(Family.currency_type))
+            .filter(Family.id == family_id)
+            .one_or_none()
         )
 
     @classmethod

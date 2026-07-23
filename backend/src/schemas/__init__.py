@@ -20,7 +20,7 @@ from .family import (
     FamilyResponse,
     FamilyUpdateRequest,
     FamilyMemberResponse,
-    CreateInvitationRequest,
+    FamilyInvitationRequest,
 )
 from .income import IncomeRequest, IncomeResponse
 from .monthly_tracking import MonthlyTrackingPeriodResponse

@@ -3,7 +3,10 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import type { DashboardAllocationProps } from "./types";
 import getAllocationChartData from "./utils/getAllocationChartData";
 
-const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
+const DashboardAllocation = ({
+  allocation,
+  currencyType,
+}: DashboardAllocationProps) => {
   if (!allocation.hasAllocation) {
     return (
       <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
@@ -67,7 +70,11 @@ const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
                   ))}
                 </Pie>
 
-                <Tooltip formatter={(value) => Number(value).toFixed(2)} />
+                <Tooltip
+                  formatter={(value) =>
+                    `${currencyType.symbol} ${Number(value).toFixed(2)}`
+                  }
+                />
               </PieChart>
             </ResponsiveContainer>
           ) : (
@@ -89,7 +96,7 @@ const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
             </div>
 
             <span className="font-semibold text-text-primary">
-              {allocation.savings.toFixed(2)}
+              {currencyType.symbol} {allocation.savings.toFixed(2)}
             </span>
           </div>
 
@@ -101,7 +108,7 @@ const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
             </div>
 
             <span className="font-semibold text-text-primary">
-              {allocation.investments.toFixed(2)}
+              {currencyType.symbol} {allocation.investments.toFixed(2)}
             </span>
           </div>
 
@@ -121,7 +128,7 @@ const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
                 allocation.remaining >= 0 ? "text-text-primary" : "text-error"
               }`}
             >
-              {allocation.remaining.toFixed(2)}
+              {currencyType.symbol} {allocation.remaining.toFixed(2)}
             </span>
           </div>
 
@@ -129,7 +136,7 @@ const DashboardAllocation = ({ allocation }: DashboardAllocationProps) => {
             <span className="text-sm text-text-secondary">Total assigned</span>
 
             <span className="font-semibold text-text-primary">
-              {assigned.toFixed(2)}
+              {currencyType.symbol} {assigned.toFixed(2)}
             </span>
           </div>
         </div>

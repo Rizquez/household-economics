@@ -5,11 +5,19 @@ import useSavingsInvestments from "./useSavingsInvestments";
 import useSavingsInvestmentsAvailable from "./useSavingsInvestmentsAvailable";
 import useSavingsInvestmentsHistory from "./useSavingsInvestmentsHistory";
 import useSavingsInvestmentsPeriods from "./useSavingsInvestmentsPeriods";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 
 const useSavingsInvestmentsPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { showLoading, showModal, closeModal } = useModal();
+
+  const {
+    family,
+    isPending: isLoadingFamily,
+    isError: isFamilyError,
+    error: familyError,
+  } = useFamilyUser();
 
   const {
     periods,
@@ -88,12 +96,14 @@ const useSavingsInvestmentsPage = () => {
   } = useSavingsInvestmentsHistory(year);
 
   const isLoading =
+    isLoadingFamily ||
     isLoadingPeriods ||
     Boolean(activePeriod && isLoadingSavingsInvestment) ||
     Boolean(activePeriod && isLoadingAvailable) ||
     Boolean(activePeriod && isLoadingHistory);
 
   const hasError =
+    isFamilyError ||
     isPeriodsError ||
     isSavingsInvestmentError ||
     isAvailableError ||
@@ -111,6 +121,7 @@ const useSavingsInvestmentsPage = () => {
         type: "error",
         title: "Savings and investments",
         message:
+          familyError?.message ??
           periodsError?.message ??
           savingsInvestmentError?.message ??
           availableError?.message ??
@@ -126,6 +137,7 @@ const useSavingsInvestmentsPage = () => {
     isLoading,
     hasError,
     periodsError,
+    familyError,
     savingsInvestmentError,
     availableError,
     historyError,
@@ -152,6 +164,7 @@ const useSavingsInvestmentsPage = () => {
     availableAmount,
     savingsInvestment,
     history,
+    family,
     isReady: !isLoading && !hasError,
     setSelectedPeriod,
   };

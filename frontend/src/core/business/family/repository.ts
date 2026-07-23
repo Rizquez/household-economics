@@ -1,12 +1,14 @@
 import httpClient from "@/core/client/httpClient";
 import type {
   CreateFamilyInvitationRequestDto,
+  CurrencyTypeDto,
   FamilyDto,
   FamilyMemberDto,
   UpdateFamilyRequestDto,
 } from "./domain";
 import type {
   CreateFamilyInvitationRequest,
+  CurrencyType,
   Family,
   FamilyMember,
   UpdateFamilyRequest,
@@ -54,6 +56,16 @@ class FamilyRepository {
       id: dto.id,
       name: dto.name,
       currencyTypeId: dto.currency_type_id,
+      currencyType: this.toCurrencyType(dto.currency_type),
+    };
+  }
+
+  private toCurrencyType(dto: CurrencyTypeDto): CurrencyType {
+    return {
+      id: dto.id,
+      name: dto.name,
+      code: dto.code,
+      symbol: dto.symbol,
     };
   }
 

@@ -1,7 +1,15 @@
+export type CurrencyType = {
+  id: number;
+  name: string;
+  code: string;
+  symbol: string;
+};
+
 export type Family = {
   id: number;
   name: string;
   currencyTypeId: number;
+  currencyType: CurrencyType;
 };
 
 export type UpdateFamilyRequest = {

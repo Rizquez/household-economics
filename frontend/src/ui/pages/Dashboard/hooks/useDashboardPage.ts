@@ -3,11 +3,19 @@ import { MONTH_NAMES } from "@/ui/hooks/constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useDashboard from "./useDashboard";
 import useDashboardPeriods from "./useDashboardPeriods";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 
 const useDashboardPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { showLoading, showModal, closeModal } = useModal();
+
+  const {
+    family,
+    isPending: isLoadingFamily,
+    isError: isFamilyError,
+    error: familyError,
+  } = useFamilyUser();
 
   const {
     periods,
@@ -74,9 +82,11 @@ const useDashboardPage = () => {
   } = useDashboard(month, year);
 
   const isLoading =
-    isLoadingPeriods || Boolean(activePeriod && isLoadingDashboard);
+    isLoadingFamily ||
+    isLoadingPeriods ||
+    Boolean(activePeriod && isLoadingDashboard);
 
-  const hasError = isPeriodsError || isDashboardError;
+  const hasError = isFamilyError || isPeriodsError || isDashboardError;
 
   useEffect(() => {
     if (isLoading) {
@@ -90,6 +100,7 @@ const useDashboardPage = () => {
         type: "error",
         title: "Dashboard",
         message:
+          familyError?.message ??
           periodsError?.message ??
           dashboardError?.message ??
           "Unexpected error",
@@ -102,6 +113,7 @@ const useDashboardPage = () => {
   }, [
     isLoading,
     hasError,
+    familyError,
     periodsError,
     dashboardError,
     showLoading,
@@ -122,6 +134,7 @@ const useDashboardPage = () => {
     selectedPeriod: activePeriod,
     periodOptions,
     dashboard,
+    family,
     month,
     year,
     isReady: !isLoading && !hasError,

@@ -4,6 +4,7 @@ import { getMonthLabel, getMonthlyTotals, getMonths } from "./utils/month";
 
 const AnnualBudgetTable = ({
   budgetGroups,
+  currencyType,
   onAmountChange,
   hasFieldError,
 }: AnnualBudgetTableProps) => {
@@ -86,7 +87,7 @@ const AnnualBudgetTable = ({
                 })}
 
                 <td className="sticky right-0 z-10 border-l border-text-secondary/10 bg-surface px-3 py-3 text-right font-semibold text-text-primary">
-                  {budgetGroupTotal.toFixed(2)}
+                  {currencyType.symbol} {budgetGroupTotal.toFixed(2)}
                 </td>
               </tr>
             );
@@ -102,11 +103,12 @@ const AnnualBudgetTable = ({
                 key={month}
                 className="sticky bottom-0 z-20 bg-background px-3 py-3 text-right text-text-primary"
               >
-                {monthlyTotals[month].toFixed(2)}
+                {currencyType.symbol} {monthlyTotals[month].toFixed(2)}
               </td>
             ))}
 
             <td className="sticky right-0 bottom-0 z-30 border-l border-text-secondary/10 bg-background px-3 py-3 text-right text-text-primary">
+              {currencyType.symbol}{" "}
               {Object.values(monthlyTotals)
                 .reduce((total, value) => total + value, 0)
                 .toFixed(2)}

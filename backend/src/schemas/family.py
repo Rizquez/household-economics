@@ -3,12 +3,14 @@ from pydantic import Field, StrictStr, EmailStr
 
 from src.schemas.core import ResponseBase, RequestBase
 from src.schemas.enums import Role
+from src.schemas.currency_type import CurrencyTypeResponse
 
 
 class FamilyResponse(ResponseBase):
     id: int
     name: str
     currency_type_id: int
+    currency_type: CurrencyTypeResponse
 
 
 class FamilyUpdateRequest(RequestBase):
@@ -27,5 +29,5 @@ class FamilyMemberResponse(ResponseBase):
     role: Role
 
 
-class CreateInvitationRequest(RequestBase):
+class FamilyInvitationRequest(RequestBase):
     email: EmailStr
