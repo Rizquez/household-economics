@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateFamily } from "@/core/business/family/services";
 import type { UpdateFamilyRequest } from "@/core/business/family/types";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
-import { FAMILY_QUERY_KEY } from "@/ui/components/Sidebar/hooks/constants";
+import { FAMILY_QUERY_KEY } from "@/ui/hooks/constants";
 
 const useUpdateFamilyInformation = () => {
   const queryClient = useQueryClient();

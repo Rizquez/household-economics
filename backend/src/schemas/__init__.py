@@ -1,5 +1,6 @@
 from .budget import BudgetGroupResponse, BudgetResponse, BudgetUpdateRequest
 from .category import CategoryResponse, CategoryRequest
+from .currency_type import CurrencyTypeResponse
 from .dashboard import (
     DashboardResponse,
     DashboardBudgetStatusResponse,
@@ -19,7 +20,7 @@ from .family import (
     FamilyResponse,
     FamilyUpdateRequest,
     FamilyMemberResponse,
-    CreateInvitationRequest,
+    FamilyInvitationRequest,
 )
 from .income import IncomeRequest, IncomeResponse
 from .monthly_tracking import MonthlyTrackingPeriodResponse

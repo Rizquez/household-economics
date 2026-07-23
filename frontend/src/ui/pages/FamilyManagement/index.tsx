@@ -3,7 +3,8 @@ import FamilyMembers from "./components/FamilyMembers";
 import useFamilyManagementPage from "./hooks/useFamilyManagementPage";
 
 const FamilyManagement = () => {
-  const { isReady, family, familyMembers } = useFamilyManagementPage();
+  const { isReady, family, familyMembers, currencyTypes } =
+    useFamilyManagementPage();
 
   if (!isReady || !family) return null;
 
@@ -20,7 +21,7 @@ const FamilyManagement = () => {
         </p>
       </header>
 
-      <FamilyInformation family={family} />
+      <FamilyInformation family={family} currencyTypes={currencyTypes} />
 
       <FamilyMembers familyMembers={familyMembers} />
     </div>

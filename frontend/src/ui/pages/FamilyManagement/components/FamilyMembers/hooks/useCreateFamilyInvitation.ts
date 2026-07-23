@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-
 import { createFamilyInvitation } from "@/core/business/family/services";
 import type { CreateFamilyInvitationRequest } from "@/core/business/family/types";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";

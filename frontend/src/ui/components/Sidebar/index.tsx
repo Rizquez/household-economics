@@ -2,10 +2,10 @@ import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { paths } from "@/ui/routes/paths";
 import { UserButton } from "@clerk/clerk-react";
-import useFamilyUser from "./hooks/useFamilyUser";
+import useFamilyUser from "../../hooks/useFamilyUser";
 import useAppLayoutVisibility from "@/ui/hooks/useAppLayoutVisibility";
 
-const sidebarPathKeys = [
+const kEYS = [
   "dashboard",
   "monthlytracking",
   "savingsinvestments",
@@ -35,7 +35,7 @@ const Sidebar = () => {
         </h1>
       </div>
       <nav className="flex flex-col gap-1 p-5">
-        {sidebarPathKeys.map((key) => {
+        {kEYS.map((key) => {
           const path = paths[key];
           return (
             <NavLink

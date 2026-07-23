@@ -5,11 +5,19 @@ import useMonthlySummary from "../components/MonthlySummary/hooks/useMonthlySumm
 import useMonthlyRecords from "./useMonthlyRecords";
 import useMonthlyTrackingPeriods from "./useMonthlyTrackingPeriods";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 
 const useMonthlyTrackingPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { showLoading, showModal, closeModal } = useModal();
+
+  const {
+    family,
+    isPending: isLoadingFamily,
+    isError: isFamilyError,
+    error: familyError,
+  } = useFamilyUser();
 
   const {
     periods,
@@ -86,11 +94,13 @@ const useMonthlyTrackingPage = () => {
   });
 
   const isLoading =
+    isLoadingFamily ||
     isLoadingPeriods ||
     Boolean(activePeriod && isLoadingRecords) ||
     Boolean(activePeriod && isLoadingSummary);
 
-  const hasError = isPeriodsError || isRecordsError || isSummaryError;
+  const hasError =
+    isFamilyError || isPeriodsError || isRecordsError || isSummaryError;
 
   useEffect(() => {
     if (isLoading) {
@@ -103,6 +113,7 @@ const useMonthlyTrackingPage = () => {
         type: "error",
         title: "Monthly tracking",
         message:
+          familyError?.message ??
           periodsError?.message ??
           recordsError?.message ??
           summaryError?.message ??
@@ -119,6 +130,7 @@ const useMonthlyTrackingPage = () => {
     periodsError,
     recordsError,
     summaryError,
+    familyError,
     showLoading,
     showModal,
     closeModal,
@@ -139,6 +151,7 @@ const useMonthlyTrackingPage = () => {
     incomes,
     expenses,
     summaryRows,
+    family,
     isReady: !isLoading && !hasError,
     setSelectedPeriod,
   };

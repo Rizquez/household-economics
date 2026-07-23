@@ -9,7 +9,7 @@ from src.schemas import (
     FamilyResponse,
     FamilyUpdateRequest,
     FamilyMemberResponse,
-    CreateInvitationRequest,
+    FamilyInvitationRequest,
 )
 from src.routes.helpers import validate_non_negative_num
 
@@ -34,6 +34,7 @@ def route_update_family(
 ) -> FamilyResponse:
     return FamilyBusiness.update_family(
         request.name,
+        request.currency_type_id,
         current_user.family_id,
     )
 
@@ -57,7 +58,7 @@ def route_remove_family_member(
 
 @router.post("/invitations", status_code=status.HTTP_204_NO_CONTENT)
 def route_create_family_invitation(
-    request: CreateInvitationRequest,
+    request: FamilyInvitationRequest,
     current_user: "CurrentUser" = Depends(get_valid_user),
 ) -> None:
     FamilyBusiness.create_invitation(

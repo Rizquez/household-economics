@@ -9,7 +9,7 @@ from src.business.core import Business
 from src.business.services import send_access_request_email
 from src.env import is_render_environment
 from src.schemas import CurrentUser
-from src.schemas.enums import Role
+from src.schemas.enums import Role, CurrencyType
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
@@ -167,12 +167,11 @@ class AuthBusiness(Business):
         user: "User",
     ) -> "FamilyMembers":
         role = cls.db.get_role_by_name(session, Role.OWNER)
+        currency_type = cls.db.get_currency_type_by_name(session, CurrencyType.EURO)
 
         family = cls.db.create_family(
             session,
-            {
-                "name": f"{user.name}'s Family",
-            },
+            {"name": f"{user.name}'s Family", "currency_type_id": currency_type.id},
         )
 
         session.flush()

@@ -3,6 +3,7 @@ from models import (
     Budget,
     BudgetGroup,
     Category,
+    CurrencyType,
     ExpenseItem,
     Expense,
     RecordType,

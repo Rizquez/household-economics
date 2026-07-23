@@ -1,6 +1,6 @@
 import type { ButtonProps } from "./types";
 
-const variants = {
+const VARIANTS = {
   primary: "bg-primary text-surface",
   secondary: "bg-secondary text-surface",
   danger: "bg-error text-surface",
@@ -23,7 +23,7 @@ const Button = ({
       className={`
         rounded-xl px-4 py-2 transition-opacity
         ${textSize}
-        ${variants[variant]}
+        ${VARIANTS[variant]}
         ${
           disabled
             ? "cursor-not-allowed opacity-50"

@@ -18,11 +18,12 @@ const MonthlyTracking = () => {
     incomes,
     expenses,
     summaryRows,
+    family,
     isReady,
     setSelectedPeriod,
   } = useMonthlyTrackingPage();
 
-  if (!isReady) return null;
+  if (!isReady || !family) return null;
 
   const openCreateRecord = () => {
     setEditingRecord(null);
@@ -65,11 +66,12 @@ const MonthlyTracking = () => {
       </div>
 
       <div className="grid min-h-0 flex-1 grid-cols-[0.6fr_1fr] gap-4">
-        <MonthlySummary rows={summaryRows} />
+        <MonthlySummary rows={summaryRows} currencyType={family.currencyType} />
 
         <MonthlyRecords
           incomes={incomes}
           expenses={expenses}
+          currencyType={family.currencyType}
           onEdit={openEditRecord}
         />
       </div>

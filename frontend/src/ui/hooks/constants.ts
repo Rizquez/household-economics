@@ -1,3 +1,4 @@
+export const FAMILY_QUERY_KEY = "family";
 export const MONTH_NAMES = [
   "January",
   "February",

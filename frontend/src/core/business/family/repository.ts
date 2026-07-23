@@ -1,12 +1,14 @@
 import httpClient from "@/core/client/httpClient";
 import type {
   CreateFamilyInvitationRequestDto,
+  CurrencyTypeDto,
   FamilyDto,
   FamilyMemberDto,
   UpdateFamilyRequestDto,
 } from "./domain";
 import type {
   CreateFamilyInvitationRequest,
+  CurrencyType,
   Family,
   FamilyMember,
   UpdateFamilyRequest,
@@ -22,6 +24,7 @@ class FamilyRepository {
   async updateFamily(payload: UpdateFamilyRequest): Promise<Family> {
     const dto: UpdateFamilyRequestDto = {
       name: payload.name,
+      currency_type_id: payload.currencyTypeId,
     };
 
     const response = await httpClient.put<FamilyDto>("/family", dto);
@@ -52,6 +55,17 @@ class FamilyRepository {
     return {
       id: dto.id,
       name: dto.name,
+      currencyTypeId: dto.currency_type_id,
+      currencyType: this.toCurrencyType(dto.currency_type),
+    };
+  }
+
+  private toCurrencyType(dto: CurrencyTypeDto): CurrencyType {
+    return {
+      id: dto.id,
+      name: dto.name,
+      code: dto.code,
+      symbol: dto.symbol,
     };
   }
 

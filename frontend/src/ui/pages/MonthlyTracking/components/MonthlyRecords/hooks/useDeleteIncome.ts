@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { deleteIncome } from "@/core/business/daily-register/income/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import { MONTHLY_TRACKING_QUERY_KEY } from "../../../hooks/constants";

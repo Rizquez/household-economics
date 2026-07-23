@@ -3,19 +3,33 @@ import DashboardAllocation from "./components/DashboardAllocation";
 import DashboardBudgetStatus from "./components/DashboardBudgetStatus";
 import DashboardControls from "./components/DashboardControls";
 import DashboardOverview from "./components/DashboardOverview";
-import { EMPTY_ALLOCATION, EMPTY_OVERVIEW } from "./constants";
 import useDashboardPage from "./hooks/useDashboardPage";
+
+const EMPTY_OVERVIEW = {
+  income: 0,
+  expenses: 0,
+  available: 0,
+  remaining: 0,
+};
+
+const EMPTY_ALLOCATION = {
+  savings: 0,
+  investments: 0,
+  remaining: 0,
+  hasAllocation: false,
+};
 
 const Dashboard = () => {
   const {
     selectedPeriod,
     periodOptions,
     dashboard,
+    family,
     isReady,
     setSelectedPeriod,
   } = useDashboardPage();
 
-  if (!isReady) return null;
+  if (!isReady || !family) return null;
 
   const overview = dashboard?.overview ?? EMPTY_OVERVIEW;
   const allocation = dashboard?.allocation ?? EMPTY_ALLOCATION;
@@ -49,7 +63,10 @@ const Dashboard = () => {
         "
       >
         <div className="min-h-0">
-          <DashboardOverview overview={overview} />
+          <DashboardOverview
+            overview={overview}
+            currencyType={family.currencyType}
+          />
         </div>
 
         <div className="min-h-0">
@@ -62,11 +79,17 @@ const Dashboard = () => {
         </div>
 
         <div className="min-h-0">
-          <DashboardAllocation allocation={allocation} />
+          <DashboardAllocation
+            allocation={allocation}
+            currencyType={family.currencyType}
+          />
         </div>
 
         <div className="min-h-0">
-          <DashboardBudgetStatus budgetStatus={budgetStatus} />
+          <DashboardBudgetStatus
+            budgetStatus={budgetStatus}
+            currencyType={family.currencyType}
+          />
         </div>
       </div>
     </div>

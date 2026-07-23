@@ -24,7 +24,7 @@ const SavingsInvestmentsAllocation = (
     handleSubmit,
   } = useSavingsInvestmentsForm(props);
 
-  const { availableAmount } = props;
+  const { availableAmount, currencyType } = props;
   const isAllocationDisabled = availableAmount <= 0;
 
   return (
@@ -58,7 +58,7 @@ const SavingsInvestmentsAllocation = (
               availableAmount >= 0 ? "text-success" : "text-error"
             }`}
           >
-            {availableAmount.toFixed(2)}
+            {currencyType.symbol} {availableAmount.toFixed(2)}
           </span>
         </div>
 
@@ -100,7 +100,7 @@ const SavingsInvestmentsAllocation = (
             </span>
 
             <span className="text-lg font-semibold text-text-primary">
-              {assignedAmount.toFixed(2)}
+              {currencyType.symbol} {assignedAmount.toFixed(2)}
             </span>
           </div>
 
@@ -112,7 +112,7 @@ const SavingsInvestmentsAllocation = (
                 remainingAmount >= 0 ? "text-success" : "text-error"
               }`}
             >
-              {remainingAmount.toFixed(2)}
+              {currencyType.symbol} {remainingAmount.toFixed(2)}
             </span>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getSavingsInvestmentsAvailableAmount } from "@/core/business/savings-investments/services";
 import {
   SAVINGS_INVESTMENTS_QUERY_KEY,

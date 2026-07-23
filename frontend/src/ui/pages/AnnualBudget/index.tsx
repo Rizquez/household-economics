@@ -7,6 +7,7 @@ const AnnualBudget = () => {
     year,
     yearOptions,
     budgetGroups,
+    family,
     formError,
     isReady,
     isUpdatingBudgets,
@@ -16,7 +17,7 @@ const AnnualBudget = () => {
     saveBudgets,
   } = useAnnualBudgetPage();
 
-  if (!isReady) return null;
+  if (!isReady || !family) return null;
 
   return (
     <div className="flex h-full flex-col gap-6 bg-surface p-6 card">
@@ -44,6 +45,7 @@ const AnnualBudget = () => {
 
       <AnnualBudgetTable
         budgetGroups={budgetGroups}
+        currencyType={family.currencyType}
         hasFieldError={hasFieldError}
         onAmountChange={updateBudgetAmount}
       />

@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
 import Button from "@/ui/components/Button";
 import Tooltip from "@/ui/components/Tooltip";
-
 import type { FamilyMembersProps } from "./types";
 import useFamilyMembersControls from "./hooks/useFamilyMembersControls";
 import useFamilyInvitationForm from "./hooks/useFamilyInvitationForm";
@@ -37,10 +35,10 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
 
         <form
           noValidate
-          className="relative flex items-end gap-3"
+          className="relative flex w-full max-w-sm items-end gap-3"
           onSubmit={handleSubmit}
         >
-          <div className="w-full max-w-md">
+          <div className="flex-1">
             <Input
               label="Invite a new member"
               name="email"

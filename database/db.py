@@ -19,6 +19,7 @@ from services import (
     ExpenseService,
     IncomeService,
     SavingsInvestmentsService,
+    CurrencyTypeService,
 )
 
 if TYPE_CHECKING:
@@ -39,6 +40,7 @@ class Database(
     ExpenseService,
     IncomeService,
     SavingsInvestmentsService,
+    CurrencyTypeService,
 ):
     __instance = None
 

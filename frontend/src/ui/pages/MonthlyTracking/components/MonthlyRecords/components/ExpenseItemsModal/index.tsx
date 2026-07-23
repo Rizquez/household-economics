@@ -1,7 +1,11 @@
 import Button from "@/ui/components/Button";
 import type { ExpenseItemsModalProps } from "../../types";
 
-const ExpenseItemsModal = ({ expense, onClose }: ExpenseItemsModalProps) => {
+const ExpenseItemsModal = ({
+  expense,
+  currencyType,
+  onClose,
+}: ExpenseItemsModalProps) => {
   return (
     <div className="fixed inset-0 z-70 flex items-center justify-center bg-black/40 p-6">
       <div className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-surface p-6 shadow-xl">
@@ -36,7 +40,7 @@ const ExpenseItemsModal = ({ expense, onClose }: ExpenseItemsModalProps) => {
                   </td>
 
                   <td className="px-4 py-3 text-right text-text-primary">
-                    {item.amount.toFixed(2)}
+                    {currencyType.symbol} {item.amount.toFixed(2)}
                   </td>
                 </tr>
               ))}
