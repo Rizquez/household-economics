@@ -1,10 +1,12 @@
 import type { Expense } from "@/core/business/daily-register/expense/types";
 import type { Income } from "@/core/business/daily-register/income/types";
 import type { EditableDailyRegister } from "../DailyRegister/types";
+import type { CurrencyType } from "@/core/business/currency-type/types";
 
 export type MonthlyRecordsProps = {
   incomes: Income[];
   expenses: Expense[];
+  currencyType: CurrencyType;
   onEdit: (record: EditableDailyRegister) => void;
 };
 
@@ -15,6 +17,7 @@ export type NoteModalProps = {
 
 export type ExpenseItemsModalProps = {
   expense: Expense;
+  currencyType: CurrencyType;
   onClose: () => void;
 };
 

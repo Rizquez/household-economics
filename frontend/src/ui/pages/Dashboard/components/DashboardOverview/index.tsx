@@ -7,7 +7,10 @@ import {
 import type { DashboardOverviewProps } from "./types";
 import getOverviewCharts from "./utils/getOverviewCharts";
 
-const DashboardOverview = ({ overview }: DashboardOverviewProps) => {
+const DashboardOverview = ({
+  overview,
+  currencyType,
+}: DashboardOverviewProps) => {
   const charts = getOverviewCharts(overview);
   return (
     <section className="grid h-full min-h-0 grid-cols-2 grid-rows-2 gap-3">
@@ -63,9 +66,9 @@ const DashboardOverview = ({ overview }: DashboardOverviewProps) => {
 
             <span
               className={`truncate text-xl font-semibold ${chart.valueClassName}`}
-              title={chart.value.toFixed(2)}
+              title={`${currencyType.symbol} ${chart.value.toFixed(2)}`}
             >
-              {chart.value.toFixed(2)}
+              {currencyType.symbol} {chart.value.toFixed(2)}
             </span>
 
             <span className="text-xs text-text-secondary">

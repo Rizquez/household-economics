@@ -1,10 +1,13 @@
 import { useState, type ComponentProps } from "react";
 import useFormFieldError from "@/ui/hooks/useFormFieldError";
 import useCreateCategory from "@/ui/pages/Categories/components/CreateCategoryForm/hooks/useCreateCategory";
-import type {
-  CreateCategoryErrorField,
-  CreateCategoryValidationError,
-} from "./types";
+
+type CreateCategoryErrorField = "category" | "recordType";
+
+type CreateCategoryValidationError = {
+  field: CreateCategoryErrorField;
+  message: string;
+};
 
 const useCreateCategoryForm = () => {
   const [category, setCategory] = useState("");

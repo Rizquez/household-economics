@@ -1,11 +1,17 @@
 import Button from "@/ui/components/Button";
 import Input from "@/ui/components/Input";
+import Select from "@/ui/components/Select";
+
 import type { FamilyInformationProps } from "./types";
 import useFamilyInformation from "./hook/useFamilyInformation";
 
-const FamilyInformation = ({ family }: FamilyInformationProps) => {
+const FamilyInformation = ({
+  family,
+  currencyTypes,
+}: FamilyInformationProps) => {
   const {
     name,
+    currencyTypeId,
     formError,
     isPending,
     error,
@@ -13,7 +19,8 @@ const FamilyInformation = ({ family }: FamilyInformationProps) => {
     hasFieldError,
     clearFieldError,
     setName,
-  } = useFamilyInformation(family.name);
+    setCurrencyTypeId,
+  } = useFamilyInformation(family.name, family.currencyTypeId);
 
   return (
     <section className="rounded-xl border border-text-secondary/10 bg-background p-6">
@@ -43,6 +50,24 @@ const FamilyInformation = ({ family }: FamilyInformationProps) => {
               setName(event.target.value);
               clearFieldError("name");
             }}
+          />
+        </div>
+
+        <div className="w-full max-w-3xs">
+          <Select
+            id="family-currency"
+            label="Currency"
+            value={currencyTypeId}
+            error={hasFieldError("currencyType")}
+            disabled={isPending}
+            onChange={(value) => {
+              setCurrencyTypeId(String(value));
+              clearFieldError("currencyType");
+            }}
+            options={currencyTypes.map((currencyType) => ({
+              label: `${currencyType.name} (${currencyType.symbol})`,
+              value: currencyType.id,
+            }))}
           />
         </div>
 

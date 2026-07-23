@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import useFamilyUser from "@/ui/components/Sidebar/hooks/useFamilyUser";
+import useFamilyUser from "@/ui/hooks/useFamilyUser";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useFamilyMembers from "../components/FamilyMembers/hooks/useFamilyMembers";
+import useCurrencyTypes from "./useCurrencyTypes";
 
 const useFamilyManagementPage = () => {
   const {
@@ -10,6 +11,7 @@ const useFamilyManagementPage = () => {
     isError: isFamilyError,
     error: familyError,
   } = useFamilyUser();
+
   const {
     familyMembers,
     isPending: areMembersPending,
@@ -17,11 +19,19 @@ const useFamilyManagementPage = () => {
     error: membersError,
   } = useFamilyMembers();
 
+  const {
+    currencyTypes,
+    isPending: areCurrencyTypesPending,
+    isError: areCurrencyTypesError,
+    error: currencyTypesError,
+  } = useCurrencyTypes();
+
   const { showLoading, showModal, closeModal } = useModal();
 
-  const isPending = isFamilyPending || areMembersPending;
-  const isError = isFamilyError || areMembersError;
-  const error = familyError ?? membersError;
+  const isPending =
+    isFamilyPending || areMembersPending || areCurrencyTypesPending;
+  const isError = isFamilyError || areMembersError || areCurrencyTypesError;
+  const error = familyError ?? membersError ?? currencyTypesError;
 
   useEffect(() => {
     if (isPending) {
@@ -45,6 +55,7 @@ const useFamilyManagementPage = () => {
   return {
     family,
     familyMembers,
+    currencyTypes,
     isReady: !isPending && !isError,
   };
 };

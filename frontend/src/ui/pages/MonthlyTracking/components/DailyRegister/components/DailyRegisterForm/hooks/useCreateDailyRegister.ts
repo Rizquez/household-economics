@@ -4,8 +4,19 @@ import { createIncome } from "@/core/business/daily-register/income/services";
 import { createExpense } from "@/core/business/daily-register/expense/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import { MONTHLY_TRACKING_QUERY_KEY } from "@/ui/pages/MonthlyTracking/hooks/constants";
-import type { CreateDailyRegisterPayload } from "./types";
 import { SAVINGS_INVESTMENTS_QUERY_KEY } from "@/ui/pages/SavingsInvestments/hooks/constants";
+import type { CreateIncomeRequest } from "@/core/business/daily-register/income/types";
+import type { CreateExpenseRequest } from "@/core/business/daily-register/expense/types";
+
+type CreateDailyRegisterPayload =
+  | {
+      type: "Income";
+      payload: CreateIncomeRequest;
+    }
+  | {
+      type: "Expenses";
+      payload: CreateExpenseRequest;
+    };
 
 const useCreateDailyRegister = () => {
   const queryClient = useQueryClient();

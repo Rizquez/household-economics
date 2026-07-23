@@ -1,6 +1,7 @@
 from .auth import AuthBusiness
 from .budget import BudgetBusiness
 from .category import CategoryBusiness
+from .currency_type import CurrencyTypeBusiness
 from .dashboard import DashboardBusiness
 from .expense import ExpenseBusiness
 from .family import FamilyBusiness

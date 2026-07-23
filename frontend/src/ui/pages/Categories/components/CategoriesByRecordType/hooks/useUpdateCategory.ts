@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { updateCategory } from "@/core/business/category/services";
 import type { UpdateCategoryRequest } from "@/core/business/category/types";
 import { CATEGORIES_QUERY_KEY } from "../../../hooks/constants";

@@ -1,7 +1,9 @@
+import type { CurrencyType } from "@/core/business/currency-type/types";
 import type { DashboardOverview } from "@/core/business/dashboard/types";
 
 export type DashboardOverviewProps = {
   overview: DashboardOverview;
+  currencyType: CurrencyType;
 };
 
 export type OverviewChart = {

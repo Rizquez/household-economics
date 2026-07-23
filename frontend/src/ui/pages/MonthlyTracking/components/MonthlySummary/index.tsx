@@ -1,6 +1,6 @@
 import type { MonthlySummaryProps } from "./types";
 
-const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
+const MonthlySummary = ({ rows, currencyType }: MonthlySummaryProps) => {
   const totals = rows.reduce(
     (accumulator, row) => ({
       budget: accumulator.budget + row.budget,
@@ -60,15 +60,15 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.budget.toFixed(2)}
+                  {currencyType.symbol} {row.budget.toFixed(2)}
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.expenses.toFixed(2)}
+                  {currencyType.symbol} {row.expenses.toFixed(2)}
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.income.toFixed(2)}
+                  {currencyType.symbol} {row.income.toFixed(2)}
                 </td>
 
                 <td
@@ -76,7 +76,7 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
                     row.difference >= 0 ? "text-success" : "text-error"
                   }`}
                 >
-                  {row.difference.toFixed(2)}
+                  {currencyType.symbol} {row.difference.toFixed(2)}
                 </td>
               </tr>
             ))}
@@ -89,15 +89,15 @@ const MonthlySummary = ({ rows }: MonthlySummaryProps) => {
               </td>
 
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                {totals.budget.toFixed(2)}
+                {currencyType.symbol} {totals.budget.toFixed(2)}
               </td>
 
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                {totals.expenses.toFixed(2)}
+                {currencyType.symbol} {totals.expenses.toFixed(2)}
               </td>
 
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                {totals.income.toFixed(2)}
+                {currencyType.symbol} {totals.income.toFixed(2)}
               </td>
 
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary"></td>

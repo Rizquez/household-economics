@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useQueries } from "@tanstack/react-query";
-
 import { listRecordTypes } from "@/core/business/record-type/services";
 import { listCategories } from "@/core/business/category/services";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";

@@ -32,6 +32,7 @@ class FamilyBusiness(Business):
     def update_family(
         cls,
         name: str,
+        currency_type_id: int,
         family_id: int,
     ) -> Family:
         session = cls.create_session()
@@ -44,10 +45,18 @@ class FamilyBusiness(Business):
                     detail="Family name cannot be empty.",
                 )
 
+            currency_type = cls.db.get_currency_type_by_id(session, currency_type_id)
+            if currency_type is None:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No currency type was found associated with ID: {currency_type_id}.",
+                )
+
             family = cls.db.update_family(
                 session,
                 {
                     "name": normalized_name,
+                    "currency_type_id": currency_type.id,
                 },
                 family_id,
             )
@@ -59,8 +68,16 @@ class FamilyBusiness(Business):
                 )
 
             session.commit()
-            session.refresh(family)
-            return family
+            session.refresh(family, attribute_names=["currency_type"])
+
+            updated = cls.db.get_family_by_id(session, family_id)
+            if updated is None:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=f"No family was found associated with ID: {family_id}.",
+                )
+
+            return updated
         except Exception:
             session.rollback()
             raise

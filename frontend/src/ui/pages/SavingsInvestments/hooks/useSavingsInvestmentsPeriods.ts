@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getMonthlyTrackingPeriods } from "@/core/business/monthly-tracking/services";
 import {
   SAVINGS_INVESTMENTS_PERIODS_QUERY_KEY,

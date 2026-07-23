@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-
 import type { Expense } from "@/core/business/daily-register/expense/types";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useDeleteExpense from "./useDeleteExpense";

@@ -12,6 +12,7 @@ import {
 import useMonthlyRecords from "./hooks/useMonthlyRecords";
 
 const MonthlyRecords = (props: MonthlyRecordsProps) => {
+  const { currencyType } = props;
   const {
     records,
     selectedNote,
@@ -92,7 +93,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                   </td>
 
                   <td className="w-28 px-4 py-3 text-left font-medium text-text-primary">
-                    {record.amount.toFixed(2)}
+                    {currencyType.symbol} {record.amount.toFixed(2)}
                   </td>
 
                   <td className="w-28 max-w-28 px-4 py-3">
@@ -170,6 +171,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
       {selectedExpense && (
         <ExpenseItemsModal
           expense={selectedExpense}
+          currencyType={currencyType}
           onClose={closeExpenseItems}
         />
       )}

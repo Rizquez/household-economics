@@ -1,8 +1,8 @@
 import useSavingsInvestmentsHistory from "./hooks/useSavingsInvestmentsHistory";
-
 import type { SavingsInvestmentsHistoryProps } from "./types";
 
 const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
+  const { currencyType } = props;
   const { rows, totalSaved, totalInvested, totalAssigned } =
     useSavingsInvestmentsHistory(props);
 
@@ -25,7 +25,7 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
           </span>
 
           <span className="text-xl font-semibold text-text-primary">
-            {totalInvested.toFixed(2)}
+            {currencyType.symbol} {totalInvested.toFixed(2)}
           </span>
         </div>
 
@@ -35,7 +35,7 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
           </span>
 
           <span className="text-xl font-semibold text-text-primary">
-            {totalSaved.toFixed(2)}
+            {currencyType.symbol} {totalSaved.toFixed(2)}
           </span>
         </div>
       </div>
@@ -79,15 +79,15 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.savingsAmount.toFixed(2)}
+                  {currencyType.symbol} {row.savingsAmount.toFixed(2)}
                 </td>
 
                 <td className="px-4 py-3 text-right text-text-primary">
-                  {row.investmentAmount.toFixed(2)}
+                  {currencyType.symbol} {row.investmentAmount.toFixed(2)}
                 </td>
 
                 <td className="px-4 py-3 text-right font-semibold text-text-primary">
-                  {row.accumulatedAmount.toFixed(2)}
+                  {currencyType.symbol} {row.accumulatedAmount.toFixed(2)}
                 </td>
               </tr>
             ))}
@@ -102,7 +102,7 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary" />
 
               <td className="sticky bottom-0 bg-background px-4 py-3 text-right text-text-primary">
-                Total: {totalAssigned.toFixed(2)}
+                Total: {currencyType.symbol} {totalAssigned.toFixed(2)}
               </td>
             </tr>
           </tfoot>

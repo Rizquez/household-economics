@@ -14,6 +14,7 @@ import getBudgetStatusChartData from "./utils/getBudgetStatusChartData";
 
 const DashboardBudgetStatus = ({
   budgetStatus,
+  currencyType,
 }: DashboardBudgetStatusProps) => {
   if (!budgetStatus.length) {
     return (
@@ -72,6 +73,9 @@ const DashboardBudgetStatus = ({
 
             <XAxis
               type="number"
+              tickFormatter={(value) =>
+                `${currencyType.symbol} ${Number(value).toFixed(0)}`
+              }
               tick={{
                 fontSize: 12,
               }}
@@ -91,7 +95,10 @@ const DashboardBudgetStatus = ({
             />
 
             <Tooltip
-              formatter={(value, name) => [Number(value).toFixed(2), name]}
+              formatter={(value, name) => [
+                `${currencyType.symbol} ${Number(value).toFixed(2)}`,
+                name,
+              ]}
             />
 
             <Legend />

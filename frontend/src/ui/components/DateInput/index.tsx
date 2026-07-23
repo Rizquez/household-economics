@@ -1,19 +1,10 @@
 import { useMemo, useState } from "react";
 import { DayPicker } from "react-day-picker";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
-
 import Button from "@/ui/components/Button";
 import type { DateInputProps } from "./types";
-
-const toDate = (value: string): Date | undefined => {
-  if (!value) return undefined;
-
-  const date = parseISO(value);
-  return Number.isNaN(date.getTime()) ? undefined : date;
-};
-
-const toIsoDate = (date: Date): string => format(date, "yyyy-MM-dd");
+import { toDate, toIsoDate } from "./utils/date";
 
 const DateInput = ({
   id,
@@ -26,7 +17,6 @@ const DateInput = ({
   disabled = false,
 }: DateInputProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const selectedDate = useMemo(() => toDate(value), [value]);
 
   return (

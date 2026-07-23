@@ -1,9 +1,8 @@
 import { useCallback, useMemo, useState, type ReactNode } from "react";
-
 import type { ModalState, ShowModalPayload } from "./types";
 import { ModalContext } from "./context";
 
-const initialState: ModalState = {
+const INITIAL_STATE: ModalState = {
   open: false,
   type: "info",
   title: "",
@@ -12,7 +11,7 @@ const initialState: ModalState = {
 };
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const [modal, setModal] = useState<ModalState>(initialState);
+  const [modal, setModal] = useState<ModalState>(INITIAL_STATE);
 
   const showModal = useCallback((payload: ShowModalPayload) => {
     setModal({
@@ -42,7 +41,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const closeModal = useCallback(() => {
-    setModal(initialState);
+    setModal(INITIAL_STATE);
   }, []);
 
   const value = useMemo(

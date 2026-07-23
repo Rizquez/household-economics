@@ -35,9 +35,9 @@ const Home = () => {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-text-secondary">
-            Track daily expenses, plan monthly budgets, manage savings,
-            investments and wishlists, all designed for families who want
-            complete control over their household economy.
+            Keep track of your income and expenses, plan annual budgets, monitor
+            your monthly progress, and grow your family&apos;s savings and
+            investments, all in one simple place.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
@@ -67,15 +67,15 @@ const Home = () => {
           />
 
           <FeatureCard
-            icon={faChartLine}
-            title="Monthly tracking"
-            description="Keep a detailed record of your expenses related to your budget, savings, and investments each month."
-          />
-
-          <FeatureCard
             icon={faPiggyBank}
             title="Savings and investments"
             description="Keep track of your goals, investments, and plans for the future."
+          />
+
+          <FeatureCard
+            icon={faChartLine}
+            title="Monthly tracking"
+            description="Keep a detailed record of your expenses related to your budget, savings, and investments each month."
           />
         </div>
       </section>

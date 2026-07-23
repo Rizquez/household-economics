@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 from .budget import router as budget_router
 from .category import router as category_router
+from .currency_type import router as currency_type_router
 from .dashboard import router as dashboard_router
 from .expense import router as expense_router
 from .family import router as family_router
@@ -20,6 +21,7 @@ if TYPE_CHECKING:
 map_routers = {
     "/annual-budget": (budget_router, "Annual Budget"),
     "/category": (category_router, "Category"),
+    "/currency-type": (currency_type_router, "Currency Type"),
     "/dashboard": (dashboard_router, "Dashboard"),
     "/expense": (expense_router, "Expense"),
     "/family": (family_router, "Family"),

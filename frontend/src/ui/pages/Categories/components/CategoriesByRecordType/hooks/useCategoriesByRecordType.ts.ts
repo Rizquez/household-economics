@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import useDeleteCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useDeleteCategory";
 import useUpdateCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useUpdateCategory";
 import useCreateBudgetGroupFromCategory from "@/ui/pages/Categories/components/CategoriesByRecordType/hooks/useCreateBudgetGroupFromCategory";

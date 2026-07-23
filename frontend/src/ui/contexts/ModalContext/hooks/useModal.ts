@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import ApplicationError from "@/core/errors";
 import { ModalContext } from "../context";
 

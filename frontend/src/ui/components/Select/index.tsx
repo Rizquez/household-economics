@@ -8,7 +8,6 @@ import {
 } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
 import type { SelectProps, SelectValue } from "./types";
 
 const Select = ({
