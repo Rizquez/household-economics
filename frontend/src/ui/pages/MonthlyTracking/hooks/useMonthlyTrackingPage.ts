@@ -5,7 +5,6 @@ import useMonthlySummary from "../components/MonthlySummary/hooks/useMonthlySumm
 import useMonthlyRecords from "./useMonthlyRecords";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
-import usePeriods from "@/ui/hooks/usePeriodsAvailable";
 import usePeriodsAvailable from "@/ui/hooks/usePeriodsAvailable";
 
 const useMonthlyTrackingPage = () => {

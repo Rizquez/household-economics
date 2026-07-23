@@ -5,7 +5,6 @@ import useSavingsInvestments from "./useSavingsInvestments";
 import useSavingsInvestmentsAvailable from "./useSavingsInvestmentsAvailable";
 import useSavingsInvestmentsHistory from "./useSavingsInvestmentsHistory";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
-import usePeriods from "@/ui/hooks/usePeriodsAvailable";
 import usePeriodsAvailable from "@/ui/hooks/usePeriodsAvailable";
 
 const useSavingsInvestmentsPage = () => {
