@@ -24,10 +24,6 @@ const DashboardAlerts = ({
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
       <div className="border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">Alerts</h2>
-
-        <p className="text-sm text-text-secondary">
-          Review situations that may require your attention.
-        </p>
       </div>
 
       {!alerts.length ? (

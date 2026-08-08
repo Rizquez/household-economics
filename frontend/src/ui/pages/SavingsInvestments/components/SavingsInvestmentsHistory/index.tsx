@@ -12,10 +12,6 @@ const SavingsInvestmentsHistory = (props: SavingsInvestmentsHistoryProps) => {
         <h2 className="text-lg font-semibold text-text-primary">
           Annual history
         </h2>
-
-        <p className="text-sm text-text-secondary">
-          Review your allocations on an annual basis.
-        </p>
       </div>
 
       <div className="grid gap-4 border-b border-text-secondary/10 p-4 md:grid-cols-2">
