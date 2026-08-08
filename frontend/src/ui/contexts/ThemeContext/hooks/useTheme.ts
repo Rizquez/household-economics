@@ -2,7 +2,6 @@ import { useContext } from "react";
 import ApplicationError from "@/core/errors";
 import { ThemeContext } from "../context";
 
-
 export const useTheme = () => {
   const context = useContext(ThemeContext);
 

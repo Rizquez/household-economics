@@ -27,14 +27,16 @@ const Sidebar = () => {
   return (
     <aside className="flex h-full w-65 flex-none flex-col bg-surface card">
       <div className="flex justify-between items-center px-6 pt-6">
-        <Tooltip text={theme === "light" ? "Change to dark" : "Change to light"}>
-          <Button
-          variant="background"
-          onClick={toggleTheme}
-          className="flex size-10 items-center justify-center"
+        <Tooltip
+          text={theme === "light" ? "Change to dark" : "Change to light"}
         >
-          <FontAwesomeIcon icon={theme === "light" ? faSun : faMoon} />
-        </Button>
+          <Button
+            variant="background"
+            onClick={toggleTheme}
+            className="flex size-10 items-center justify-center"
+          >
+            <FontAwesomeIcon icon={theme === "light" ? faSun : faMoon} />
+          </Button>
         </Tooltip>
 
         <div className="scale-150">

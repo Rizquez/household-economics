@@ -18,18 +18,18 @@ if (!CLERK_PUBLISHABLE_KEY) {
 
 const App = () => (
   <ThemeProvider>
-  <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
-    <AuthTokenHandler />
-    <QueryClientProvider client={queryClient}>
-      <ModalProvider>
-        <ApiActivityProvider>
-          <ApiActivityHandler />
-          <AppRouter />
-          <AppModal />
-        </ApiActivityProvider>
-      </ModalProvider>
-    </QueryClientProvider>
-  </ClerkProvider>
+    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+      <AuthTokenHandler />
+      <QueryClientProvider client={queryClient}>
+        <ModalProvider>
+          <ApiActivityProvider>
+            <ApiActivityHandler />
+            <AppRouter />
+            <AppModal />
+          </ApiActivityProvider>
+        </ModalProvider>
+      </QueryClientProvider>
+    </ClerkProvider>
   </ThemeProvider>
 );
 
