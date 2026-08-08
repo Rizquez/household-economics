@@ -8,6 +8,7 @@ import AppModal from "@/ui/components/AppModal";
 import { CLERK_PUBLISHABLE_KEY } from "@/core/env";
 import AuthTokenHandler from "@/ui/handlers/AuthTokenHandler";
 import ApiActivityHandler from "@/ui/handlers/ApiActivityHandler";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ if (!CLERK_PUBLISHABLE_KEY) {
 }
 
 const App = () => (
+  <ThemeProvider>
   <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
     <AuthTokenHandler />
     <QueryClientProvider client={queryClient}>
@@ -28,6 +30,7 @@ const App = () => (
       </ModalProvider>
     </QueryClientProvider>
   </ClerkProvider>
+  </ThemeProvider>
 );
 
 export default App;

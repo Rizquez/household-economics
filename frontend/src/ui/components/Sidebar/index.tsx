@@ -4,6 +4,10 @@ import { paths } from "@/ui/routes/paths";
 import { UserButton } from "@clerk/clerk-react";
 import useFamilyUser from "../../hooks/useFamilyUser";
 import useAppLayoutVisibility from "@/ui/hooks/useAppLayoutVisibility";
+import { useTheme } from "@/ui/contexts/ThemeContext/hooks/useTheme";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import Button from "../Button";
+import Tooltip from "../Tooltip";
 
 const kEYS = [
   "dashboard",
@@ -16,11 +20,23 @@ const kEYS = [
 const Sidebar = () => {
   const { family } = useFamilyUser();
   const { isVisible } = useAppLayoutVisibility(Boolean(family));
+  const { theme, toggleTheme } = useTheme();
+
   if (!isVisible || !family) return null;
 
   return (
     <aside className="flex h-full w-65 flex-none flex-col bg-surface card">
-      <div className="flex justify-end px-6 pt-6">
+      <div className="flex justify-between items-center px-6 pt-6">
+        <Tooltip text={theme === "light" ? "Change to dark" : "Change to light"}>
+          <Button
+          variant="background"
+          onClick={toggleTheme}
+          className="flex size-10 items-center justify-center"
+        >
+          <FontAwesomeIcon icon={theme === "light" ? faSun : faMoon} />
+        </Button>
+        </Tooltip>
+
         <div className="scale-150">
           <UserButton />
         </div>
