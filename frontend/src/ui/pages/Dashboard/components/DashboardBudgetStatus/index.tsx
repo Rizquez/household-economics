@@ -46,10 +46,6 @@ const DashboardBudgetStatus = ({
         <h2 className="text-lg font-semibold text-text-primary">
           Budget status by category
         </h2>
-
-        <p className="text-sm text-text-secondary">
-          Compare the planned budget with the net amount used.
-        </p>
       </div>
 
       <div className="min-h-0 flex-1 p-4">

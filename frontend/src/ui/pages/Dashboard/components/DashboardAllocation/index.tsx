@@ -14,10 +14,6 @@ const DashboardAllocation = ({
           <h2 className="text-lg font-semibold text-text-primary">
             Monthly allocation
           </h2>
-
-          <p className="text-sm text-text-secondary">
-            Review how the available balance was distributed.
-          </p>
         </div>
 
         <div className="flex min-h-0 flex-1 items-center justify-center p-6">
@@ -38,10 +34,6 @@ const DashboardAllocation = ({
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly allocation
         </h2>
-
-        <p className="text-sm text-text-secondary">
-          Review how the available balance was distributed.
-        </p>
       </div>
 
       <div className="grid min-h-0 flex-1 gap-4 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(160px,0.8fr)]">
