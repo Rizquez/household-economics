@@ -11,6 +11,7 @@ import {
 
 import type { DashboardBudgetStatusProps } from "./types";
 import getBudgetStatusChartData from "./utils/getBudgetStatusChartData";
+import { chartTooltipStyles } from "../../../../styles/share";
 
 const DashboardBudgetStatus = ({
   budgetStatus,
@@ -91,6 +92,7 @@ const DashboardBudgetStatus = ({
             />
 
             <Tooltip
+              {...chartTooltipStyles}
               formatter={(value, name) => [
                 `${currencyType.symbol} ${Number(value).toFixed(2)}`,
                 name,
