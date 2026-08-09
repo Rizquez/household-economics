@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 from fastapi import status, HTTPException
 
 from src.env import (
@@ -18,6 +18,7 @@ class Base:
     CLERK_ISSUER: str = get_clerk_issuer()
     CLERK_JWKS_URL: str = get_clerk_jwks_url()
     CLERK_SECRET_KEY: str = get_clerk_secret_key()
+    CORS_ALLOWED_ORIGINS: List[str]
 
 
 class Local(Base):
@@ -25,6 +26,7 @@ class Local(Base):
     DEBUG: bool = True
     RELOAD: bool = True
     ENABLE_DOCS: bool = True
+    CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
 class Render(Base):
@@ -32,6 +34,7 @@ class Render(Base):
     DEBUG: bool = False
     RELOAD: bool = False
     ENABLE_DOCS: bool = False
+    CORS_ALLOWED_ORIGINS = ["https://household-economics.netlify.app"]
 
 
 def get_settings() -> Union[Local, Render]:
