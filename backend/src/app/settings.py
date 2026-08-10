@@ -19,6 +19,7 @@ class Base:
     CLERK_JWKS_URL: str = get_clerk_jwks_url()
     CLERK_SECRET_KEY: str = get_clerk_secret_key()
     CORS_ALLOWED_ORIGINS: List[str]
+    ENABLE_HSTS: bool
 
 
 class Local(Base):
@@ -27,6 +28,7 @@ class Local(Base):
     RELOAD: bool = True
     ENABLE_DOCS: bool = True
     CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
+    ENABLE_HSTS = False
 
 
 class Render(Base):
@@ -35,6 +37,7 @@ class Render(Base):
     RELOAD: bool = False
     ENABLE_DOCS: bool = False
     CORS_ALLOWED_ORIGINS = ["https://household-economics.netlify.app"]
+    ENABLE_HSTS = True
 
 
 def get_settings() -> Union[Local, Render]:

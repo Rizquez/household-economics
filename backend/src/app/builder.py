@@ -1,11 +1,15 @@
 from __future__ import annotations
 
-from fastapi import FastAPI
-from typing import Union, TYPE_CHECKING
+from collections.abc import Awaitable, Callable
+from typing import TYPE_CHECKING, Union
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 if TYPE_CHECKING:
     from src.app.settings import Local, Render
+
+
+CallNext = Callable[[Request], Awaitable[Response]]
 
 
 def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
@@ -27,5 +31,23 @@ def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
         allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allow_headers=["Authorization", "Content-Type"]
     )
+
+    @app.middleware("http")
+    async def add_security_headers(
+        request: Request,
+        call_next: CallNext,
+    ) -> Response:
+        response = await call_next(request)
+
+        response.headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Referrer-Policy"] = "no-referrer"
+        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+
+        if settings.ENABLE_HSTS:
+            response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+
+        return response
 
     return app
