@@ -16,6 +16,8 @@
   --color-text-secondary: #607d8b;
   --color-scrollbar-track: #eef2f5;
   --color-scrollbar-thumb: #9aa8b0;
+  --color-chart-tooltip-background: #ffffff;
+  --color-chart-tooltip-border: #dfe5e9;
 }
 
 .dark {
@@ -25,6 +27,8 @@
   --color-text-secondary: #9eabb3;
   --color-scrollbar-track: #101214;
   --color-scrollbar-thumb: #607d8b;
+  --color-chart-tooltip-background: #263238;
+  --color-chart-tooltip-border: #3b4850;
 }
 
 body {

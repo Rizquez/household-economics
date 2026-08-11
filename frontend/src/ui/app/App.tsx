@@ -9,8 +9,21 @@ import { CLERK_PUBLISHABLE_KEY } from "@/core/env";
 import AuthTokenHandler from "@/ui/handlers/AuthTokenHandler";
 import ApiActivityHandler from "@/ui/handlers/ApiActivityHandler";
 import { ThemeProvider } from "../contexts/ThemeContext";
+import ApplicationError from "@/core/errors";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: (failureCount, error) => {
+        if (error instanceof ApplicationError && error.status === 429) {
+          return false;
+        }
+
+        return failureCount < 3;
+      },
+    },
+  },
+});
 
 if (!CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Clerk publishable key.");

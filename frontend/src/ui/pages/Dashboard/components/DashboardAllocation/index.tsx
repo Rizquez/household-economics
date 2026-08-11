@@ -2,6 +2,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import type { DashboardAllocationProps } from "./types";
 import getAllocationChartData from "./utils/getAllocationChartData";
+import { chartTooltipStyles } from "../../../../styles/share";
 
 const DashboardAllocation = ({
   allocation,
@@ -63,6 +64,7 @@ const DashboardAllocation = ({
                 </Pie>
 
                 <Tooltip
+                  {...chartTooltipStyles}
                   formatter={(value) =>
                     `${currencyType.symbol} ${Number(value).toFixed(2)}`
                   }

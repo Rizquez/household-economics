@@ -8,6 +8,20 @@ def _get_environment() -> str:
     return os.getenv("ENVIRONMENT", "undefined")
 
 
+def _get_required_positive_int(key: str, default: int) -> int:
+    value = os.getenv(key=key, default=default)
+
+    try:
+        parsed_value = int(value)
+    except ValueError as ex:
+        raise RuntimeError(f"Environment variable {key} must be an integer.") from ex
+
+    if parsed_value <= 0:
+        raise RuntimeError(f"Environment variable {key} must be greater than zero.")
+
+    return parsed_value
+
+
 def get_clerk_issuer() -> str:
     return os.getenv("CLERK_ISSUER", "undefined")
 
@@ -46,3 +60,11 @@ def is_local_environment() -> bool:
 
 def is_render_environment() -> bool:
     return _get_environment() == "RENDER"
+
+
+def get_rate_limit_requests() -> int:
+    return _get_required_positive_int("RATE_LIMIT_REQUESTS", 120)
+
+
+def get_rate_limit_window_seconds() -> int:
+    return _get_required_positive_int("RATE_LIMIT_WINDOW_SECONDS", 60)
