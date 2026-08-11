@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 from fastapi import status, HTTPException
 
 from src.env import (
@@ -7,6 +7,8 @@ from src.env import (
     get_clerk_issuer,
     get_clerk_jwks_url,
     get_clerk_secret_key,
+    get_rate_limit_requests,
+    get_rate_limit_window_seconds,
 )
 
 
@@ -18,6 +20,10 @@ class Base:
     CLERK_ISSUER: str = get_clerk_issuer()
     CLERK_JWKS_URL: str = get_clerk_jwks_url()
     CLERK_SECRET_KEY: str = get_clerk_secret_key()
+    CORS_ALLOWED_ORIGINS: List[str]
+    ENABLE_HSTS: bool
+    RATE_LIMIT_REQUESTS: int
+    RATE_LIMIT_WINDOW_SECONDS: int
 
 
 class Local(Base):
@@ -25,6 +31,10 @@ class Local(Base):
     DEBUG: bool = True
     RELOAD: bool = True
     ENABLE_DOCS: bool = True
+    CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
+    ENABLE_HSTS = False
+    RATE_LIMIT_REQUESTS = get_rate_limit_requests()
+    RATE_LIMIT_WINDOW_SECONDS = get_rate_limit_window_seconds()
 
 
 class Render(Base):
@@ -32,6 +42,12 @@ class Render(Base):
     DEBUG: bool = False
     RELOAD: bool = False
     ENABLE_DOCS: bool = False
+    CORS_ALLOWED_ORIGINS = ["https://household-economics.netlify.app"]
+    ENABLE_HSTS = True
+
+    def __init__(self) -> None:
+        self.RATE_LIMIT_REQUESTS = get_rate_limit_requests()
+        self.RATE_LIMIT_WINDOW_SECONDS = get_rate_limit_window_seconds()
 
 
 def get_settings() -> Union[Local, Render]:

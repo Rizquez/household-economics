@@ -33,10 +33,6 @@ const SavingsInvestmentsAllocation = (
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly allocation
         </h2>
-
-        <p className="text-sm text-text-secondary">
-          Allocate the available amount to savings and investments.
-        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6 p-4">

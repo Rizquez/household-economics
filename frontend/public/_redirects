@@ -1,1 +1,9 @@
+/.env          /index.html  404!
+/.env*         /index.html  404!
+/.git          /index.html  404!
+/.git/*        /index.html  404!
+/package.json  /index.html  404!
+/admin         /index.html  404!
+/admin/*       /index.html  404!
+
 /*    /index.html   200

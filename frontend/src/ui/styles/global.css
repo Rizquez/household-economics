@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #4caf9e;
   --color-secondary: #6c63ff;
@@ -12,6 +14,21 @@
   --color-surface: #ffffff;
   --color-text-primary: #263238;
   --color-text-secondary: #607d8b;
+  --color-scrollbar-track: #eef2f5;
+  --color-scrollbar-thumb: #9aa8b0;
+  --color-chart-tooltip-background: #ffffff;
+  --color-chart-tooltip-border: #dfe5e9;
+}
+
+.dark {
+  --color-background: #12181c;
+  --color-surface: #1c252b;
+  --color-text-primary: #f1f5f7;
+  --color-text-secondary: #9eabb3;
+  --color-scrollbar-track: #101214;
+  --color-scrollbar-thumb: #607d8b;
+  --color-chart-tooltip-background: #263238;
+  --color-chart-tooltip-border: #3b4850;
 }
 
 body {
@@ -26,4 +43,9 @@ body {
   box-shadow:
     0 4px 6px -1px rgb(0 0 0 / 0.05),
     0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }

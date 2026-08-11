@@ -32,6 +32,7 @@ VITE_CLERK_PUBLISHABLE_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 frontend/
 ├── public
+│   ├── _headers
 │   ├── _redirects
 │   └── household-economics.ico
 ├── src

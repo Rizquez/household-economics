@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { MONTH_NAMES } from "@/ui/hooks/constants";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
 import useDashboard from "./useDashboard";
-import useDashboardPeriods from "./useDashboardPeriods";
 import useFamilyUser from "@/ui/hooks/useFamilyUser";
+import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useDashboardPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -22,7 +22,7 @@ const useDashboardPage = () => {
     isPending: isLoadingPeriods,
     isError: isPeriodsError,
     error: periodsError,
-  } = useDashboardPeriods();
+  } = useAvaliablePeriods();
 
   const sortedPeriods = useMemo(
     () =>
