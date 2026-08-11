@@ -1,7 +1,5 @@
 import uvicorn
-from typing import Dict
-from fastapi import status
-from fastapi.responses import JSONResponse
+from fastapi import status, Response
 
 from src.app import builder_app, get_settings
 from src.setup import setup_layers
@@ -16,9 +14,9 @@ setup_routers(app)
 handling_errors_schemas(app)
 
 
-@app.get("/")
-def index() -> Dict[str, str]:
-    return JSONResponse(content=app.description, status_code=status.HTTP_200_OK)
+@app.get("/", include_in_schema=False)
+def health_check() -> Response:
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 if __name__ == "__main__":

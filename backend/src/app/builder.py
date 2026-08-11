@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING, Union
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
+from src.rate_limit import RateLimitMiddleware
+
 if TYPE_CHECKING:
     from src.app.settings import Local, Render
 
@@ -15,13 +17,18 @@ CallNext = Callable[[Request], Awaitable[Response]]
 def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
     app = FastAPI(
         title="Household-Economics-Backend",
-        description="An API responsible for business logic and communication with the database",
         version=settings.VERSION,
         debug=settings.DEBUG,
         root_path=settings.ROOT,
         docs_url="/docs" if settings.ENABLE_DOCS else None,
         redoc_url="/redoc" if settings.ENABLE_DOCS else None,
         openapi_url="/openapi.json" if settings.ENABLE_DOCS else None,
+    )
+
+    app.add_middleware(
+        RateLimitMiddleware,
+        requests=settings.RATE_LIMIT_REQUESTS,
+        window_seconds=settings.RATE_LIMIT_WINDOW_SECONDS
     )
 
     app.add_middleware(

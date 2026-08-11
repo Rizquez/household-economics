@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 const contentSecurityPolicy = [
   "default-src 'self'",
   [
-    "script-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
     "https://stirring-wolf-16.clerk.accounts.dev",
     "https://challenges.cloudflare.com",
     "https://*.protect.clerk.com",
