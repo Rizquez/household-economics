@@ -28,7 +28,7 @@ def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
     app.add_middleware(
         RateLimitMiddleware,
         requests=settings.RATE_LIMIT_REQUESTS,
-        window_seconds=settings.RATE_LIMIT_WINDOW_SECONDS
+        window_seconds=settings.RATE_LIMIT_WINDOW_SECONDS,
     )
 
     app.add_middleware(
@@ -36,7 +36,7 @@ def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
         allow_origins=settings.CORS_ALLOWED_ORIGINS,
         allow_credentials=False,
         allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        allow_headers=["Authorization", "Content-Type"]
+        allow_headers=["Authorization", "Content-Type"],
     )
 
     @app.middleware("http")
@@ -46,14 +46,20 @@ def builder_app(settings: Union["Local", "Render"]) -> FastAPI:
     ) -> Response:
         response = await call_next(request)
 
-        response.headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'"
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'none'; frame-ancestors 'none'"
+        )
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
-        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+        response.headers["Permissions-Policy"] = (
+            "camera=(), microphone=(), geolocation=()"
+        )
 
         if settings.ENABLE_HSTS:
-            response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+            response.headers["Strict-Transport-Security"] = (
+                "max-age=31536000; includeSubDomains"
+            )
 
         return response
 

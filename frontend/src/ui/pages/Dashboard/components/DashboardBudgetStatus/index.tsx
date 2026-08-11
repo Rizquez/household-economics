@@ -94,9 +94,9 @@ const DashboardBudgetStatus = ({
             <Tooltip
               {...chartTooltipStyles}
               cursor={{
-    fill: "var(--color-text-secondary)",
-    fillOpacity: 0.08,
-  }}
+                fill: "var(--color-text-secondary)",
+                fillOpacity: 0.08,
+              }}
               formatter={(value, name) => [
                 `${currencyType.symbol} ${Number(value).toFixed(2)}`,
                 name,

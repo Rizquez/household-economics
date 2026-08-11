@@ -22,28 +22,20 @@ def is_cors_preflight(request: Request) -> bool:
 
 
 class RateLimitMiddleware(BaseHTTPMiddleware):
-    def __init__(
-        self,
-        app: ASGIApp,
-        requests: int,
-        window_seconds: int
-    ) -> None:
+    def __init__(self, app: ASGIApp, requests: int, window_seconds: int) -> None:
         super().__init__(app)
 
         self.window_seconds = window_seconds
         self.limiter = Limiter(Rate(requests, Duration.SECOND * window_seconds))
 
     async def dispatch(
-        self,
-        request: Request,
-        call_next: Callable[[Request], Awaitable[Response]]
+        self, request: Request, call_next: Callable[[Request], Awaitable[Response]]
     ) -> Response:
         if is_cors_preflight(request):
             return await call_next(request)
 
         allowed = await self.limiter.try_acquire_async(
-            identify_client(request),
-            blocking=False
+            identify_client(request), blocking=False
         )
 
         if not allowed:
@@ -51,10 +43,8 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
                 status_code=status.HTTP_429_TOO_MANY_REQUESTS,
                 content={
                     "detail": "The load balancer has been triggered because you've made too many requests in a very short period of time. Please wait a moment and reload the page."
-                    },
-                headers={
-                    "Retry-After": str(self.window_seconds)
-                }
+                },
+                headers={"Retry-After": str(self.window_seconds)},
             )
 
         return await call_next(request)

@@ -8,7 +8,7 @@ from src.env import (
     get_clerk_jwks_url,
     get_clerk_secret_key,
     get_rate_limit_requests,
-    get_rate_limit_window_seconds
+    get_rate_limit_window_seconds,
 )
 
 
