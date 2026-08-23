@@ -6,7 +6,15 @@ import useFamilyUser from "@/ui/hooks/useFamilyUser";
 import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useDashboardPage = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("");
+  const [selectedPeriod, setSelectedPeriod] = useState(() => {
+    return localStorage.getItem("dashboardPeriod") ?? "";
+  });
+
+  useEffect(() => {
+    if (selectedPeriod) {
+      localStorage.setItem("dashboardPeriod", selectedPeriod);
+    }
+  }, [selectedPeriod]);
 
   const { showLoading, showModal, closeModal } = useModal();
 

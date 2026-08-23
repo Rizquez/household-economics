@@ -20,7 +20,16 @@ const useAnnualBudgetPage = () => {
 
   const { showLoading, showModal, closeModal } = useModal();
 
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState(() => {
+    return localStorage.getItem("annualBudgetYear") ?? "";
+  });
+
+  useEffect(() => {
+    if (year) {
+      localStorage.setItem("annualBudgetYear", year);
+    }
+  }, [year]);
+
   const [editedAmounts, setEditedAmounts] = useState<Record<number, number>>(
     {},
   );
