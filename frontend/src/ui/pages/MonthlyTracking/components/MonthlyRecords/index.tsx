@@ -28,7 +28,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
 
   return (
     <>
-      <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <section className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
         <div className="border-b border-text-secondary/10 p-4">
           <h2 className="text-lg font-semibold text-text-primary">
             Monthly records
@@ -113,11 +113,12 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                   </td>
 
                   <td className="w-40 px-4 py-3">
-                    <div className="flex justify-end gap-2">
+                    <div className="flex min-w-max justify-end gap-2">
                       {record.expense?.items.length ? (
                         <Tooltip text="Product details">
                           <Button
                             variant="secondary"
+                            className="shrink-0"
                             disabled={isDeleting}
                             onClick={() => {
                               if (record.expense) {
@@ -135,6 +136,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                           <Tooltip text="Edit">
                             <Button
                               variant="secondary"
+                              className="shrink-0"
                               disabled={isDeleting}
                               onClick={() => editRecord(record)}
                             >
@@ -145,6 +147,7 @@ const MonthlyRecords = (props: MonthlyRecordsProps) => {
                           <Tooltip text="Delete">
                             <Button
                               variant="danger"
+                              className="shrink-0"
                               disabled={isDeleting}
                               onClick={() => confirmDelete(record)}
                             >

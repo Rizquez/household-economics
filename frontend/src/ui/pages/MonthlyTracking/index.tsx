@@ -46,8 +46,8 @@ const MonthlyTracking = () => {
   };
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
-      <div className="flex items-center justify-between gap-4">
+    <div className="flex h-full min-h-0 flex-col gap-4 overflow-hidden bg-surface p-4 md:gap-6 md:p-6 card">
+      <div className="flex flex-col items-stretch gap-4 2xl:flex-row 2xl:items-center 2xl:justify-between">
         <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-text-primary">
             Monthly tracking
@@ -65,7 +65,7 @@ const MonthlyTracking = () => {
         />
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-[0.6fr_1fr] gap-4">
+      <div className="grid min-h-0 flex-1 auto-rows-max grid-cols-1 gap-4 overflow-y-auto 2xl:auto-rows-auto 2xl:grid-cols-[0.6fr_1fr] 2xl:overflow-hidden">
         <MonthlySummary rows={summaryRows} currencyType={family.currencyType} />
 
         <MonthlyRecords

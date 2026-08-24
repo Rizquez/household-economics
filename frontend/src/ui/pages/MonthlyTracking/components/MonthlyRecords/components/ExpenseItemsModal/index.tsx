@@ -7,14 +7,14 @@ const ExpenseItemsModal = ({
   onClose,
 }: ExpenseItemsModalProps) => {
   return (
-    <div className="fixed inset-0 z-70 flex items-center justify-center bg-black/40 p-6">
-      <div className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-surface p-6 shadow-xl">
+    <div className="fixed inset-0 z-70 flex items-center justify-center bg-black/40 p-3 md:p-6">
+      <div className="flex max-h-[calc(100dvh-1.5rem)] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-surface p-4 shadow-xl md:max-h-[80vh] md:p-6">
         <h2 className="text-lg font-semibold text-text-primary">
           {expense.name} items
         </h2>
 
-        <div className="mt-4 min-h-0 overflow-y-auto rounded-xl border border-text-secondary/10">
-          <table className="w-full border-collapse text-sm">
+        <div className="mt-4 min-h-0 overflow-auto rounded-xl border border-text-secondary/10">
+          <table className="w-full min-w-120 border-collapse text-sm">
             <thead className="sticky top-0 bg-background text-text-secondary">
               <tr>
                 <th className="px-4 py-3 text-left font-medium">Product</th>
@@ -39,7 +39,7 @@ const ExpenseItemsModal = ({
                     {item.categoryName ?? "-"}
                   </td>
 
-                  <td className="px-4 py-3 text-right text-text-primary">
+                  <td className="whitespace-nowrap px-4 py-3 text-right text-text-primary">
                     {currencyType.symbol} {item.amount.toFixed(2)}
                   </td>
                 </tr>
@@ -49,7 +49,9 @@ const ExpenseItemsModal = ({
         </div>
 
         <div className="mt-6 flex justify-end">
-          <Button onClick={onClose}>Ok</Button>
+          <Button className="w-full sm:w-auto" onClick={onClose}>
+            Ok
+          </Button>
         </div>
       </div>
     </div>

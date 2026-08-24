@@ -15,7 +15,7 @@ const MonthlySummary = ({ rows, currencyType }: MonthlySummaryProps) => {
   );
 
   return (
-    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
+    <section className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
       <div className="border-b border-text-secondary/10 bg-background p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly summary
@@ -23,7 +23,7 @@ const MonthlySummary = ({ rows, currencyType }: MonthlySummaryProps) => {
       </div>
 
       <div className="min-h-0 flex-1 overflow-auto">
-        <table className="w-full border-collapse bg-surface text-sm">
+        <table className="w-full min-w-160 border-collapse bg-surface text-sm">
           <thead className="sticky top-0 z-10 bg-background text-text-secondary">
             <tr>
               <th className="px-4 py-3 text-left font-medium">Category</th>

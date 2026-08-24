@@ -8,7 +8,7 @@ const SavingsInvestmentsControls = ({
   onPeriodChange,
 }: SavingsInvestmentsControlsProps) => {
   return (
-    <section>
+    <section className="w-full md:w-auto">
       <Select
         id="savings-investments-period"
         className="pl-10 text-right"

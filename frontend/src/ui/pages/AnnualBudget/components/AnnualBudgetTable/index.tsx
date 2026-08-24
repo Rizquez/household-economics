@@ -14,11 +14,11 @@ const AnnualBudgetTable = ({
   const monthlyTotals = getMonthlyTotals(months, budgetGroups);
 
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-text-secondary/10">
+    <div className="min-h-0 w-full overflow-auto rounded-xl border border-text-secondary/10">
       <table className="w-full min-w-245 border-collapse bg-surface text-sm">
         <thead className="bg-background text-text-secondary">
           <tr>
-            <th className="sticky top-0 left-0 z-30 border-r border-text-secondary/10 bg-background px-4 py-3 text-left font-medium">
+            <th className="sticky top-0 left-0 z-30 w-32 min-w-32 max-w-32 wrap-break-word border-r border-text-secondary/10 bg-background px-4 py-3 text-left font-medium xl:w-auto xl:min-w-0 xl:max-w-none">
               Budget group
             </th>
 
@@ -42,7 +42,7 @@ const AnnualBudgetTable = ({
             <tr>
               <td
                 colSpan={months.length + 2}
-                className="border-t border-text-secondary/10 px-4 py-8 text-center text-text-secondary"
+                className="border-t border-text-secondary/10 px-4 py-8 text-left text-text-secondary xl:text-center"
               >
                 No budget groups found for this period.
               </td>
@@ -59,7 +59,7 @@ const AnnualBudgetTable = ({
                 key={budgetGroup.id}
                 className="border-t border-text-secondary/10"
               >
-                <td className="sticky left-0 z-10 border-r border-text-secondary/10 bg-surface px-4 py-3 font-medium text-text-primary whitespace-nowrap">
+                <td className="sticky left-0 z-10 w-32 min-w-32 max-w-32 wrap-break-word border-r border-text-secondary/10 bg-surface px-4 py-3 font-medium text-text-primary xl:w-auto xl:min-w-0 xl:max-w-none xl:whitespace-nowrap">
                   {budgetGroup.name}
                 </td>
 
@@ -86,7 +86,7 @@ const AnnualBudgetTable = ({
                   );
                 })}
 
-                <td className="sticky right-0 z-10 border-l border-text-secondary/10 bg-surface px-3 py-3 text-right font-semibold text-text-primary">
+                <td className="sticky right-0 z-10 whitespace-nowrap border-l border-text-secondary/10 bg-surface px-3 py-3 text-right font-semibold text-text-primary">
                   {currencyType.symbol} {budgetGroupTotal.toFixed(2)}
                 </td>
               </tr>
@@ -94,20 +94,20 @@ const AnnualBudgetTable = ({
           })}
 
           <tr className="border-t border-text-secondary/10 bg-background font-semibold">
-            <td className="sticky bottom-0 left-0 z-30 border-r border-text-secondary/10 bg-background px-4 py-3 text-text-primary">
+            <td className="sticky bottom-0 left-0 z-30 w-32 min-w-32 max-w-32 wrap-break-word border-r border-text-secondary/10 bg-background px-4 py-3 text-text-primary xl:w-auto xl:min-w-0 xl:max-w-none">
               Total
             </td>
 
             {months.map((month) => (
               <td
                 key={month}
-                className="sticky bottom-0 z-20 bg-background px-3 py-3 text-right text-text-primary"
+                className="sticky bottom-0 z-20 whitespace-nowrap bg-background px-3 py-3 text-right text-text-primary"
               >
                 {currencyType.symbol} {monthlyTotals[month].toFixed(2)}
               </td>
             ))}
 
-            <td className="sticky right-0 bottom-0 z-30 border-l border-text-secondary/10 bg-background px-3 py-3 text-right text-text-primary">
+            <td className="sticky right-0 bottom-0 z-30 whitespace-nowrap border-l border-text-secondary/10 bg-background px-3 py-3 text-right text-text-primary">
               {currencyType.symbol}{" "}
               {Object.values(monthlyTotals)
                 .reduce((total, value) => total + value, 0)

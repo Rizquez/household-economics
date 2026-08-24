@@ -34,21 +34,21 @@ const CategoriesByRecordType = ({
   const canExportToAnnualBudget = recordType.name === "Expenses";
 
   return (
-    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-      <h2 className="sticky top-0 z-10 flex items-center bg-background p-4 text-lg font-semibold text-text-primary">
-        <span>{recordType.name}</span>
+    <section className="flex min-w-0 flex-col overflow-visible rounded-xl border border-text-secondary/10 bg-background xl:min-h-0 xl:overflow-hidden">
+      <h2 className="sticky top-0 z-10 flex items-center gap-2 bg-background p-4 text-lg font-semibold text-text-primary">
+        <span className="min-w-0 wrap-break-word">{recordType.name}</span>
 
         {canExportToAnnualBudget && (
           <Tooltip text="Only expense categories can be exported to the annual budget. Exports apply only to the current year. Export the category again next year to include it in a new annual budget.">
             <FontAwesomeIcon
               icon={faCircleInfo}
-              className="ml-2 h-4 w-4 cursor-pointer text-text-secondary"
+              className="h-4 w-4 shrink-0 cursor-pointer text-text-secondary"
             />
           </Tooltip>
         )}
       </h2>
 
-      <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-4 pb-4">
+      <div className="flex flex-1 flex-col gap-2 overflow-visible px-4 pb-4 xl:min-h-0 xl:overflow-y-auto">
         {categories.length === 0 && (
           <p className="text-sm text-text-secondary">No categories found.</p>
         )}
@@ -59,33 +59,40 @@ const CategoriesByRecordType = ({
           return (
             <div
               key={category.id}
-              className="flex items-center justify-between gap-3 rounded-lg bg-surface px-4 py-2"
+              className="flex flex-col items-stretch gap-3 rounded-lg bg-surface px-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-2"
             >
               {isEditing ? (
-                <Input
-                  id={`category-${category.id}`}
-                  value={editingCategoryName}
-                  className="h-9"
-                  onChange={(event) =>
-                    setEditingCategoryName(event.target.value)
-                  }
-                />
+                <div className="min-w-0 w-full sm:flex-1">
+                  <Input
+                    id={`category-${category.id}`}
+                    value={editingCategoryName}
+                    className="h-9 w-full"
+                    onChange={(event) =>
+                      setEditingCategoryName(event.target.value)
+                    }
+                  />
+                </div>
               ) : (
-                <span className="text-sm text-text-primary">
+                <span className="min-w-0 flex-1 wrap-break-word text-sm text-text-primary">
                   {category.name}
                 </span>
               )}
 
               {isEditing ? (
-                <div className="flex gap-2">
+                <div className="flex shrink-0 self-end gap-2">
                   <Tooltip text="Save change">
-                    <Button disabled={isUpdating} onClick={handleSave}>
+                    <Button
+                      className="shrink-0"
+                      disabled={isUpdating}
+                      onClick={handleSave}
+                    >
                       <FontAwesomeIcon icon={faFloppyDisk} />
                     </Button>
                   </Tooltip>
                   <Tooltip text="Cancel">
                     <Button
                       variant="danger"
+                      className="shrink-0"
                       disabled={isUpdating}
                       onClick={handleCancel}
                     >
@@ -94,10 +101,11 @@ const CategoriesByRecordType = ({
                   </Tooltip>
                 </div>
               ) : (
-                <div className="flex gap-2">
+                <div className="flex shrink-0 self-end gap-2">
                   {canExportToAnnualBudget && (
                     <Tooltip text="Export to annual budget">
                       <Button
+                        className="shrink-0"
                         disabled={
                           isDeleting || isUpdating || isExportingToAnnualBudget
                         }
@@ -111,6 +119,7 @@ const CategoriesByRecordType = ({
                   <Tooltip text="Edit">
                     <Button
                       variant="secondary"
+                      className="shrink-0"
                       disabled={
                         isDeleting || isUpdating || isExportingToAnnualBudget
                       }
@@ -123,6 +132,7 @@ const CategoriesByRecordType = ({
                   <Tooltip text="Delete">
                     <Button
                       variant="danger"
+                      className="shrink-0"
                       disabled={
                         isDeleting || isUpdating || isExportingToAnnualBudget
                       }
