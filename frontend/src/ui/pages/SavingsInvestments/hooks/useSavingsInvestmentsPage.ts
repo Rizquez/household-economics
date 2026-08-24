@@ -8,7 +8,15 @@ import useFamilyUser from "@/ui/hooks/useFamilyUser";
 import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useSavingsInvestmentsPage = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("");
+  const [selectedPeriod, setSelectedPeriod] = useState(() => {
+    return localStorage.getItem("savingsInvestmentsPeriod") ?? "";
+  });
+
+  useEffect(() => {
+    if (selectedPeriod) {
+      localStorage.setItem("savingsInvestmentsPeriod", selectedPeriod);
+    }
+  }, [selectedPeriod]);
 
   const { showLoading, showModal, closeModal } = useModal();
 
