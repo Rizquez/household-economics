@@ -1,4 +1,4 @@
-# Household Economics - v1.2.0
+# Household Economics - v1.2.1
 
 ## 🧾 Project description
 
