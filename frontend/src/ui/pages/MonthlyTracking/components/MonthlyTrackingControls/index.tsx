@@ -9,10 +9,12 @@ const MonthlyTrackingControls = ({
   onNewRecord,
 }: MonthlyTrackingControlsProps) => {
   return (
-    <section className="flex items-center gap-4">
-      <Button onClick={onNewRecord}>Add record</Button>
+    <section className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-center lg:gap-4">
+      <Button className="w-full lg:w-auto" onClick={onNewRecord}>
+        Add record
+      </Button>
 
-      <div>
+      <div className="w-full lg:w-auto">
         <Select
           id="monthly-tracking-period"
           className="pl-10 text-right"

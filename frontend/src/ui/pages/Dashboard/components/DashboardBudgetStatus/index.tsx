@@ -19,7 +19,7 @@ const DashboardBudgetStatus = ({
 }: DashboardBudgetStatusProps) => {
   if (!budgetStatus.length) {
     return (
-      <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <section className="flex h-auto min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background xl:h-full">
         <div className="shrink-0 border-b border-text-secondary/10 p-4">
           <h2 className="text-lg font-semibold text-text-primary">
             Budget status by category
@@ -42,88 +42,95 @@ const DashboardBudgetStatus = ({
   const chartData = getBudgetStatusChartData(budgetStatus);
 
   return (
-    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+    <section className="flex h-auto min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background xl:h-full">
       <div className="shrink-0 border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Budget status by category
         </h2>
       </div>
 
-      <div className="min-h-0 flex-1 p-4">
-        <ResponsiveContainer width="100%" height="100%" minHeight={220}>
-          <BarChart
-            data={chartData}
-            layout="vertical"
-            margin={{
-              top: 0,
-              right: 24,
-              bottom: 0,
-              left: 8,
-            }}
+      <div className="min-h-0 flex-1 overflow-x-auto p-4 lg:overflow-x-visible">
+        <div className="h-72 min-w-105 lg:min-w-0 xl:h-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minHeight={220}
+            debounce={16}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              horizontal={false}
-              stroke="currentColor"
-              className="text-text-secondary/10"
-            />
-
-            <XAxis
-              type="number"
-              tickFormatter={(value) =>
-                `${currencyType.symbol} ${Number(value).toFixed(0)}`
-              }
-              tick={{
-                fontSize: 12,
+            <BarChart
+              data={chartData}
+              layout="vertical"
+              margin={{
+                top: 0,
+                right: 24,
+                bottom: 0,
+                left: 8,
               }}
-              stroke="currentColor"
-              className="text-text-secondary"
-            />
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                horizontal={false}
+                stroke="currentColor"
+                className="text-text-secondary/10"
+              />
 
-            <YAxis
-              type="category"
-              dataKey="categoryName"
-              width={110}
-              tick={{
-                fontSize: 12,
-              }}
-              stroke="currentColor"
-              className="text-text-secondary"
-            />
+              <XAxis
+                type="number"
+                tickFormatter={(value) =>
+                  `${currencyType.symbol} ${Number(value).toFixed(0)}`
+                }
+                tick={{
+                  fontSize: 12,
+                }}
+                stroke="currentColor"
+                className="text-text-secondary"
+              />
 
-            <Tooltip
-              {...chartTooltipStyles}
-              cursor={{
-                fill: "var(--color-text-secondary)",
-                fillOpacity: 0.08,
-              }}
-              formatter={(value, name) => [
-                `${currencyType.symbol} ${Number(value).toFixed(2)}`,
-                name,
-              ]}
-            />
+              <YAxis
+                type="category"
+                dataKey="categoryName"
+                width={110}
+                tick={{
+                  fontSize: 12,
+                }}
+                stroke="currentColor"
+                className="text-text-secondary"
+              />
 
-            <Legend />
+              <Tooltip
+                {...chartTooltipStyles}
+                cursor={{
+                  fill: "var(--color-text-secondary)",
+                  fillOpacity: 0.08,
+                }}
+                formatter={(value, name) => [
+                  `${currencyType.symbol} ${Number(value).toFixed(2)}`,
+                  name,
+                ]}
+              />
 
-            <Bar
-              dataKey="budget"
-              name="Budget"
-              fill="currentColor"
-              className="text-primary"
-              radius={[0, 6, 6, 0]}
-              maxBarSize={18}
-            />
+              <Legend />
 
-            <Bar
-              dataKey="netUsed"
-              name="Net used"
-              fill="currentColor"
-              className="text-secondary"
-              radius={[0, 6, 6, 0]}
-              maxBarSize={18}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+              <Bar
+                dataKey="budget"
+                name="Budget"
+                fill="currentColor"
+                className="text-primary"
+                radius={[0, 6, 6, 0]}
+                maxBarSize={18}
+              />
+
+              <Bar
+                dataKey="netUsed"
+                name="Net used"
+                fill="currentColor"
+                className="text-secondary"
+                radius={[0, 6, 6, 0]}
+                maxBarSize={18}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </section>
   );

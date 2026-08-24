@@ -9,7 +9,7 @@ const FamilyManagement = () => {
   if (!isReady || !family) return null;
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
+    <div className="flex h-full min-h-0 flex-col gap-4 overflow-x-hidden overflow-y-auto bg-surface p-4 md:gap-6 md:p-6 xl:overflow-hidden card">
       <header className="flex flex-col gap-1">
         <h1 className="text-xl font-semibold text-text-primary">
           Family management

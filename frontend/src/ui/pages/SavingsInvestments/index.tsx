@@ -20,8 +20,8 @@ const SavingsInvestments = () => {
   if (!isReady || !family) return null;
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-6 bg-surface p-6 card">
-      <div className="flex items-center justify-between gap-4">
+    <div className="flex h-full min-h-0 flex-col gap-4 overflow-hidden bg-surface p-4 md:gap-6 md:p-6 card">
+      <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-center lg:justify-between">
         <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-text-primary">
             Saving and investments
@@ -40,7 +40,7 @@ const SavingsInvestments = () => {
         />
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-[0.5fr_1fr] gap-4">
+      <div className="grid min-h-0 flex-1 auto-rows-max grid-cols-1 gap-4 overflow-x-hidden overflow-y-auto xl:auto-rows-auto xl:grid-cols-[0.5fr_1fr] xl:overflow-hidden">
         <SavingsInvestmentsAllocation
           key={[
             year,

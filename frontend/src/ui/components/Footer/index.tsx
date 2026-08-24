@@ -9,7 +9,7 @@ const Footer = () => {
   if (!isVisible) return null;
 
   return (
-    <footer className="flex justify-between pr-5 pl-5 pb-2">
+    <footer className="flex flex-col gap-2 pr-5 pl-5 pb-2 md:flex-row md:justify-between md:gap-0">
       <div className="flex flex-col gap-1">
         <p className="text-sm text-text-primary">
           © {year} Household Economics
@@ -35,7 +35,7 @@ const Footer = () => {
           </a>
         </p>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-start md:justify-center">
         <Link
           to={paths.privacypolicy.href}
           className="flex items-center gap-3 text-sm text-text-primary transition-colors hover:text-primary"

@@ -130,9 +130,9 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
       </div>
 
       {isExpense && (
-        <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-          <div className="flex items-center justify-between gap-4 p-4">
-            <div>
+        <section className="flex flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background md:min-h-0 md:flex-1">
+          <div className="flex flex-col items-stretch gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <h2 className="text-lg font-semibold text-text-primary">
                 Expense items
               </h2>
@@ -143,6 +143,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
 
             <Button
               type="button"
+              className="w-full sm:w-auto"
               onClick={() => {
                 setItems((currentItems) => [...currentItems, emptyItem()]);
                 setCategoryId("");
@@ -152,7 +153,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
               Add item
             </Button>
           </div>
-          <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
+          <div className="flex-1 overflow-visible px-4 py-3 md:min-h-0 md:overflow-y-auto">
             {items.length === 0 ? (
               <p className="text-sm text-text-secondary">
                 No items added. The expense will use the main category.
@@ -162,7 +163,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
                 {items.map((item, index) => (
                   <div
                     key={index}
-                    className="grid grid-cols-[2.5fr_1.5fr_1fr_auto] gap-3"
+                    className="grid grid-cols-1 gap-3 rounded-xl border border-text-secondary/10 p-3 sm:grid-cols-2 xl:grid-cols-[2.5fr_1.5fr_1fr_auto] xl:rounded-none xl:border-0 xl:p-0"
                   >
                     <Input
                       id={`expense-item-product-${index}`}
@@ -228,6 +229,7 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
                     <Button
                       type="button"
                       variant="danger"
+                      className="w-full sm:w-auto sm:justify-self-end xl:justify-self-auto"
                       onClick={() => {
                         setItems((currentItems) =>
                           currentItems.filter(
@@ -247,8 +249,8 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
         </section>
       )}
 
-      <div className="flex flex-wrap items-center gap-4">
-        <Button type="submit" disabled={isPending}>
+      <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+        <Button type="submit" className="w-full sm:w-auto" disabled={isPending}>
           {isPending
             ? isEditing
               ? "Updating..."
@@ -258,7 +260,12 @@ const DailyRegisterForm = (props: DailyRegisterFormProps) => {
               : "Create"}
         </Button>
 
-        <Button type="button" variant="secondary" onClick={onClose}>
+        <Button
+          type="button"
+          variant="secondary"
+          className="w-full sm:w-auto"
+          onClick={onClose}
+        >
           Close
         </Button>
 

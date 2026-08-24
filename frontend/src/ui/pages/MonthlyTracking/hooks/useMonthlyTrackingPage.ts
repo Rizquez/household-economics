@@ -8,7 +8,15 @@ import useFamilyUser from "@/ui/hooks/useFamilyUser";
 import useAvaliablePeriods from "@/ui/hooks/useAvaliablePeriods";
 
 const useMonthlyTrackingPage = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("");
+  const [selectedPeriod, setSelectedPeriod] = useState(() => {
+    return localStorage.getItem("monthlyPeriod") ?? "";
+  });
+
+  useEffect(() => {
+    if (selectedPeriod) {
+      localStorage.setItem("monthlyPeriod", selectedPeriod);
+    }
+  }, [selectedPeriod]);
 
   const { showLoading, showModal, closeModal } = useModal();
 

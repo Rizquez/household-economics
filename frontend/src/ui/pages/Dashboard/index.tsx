@@ -36,8 +36,8 @@ const Dashboard = () => {
   const budgetStatus = dashboard?.budgetStatus ?? [];
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden bg-surface p-6 card">
-      <header className="flex shrink-0 flex-col gap-4 pb-4 md:flex-row md:items-center md:justify-between">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden bg-surface p-4 md:p-6 card">
+      <header className="flex shrink-0 flex-col gap-4 pb-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-text-primary">Dashboard</h1>
 
@@ -56,20 +56,20 @@ const Dashboard = () => {
 
       <div
         className="
-          grid min-h-0 flex-1 gap-4 overflow-y-auto
-          xl:grid-cols-2
-          xl:grid-rows-[minmax(0,0.9fr)_minmax(0,1.1fr)]
-          xl:overflow-hidden
+          grid min-h-0 flex-1 gap-4 overflow-x-hidden overflow-y-auto
+          2xl:grid-cols-2
+          2xl:grid-rows-[minmax(0,0.9fr)_minmax(0,1.1fr)]
+          2xl:overflow-hidden
         "
       >
-        <div className="min-h-0">
+        <div className="min-w-0 2xl:min-h-0">
           <DashboardOverview
             overview={overview}
             currencyType={family.currencyType}
           />
         </div>
 
-        <div className="min-h-0">
+        <div className="min-w-0 2xl:min-h-0">
           <DashboardAlerts
             overview={overview}
             allocation={allocation}
@@ -78,14 +78,14 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="min-h-0">
+        <div className="min-w-0 2xl:min-h-0">
           <DashboardAllocation
             allocation={allocation}
             currencyType={family.currencyType}
           />
         </div>
 
-        <div className="min-h-0">
+        <div className="min-w-0 2xl:min-h-0">
           <DashboardBudgetStatus
             budgetStatus={budgetStatus}
             currencyType={family.currencyType}
