@@ -21,8 +21,8 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
   } = useFamilyInvitationForm();
 
   return (
-    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
-      <header className="flex items-start justify-between gap-8 p-6">
+    <section className="flex flex-col overflow-visible rounded-xl border border-text-secondary/10 bg-background xl:min-h-0 xl:overflow-hidden">
+      <header className="flex flex-col items-stretch gap-4 p-4 md:p-6 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold text-text-primary">
             Family members
@@ -35,58 +35,60 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
 
         <form
           noValidate
-          className="relative flex w-full max-w-sm items-end gap-3"
+          className="flex w-full flex-col gap-2 xl:max-w-sm"
           onSubmit={handleSubmit}
         >
-          <div className="flex-1">
-            <Input
-              label="Invite a new member"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-                clearFieldError("email");
-              }}
-              placeholder="person@example.com"
-              disabled={isSendingInvitation}
-              error={hasFieldError("email")}
-            />
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-end">
+            <div className="min-w-0 flex-1">
+              <Input
+                label="Invite a new member"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  clearFieldError("email");
+                }}
+                placeholder="person@example.com"
+                disabled={isSendingInvitation}
+                error={hasFieldError("email")}
+              />
+            </div>
 
-            {hasFieldError("email") && formError && (
-              <div className="absolute left-0 top-full mt-2 text-sm text-error">
-                <p>{formError}</p>
-              </div>
-            )}
+            <Button
+              type="submit"
+              className="h-10 w-full shrink-0 sm:w-auto"
+              disabled={isSendingInvitation}
+            >
+              {isSendingInvitation ? "Sending..." : "Send"}
+            </Button>
           </div>
 
-          <Button
-            type="submit"
-            className="h-10 shrink-0"
-            disabled={isSendingInvitation}
-          >
-            {isSendingInvitation ? "Sending..." : "Send"}
-          </Button>
+          {hasFieldError("email") && formError && (
+            <div className="min-w-0 wrap-break-word text-sm text-error">
+              <p>{formError}</p>
+            </div>
+          )}
         </form>
       </header>
 
-      <div className="min-h-0 overflow-x-auto px-6 pb-6">
-        <table className="w-full border-collapse text-left">
+      <div className="overflow-x-auto px-4 pb-4 md:px-6 md:pb-6 xl:min-h-0">
+        <table className="w-full min-w-160 border-collapse text-left">
           <thead>
             <tr className="border-b border-text-secondary/10">
-              <th className="px-4 py-3 text-sm font-medium text-text-secondary">
+              <th className="w-40 max-w-40 px-4 py-3 text-sm font-medium text-text-secondary xl:w-auto xl:max-w-none">
                 Name
               </th>
 
-              <th className="px-4 py-3 text-sm font-medium text-text-secondary">
+              <th className="w-64 max-w-64 px-4 py-3 text-sm font-medium text-text-secondary xl:w-auto xl:max-w-none">
                 Email
               </th>
 
-              <th className="px-4 py-3 text-sm font-medium text-text-secondary">
+              <th className="min-w-28 whitespace-nowrap px-4 py-3 text-sm font-medium text-text-secondary">
                 Role
               </th>
 
-              <th className="px-4 py-3 text-right text-sm font-medium text-text-secondary">
+              <th className="w-28 whitespace-nowrap px-4 py-3 text-right text-sm font-medium text-text-secondary">
                 Actions
               </th>
             </tr>
@@ -99,24 +101,25 @@ const FamilyMembers = ({ familyMembers }: FamilyMembersProps) => {
                   key={member.id}
                   className="border-b border-text-secondary/10 last:border-b-0"
                 >
-                  <td className="px-4 py-3 text-sm text-text-primary">
+                  <td className="w-40 max-w-40 wrap-break-word px-4 py-3 text-sm text-text-primary xl:w-auto xl:max-w-none xl:break-normal">
                     <div className="flex items-center gap-2">
                       <span>{member.name}</span>
                     </div>
                   </td>
 
-                  <td className="px-4 py-3 text-sm text-text-secondary">
+                  <td className="w-64 max-w-64 break-all px-4 py-3 text-sm text-text-secondary xl:w-auto xl:max-w-none xl:break-normal">
                     {member.email}
                   </td>
 
-                  <td className="px-4 py-3 text-sm text-text-primary">
+                  <td className="min-w-28 whitespace-nowrap px-4 py-3 text-sm text-text-primary">
                     {member.role}
                   </td>
 
-                  <td className="px-4 py-3 text-right">
+                  <td className="w-28 whitespace-nowrap px-4 py-3 text-right">
                     <Tooltip text="Remove family member.">
                       <Button
                         variant="danger"
+                        className="shrink-0"
                         disabled={isRemoving}
                         onClick={() => confirmRemove(member)}
                       >

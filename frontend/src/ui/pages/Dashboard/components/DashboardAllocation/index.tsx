@@ -10,7 +10,7 @@ const DashboardAllocation = ({
 }: DashboardAllocationProps) => {
   if (!allocation.hasAllocation) {
     return (
-      <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+      <section className="flex h-auto min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background xl:h-full">
         <div className="shrink-0 border-b border-text-secondary/10 p-4">
           <h2 className="text-lg font-semibold text-text-primary">
             Monthly allocation
@@ -30,15 +30,15 @@ const DashboardAllocation = ({
     getAllocationChartData(allocation);
 
   return (
-    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+    <section className="flex h-auto min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background xl:h-full">
       <div className="shrink-0 border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly allocation
         </h2>
       </div>
 
-      <div className="grid min-h-0 flex-1 gap-4 p-4 sm:grid-cols-[minmax(0,1fr)_minmax(160px,0.8fr)]">
-        <div className="min-h-0">
+      <div className="grid min-h-0 flex-1 gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(160px,0.8fr)]">
+        <div className="h-64 min-h-0 xl:h-full">
           {chartTotal > 0 ? (
             <ResponsiveContainer width="100%" height="100%" minHeight={180}>
               <PieChart>
@@ -82,43 +82,49 @@ const DashboardAllocation = ({
         </div>
 
         <div className="flex min-h-0 flex-col justify-center gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 lg:flex-nowrap">
+            <div className="flex min-w-0 items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-success" />
 
-              <span className="text-sm text-text-secondary">Savings</span>
+              <span className="wrap-break-word text-sm text-text-secondary">
+                Savings
+              </span>
             </div>
 
-            <span className="font-semibold text-text-primary">
+            <span className="ml-auto break-all text-right font-semibold text-text-primary lg:break-normal">
               {currencyType.symbol} {allocation.savings.toFixed(2)}
             </span>
           </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 lg:flex-nowrap">
+            <div className="flex min-w-0 items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-primary" />
 
-              <span className="text-sm text-text-secondary">Investments</span>
+              <span className="wrap-break-word text-sm text-text-secondary">
+                Investments
+              </span>
             </div>
 
-            <span className="font-semibold text-text-primary">
+            <span className="ml-auto break-all text-right font-semibold text-text-primary lg:break-normal">
               {currencyType.symbol} {allocation.investments.toFixed(2)}
             </span>
           </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 lg:flex-nowrap">
+            <div className="flex min-w-0 items-center gap-2">
               <span
                 className={`h-3 w-3 rounded-full ${
                   allocation.remaining >= 0 ? "bg-secondary" : "bg-error"
                 }`}
               />
 
-              <span className="text-sm text-text-secondary">Remaining</span>
+              <span className="wrap-break-word text-sm text-text-secondary">
+                Remaining
+              </span>
             </div>
 
             <span
-              className={`font-semibold ${
+              className={`ml-auto break-all text-right font-semibold lg:break-normal ${
                 allocation.remaining >= 0 ? "text-text-primary" : "text-error"
               }`}
             >
@@ -126,10 +132,12 @@ const DashboardAllocation = ({
             </span>
           </div>
 
-          <div className="mt-2 flex items-center justify-between gap-3 border-t border-text-secondary/10 pt-3">
-            <span className="text-sm text-text-secondary">Total assigned</span>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-3 border-t border-text-secondary/10 pt-3 lg:flex-nowrap">
+            <span className="min-w-0 wrap-break-word text-sm text-text-secondary">
+              Total assigned
+            </span>
 
-            <span className="font-semibold text-text-primary">
+            <span className="ml-auto break-all text-right font-semibold text-text-primary lg:break-normal">
               {currencyType.symbol} {assigned.toFixed(2)}
             </span>
           </div>

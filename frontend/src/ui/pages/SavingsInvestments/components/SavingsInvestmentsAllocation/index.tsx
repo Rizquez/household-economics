@@ -28,7 +28,7 @@ const SavingsInvestmentsAllocation = (
   const isAllocationDisabled = availableAmount <= 0;
 
   return (
-    <section className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
+    <section className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-surface">
       <div className="border-b border-text-secondary/10 bg-background p-4">
         <h2 className="text-lg font-semibold text-text-primary">
           Monthly allocation
@@ -50,7 +50,7 @@ const SavingsInvestmentsAllocation = (
           </div>
 
           <span
-            className={`text-3xl font-semibold ${
+            className={`min-w-0 wrap-break-word text-3xl font-semibold ${
               availableAmount >= 0 ? "text-success" : "text-error"
             }`}
           >
@@ -58,7 +58,7 @@ const SavingsInvestmentsAllocation = (
           </span>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2">
           <NumberInput
             id="savings-investment-savings"
             label="Savings"
@@ -84,7 +84,7 @@ const SavingsInvestmentsAllocation = (
           />
         </div>
 
-        <div className="grid gap-4 border-t border-text-secondary/10 pt-4 md:grid-cols-2">
+        <div className="grid gap-4 border-t border-text-secondary/10 pt-4 lg:grid-cols-2">
           <div className="flex flex-col gap-1">
             <span className="flex items-center gap-2 text-sm text-text-secondary">
               <span className="">Assigned</span>
@@ -95,16 +95,16 @@ const SavingsInvestmentsAllocation = (
               </Tooltip>
             </span>
 
-            <span className="text-lg font-semibold text-text-primary">
+            <span className="min-w-0 wrap-break-word text-lg font-semibold text-text-primary">
               {currencyType.symbol} {assignedAmount.toFixed(2)}
             </span>
           </div>
 
-          <div className="flex flex-col gap-1 md:text-right">
+          <div className="flex flex-col gap-1 lg:text-right">
             <span className="text-sm text-text-secondary">Remaining</span>
 
             <span
-              className={`text-lg font-semibold ${
+              className={`min-w-0 wrap-break-word text-lg font-semibold ${
                 remainingAmount >= 0 ? "text-success" : "text-error"
               }`}
             >

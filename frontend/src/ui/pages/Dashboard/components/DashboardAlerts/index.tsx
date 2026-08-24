@@ -21,7 +21,7 @@ const DashboardAlerts = ({
   });
 
   return (
-    <section className="flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background">
+    <section className="flex h-auto min-h-0 flex-col overflow-hidden rounded-xl border border-text-secondary/10 bg-background xl:h-full">
       <div className="border-b border-text-secondary/10 p-4">
         <h2 className="text-lg font-semibold text-text-primary">Alerts</h2>
       </div>
@@ -32,7 +32,7 @@ const DashboardAlerts = ({
           <p className="text-sm">Your finances are on track for this period.</p>
         </div>
       ) : (
-        <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-4">
+        <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-visible p-4 xl:overflow-y-auto">
           {alerts.map((alert) => (
             <div
               key={alert.id}
@@ -50,7 +50,9 @@ const DashboardAlerts = ({
                 }
                 className="mt-0.5 shrink-0"
               />
-              <p className="text-sm leading-5">{alert.message}</p>
+              <p className="min-w-0 wrap-break-word text-sm leading-5">
+                {alert.message}
+              </p>
             </div>
           ))}
         </div>

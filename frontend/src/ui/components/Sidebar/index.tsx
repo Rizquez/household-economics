@@ -8,6 +8,7 @@ import { useTheme } from "@/ui/contexts/ThemeContext/hooks/useTheme";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
 import Tooltip from "../Tooltip";
+import type { SidebarProps } from "./types";
 
 const kEYS = [
   "dashboard",
@@ -17,7 +18,7 @@ const kEYS = [
   "categories",
 ] as const;
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen = false, onNavigate }: SidebarProps) => {
   const { family } = useFamilyUser();
   const { isVisible } = useAppLayoutVisibility(Boolean(family));
   const { theme, toggleTheme } = useTheme();
@@ -25,7 +26,11 @@ const Sidebar = () => {
   if (!isVisible || !family) return null;
 
   return (
-    <aside className="flex h-full w-65 flex-none flex-col bg-surface card">
+    <aside
+      className={`fixed inset-y-5 left-5 z-50 flex h-[calc(100%-2.5rem)] w-65 flex-none flex-col bg-surface transition-transform lg:static lg:z-auto lg:h-full lg:translate-x-0 card ${
+        isOpen ? "translate-x-0" : "-translate-x-[calc(100%+1.25rem)]"
+      }`}
+    >
       <div className="flex justify-between items-center px-6 pt-6">
         <Tooltip
           text={theme === "light" ? "Change to dark" : "Change to light"}
@@ -60,6 +65,7 @@ const Sidebar = () => {
               key={path.href}
               to={path.href}
               end
+              onClick={onNavigate}
               className={({ isActive }) =>
                 [
                   "flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm",
@@ -80,6 +86,7 @@ const Sidebar = () => {
           key={paths.familymanagement.href}
           to={paths.familymanagement.href}
           end
+          onClick={onNavigate}
           className={({ isActive }) =>
             [
               "flex items-center gap-3 rounded-md px-3 py-2 transition-colors text-sm",

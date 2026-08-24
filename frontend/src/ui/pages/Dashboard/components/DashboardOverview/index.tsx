@@ -13,7 +13,7 @@ const DashboardOverview = ({
 }: DashboardOverviewProps) => {
   const charts = getOverviewCharts(overview);
   return (
-    <section className="grid h-full min-h-0 grid-cols-2 grid-rows-2 gap-3">
+    <section className="grid h-auto min-h-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:grid-rows-2 xl:h-full">
       {charts.map((chart) => (
         <article
           key={chart.label}
@@ -65,7 +65,7 @@ const DashboardOverview = ({
             <span className="text-sm text-text-secondary">{chart.label}</span>
 
             <span
-              className={`truncate text-xl font-semibold ${chart.valueClassName}`}
+              className={`break-all text-xl font-semibold sm:truncate ${chart.valueClassName}`}
               title={`${currencyType.symbol} ${chart.value.toFixed(2)}`}
             >
               {currencyType.symbol} {chart.value.toFixed(2)}
