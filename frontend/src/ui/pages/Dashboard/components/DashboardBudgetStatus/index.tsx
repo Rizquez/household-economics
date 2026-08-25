@@ -51,12 +51,7 @@ const DashboardBudgetStatus = ({
 
       <div className="min-h-0 flex-1 overflow-x-auto p-4 lg:overflow-x-visible">
         <div className="h-72 min-w-105 lg:min-w-0 xl:h-full">
-          <ResponsiveContainer
-            width="100%"
-            height="100%"
-            minHeight={220}
-            debounce={16}
-          >
+          <ResponsiveContainer width="100%" height="100%" minHeight={220}>
             <BarChart
               data={chartData}
               layout="vertical"
