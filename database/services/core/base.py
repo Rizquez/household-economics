@@ -4,7 +4,7 @@ from typing import TypeVar, List, Type, Optional, Dict, Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import scoped_session
-    from models import ModelBase
+    from models.core import ModelBase
 
 TModel = TypeVar("TModel", bound="ModelBase")
 

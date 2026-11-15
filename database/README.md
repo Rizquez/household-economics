@@ -27,6 +27,11 @@
     pip install -r requirements.txt
     ```
 
+4. Create the package:
+    ```sh
+    python -m build
+    ```
+
 > [!NOTE]
 > If you're using operating systems such as macOS or Linux, use the `pip3` and `python3` commands.
 
@@ -99,75 +104,7 @@ To generate a migration correctly, you must be in the `./household-economics/dat
 > [!NOTE]
 > You can apply changes by specifying the specific revision ID associated with a particular migration.
 
-## 📂 Project structure
-
-```
-database/
-├── alembic
-│   ├── versions/...
-│   ├── env.py
-│   └── script.py.mako
-├── database
-│   └── __init__.py
-├── models
-│   ├── core
-│   │   ├── __init__.py
-│   │   └── base.py
-│   ├── __init__.py
-│   ├── budget_group.py
-│   ├── budget.py
-│   ├── category.py
-│   ├── currency_type.py
-│   ├── expense_item.py
-│   ├── expense.py
-│   ├── famlily_invitation.py
-│   ├── famlily_members.py
-│   ├── family.py
-│   ├── income.py
-│   ├── record_type.py
-│   ├── role.py
-│   ├── pysavings_investment.py
-│   └── user.py
-├── scripts
-│   ├── __init__.py
-│   ├── constants.py
-│   ├── helpes.py
-│   └── seed_local_db.py
-├── services
-│   ├── core
-│   │   ├── __init__.py
-│   │   └── base.py
-│   ├── __init__.py
-│   ├── budget.py
-│   ├── category.py
-│   ├── currency_type.py
-│   ├── expense.py
-│   ├── famlily_invitation.py
-│   ├── famlily_members.py
-│   ├── family.py
-│   ├── income.py
-│   ├── record_type.py
-│   ├── role.py
-│   ├── pysavings_investment.py
-│   └── user.py
-├── .gitignore
-├── alembic.ini
-├── db.py
-├── docker-compose.yml
-├── pyproject.toml
-├── README.md
-└── requirements.txt
-```
-
 ## 🎯 Additional considerations for developers
-
-### Semantic versioning criteria (x.xx.xxx)
-
-The criteria for each version number are described below:
-
-- **Major (x):** Increments when there are significant changes that make previous versions incompatible.
-- **Minor (xx):** Increases when new features compatible with the previous version are added.
-- **Patch (xxx):** Increases when minor bug fixes that do not affect functionality are made.
 
 ### Workflow
 

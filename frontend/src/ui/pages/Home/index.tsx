@@ -1,4 +1,4 @@
-import { SignInButton, useUser } from "@clerk/clerk-react";
+import { SignInButton, useUser } from "@clerk/react";
 import { Navigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

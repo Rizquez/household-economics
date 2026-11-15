@@ -9,30 +9,10 @@ const Footer = () => {
   if (!isVisible) return null;
 
   return (
-    <footer className="flex flex-col gap-2 pr-5 pl-5 pb-2 md:flex-row md:justify-between md:gap-0">
+    <footer className="flex flex-col gap-2 pr-5 pl-5 pb-5 md:flex-row md:justify-between md:gap-0">
       <div className="flex flex-col gap-1">
         <p className="text-sm text-text-primary">
           © {year} Household Economics
-        </p>
-        <p className="text-xs text-text-primary">
-          Designed & developed by{" "}
-          <a
-            href="https://www.linkedin.com/in/karlam-hernandez/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer transition-colors hover:text-primary"
-          >
-            Karla Hernandez
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/pedro-rizquez/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer transition-colors hover:text-primary"
-          >
-            Pedro Rizquez
-          </a>
         </p>
       </div>
       <div className="flex items-center justify-start md:justify-center">

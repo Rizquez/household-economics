@@ -1,7 +1,7 @@
 import { createHead, UnheadProvider } from "@unhead/react/client";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "@/ui/app/App";
+import App from "./app";
 
 const head = createHead();
 const root = document.getElementById("root");

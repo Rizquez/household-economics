@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { paths } from "@/ui/routes/paths";
-import { UserButton } from "@clerk/clerk-react";
+import { UserButton } from "@clerk/react";
 import useFamilyUser from "../../hooks/useFamilyUser";
 import useAppLayoutVisibility from "@/ui/hooks/useAppLayoutVisibility";
 import { useTheme } from "@/ui/contexts/ThemeContext/hooks/useTheme";
