@@ -160,8 +160,4 @@ Every new feature is designed according to three fundamental principles:
 
 ## 🔒 License
 
-This project is licensed under the MIT license, which allows its use, distribution, and modification under the conditions specified in the `LICENSE` file.
-
-## 👨‍💻 Autor
-
-- Pedro Rizquez: pedro.rizquez.94@hotmail.com
+Household Economics is distributed under the GNU General Public License (GPL), in accordance with the terms of the `LICENSE` file.

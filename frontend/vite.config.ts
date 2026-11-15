@@ -15,7 +15,7 @@ const contentSecurityPolicy = [
     "connect-src 'self'",
     "http://127.0.0.1:8080",
     "https://stirring-wolf-16.clerk.accounts.dev",
-    "https://*.protect.clerk.com",
+    "https://*.protect.clerk.com:*",
     "https://clerk-telemetry.com",
     "https://*.clerk-telemetry.com",
     "https://fonts.googleapis.com",

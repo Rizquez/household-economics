@@ -1,5 +1,5 @@
 import { isRouteErrorResponse, useNavigate, useRouteError } from "react-router";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/react";
 import { paths } from "@/ui/routes/paths";
 
 const useRouteErrorPage = () => {

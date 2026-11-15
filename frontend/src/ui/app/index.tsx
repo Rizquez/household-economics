@@ -1,5 +1,5 @@
 import "@/ui/styles/global.css";
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider } from "@clerk/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ModalProvider } from "@/ui/contexts/ModalContext";
 import { ApiActivityProvider } from "@/ui/contexts/ApiActivityContext";

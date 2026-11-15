@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { UserButton } from "@clerk/clerk-react";
+import { UserButton } from "@clerk/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faHouseLock } from "@fortawesome/free-solid-svg-icons";
 import { useModal } from "@/ui/contexts/ModalContext/hooks/useModal";
